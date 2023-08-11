@@ -9,7 +9,7 @@
 //   $color-pack: false
 // );
 
-@use 'vuetify/settings' with (
+@use 'node_modules/vuetify/settings' with (
   $utilities: false,
-  $button-height: 50px
+
 );
