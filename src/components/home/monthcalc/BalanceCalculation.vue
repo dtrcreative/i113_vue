@@ -1,40 +1,47 @@
 <template>
   <div>
-    <v-text-field
-      class="inputBalance"
-      label="Current balance: "
-      variant="outlined"
-      prepend-icon="mdi mdi-calendar"
-      v-model="inputBalance"
-      v-on:keyup="calcDayLimit"
-    ></v-text-field>
-    <v-text-field
-      class="inputDayOfMonth"
-      label="Day1"
-      variant="outlined"
-      v-model="firstDayOfMonth"
-    ></v-text-field>
-    <v-text-field
-      class="inputDayOfMonth"
-      label="Day2"
-      variant="outlined"
-      v-model="secondDayOfMonth"
-    ></v-text-field>
-    <v-text-field
-      class="daysLeft"
-      label="DaysLeft"
-      variant="outlined"
-      v-model="daysLeft"
-      disabled="true"
-    ></v-text-field>
-    <v-text-field
-      class="result"
-      label="Balance for the day"
-      variant="outlined"
-      v-model="calculatedValue"
-      disabled="true"
-    ></v-text-field>
-
+    <div class="component">
+      <v-text-field
+        label="Current balance: "
+        variant="outlined"
+        v-model="inputBalance"
+        v-on:keyup="calcDayLimit"
+      ></v-text-field>
+      <VBtn
+        size="large"
+        variant="text"
+        icon="mdi mdi-trash-can-outline"
+        rounded="xl"
+        @click="clear"
+      >
+      </VBtn>
+    </div>
+    <div class="component">
+      <v-text-field
+        label="Day1"
+        variant="outlined"
+        v-model="firstDayOfMonth"
+      ></v-text-field>
+      <v-text-field
+        label="Day2"
+        variant="outlined"
+        v-model="secondDayOfMonth"
+      ></v-text-field>
+      <v-text-field
+        label="DaysLeft"
+        variant="outlined"
+        v-model="daysLeft"
+        disabled
+      ></v-text-field>
+    </div>
+    <div>
+      <v-text-field
+        label="Balance for the day"
+        variant="outlined"
+        v-model="calculatedValue"
+        disabled
+      ></v-text-field>
+    </div>
   </div>
 </template>
 
@@ -63,7 +70,7 @@ export default {
         const nearestFirstDay = new Date(currentDate.getFullYear() + '-' + (currentDate.getMonth() + 2) + '-' + this.firstDayOfMonth);
         const timeDifference = nearestFirstDay.getTime() - currentDate.getTime();
         this.daysLeft = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
-      } else{
+      } else {
         this.daysLeft = 0;
       }
     },
@@ -73,6 +80,10 @@ export default {
       } else {
         this.calculatedValue = this.inputBalance;
       }
+    },
+    clear() {
+      this.inputBalance = '';
+      this.calculatedValue = '';
     }
   },
   mounted() {
@@ -84,22 +95,14 @@ export default {
 
 <style scoped>
 * {
+  display: -moz-grid-line;
+}
+
+.component {
   display: flex;
+  /*@media (max-width: 767 px) display: flex;*/
 }
-
-.inputBalance {
-  max-width: 200px;
-}
-
-.inputDayOfMonth {
-  max-width: 60px;
-}
-
-.daysLeft {
-  max-width: 70px;
-}
-
-.result {
-  max-width: 200px;
+.btn{
+  height: 100%;
 }
 </style>

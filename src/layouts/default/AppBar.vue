@@ -11,13 +11,8 @@
     </div>
 
     <div class="auth">
-      <VBtn class="btn">
-        Sign in
-      </VBtn>
-
-      <VBtn class="btn" variant="outlined">
-        Log in
-      </VBtn>
+      <SignIn></SignIn>
+      <LogIn></LogIn>
     </div>
 
 
@@ -40,7 +35,14 @@
   </v-app-bar>
 </template>
 
-<script setup>
+<script>
+import LogIn from "@/components/auth/LogIn";
+import SignIn from "@/components/auth/SignIn";
+export default {
+  name: "AppBar",
+  components: {SignIn, LogIn},
+}
+
 </script>
 
 <style lang="sass" scoped>
@@ -51,6 +53,7 @@
   horiz-align: right
 
 .auth
+  display: flex
   padding: 10px
 
 </style>

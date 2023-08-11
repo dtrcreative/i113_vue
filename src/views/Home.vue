@@ -2,19 +2,18 @@
   <div class="sections">
     <div class="section-bottom">
       <div class="block-bottom">
-        <VBtn>Test Btn</VBtn>
-<!--        <Dialog></Dialog>-->
-      </div>
-    </div>
-  </div>
-
-  <div class="sections">
-    <div class="section-bottom">
-      <div class="block-bottom">
         <MonthCalculation></MonthCalculation>
       </div>
     </div>
+<!--    <div class="section-right">-->
+<!--      <div class="block-bottom">-->
+<!--        <MonthCalculation></MonthCalculation>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
+<!--  <div class="sections">-->
+
+<!--  </div>-->
 </template>
 
 <script setup>
@@ -48,8 +47,10 @@ import MonthCalculation from "@/components/home/monthcalc/BalanceCalculation";
     padding-right: 0
 
 .section-right
-  width: 70%
-  padding-left: 10px
+  width: 50%
+  margin-top: 16px
+  padding-left: 5px
+  padding-right: 10px
 
   @media (max-width: 767px)
     width: 100%
