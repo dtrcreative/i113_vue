@@ -5,11 +5,11 @@
         <MonthCalculation></MonthCalculation>
       </div>
     </div>
-<!--    <div class="section-right">-->
-<!--      <div class="block-bottom">-->
-<!--        <MonthCalculation></MonthCalculation>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="section-right">
+      <div class="block-bottom">
+        <MonthCalculation></MonthCalculation>
+      </div>
+    </div>
   </div>
 <!--  <div class="sections">-->
 
