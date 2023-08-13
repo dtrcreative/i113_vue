@@ -1,32 +1,78 @@
 <template>
-  <div class="text-center">
-    <v-dialog v-model="showDialog" width="auto">
+  <div class="log-in">
+    <v-dialog
+      v-model="dialog"
+      transition="dialog-top-transition"
+      width="400"
+      class="dialog">
       <template v-slot:activator="{ props }">
         <v-btn
           class="btn"
+          v-bind="props"
           variant="outlined"
-          v-bind="props">Log In
+        >Log In
         </v-btn>
       </template>
-      <v-card>
+      <v-form ref="form" @submit.prevent="submit">
 
+        <v-card
+          class="mx-auto"
+          title="Log in user"
+          prepend-icon="mdi mdi-account-key"
+        >
+          <v-card-text class="log-in">
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field clearable
+                                v-model="user.userName"
+                                label="AccountName*"
+                                variant="outlined"
+                                density="compact"
+                                :rules="[rules.required]"
+                                :maxlength="25"
+                                :counter="25"
+                  ></v-text-field>
+                </v-col>
 
-
-        <v-card-actions>
-          <v-btn
-            class="btn"
-            variant="text"
-            @click="closeDialog"
-          >Close
-          </v-btn>
-          <v-btn
-            class="btn"
-            variant="text"
-            @click="showDialog = false"
-          >Log in
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+                <v-col cols="12">
+                  <v-text-field clearable
+                                v-model="user.password"
+                                label="Password*"
+                                variant="outlined"
+                                density="compact"
+                                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                :rules="[rules.required, rules.lengths.passwordMin, rules.lengths.passwordMax]"
+                                :type="showPassword ? 'text' : 'password'"
+                                :maxlength="30"
+                                :counter="30"
+                                @click:append="showPassword = !showPassword"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+        </v-card>
+        <v-card>
+          <v-card-actions>
+            <v-btn
+              :disabled="!dialog"
+              :loading="loading"
+              class="mt-2"
+              type="submit"
+              block
+              size="large"
+              variant="outlined"
+            >
+              Sign In
+            </v-btn>
+          </v-card-actions>
+          <v-card-text class="info" v-if="errorCode">
+            <v-card-title>{{ errorCode }}</v-card-title>
+            <v-card-subtitle>{{ errorMessage }}</v-card-subtitle>
+          </v-card-text>
+        </v-card>
+      </v-form>
     </v-dialog>
   </div>
 </template>
@@ -36,12 +82,76 @@ export default {
   name: "LogIn",
   data() {
     return {
-      showDialog: false,
+      dialog: false,
+      loading: false,
+
+      errorCode: '',
+      errorMessage: '',
+
+      showPassword: false,
+
+      rules: {
+        required: value => !!value || 'Field is required',
+        passwordMissmatch: value => value === this.password || "Passwords missmatch",
+        lengths: {
+          passwordMin: value => value.length > 3 || 'Password is too short',
+          passwordMax: value => value.length <= 25 || 'Password is too long',
+        },
+      },
+
+      user: {
+        userName: '',
+        password: '',
+      },
     }
   },
   methods: {
+    async submit() {
+      this.clearError()
+      const {valid} = await this.$refs.form.validate()
+      if (valid) {
+        this.loading = true
+
+        if (this.register()) {
+          this.clear();
+          this.closeDialog();
+        }
+      }
+    },
+    logIn() {
+      const username = user.userName.toLowerCase();
+      this.$store.dispatch("auth/login", user).then(
+        () => {
+          this.clear();
+          this.closeDialog();
+          // this.$router.push("/profile");
+        },
+        (error) => {
+          this.loading = false;
+          if(error.response.status === 403){
+            this.message = "Wrong login or password"
+          }else{
+            this.message =
+              error.message ||
+              error.toString();
+          }
+        }
+      );
+    },
+    clear() {
+      this.clearError()
+      this.$refs.form.reset()
+      this.$refs.form.resetValidation()
+    },
+    clearError() {
+      this.errorHandler('', '')
+    },
     closeDialog() {
-      this.showDialog = false;
+      this.dialog = false;
+    },
+    errorHandler(errorCode, errorMessage) {
+      this.errorCode = errorCode;
+      this.errorMessage = errorMessage;
     }
   }
 }
@@ -49,4 +159,12 @@ export default {
 
 <style lang="sass" scoped>
 @import '../src/assets/styles/main.sass'
+
+.log-in
+  background: url('../src/assets/img/gradient-2.jpg')
+
+.dialog
+  border-radius: 10px
+
+
 </style>
