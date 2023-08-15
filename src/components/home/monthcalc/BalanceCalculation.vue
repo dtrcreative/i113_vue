@@ -5,7 +5,7 @@
         label="Current balance: "
         variant="outlined"
         v-model="inputBalance"
-        v-on:keyup="calcDayLimit"
+        v-on:keyup="calcDaysLeft"
       ></v-text-field>
       <VBtn
         size="large"
@@ -17,15 +17,17 @@
       </VBtn>
     </div>
     <div class="component">
-      <v-text-field
-        label="Day1"
+      <v-text-field clearable
+        label="DayOn"
         variant="outlined"
-        v-model="firstDayOfMonth"
+        v-model="dayOn"
+        v-on:keyup="calcDaysLeft"
       ></v-text-field>
-      <v-text-field
-        label="Day2"
+      <v-text-field clearable
+        label="DayOff"
         variant="outlined"
-        v-model="secondDayOfMonth"
+        v-model="dayOff"
+        v-on:keyup="calcDaysLeft"
       ></v-text-field>
       <v-text-field
         label="DaysLeft"
@@ -51,8 +53,8 @@ export default {
 
   data() {
     return {
-      firstDayOfMonth: 16,
-      secondDayOfMonth: 26,
+      dayOn: '',
+      dayOff: '',
       daysLeft: '',
       calculatedValue: '',
       inputBalance: '',
@@ -61,18 +63,17 @@ export default {
   methods: {
     calcDaysLeft() {
       const currentDate = new Date();
-      const today = currentDate.getDate();
-      if (today <= this.firstDayOfMonth) {
-        this.daysLeft = (this.firstDayOfMonth - today)
-      } else if (today <= this.secondDayOfMonth) {
-        this.daysLeft = this.secondDayOfMonth - today;
-      } else if (today > this.secondDayOfMonth) {
-        const nearestFirstDay = new Date(currentDate.getFullYear() + '-' + (currentDate.getMonth() + 2) + '-' + this.firstDayOfMonth);
-        const timeDifference = nearestFirstDay.getTime() - currentDate.getTime();
+      const todayDate = new Date(currentDate.getFullYear() + '-' + (currentDate.getMonth()+1) + '-' + this.dayOn);
+      if (this.dayOn <= this.dayOff) {
+        this.daysLeft = this.dayOff - this.dayOn;
+      } else if (this.dayOn > this.dayOff) {
+        const nearestFirstDay = new Date(todayDate.getFullYear() + '-' + (todayDate.getMonth() + 2) + '-' + this.dayOff);
+        const timeDifference = nearestFirstDay.getTime() - todayDate.getTime();
         this.daysLeft = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
       } else {
         this.daysLeft = 0;
       }
+      this.calcDayLimit();
     },
     calcDayLimit() {
       if (this.daysLeft > 0) {
@@ -87,6 +88,12 @@ export default {
     }
   },
   mounted() {
+    this.dayOn = new Date().getDate();
+    if(this.dayOn<15){
+      this.dayOff = 15;
+    }else{
+      this.dayOff = 26;
+    }
     this.calcDaysLeft();
   },
 
