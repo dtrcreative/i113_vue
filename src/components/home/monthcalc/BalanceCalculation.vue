@@ -2,11 +2,25 @@
   <div>
     <div class="component">
       <v-text-field
-        label="Current balance: "
+        label="Current balance:"
         variant="outlined"
         v-model="inputBalance"
         v-on:keyup="calcDaysLeft"
       ></v-text-field>
+        <v-text-field
+          class="reserve"
+          label="Reserved:"
+          variant="outlined"
+          v-model="reserved"
+          v-on:keyup="calcDaysLeft"
+        ></v-text-field>
+        <v-text-field
+          class="reserve"
+          label="Multiplier:"
+          variant="outlined"
+          v-model="multiplier"
+          v-on:keyup="calcDaysLeft"
+        ></v-text-field>
       <VBtn
         size="large"
         variant="text"
@@ -58,6 +72,10 @@ export default {
       daysLeft: '',
       calculatedValue: '',
       inputBalance: '',
+
+      reserved: '',
+      multiplier: 1
+
     };
   },
   methods: {
@@ -77,10 +95,16 @@ export default {
     },
     calcDayLimit() {
       if (this.daysLeft > 0) {
-        this.calculatedValue = (this.inputBalance / this.daysLeft).toFixed(2);
+        this.calculatedValue = (this.calcResultBalance(this.inputBalance) / this.daysLeft).toFixed(2);
       } else {
-        this.calculatedValue = this.inputBalance;
+        this.calculatedValue = this.calcResultBalance(this.inputBalance);
       }
+    },
+    calcResultBalance(value){
+      if(this.reserved === ''){
+        return value;
+      }
+      return value-this.reserved*this.multiplier;
     },
     clear() {
       this.inputBalance = '';
@@ -104,12 +128,10 @@ export default {
 * {
   display: -moz-grid-line;
 }
-
 .component {
   display: flex;
-  /*@media (max-width: 767 px) display: flex;*/
 }
-.btn{
-  height: 100%;
+.reserve{
+  width: 1%;
 }
 </style>
