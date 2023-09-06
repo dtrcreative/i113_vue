@@ -78,6 +78,7 @@
 </template>
 
 <script>
+
 export default {
   name: "LogIn",
   data() {
@@ -117,26 +118,6 @@ export default {
           this.closeDialog();
         }
       }
-    },
-    logIn() {
-      const username = user.userName.toLowerCase();
-      this.$store.dispatch("auth/login", user).then(
-        () => {
-          this.clear();
-          this.closeDialog();
-          // this.$router.push("/profile");
-        },
-        (error) => {
-          this.loading = false;
-          if(error.response.status === 403){
-            this.message = "Wrong login or password"
-          }else{
-            this.message =
-              error.message ||
-              error.toString();
-          }
-        }
-      );
     },
     clear() {
       this.clearError()

@@ -7,7 +7,7 @@
     </div>
     <div class="section-right">
       <div class="block-bottom">
-        <MonthCalculation></MonthCalculation>
+        <Currencies></Currencies>
       </div>
     </div>
   </div>
@@ -19,6 +19,7 @@
 <script setup>
 import Dialog from "@/components/UI/Dialog";
 import MonthCalculation from "@/components/home/monthcalc/BalanceCalculation";
+import Currencies from "@/components/home/currencies/Currencies";
 </script>
 
 <style lang="sass" scoped>
