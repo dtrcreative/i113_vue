@@ -7,8 +7,7 @@ const _callApi = (token) => {
     Accept: "application/json",
     Authorization: "Bearer " + token
   };
-  // const response = axios.get("http://localhost:8080/api/panda/", { headers });
-  const response = axios.post("http://localhost:28080/realms/i113_realm/protocol/openid-connect/logout?redirect_uri=http://localhost:3000/", { headers });
+  const response = axios.get("http://localhost:8080/api/panda/", { headers });
   console.log(response);
   return response;
 }
