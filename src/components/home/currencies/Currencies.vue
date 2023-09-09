@@ -2,7 +2,7 @@
 
   <v-card
     class="mx-auto"
-    title="Today Currencies"
+    title="TestButtons"
   ></v-card>
 
   <v-btn
@@ -21,12 +21,24 @@
     pandaCall
   </v-btn>
 
+  <v-btn
+    @click="userData"
+  >
+    userData
+  </v-btn>
+
+  <v-btn
+    @click="userExist"
+  >
+    UserExist
+  </v-btn>
+
 
 </template>
 
 <script>
 import {callApi} from "@/components/auth/services/axios-helper";
-import {login, logout} from "@/components/auth/services/auth-helper";
+import {checkUser, getUser, login, logout} from "@/components/auth/services/auth-helper";
 export default {
   name: "Currencies",
 
@@ -40,9 +52,9 @@ export default {
   }),
 
   methods:{
-    //643 - RUB
-    //978 - EUR
-    //840
+    // 643 - RUB
+    // 978 - EUR
+    // 840 - USD
 
     logintest(){
       login();
@@ -52,6 +64,13 @@ export default {
     },
     pandacall(){
       callApi();
+    },
+    userData(){
+      console.log(getUser())
+    },
+    async userExist() {
+      console.log(sessionStorage.getItem(""))
+      // console.log(await checkUser())
     }
   }
 }

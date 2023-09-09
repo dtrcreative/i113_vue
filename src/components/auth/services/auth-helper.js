@@ -1,4 +1,4 @@
-import { UserManager } from 'oidc-client';
+import {UserManager} from 'oidc-client';
 
 const settings = {
   authority: "http://localhost:28080/realms/i113_realm/",
@@ -13,6 +13,10 @@ const userManager = new UserManager(settings);
 
 export const getUser = () => {
   return userManager.getUser();
+}
+
+export const checkUser = () => {
+  return userManager.getUser().then(user => !!(user && user.access_token));
 }
 
 export const login = () => {

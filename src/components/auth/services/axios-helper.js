@@ -15,7 +15,7 @@ const _callApi = (token) => {
 export const callApi = () => {
   return getUser().then(user => {
     if (user && user.access_token) {
-      console.log(user.profile.preferred_username);
+      console.log(user.access_token);
       return _callApi(user.access_token).catch(error => {
         throw error;
       });

@@ -10,9 +10,11 @@
       <v-avatar icon="mdi mdi-account-off"></v-avatar>
     </div>
 
-    <div class="auth">
-      <SignIn></SignIn>
-      <LogIn></LogIn>
+    <div class="auth" v-if="this.checkUserExist">
+      <log-out-button></log-out-button>
+    </div>
+    <div v-else>
+      <log-in-button></log-in-button>
     </div>
 
 
@@ -38,9 +40,21 @@
 <script>
 import LogIn from "@/components/auth/LogIn";
 import SignIn from "@/components/auth/SignIn";
+import LogInButton from "@/components/auth/LogInButton";
+import {checkUser} from "@/components/auth/services/auth-helper";
+import LogOutButton from "@/components/auth/LogOutButton";
+
 export default {
   name: "AppBar",
-  components: {SignIn, LogIn},
+  components: {LogOutButton, LogInButton, SignIn, LogIn},
+  methods: {},
+  computed: {
+    async checkUserExist() {
+      let result = await checkUser();
+      console.log(result);
+      return result;
+    }
+  },
 }
 
 </script>
