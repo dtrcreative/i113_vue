@@ -65,12 +65,12 @@ export default {
     pandacall(){
       callApi();
     },
-    userData(){
+    userData() {
       console.log(getUser())
     },
     async userExist() {
-      console.log(sessionStorage.getItem(""))
-      // console.log(await checkUser())
+      // console.log(sessionStorage.getItem("")) //TODO: check how to check User without await
+      console.log(checkUser())
     }
   }
 }

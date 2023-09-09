@@ -5,16 +5,15 @@
       <strong>Ellie</strong>
     </v-app-bar-title>
 
-    <div class="user-info">
-      <strong>Guest</strong>
+    <div class="user-info" v-if="!isExist">
       <v-avatar icon="mdi mdi-account-off"></v-avatar>
-    </div>
-
-    <div class="auth" v-if="this.checkUserExist">
-      <log-out-button></log-out-button>
-    </div>
-    <div v-else>
+      <strong>Guest</strong>
       <log-in-button></log-in-button>
+    </div>
+    <div class="user-info" v-else>
+      <v-avatar icon="mdi mdi-account-star"></v-avatar>
+      <strong>UserName</strong>
+      <log-out-button></log-out-button>
     </div>
 
 
@@ -41,18 +40,14 @@
 import LogIn from "@/components/auth/LogIn";
 import SignIn from "@/components/auth/SignIn";
 import LogInButton from "@/components/auth/LogInButton";
-import {checkUser} from "@/components/auth/services/auth-helper";
 import LogOutButton from "@/components/auth/LogOutButton";
 
 export default {
   name: "AppBar",
   components: {LogOutButton, LogInButton, SignIn, LogIn},
-  methods: {},
   computed: {
-    async checkUserExist() {
-      let result = await checkUser();
-      console.log(result);
-      return result;
+    isExist() {
+      return sessionStorage.length !== 0
     }
   },
 }
@@ -63,7 +58,7 @@ export default {
 @import '../src/assets/styles/main'
 
 .user-info
-  padding: 5px
+  padding: 10px
   horiz-align: right
 
 .auth
