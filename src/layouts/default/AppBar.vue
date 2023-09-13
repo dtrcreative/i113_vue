@@ -10,28 +10,12 @@
       <strong>Guest</strong>
       <log-in-button></log-in-button>
     </div>
-    <div class="user-info" v-else>
+    <div class="user-info"
+         v-else>
       <v-avatar icon="mdi mdi-account-star"></v-avatar>
-      <strong>UserName</strong>
+      <strong>{{this.userFirstName}}</strong>
       <log-out-button></log-out-button>
     </div>
-
-
-    <!--    <v-menu>-->
-    <!--      <template v-slot:activator="{ on, attrs }">-->
-    <!--        <v-btn icon v-bind="attrs" v-on="on">-->
-    <!--          <v-icon>mdi-dots-vertical</v-icon>-->
-    <!--        </v-btn>-->
-    <!--      </template>-->
-
-    <!--      <v-list>-->
-    <!--        <v-list-item v-for="n in 4" :key="n" @click="() => {}">-->
-    <!--          Option {{ n }}-->
-    <!--        </v-list-item>-->
-    <!--      </v-list>-->
-    <!--    </v-menu>-->
-
-    <!--    <v-app-bar-nav-icon/>-->
 
   </v-app-bar>
 </template>
@@ -41,13 +25,25 @@ import LogIn from "@/components/auth/LogIn";
 import SignIn from "@/components/auth/SignIn";
 import LogInButton from "@/components/auth/LogInButton";
 import LogOutButton from "@/components/auth/LogOutButton";
+import {getUser, isUser} from "@/components/auth/services/auth-helper";
+import userHelper from "@/components/auth/services/user.helper";
 
 export default {
   name: "AppBar",
   components: {LogOutButton, LogInButton, SignIn, LogIn},
+
+  data(){
+    return {
+      userFirstName: userHelper.getUserFirstName(),
+    }
+  },
   computed: {
     isExist() {
-      return sessionStorage.length !== 0
+      return isUser();
+    },
+    getUserFirstName(){
+      console.log(userHelper.getUserFirstName() + "====")
+      return userHelper.getUserFirstName()
     }
   },
 }

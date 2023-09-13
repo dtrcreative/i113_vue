@@ -17,7 +17,6 @@
 </template>
 
 <script setup>
-import Dialog from "@/components/UI/Dialog";
 import MonthCalculation from "@/components/home/monthcalc/BalanceCalculation";
 import Currencies from "@/components/home/currencies/Currencies";
 </script>

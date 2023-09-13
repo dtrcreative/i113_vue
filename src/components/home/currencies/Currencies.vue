@@ -28,9 +28,15 @@
   </v-btn>
 
   <v-btn
-    @click="userExist"
+    @click="checkUser"
   >
-    UserExist
+    checkUser
+  </v-btn>
+
+  <v-btn
+    @click="userHelperFill"
+  >
+    userHelperFill
   </v-btn>
 
 
@@ -39,6 +45,7 @@
 <script>
 import {callApi} from "@/components/auth/services/axios-helper";
 import {checkUser, getUser, login, logout} from "@/components/auth/services/auth-helper";
+import UserHelper from "@/components/auth/services/user.helper"
 export default {
   name: "Currencies",
 
@@ -68,9 +75,11 @@ export default {
     userData() {
       console.log(getUser())
     },
-    async userExist() {
-      // console.log(sessionStorage.getItem("")) //TODO: check how to check User without await
+    async checkUser() {
       console.log(checkUser())
+    },
+    userHelperFill(){
+      UserHelper.fillLocalsStorageUser();
     }
   }
 }

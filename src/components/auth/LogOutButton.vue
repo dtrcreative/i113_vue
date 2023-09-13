@@ -20,6 +20,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
+@import '../src/assets/styles/main.sass'
+
+.btn
+  min-width: 100px
 
 </style>
