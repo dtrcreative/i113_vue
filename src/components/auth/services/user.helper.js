@@ -3,7 +3,6 @@ import {getUser} from "@/components/auth/services/auth-helper";
 const USER = "userName"
 const FIRSTNAME = "firstName"
 
-
 class UserHelper {
   fillLocalsStorageUser(){
      getUser().then(user => {

@@ -43,7 +43,6 @@ export const checkUser = () => {
 
 export const isUser = () => {
   if(!userHelper.isUserExist()){
-    console.log("try to fill LocalStorage")
     userHelper.fillLocalsStorageUser()
   }
   return userHelper.isUserExist();

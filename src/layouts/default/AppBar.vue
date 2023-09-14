@@ -1,20 +1,19 @@
 <template>
   <v-app-bar flat>
     <v-app-bar-title>
-      <v-icon icon="mdi-shield-home-outline"/>
-      <strong>Ellie</strong>
+      <v-avatar icon="$fox" image="src/assets/Fox.png" size="30" ></v-avatar>
     </v-app-bar-title>
 
-    <div class="user-info" v-if="!isExist">
-      <v-avatar icon="mdi mdi-account-off"></v-avatar>
-      <strong>Guest</strong>
-      <log-in-button></log-in-button>
+    <div class="auth" v-if="!isExist">
+      <div class="user-info">
+        <log-in-button></log-in-button>
+      </div>
     </div>
-    <div class="user-info"
-         v-else>
-      <v-avatar icon="mdi mdi-account-star"></v-avatar>
-      <strong>{{this.userFirstName}}</strong>
-      <log-out-button></log-out-button>
+    <div class="auth" v-else>
+
+      <toggle-theme></toggle-theme>
+      <tranlate-list></tranlate-list>
+      <user-profile-list></user-profile-list>
     </div>
 
   </v-app-bar>
@@ -25,26 +24,26 @@ import LogIn from "@/components/auth/LogIn";
 import SignIn from "@/components/auth/SignIn";
 import LogInButton from "@/components/auth/LogInButton";
 import LogOutButton from "@/components/auth/LogOutButton";
-import {getUser, isUser} from "@/components/auth/services/auth-helper";
+import {isUser} from "@/components/auth/services/auth-helper";
 import userHelper from "@/components/auth/services/user.helper";
+import ToggleTheme from "@/components/UI/ToggleTheme";
+import TranlateList from "@/components/UI/TranlateList";
+import UserProfileList from "@/components/UI/UserProfileList";
 
 export default {
   name: "AppBar",
-  components: {LogOutButton, LogInButton, SignIn, LogIn},
+  components: {UserProfileList, TranlateList, ToggleTheme, LogOutButton, LogInButton, SignIn, LogIn},
 
-  data(){
+  data() {
     return {
       userFirstName: userHelper.getUserFirstName(),
+      value: 1
     }
   },
   computed: {
     isExist() {
       return isUser();
     },
-    getUserFirstName(){
-      console.log(userHelper.getUserFirstName() + "====")
-      return userHelper.getUserFirstName()
-    }
   },
 }
 
@@ -54,8 +53,7 @@ export default {
 @import '../src/assets/styles/main'
 
 .user-info
-  padding: 10px
-  horiz-align: right
+  padding-left: 5px
 
 .auth
   display: flex
