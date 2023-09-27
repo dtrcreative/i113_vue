@@ -1,5 +1,5 @@
 // Composables
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 
 const routes = [
   {
@@ -15,9 +15,16 @@ const routes = [
         path: '/callback',
         name: 'RedirectCallBack',
         component: () => import('@/views/RedirectCallBack.vue'),
-      },
+      }
     ],
   },
+  {
+    path: "/profile",
+    component: () => import('@/layouts/default/Main.vue'),
+    children: [
+      {path: '',  name: 'Profile', component: () => import('@/views/ProfileView.vue'),},
+    ]
+  }
 ]
 
 const router = createRouter({

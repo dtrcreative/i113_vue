@@ -8,5 +8,4 @@
 <script setup>
   import AppBar from './AppBar.vue'
   import MainView from './View.vue'
-  import UserComponents from "@/components/UI/UserComponents";
 </script>

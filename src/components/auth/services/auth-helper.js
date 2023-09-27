@@ -1,4 +1,4 @@
-import {UserManager} from 'oidc-client';
+import {UserManager, WebStorageStateStore} from 'oidc-client';
 import userHelper from "@/components/auth/services/user.helper";
 
 const KEYCLOAK_URL = "http://localhost:28080/";
@@ -10,7 +10,11 @@ const settings = {
   redirect_uri: APP_URL + "callback",
   response_type: 'code',
   scope: "openid profile message.read",
-  post_logout_redirect_uri: APP_URL + ""
+  post_logout_redirect_uri: APP_URL + "",
+  userStore: new WebStorageStateStore({ store: window.localStorage }),
+  stateStore: new WebStorageStateStore({ store: window.sessionStorage }),
+  automaticSilentRenew: false,
+  sessionMonitor: false
 };
 
 const userManager = new UserManager(settings);

@@ -1,7 +1,7 @@
 <template>
   <v-app-bar flat>
     <v-app-bar-title>
-      <v-avatar icon="$fox" image="src/assets/Fox.png" size="30" ></v-avatar>
+      <v-avatar icon="$fox" image="src/assets/Fox.png" size="30"></v-avatar>
     </v-app-bar-title>
 
     <div class="auth" v-if="!isExist">
