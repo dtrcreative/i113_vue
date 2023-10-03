@@ -10,16 +10,23 @@
         </v-avatar>
       </v-btn>
     </template>
-    <v-card>
-
-      <v-list>
+    <v-card rounded >
+      <v-list align="center">
+        <v-list-item>
+          <v-avatar
+            color="primary"
+            size="small"
+          >
+            <strong>{{ getUserInitials }}</strong>
+          </v-avatar>
+        </v-list-item>
         <v-list-item
           :title = getUserFullName
           :subtitle = getEmail
         >
         </v-list-item>
       </v-list>
-
+      <v-divider :thickness="4" class="border-opacity-75"></v-divider>
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -30,7 +37,7 @@
 
           <v-list-item-title v-text="item.text"></v-list-item-title>
           <template v-slot:prepend>
-            <v-icon :icon="item.icon"></v-icon>
+            <v-icon :icon="item.icon" size="x-large"></v-icon>
           </template>
         </v-list-item>
       </v-list>
@@ -48,7 +55,6 @@ export default {
   data: () => ({
     selectedItem: 0,
     items: [
-      {text: 'Home', icon: 'mdi mdi-home-account', action: "goHome"},
       {text: 'Profile', icon: 'mdi-account-multiple', action: "goProfile"},
       {text: 'Logout', icon: 'mdi mdi-logout', action: "logout"},
     ],
@@ -56,22 +62,16 @@ export default {
   methods:{
     listAction(action){
       switch (action){
-        case 'logout': this.listLogout()
+        case 'logout': logout();
           break
-        case 'goProfile': this.redirect("profile")
+        case 'goProfile': router.push("profile");
           break
-        case 'goHome': this.redirect("./")
+        case 'goHome': router.push("./");
           break
         default:
           break
       }
     },
-    listLogout(){
-      logout();
-    },
-    redirect(page){
-      router.push(page);
-    }
   },
   computed:{
     getUserInitials(){
@@ -89,4 +89,10 @@ export default {
 
 <style lang="sass" scoped>
 @import '../src/assets/styles/main'
+
+text-center
+  justify-content: center!important
+  flex-direction: row!important
+  text-align: center!important
+  align-items: center!important
 </style>

@@ -1,8 +1,11 @@
 <template>
-  <v-app-bar flat>
+  <v-app-bar>
 
     <div v-if="isExist">
-      <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        variant="text"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
     </div>
 
     <v-app-bar-title>
@@ -23,8 +26,8 @@
 
   </v-app-bar>
 
-  <v-navigation-drawer v-model="drawer" location="left" temporary>
-    <v-list :items="items"></v-list>
+  <v-navigation-drawer v-model="drawer" location="left">
+   <navigation-bar></navigation-bar>
   </v-navigation-drawer>
 
 </template>
@@ -39,42 +42,18 @@ import userHelper from "@/components/auth/services/user.helper";
 import ToggleTheme from "@/components/UI/ToggleTheme";
 import TranlateList from "@/components/UI/TranlateList";
 import UserProfileList from "@/components/UI/UserProfileList";
+import NavigationBar from "@/components/UI/NavigationBar";
 
 export default {
   name: "AppBar",
-  components: {UserProfileList, TranlateList, ToggleTheme, LogOutButton, LogInButton, SignIn, LogIn},
+  components: {NavigationBar, UserProfileList, TranlateList, ToggleTheme, LogOutButton, LogInButton, SignIn, LogIn},
 
   data() {
     return {
-      userFirstName: userHelper.getUserFirstName(),
-      value: 1,
       drawer: false,
-      group: null,
-      items: [
-        {
-          title: 'Foo',
-          value: 'foo',
-        },
-        {
-          title: 'Bar',
-          value: 'bar',
-        },
-        {
-          title: 'Fizz',
-          value: 'fizz',
-        },
-        {
-          title: 'Buzz',
-          value: 'buzz',
-        },
-      ],
     }
   },
-  watch: {
-    group() {
-      this.drawer = false
-    },
-  },
+
   computed: {
     isExist() {
       return isUser();
