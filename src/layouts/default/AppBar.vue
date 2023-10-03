@@ -1,7 +1,12 @@
 <template>
   <v-app-bar flat>
+
+    <div v-if="isExist">
+      <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    </div>
+
     <v-app-bar-title>
-      <v-avatar icon="$fox" image="src/assets/Fox.png" size="30"></v-avatar>
+      <v-avatar icon="$fox" image="src/assets/Fox.png" size="30"> Ellie </v-avatar>
     </v-app-bar-title>
 
     <div class="auth" v-if="!isExist">
@@ -17,6 +22,11 @@
     </div>
 
   </v-app-bar>
+
+  <v-navigation-drawer v-model="drawer" location="left" temporary>
+    <v-list :items="items"></v-list>
+  </v-navigation-drawer>
+
 </template>
 
 <script>
@@ -37,8 +47,33 @@ export default {
   data() {
     return {
       userFirstName: userHelper.getUserFirstName(),
-      value: 1
+      value: 1,
+      drawer: false,
+      group: null,
+      items: [
+        {
+          title: 'Foo',
+          value: 'foo',
+        },
+        {
+          title: 'Bar',
+          value: 'bar',
+        },
+        {
+          title: 'Fizz',
+          value: 'fizz',
+        },
+        {
+          title: 'Buzz',
+          value: 'buzz',
+        },
+      ],
     }
+  },
+  watch: {
+    group() {
+      this.drawer = false
+    },
   },
   computed: {
     isExist() {

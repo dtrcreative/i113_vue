@@ -37,7 +37,7 @@ export const redirectCallBack = () => {
 }
 
 export const logout = () => {
-  userHelper.cleanLocalStorage()
+  userHelper.cleanLocalStorage();
   return userManager.signoutRedirect();
 }
 
