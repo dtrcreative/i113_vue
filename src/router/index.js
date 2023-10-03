@@ -24,6 +24,13 @@ const routes = [
     children: [
       {path: '',  name: 'Profile', component: () => import('@/views/ProfileView.vue'),},
     ]
+  },
+  {
+    path: "/birthdays",
+    component: () => import('@/layouts/default/Main.vue'),
+    children: [
+      {path: '',  name: 'Profile', component: () => import('@/views/BirthdayView.vue'),},
+    ]
   }
 ]
 

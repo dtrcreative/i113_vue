@@ -50,7 +50,7 @@ export default {
       switch (action){
         case 'goPanda': router.push("profile");
           break
-        case 'goBirthdays': router.push("profile");
+        case 'goBirthdays': router.push("birthdays");
           break
         default:
           break

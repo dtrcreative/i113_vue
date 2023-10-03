@@ -10,7 +10,7 @@
         </v-avatar>
       </v-btn>
     </template>
-    <v-card rounded >
+    <v-card rounded  width="200">
       <v-list align="center">
         <v-list-item>
           <v-avatar
