@@ -2,22 +2,37 @@
   <div class="sections">
     <div class="section-bottom">
       <div class="block-bottom">
-        <MonthCalculation></MonthCalculation>
+        <event-calendar></event-calendar>
       </div>
     </div>
     <div class="section-right">
       <div class="block-bottom">
-        <Currencies></Currencies>
+        <time-line></time-line>
       </div>
     </div>
   </div>
-<!--  <div class="sections">-->
-<!--  </div>-->
+  <div class="sections">
+    <div class="section-bottom">
+      <div class="block-bottom">
+        <event-table></event-table>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="block-bottom">
+       <time-line></time-line>
+      </div>
+    </div>
+  </div>
 </template>
 
-<script setup>
-import MonthCalculation from "@/components/home/monthcalc/BalanceCalculation";
-import Currencies from "@/components/home/currencies/Currencies";
+<script>
+import TimeLine from "@/components/microservices/events/TimeLine";
+import EventTable from "@/components/microservices/events/EventTable";
+import EventCalendar from "@/components/microservices/events/EventCalendar";
+export default {
+  name: "BirthdayView",
+  components: {EventCalendar, EventTable, TimeLine}
+}
 </script>
 
 <style lang="sass" scoped>
@@ -46,7 +61,7 @@ import Currencies from "@/components/home/currencies/Currencies";
     padding-right: 0
 
 .section-right
-  width: 50%
+  width: 25%
   margin-top: 16px
   padding-left: 5px
   padding-right: 10px
@@ -92,7 +107,7 @@ import Currencies from "@/components/home/currencies/Currencies";
   cursor: pointer
 
 .section-bottom
-  width: 50%
+  width: 75%
   margin-top: 16px
 
   @media (max-width: 767px)
@@ -108,5 +123,4 @@ import Currencies from "@/components/home/currencies/Currencies";
   &-message
     padding-top: 10px
     font-size: 13px
-
 </style>

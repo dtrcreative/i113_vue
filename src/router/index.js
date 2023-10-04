@@ -26,10 +26,10 @@ const routes = [
     ]
   },
   {
-    path: "/birthdays",
+    path: "/events",
     component: () => import('@/layouts/default/Main.vue'),
     children: [
-      {path: '',  name: 'Profile', component: () => import('@/views/BirthdayView.vue'),},
+      {path: '',  name: 'Events', component: () => import('@/views/EventsView.vue'),},
     ]
   }
 ]

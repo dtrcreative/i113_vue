@@ -41,7 +41,7 @@ export default {
     return{
       items: [
         {text: 'Panda', icon: 'mdi mdi-panda', action: "goPanda"},
-        {text: 'Birthdays', icon: 'mdi mdi-cake', action: "goBirthdays"},
+        {text: 'Events', icon: 'mdi mdi-calendar', action: "goEvents"},
       ],
     }
   },
@@ -50,7 +50,7 @@ export default {
       switch (action){
         case 'goPanda': router.push("profile");
           break
-        case 'goBirthdays': router.push("birthdays");
+        case 'goEvents': router.push("events");
           break
         default:
           break
