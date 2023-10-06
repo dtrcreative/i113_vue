@@ -90,9 +90,4 @@ export default {
 <style lang="sass" scoped>
 @import '../src/assets/styles/main'
 
-text-center
-  justify-content: center!important
-  flex-direction: row!important
-  text-align: center!important
-  align-items: center!important
 </style>

@@ -1,5 +1,4 @@
 <template>
-  <!--  <p>{{ selected }}</p>-->
   <v-table density="compact" class="table">
     <thead>
     <tr>
@@ -15,7 +14,9 @@
       <th class="names">
         First Name
       </th>
-      <th class="names">
+      <th class="names"
+          @click="sortByName"
+      >
         Last Name
       </th>
       <th class="dates" style="text-align: center">
@@ -38,7 +39,7 @@
     <tbody>
     <tr
       v-for="item in this.desserts"
-      :key="item.name"
+      :key="item.id"
     >
       <td class="btn">
         <v-checkbox
@@ -59,81 +60,121 @@
           style="display: flex; justify-content: center;"
           color="primary"
           density="compact"
+          v-model="item.isNotify"
         ></v-switch>
       </td>
       <td class="btn">
-        <v-btn icon="mdi mdi-pen"></v-btn>
+        <v-btn
+          icon="mdi mdi-pen"
+        ></v-btn>
       </td>
       <td class="btn">
-        <v-btn icon="mdi mdi-trash-can"></v-btn>
+        <v-btn
+          icon="mdi mdi-trash-can"
+          @click=remove(item.id)
+        ></v-btn>
       </td>
     </tr>
     </tbody>
   </v-table>
+
+  <AddBForm class="create"></AddBForm>
+
 </template>
 
 <script>
+import AddBForm from "@/components/microservices/events/UI/AddBForm";
 export default {
   name: "EventTable",
+  components: {AddBForm},
   data() {
     return {
       selected: [],
+      isHovering: false,
       desserts: [
         {
+          id: 0,
           firstName: 'Dmitriy',
           lastName: 'Rogozhnikov',
           date: "19.08.2000",
           daysLeft: 10,
+          isNotify: false,
         },
         {
+          id: 1,
           firstName: 'JOJO',
           lastName: 'Binx',
           date: "19.08.2000",
           daysLeft: 10,
+          isNotify: true,
         },
         {
+          id: 2,
           firstName: 'Geralt',
           lastName: 'Rivia',
           date: "19.08.2000",
           daysLeft: 10,
+          isNotify: false,
         },
         {
+          id: 3,
           firstName: 'Kasper',
           lastName: 'Benington',
           date: "19.08.2000",
           daysLeft: 10,
+          isNotify: false,
         },
       ],
     }
   },
+  methods: {
+    sortByName() {
+      console.log("Sort")
+    },
+    add() {
+      this.desserts.push({id: 4, firstName: "Rimuru", lastName: "Tempers", date: "20.08.2000", daysLeft: 15})
+    },
+    remove(id) {
+      this.desserts = this.desserts.filter(p => p.id !== id)
+    }
+  }
 }
 </script>
 
-<style scoped>
-.component {
-  display: flex;
-}
+<style lang="sass" scoped>
+@import '../src/assets/styles/main'
+component
+  display: flex
 
-.table {
-  background-color: rgba(0, 0, 0, 0);
-}
+.table
+  background-color: rgba(0, 0, 0, 0)
 
-.btn {
+.btn
+  width: 5%
 
-  width: 5%;
-}
-
-.dates {
+.dates
   width: 10%
-}
 
-.names {
-  width: 30%;
-}
+.names
+  width: 30%
 
-.notify {
-  vertical-align: middle;
-  text-align: center;
-  width: 10%;
-}
+.names:hover
+  width: 30%
+  background-color: $table-hover-cell
+
+.names:hover
+  width: 30%
+
+.create
+  display: flex
+  justify-content: center
+
+.notify
+  vertical-align: middle
+  text-align: center
+  width: 10%
+
+tr:hover
+  background-color: $table-hover-row
+
 </style>
