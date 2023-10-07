@@ -1,20 +1,17 @@
 <template>
-
   <v-row justify="center">
     <v-dialog v-model="dialog" max-width="860">
 
       <template v-slot:activator="{ props }">
         <v-btn
-          icon="mdi-plus"
-          variant="text"
-          size="small"
+          icon="mdi mdi-pen"
           v-bind="props"
         ></v-btn>
       </template>
       <v-form ref="form" @submit.prevent="submit">
         <v-card>
           <v-card-title>
-            <span class="text-h5">Create Form</span>
+            <span class="text-h5">Update Form</span>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -132,63 +129,70 @@
 </template>
 
 <script>
-
 export default {
-  name: "AddForm",
-  emits:["create"],
-  data: () => ({
-    dialog: false,
-    unit: {
-      id: '',
-      firstName: '',
-      middleName: '',
-      lastName: '',
-      date: '',
-      description: '',
-      isNotify: true,
-    },
-
-    day: '',
-    month: '',
-    year: '',
-
-    rules: {
-      required: value => !!value || 'Required',
-      range: {
-        dayMin: value => value > 0 || 'Sure?',
-        dayMax: value => value < 32 || 'Sure?',
-
-        monthMin: value => value > 0 || 'Sure?',
-        monthMax: value => value <= 12 || 'Sure?',
-
-        yearMin: value => value >= 1900 || 'Too Early',
+  name: "UpdateBForm",
+  emits: ["update"],
+  data() {
+    return {
+      dialog: false,
+      unit: {
+        id: this.selectedUnit.id,
+        firstName: this.selectedUnit.firstName,
+        middleName: this.selectedUnit.middleName,
+        lastName: this.selectedUnit.lastName,
+        date: this.selectedUnit.date,
+        description: this.selectedUnit.description,
+        isNotify: this.selectedUnit.isNotify,
       },
-    },
 
-  }),
+      day: this.reFormatDate(this.selectedUnit.date, 0),
+      month: this.reFormatDate(this.selectedUnit.date, 1),
+      year: this.reFormatDate(this.selectedUnit.date, 2),
+
+      rules: {
+        required: value => !!value || 'Required',
+        range: {
+          dayMin: value => value > 0 || 'Sure?',
+          dayMax: value => value < 32 || 'Sure?',
+
+          monthMin: value => value > 0 || 'Sure?',
+          monthMax: value => value <= 12 || 'Sure?',
+
+          yearMin: value => value >= 1900 || 'Too Early',
+        },
+      },
+    }
+  },
+
+  props: {
+    selectedUnit: {
+      type: Object,
+    }
+  },
+
   methods: {
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
         this.clearAndClose();
         this.unit.date = this.formatDate();
-        this.$emit('create', this.unit);
+        this.$emit('update', this.unit);
       }
     },
     clearAndClose() {
       this.dialog = false;
-      this.$refs.form.reset()
       this.$refs.form.resetValidation()
     },
     formatDate() {
       return this.day + '-' + this.month + '-' + this.year;
     },
-
-    regex(value){
-      const regex = /^\d+/;
-      return value.match(regex);
-    }
+    reFormatDate(fullDate, numberOfValueInside) {
+      const mass = fullDate.split("-");
+      let result = mass[numberOfValueInside];
+      return parseInt(result);
+    },
   },
+
 }
 </script>
 
@@ -207,5 +211,4 @@ export default {
 
 .btn-save
   width: 150px
-
 </style>

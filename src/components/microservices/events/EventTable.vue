@@ -19,10 +19,10 @@
       >
         Last Name
       </th>
-      <th class="dates" style="text-align: center">
+      <th class="date" style="text-align: center">
         Date
       </th>
-      <th class="dates" style="text-align: center">
+      <th class="days-left" style="text-align: center">
         Days Left
       </th>
       <th class="notify" style="text-align: center">
@@ -38,7 +38,7 @@
     </thead>
     <tbody>
     <tr
-      v-for="item in this.desserts"
+      v-for="item in this.units"
       :key="item.id"
     >
       <td class="btn">
@@ -64,9 +64,11 @@
         ></v-switch>
       </td>
       <td class="btn">
-        <v-btn
-          icon="mdi mdi-pen"
-        ></v-btn>
+        <UpdateBForm
+          :selectedUnit="item"
+          @update="update"
+          style="justify-content: center"
+        ></UpdateBForm>
       </td>
       <td class="btn">
         <v-btn
@@ -78,51 +80,63 @@
     </tbody>
   </v-table>
 
-  <AddBForm class="create"></AddBForm>
+  <AddBForm
+    class="create"
+    @create="add"
+  ></AddBForm>
 
 </template>
 
 <script>
 import AddBForm from "@/components/microservices/events/UI/AddBForm";
+import UpdateBForm from "@/components/microservices/events/UI/UpdateBForm";
 export default {
   name: "EventTable",
-  components: {AddBForm},
+  components: {UpdateBForm, AddBForm},
   data() {
     return {
       selected: [],
       isHovering: false,
-      desserts: [
+      units: [
         {
           id: 0,
           firstName: 'Dmitriy',
+          middleName: 'middleName',
           lastName: 'Rogozhnikov',
-          date: "19.08.2000",
+          date: "19-08-2000",
           daysLeft: 10,
           isNotify: false,
+          description: '',
         },
         {
           id: 1,
           firstName: 'JOJO',
+          middleName: 'middleName',
           lastName: 'Binx',
-          date: "19.08.2000",
+          date: "19-08-2000",
           daysLeft: 10,
           isNotify: true,
+          description: '',
         },
         {
           id: 2,
           firstName: 'Geralt',
+          middleName: 'middleName',
           lastName: 'Rivia',
-          date: "19.08.2000",
+          date: "19-08-2000",
           daysLeft: 10,
           isNotify: false,
+          description: '',
         },
         {
           id: 3,
           firstName: 'Kasper',
+          middleName: 'middleName',
           lastName: 'Benington',
-          date: "19.08.2000",
+          date: "19-08-2000",
           daysLeft: 10,
           isNotify: false,
+          description: '',
         },
       ],
     }
@@ -131,12 +145,16 @@ export default {
     sortByName() {
       console.log("Sort")
     },
-    add() {
-      this.desserts.push({id: 4, firstName: "Rimuru", lastName: "Tempers", date: "20.08.2000", daysLeft: 15})
+    update(unit) {
+      this.units.push({id: 4, firstName: "Rimuru", lastName: "Tempers", date: "20.08.2000", daysLeft: 15})
+    },
+    add(unit) {
+      console.log(unit)
+      this.units.push({id: 4, firstName: "Rimuru", lastName: "Tempers", date: "20.08.2000", daysLeft: 15})
     },
     remove(id) {
-      this.desserts = this.desserts.filter(p => p.id !== id)
-    }
+      this.units = this.units.filter(p => p.id !== id)
+    },
   }
 }
 </script>
@@ -152,18 +170,21 @@ component
 .btn
   width: 5%
 
-.dates
-  width: 10%
+.days-left
+  width: 5%
+
+.date
+  width: 15%
 
 .names
-  width: 30%
+  width: 20%
 
 .names:hover
-  width: 30%
+  width: 20%
   background-color: $table-hover-cell
 
 .names:hover
-  width: 30%
+  width: 20%
 
 .create
   display: flex
