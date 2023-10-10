@@ -174,7 +174,7 @@ component
   width: 5%
 
 .date
-  width: 15%
+  width: 10%
 
 .names
   width: 20%

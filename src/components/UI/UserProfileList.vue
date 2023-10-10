@@ -75,13 +75,16 @@ export default {
   },
   computed:{
     getUserInitials(){
-      return userHelper.getUserFirstName().charAt(0).toUpperCase() + userHelper.getUserLastName().charAt(0).toUpperCase();
+      let user = userHelper.getUser();
+      return user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase();
     },
     getUserFullName(){
-      return userHelper.getFullName();
+      let user = userHelper.getUser();
+      return user.fullName;
     },
     getEmail(){
-      return userHelper.getUserEmail();
+      let user = userHelper.getUser();
+      return user.email;
     }
   }
 }

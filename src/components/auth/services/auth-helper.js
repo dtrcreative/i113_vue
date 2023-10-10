@@ -19,7 +19,7 @@ const settings = {
 
 const userManager = new UserManager(settings);
 
-export const getUser = () => {
+export const getAuthUser = () => {
   return userManager.getUser();
 }
 

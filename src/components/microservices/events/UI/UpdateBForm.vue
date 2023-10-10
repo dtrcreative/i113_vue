@@ -47,8 +47,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="2" md="2">
-                  <v-text-field clearable
-                                label="DD"
+                  <v-text-field label="DD"
                                 class="date"
                                 type="number"
                                 variant="outlined"
@@ -58,8 +57,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="2" md="2">
-                  <v-text-field clearable
-                                label="MM"
+                  <v-text-field label="MM"
                                 class="date"
                                 type="number"
                                 variant="outlined"
@@ -70,8 +68,7 @@
                 </v-col>
 
                 <v-col cols="12" sm="2" md="3">
-                  <v-text-field clearable
-                                label="YYYY"
+                  <v-text-field label="YYYY"
                                 class="date"
                                 type="number"
                                 variant="outlined"
@@ -188,8 +185,7 @@ export default {
     },
     reFormatDate(fullDate, numberOfValueInside) {
       const mass = fullDate.split("-");
-      let result = mass[numberOfValueInside];
-      return parseInt(result);
+      return mass[numberOfValueInside];
     },
   },
 

@@ -1,52 +1,35 @@
-import {getUser} from "@/components/auth/services/auth-helper";
+import {getAuthUser} from "@/components/auth/services/auth-helper";
 
-const USER = "userName"
-const USERROLE = "role"
-const FIRSTNAME = "firstName"
-const FAMILYNAME = "familyName"
-const FULLNAME = "fullname"
-const EMAIL = "email"
+const USER = "user"
 
 class UserHelper {
   fillLocalsStorageUser(){
-     getUser().then(user => {
+    getAuthUser().then(user => {
        if(user){
-         localStorage.setItem(USER, user.profile.preferred_username)
-         localStorage.setItem(USERROLE, user.profile.resource_access)
-         localStorage.setItem(FIRSTNAME, user.profile.given_name)
-         localStorage.setItem(FAMILYNAME, user.profile.family_name)
-         localStorage.setItem(FULLNAME, user.profile.name)
-         localStorage.setItem(EMAIL, user.profile.email)
+         let userData = {
+           userId: user.profile.sub,
+           token: user.access_token,
+           refresh_token: user.refresh_token,
+           userName: user.profile.preferred_username,
+           userRole: user.profile.resource_access,
+           firstName: user.profile.given_name,
+           lastName: user.profile.family_name,
+           fullName: user.profile.name,
+           email: user.profile.email,
+         }
+         localStorage.setItem(USER, JSON.stringify(userData))
        }
      });
   }
   cleanLocalStorage(){
     localStorage.removeItem(USER)
-    localStorage.removeItem(USERROLE)
-    localStorage.removeItem(FIRSTNAME)
-    localStorage.removeItem(FAMILYNAME)
-    localStorage.removeItem(FULLNAME)
-    localStorage.removeItem(EMAIL)
   }
   isUserExist(){
     return !!localStorage.getItem(USER);
   }
-  getUserFirstName(){
-    return localStorage.getItem(FIRSTNAME)
+  getUser(){
+    return JSON.parse(localStorage.getItem(USER));
   }
-  getUserLastName(){
-    return localStorage.getItem(FAMILYNAME)
-  }
-  getFullName(){
-    return localStorage.getItem(FULLNAME)
-  }
-  getUserRole(){
-    return localStorage.getItem(USERROLE)
-  }
-  getUserEmail(){
-    return localStorage.getItem(EMAIL)
-  }
-
 
 }
 

@@ -16,9 +16,9 @@
     TestLogout
   </v-btn>
   <v-btn
-    @click="pandacall"
+    @click="apiCall"
   >
-    pandaCall
+    apiCall
   </v-btn>
 
   <v-btn
@@ -43,42 +43,43 @@
 </template>
 
 <script>
-import {callApi} from "@/components/auth/services/axios-helper";
-import {checkUser, getUser, login, logout} from "@/components/auth/services/auth-helper";
+import {checkUser, getAuthUser, login, logout} from "@/components/auth/services/auth-helper";
 import UserHelper from "@/components/auth/services/user.helper"
+import eventsService from "@/components/microservices/events/js/events.service";
+
 export default {
   name: "Currencies",
 
   data: () => ({
     items: [
-      { title: 'BYN' },
-      { title: 'USD' },
-      { title: 'EUR' },
-      { title: 'RUB' },
+      {title: 'BYN'},
+      {title: 'USD'},
+      {title: 'EUR'},
+      {title: 'RUB'},
     ],
   }),
 
-  methods:{
+  methods: {
     // 643 - RUB
     // 978 - EUR
     // 840 - USD
 
-    logintest(){
+    logintest() {
       login();
     },
-    logouttest(){
+    logouttest() {
       logout();
     },
-    pandacall(){
-      callApi();
+    apiCall() {
+      eventsService.getEvents();
     },
     userData() {
-      console.log(getUser())
+      console.log(getAuthUser())
     },
     async checkUser() {
       console.log(checkUser())
     },
-    userHelperFill(){
+    userHelperFill() {
       UserHelper.fillLocalsStorageUser();
     }
   }

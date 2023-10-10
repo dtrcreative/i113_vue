@@ -1,25 +1,22 @@
-import axios from 'axios';
-import { getUser } from './auth-helper';
+import userHelper from "@/components/auth/services/user.helper";
 
+const SERV_URL = 'http://localhost:8080';
+// const SERV_URL = 'http://192.168.100.9:8080';
 
-const _callApi = (token) => {
-  const headers = {
-    Accept: "application/json",
-    Authorization: "Bearer " + token
-  };
-  const response = axios.get("http://localhost:8080/api/panda/", { headers });
-  console.log(response);
-  return response;
+export const getServerUrl = () => {
+  return SERV_URL;
 }
 
-export const callApi = () => {
-  return getUser().then(user => {
-    if (user && user.access_token) {
-      return _callApi(user.access_token).catch(error => {
-        throw error;
-      });
-    } else {
-      throw new Error('user is not logged in');
-    }
-  });
+export const authHeader = () => {
+  let user = userHelper.getUser();
+  if(user){
+    return {
+      Accept: "application/json",
+      Authorization: "Bearer " + user.token,
+      UserId: user.userId
+    };
+  }else{
+    throw new Error('user is not logged in');
+  }
 }
+

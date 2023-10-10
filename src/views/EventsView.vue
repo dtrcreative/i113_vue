@@ -14,7 +14,7 @@
   <div class="sections">
     <div class="section-bottom">
       <div class="block-bottom">
-        <event-table></event-table>
+        <birthday-table></birthday-table>
       </div>
     </div>
     <div class="section-right">
@@ -27,11 +27,11 @@
 
 <script>
 import TimeLine from "@/components/microservices/events/TimeLine";
-import EventTable from "@/components/microservices/events/EventTable";
+import BirthdayTable from "@/components/microservices/events/BirthdayTable";
 import EventCalendar from "@/components/microservices/events/EventCalendar";
 export default {
   name: "BirthdayView",
-  components: {EventCalendar, EventTable, TimeLine}
+  components: {EventCalendar, BirthdayTable, TimeLine}
 }
 </script>
 
