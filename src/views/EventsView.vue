@@ -1,16 +1,16 @@
 <template>
-  <div class="sections">
-    <div class="section-bottom">
-      <div class="block-bottom">
-        <event-calendar></event-calendar>
-      </div>
-    </div>
-    <div class="section-right">
-      <div class="block-bottom">
-        <time-line></time-line>
-      </div>
-    </div>
-  </div>
+<!--  <div class="sections">-->
+<!--    <div class="section-bottom">-->
+<!--      <div class="block-bottom">-->
+<!--        <event-table></event-table>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="section-right">-->
+<!--      <div class="block-bottom">-->
+<!--        <time-line></time-line>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
   <div class="sections">
     <div class="section-bottom">
       <div class="block-bottom">
@@ -28,10 +28,10 @@
 <script>
 import TimeLine from "@/components/microservices/events/TimeLine";
 import BirthdayTable from "@/components/microservices/events/BirthdayTable";
-import EventCalendar from "@/components/microservices/events/EventCalendar";
+import EventTable from "@/components/microservices/events/EventTable";
 export default {
   name: "BirthdayView",
-  components: {EventCalendar, BirthdayTable, TimeLine}
+  components: {EventTable, BirthdayTable, TimeLine}
 }
 </script>
 

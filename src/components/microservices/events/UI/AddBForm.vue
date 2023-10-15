@@ -56,6 +56,7 @@
                                 type="number"
                                 variant="outlined"
                                 density="compact"
+                                v-model="day"
                                 :maxlength="2"
                                 :rules="[rules.required, rules.range.dayMin, rules.range.dayMax]"
                   ></v-text-field>
@@ -67,6 +68,7 @@
                                 type="number"
                                 variant="outlined"
                                 density="compact"
+                                v-model="month"
                                 :maxlength="2"
                                 :rules="[rules.required, rules.range.monthMin, rules.range.monthMax]"
                   ></v-text-field>
@@ -79,6 +81,7 @@
                                 type="number"
                                 variant="outlined"
                                 density="compact"
+                                v-model="year"
                                 :maxlength="4"
                                 :rules="[rules.required, rules.range.yearMin]"
                   ></v-text-field>
@@ -90,7 +93,7 @@
                     color="primary"
                     density="default"
                     label="Notify Me"
-                    v-model="unit.isNotify"
+                    v-model="unit.notify"
                   ></v-switch>
                 </v-col>
                 <v-col cols="12" sm="3" md="12">
@@ -145,7 +148,7 @@ export default {
       lastName: '',
       date: '',
       description: '',
-      isNotify: true,
+      notify: true,
     },
 
     day: '',
@@ -170,9 +173,9 @@ export default {
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
-        this.clearAndClose();
         this.unit.date = this.formatDate();
         this.$emit('create', this.unit);
+        this.clearAndClose();
       }
     },
     clearAndClose() {
@@ -181,7 +184,7 @@ export default {
       this.$refs.form.resetValidation()
     },
     formatDate() {
-      return this.day + '-' + this.month + '-' + this.year;
+      return this.year + '-' + this.month + '-' + this.day;
     },
 
     regex(value){

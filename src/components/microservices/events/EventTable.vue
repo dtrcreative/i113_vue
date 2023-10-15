@@ -5,7 +5,7 @@
 <script>
 
 export default {
-  name: "EventCalendar",
+  name: "EventTable",
   data() {
     return {}
   },

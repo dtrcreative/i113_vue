@@ -32,6 +32,7 @@ export const redirectCallBack = () => {
     userHelper.fillLocalsStorageUser();
     window.location = "/";
   }).catch(function (e) {
+    userHelper.cleanLocalStorage();
     console.error(e);
   });
 }

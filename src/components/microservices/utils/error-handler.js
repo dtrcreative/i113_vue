@@ -6,6 +6,9 @@ class ErrorHandler {
 
   handle(error){
     console.log(error)
+    if(error.response.status === 503){
+      console.log(error.message)
+    }
     if(error.response.status === 500){
       console.log(error.message)
     }

@@ -60,7 +60,7 @@
           style="display: flex; justify-content: center;"
           color="primary"
           density="compact"
-          v-model="item.isNotify"
+          v-model="item.notify"
         ></v-switch>
       </td>
       <td class="btn">
@@ -90,6 +90,7 @@
 <script>
 import AddBForm from "@/components/microservices/events/UI/AddBForm";
 import UpdateBForm from "@/components/microservices/events/UI/UpdateBForm";
+import birthdayService from "@/components/microservices/events/js/birthday.service";
 export default {
   name: "EventTable",
   components: {UpdateBForm, AddBForm},
@@ -97,64 +98,53 @@ export default {
     return {
       selected: [],
       isHovering: false,
-      units: [
-        {
-          id: 0,
-          firstName: 'Dmitriy',
-          middleName: 'middleName',
-          lastName: 'Rogozhnikov',
-          date: "19-08-2000",
-          daysLeft: 10,
-          isNotify: false,
-          description: '',
-        },
-        {
-          id: 1,
-          firstName: 'JOJO',
-          middleName: 'middleName',
-          lastName: 'Binx',
-          date: "19-08-2000",
-          daysLeft: 10,
-          isNotify: true,
-          description: '',
-        },
-        {
-          id: 2,
-          firstName: 'Geralt',
-          middleName: 'middleName',
-          lastName: 'Rivia',
-          date: "19-08-2000",
-          daysLeft: 10,
-          isNotify: false,
-          description: '',
-        },
-        {
-          id: 3,
-          firstName: 'Kasper',
-          middleName: 'middleName',
-          lastName: 'Benington',
-          date: "19-08-2000",
-          daysLeft: 10,
-          isNotify: false,
-          description: '',
-        },
-      ],
+      units: ""
     }
   },
   methods: {
     sortByName() {
       console.log("Sort")
     },
-    update(unit) {
-      this.units.push({id: 4, firstName: "Rimuru", lastName: "Tempers", date: "20.08.2000", daysLeft: 15})
-    },
     add(unit) {
-      console.log(unit)
-      this.units.push({id: 4, firstName: "Rimuru", lastName: "Tempers", date: "20.08.2000", daysLeft: 15})
+      birthdayService.createBirthday(unit).then(
+        (response) => {
+          if(response.status === 200){
+            this.units.push(response.data)
+          }
+        }
+      )
+    },
+    update(unit) {
+      birthdayService.updateBirthday(unit).then(
+        (response) => {
+          if(response.status === 200){
+            this.getData()
+          }
+        }
+      )
     },
     remove(id) {
-      this.units = this.units.filter(p => p.id !== id)
+      birthdayService.removeBirthday(id).then(
+        (response) => {
+          if(response.status === 200){
+            this.units = this.units.filter(p => p.id !== id)
+          }
+        }
+      )
     },
+
+    async getData(){
+      birthdayService.getBirthdays().then(
+        (response) => {
+          if(response !== undefined){
+            this.units = response;
+          }
+        }
+      )
+    }
+  },
+  mounted() {
+    this.getData();
   }
 }
 </script>

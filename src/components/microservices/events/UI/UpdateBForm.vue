@@ -52,6 +52,7 @@
                                 type="number"
                                 variant="outlined"
                                 density="compact"
+                                v-model="day"
                                 :maxlength="2"
                                 :rules="[rules.required, rules.range.dayMin, rules.range.dayMax]"
                   ></v-text-field>
@@ -62,6 +63,7 @@
                                 type="number"
                                 variant="outlined"
                                 density="compact"
+                                v-model="month"
                                 :maxlength="2"
                                 :rules="[rules.required, rules.range.monthMin, rules.range.monthMax]"
                   ></v-text-field>
@@ -73,6 +75,7 @@
                                 type="number"
                                 variant="outlined"
                                 density="compact"
+                                v-model="year"
                                 :maxlength="4"
                                 :rules="[rules.required, rules.range.yearMin]"
                   ></v-text-field>
@@ -84,7 +87,7 @@
                     color="primary"
                     density="default"
                     label="Notify Me"
-                    v-model="unit.isNotify"
+                    v-model="unit.notify"
                   ></v-switch>
                 </v-col>
                 <v-col cols="12" sm="3" md="12">
@@ -139,12 +142,12 @@ export default {
         lastName: this.selectedUnit.lastName,
         date: this.selectedUnit.date,
         description: this.selectedUnit.description,
-        isNotify: this.selectedUnit.isNotify,
+        notify: this.selectedUnit.notify,
       },
 
-      day: this.reFormatDate(this.selectedUnit.date, 0),
+      day: this.reFormatDate(this.selectedUnit.date, 2),
       month: this.reFormatDate(this.selectedUnit.date, 1),
-      year: this.reFormatDate(this.selectedUnit.date, 2),
+      year: this.reFormatDate(this.selectedUnit.date, 0),
 
       rules: {
         required: value => !!value || 'Required',
@@ -171,9 +174,9 @@ export default {
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
-        this.clearAndClose();
         this.unit.date = this.formatDate();
         this.$emit('update', this.unit);
+        this.clearAndClose();
       }
     },
     clearAndClose() {
@@ -181,7 +184,7 @@ export default {
       this.$refs.form.resetValidation()
     },
     formatDate() {
-      return this.day + '-' + this.month + '-' + this.year;
+      return this.year + '-' + this.month + '-' + this.day;
     },
     reFormatDate(fullDate, numberOfValueInside) {
       const mass = fullDate.split("-");
