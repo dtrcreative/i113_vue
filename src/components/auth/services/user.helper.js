@@ -16,6 +16,7 @@ class UserHelper {
            lastName: user.profile.family_name,
            fullName: user.profile.name,
            email: user.profile.email,
+           expires_at: user.expires_at,
          }
          localStorage.setItem(USER, JSON.stringify(userData))
        }

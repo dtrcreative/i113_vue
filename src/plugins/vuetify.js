@@ -25,6 +25,9 @@ const lightTheme = {
     success: '#4CAF50',
     warning: '#FB8C00',
   },
+  image: {
+
+  }
 }
 const darkTheme = {
   dark: true,

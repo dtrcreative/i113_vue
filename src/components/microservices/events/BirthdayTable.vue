@@ -1,4 +1,11 @@
 <template>
+  <div class = "header">
+    <AddBForm
+      @create="add"
+    ></AddBForm>
+    <v-input></v-input>
+  </div>
+
   <v-table density="compact" class="table">
     <thead>
     <tr>
@@ -151,6 +158,10 @@ export default {
 
 <style lang="sass" scoped>
 @import '../src/assets/styles/main'
+
+header
+  display: flex
+
 component
   display: flex
 

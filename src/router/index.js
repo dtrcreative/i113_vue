@@ -1,5 +1,6 @@
 // Composables
 import {createRouter, createWebHistory} from 'vue-router'
+import userHelper from "@/components/auth/services/user.helper";
 
 const routes = [
   {
@@ -38,5 +39,13 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 })
+
+// router.beforeEach((to, from, next) => {
+//   if((userHelper.getUser().expires_at) > (new Date().getTime() / 1000) && (to.name !== 'Home')) {
+//     next({name: 'Home'})
+//     userHelper.cleanLocalStorage()
+//   }
+//   else next()
+// })
 
 export default router

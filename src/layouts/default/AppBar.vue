@@ -1,5 +1,9 @@
 <template>
-  <v-app-bar>
+  <v-app-bar
+    class="bar"
+    image="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+
+  >
 
     <div v-if="isExist">
       <v-app-bar-nav-icon
@@ -72,6 +76,9 @@ export default {
 .auth
   display: flex
   padding: 10px
+
+.bar
+  color: $background-gradient-green
 
 </style>
 

@@ -1,8 +1,7 @@
 <template>
 
-  <v-row justify="center">
+  <v-row>
     <v-dialog v-model="dialog" max-width="860">
-
       <template v-slot:activator="{ props }">
         <v-btn
           icon="mdi-plus"
@@ -14,7 +13,7 @@
       <v-form ref="form" @submit.prevent="submit">
         <v-card>
           <v-card-title>
-            <span class="text-h5">Create Form</span>
+            <h1>Create Form</h1>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -25,6 +24,7 @@
                                 label="First name"
                                 variant="outlined"
                                 density="compact"
+                                hide-details
                                 :maxlength="15"
                                 :rules="[rules.required]"
                   ></v-text-field>
@@ -35,6 +35,7 @@
                                 label="Middle name"
                                 variant="outlined"
                                 density="compact"
+                                hide-details
                                 :maxlength="15"
                   ></v-text-field>
                 </v-col>
@@ -44,6 +45,7 @@
                                 label="Last name"
                                 variant="outlined"
                                 density="compact"
+                                hide-details
                                 :maxlength="15"
                                 :rules="[rules.required]"
                                 required
@@ -57,6 +59,7 @@
                                 variant="outlined"
                                 density="compact"
                                 v-model="day"
+                                hide-details
                                 :maxlength="2"
                                 :rules="[rules.required, rules.range.dayMin, rules.range.dayMax]"
                   ></v-text-field>
@@ -69,6 +72,7 @@
                                 variant="outlined"
                                 density="compact"
                                 v-model="month"
+                                hide-details
                                 :maxlength="2"
                                 :rules="[rules.required, rules.range.monthMin, rules.range.monthMax]"
                   ></v-text-field>
@@ -82,6 +86,7 @@
                                 variant="outlined"
                                 density="compact"
                                 v-model="year"
+                                hide-details
                                 :maxlength="4"
                                 :rules="[rules.required, rules.range.yearMin]"
                   ></v-text-field>

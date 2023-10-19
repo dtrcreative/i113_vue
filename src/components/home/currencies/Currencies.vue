@@ -71,7 +71,8 @@ export default {
       logout();
     },
     apiCall() {
-      eventsService.getEvents();
+      console.log()
+      // eventsService.getEvents();
     },
     userData() {
       console.log(getAuthUser())
