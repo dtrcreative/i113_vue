@@ -57,7 +57,7 @@ export default {
     color() {
       switch (this.value) {
         case 0:
-          return 'blue-grey'
+          return 'primary'
         case 1:
           return 'teal'
         case 2:

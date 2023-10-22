@@ -87,11 +87,9 @@
     </tbody>
   </v-table>
 
-  <AddBForm
-    class="create"
-    @create="add"
-  ></AddBForm>
-
+  <div class="create" v-if="units.length===0">
+    <h1>No data</h1>
+  </div>
 </template>
 
 <script>
@@ -151,7 +149,7 @@ export default {
     }
   },
   mounted() {
-    this.getData();
+    // this.getData();
   }
 }
 </script>
@@ -188,6 +186,7 @@ component
   width: 20%
 
 .create
+  padding-top: 20px
   display: flex
   justify-content: center
 
