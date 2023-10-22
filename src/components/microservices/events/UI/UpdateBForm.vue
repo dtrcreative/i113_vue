@@ -129,6 +129,7 @@
 </template>
 
 <script>
+import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
 export default {
   name: "UpdateBForm",
   emits: ["update"],
@@ -175,7 +176,7 @@ export default {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
         this.unit.date = this.formatDate();
-        this.$emit('update', this.unit);
+        useBirthdaysStore().update(this.unit);
         this.clearAndClose();
       }
     },

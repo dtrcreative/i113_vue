@@ -25,6 +25,7 @@
           size="small"
           icon="mdi mdi-select-all"
           variant="text"
+          @click="selectAll"
         ></v-btn>
       </th>
 
@@ -80,6 +81,7 @@
       <td class="btn">
         <UpdateBForm
           :selectedUnit="item"
+
           @update="update"
           style="justify-content: center"
         ></UpdateBForm>
@@ -107,6 +109,10 @@ useBirthdaysStore()
 onMounted(() => {
   birthdayService.getBirthdays()
 })
+
+function selectAll(){
+  useBirthdaysStore().selectAll();
+}
 
 function update(unit) {
   useBirthdaysStore().update(unit);
