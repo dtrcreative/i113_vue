@@ -1,6 +1,6 @@
 <template>
   <v-app-bar
-    image="src/assets/img/vbanner-green.jpg"
+    image="$background-image-vbaner-green"
   >
 
     <div v-if="isExist">
@@ -11,7 +11,7 @@
     </div>
 
     <v-app-bar-title>
-      <v-avatar icon="$fox" image="src/assets/Fox.png" size="30"> Ellie </v-avatar>
+      <v-avatar icon="$fox" image="src/assets/Fox.png" size="30"> Ellie</v-avatar>
     </v-app-bar-title>
 
     <div class="auth" v-if="!isExist">
@@ -29,7 +29,7 @@
   </v-app-bar>
 
   <v-navigation-drawer v-model="drawer" location="left">
-   <navigation-bar></navigation-bar>
+    <navigation-bar></navigation-bar>
   </v-navigation-drawer>
 
 </template>

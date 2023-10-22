@@ -24,7 +24,7 @@ const lightTheme = {
     warning: '#FB8C00',
   },
   image: {
-    banner: 'src/assets/img/vbanner-green.jpg'
+    banner: '@/assets/img/vbanner-green.jpg'
   }
 }
 const darkTheme = {
@@ -39,10 +39,8 @@ const darkTheme = {
     success: '#4CAF50',
     warning: '#FB8C00',
   },
-  gradient:{
-  },
   image: {
-    banner: 'src/assets/img/vbanner-green.jpg'
+    banner: '@/assets/img/vbanner-green.jpg'
   }
 }
 

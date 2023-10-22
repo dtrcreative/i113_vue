@@ -1,12 +1,9 @@
 <template>
-
-  <v-row>
     <v-dialog v-model="dialog" max-width="860">
       <template v-slot:activator="{ props }">
         <v-btn
           icon="mdi-plus"
-          variant="text"
-          size="small"
+          variant="tonal"
           v-bind="props"
         ></v-btn>
       </template>
@@ -127,7 +124,7 @@
             <v-btn
               class="btn-save"
               color="primary"
-              variant="outlined"
+              variant="elevated"
               type="submit"
             >
               Save
@@ -136,14 +133,14 @@
         </v-card>
       </v-form>
     </v-dialog>
-  </v-row>
 </template>
 
 <script>
 
+import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
+
 export default {
   name: "AddForm",
-  emits:["create"],
   data: () => ({
     dialog: false,
     unit: {
@@ -179,7 +176,8 @@ export default {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
         this.unit.date = this.formatDate();
-        this.$emit('create', this.unit);
+        // this.$emit('create', this.unit);
+        useBirthdaysStore().create(this.unit);
         this.clearAndClose();
       }
     },
@@ -198,6 +196,7 @@ export default {
     }
   },
 }
+
 </script>
 
 <style lang="sass" scoped>

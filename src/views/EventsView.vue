@@ -47,7 +47,6 @@
 import TimeLine from "@/components/microservices/events/TimeLine";
 import BirthdayTable from "@/components/microservices/events/BirthdayTable";
 import EventTable from "@/components/microservices/events/EventTable";
-
 export default {
   name: "BirthdayView",
   components: {EventTable, BirthdayTable, TimeLine},

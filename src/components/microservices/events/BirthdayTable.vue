@@ -1,16 +1,26 @@
 <template>
-  <div class = "header">
-    <AddBForm
-      @create="add"
-    ></AddBForm>
-    <v-input></v-input>
-  </div>
+  <v-container class="header">
+    <v-row>
+      <v-col cols="12" sm="4" md="1">
+        <AddBForm></AddBForm>
+      </v-col>
+      <v-col cols="12" sm="4" md="10">
+        <search-field></search-field>
+      </v-col>
+      <v-col cols="12" sm="4" md="1">
+        <v-btn
+          icon="mdi mdi-trash-can"
+          @click=removeSelected()
+        ></v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
 
   <v-table density="compact" class="table">
     <thead>
     <tr>
       <!--      TODO AllSelections    -->
-      <th class="btn">
+      <th class="checkbox">
         <v-btn
           size="small"
           icon="mdi mdi-select-all"
@@ -22,7 +32,7 @@
         First Name
       </th>
       <th class="names"
-          @click="sortByName"
+          @click=""
       >
         Last Name
       </th>
@@ -38,22 +48,19 @@
       <th class="btn">
         Update
       </th>
-      <th class="btn">
-        Delete
-      </th>
     </tr>
     </thead>
     <tbody>
     <tr
-      v-for="item in this.units"
+      v-for="item in useBirthdaysStore().units"
       :key="item.id"
     >
-      <td class="btn">
+      <td class="checkbox">
         <v-checkbox
           style="display: flex; justify-content: center;"
-          v-model="selected"
+          v-model="useBirthdaysStore().selected"
           label=""
-          :value=item.firstName
+          :value=item.id
           color="indigo-darken-3"
         ></v-checkbox>
       </td>
@@ -77,87 +84,45 @@
           style="justify-content: center"
         ></UpdateBForm>
       </td>
-      <td class="btn">
-        <v-btn
-          icon="mdi mdi-trash-can"
-          @click=remove(item.id)
-        ></v-btn>
-      </td>
     </tr>
     </tbody>
   </v-table>
 
-  <div class="create" v-if="units.length===0">
-    <h1>No data</h1>
-  </div>
+<!--  <div class="empty-table" v-if="useBirthdaysStore.units.length===0">-->
+<!--    <h1>No data</h1>-->
+<!--  </div>-->
+
 </template>
 
-<script>
+<script setup>
 import AddBForm from "@/components/microservices/events/UI/AddBForm";
 import UpdateBForm from "@/components/microservices/events/UI/UpdateBForm";
 import birthdayService from "@/components/microservices/events/js/birthday.service";
-export default {
-  name: "EventTable",
-  components: {UpdateBForm, AddBForm},
-  data() {
-    return {
-      selected: [],
-      isHovering: false,
-      units: ""
-    }
-  },
-  methods: {
-    sortByName() {
-      console.log("Sort")
-    },
-    add(unit) {
-      birthdayService.createBirthday(unit).then(
-        (response) => {
-          if(response.status === 200){
-            this.units.push(response.data)
-          }
-        }
-      )
-    },
-    update(unit) {
-      birthdayService.updateBirthday(unit).then(
-        (response) => {
-          if(response.status === 200){
-            this.getData()
-          }
-        }
-      )
-    },
-    remove(id) {
-      birthdayService.removeBirthday(id).then(
-        (response) => {
-          if(response.status === 200){
-            this.units = this.units.filter(p => p.id !== id)
-          }
-        }
-      )
-    },
+import SearchField from "@/components/microservices/events/UI/SearchField";
+import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
+import {onMounted} from "vue";
 
-    async getData(){
-      birthdayService.getBirthdays().then(
-        (response) => {
-          if(response !== undefined){
-            this.units = response;
-          }
-        }
-      )
-    }
-  },
-  mounted() {
-    // this.getData();
-  }
+useBirthdaysStore()
+
+onMounted(() => {
+  birthdayService.getBirthdays()
+})
+
+function update(unit) {
+  useBirthdaysStore().update(unit);
 }
+
+function removeSelected() {
+  useBirthdaysStore().removeSelected();
+}
+
 </script>
 
 <style lang="sass" scoped>
 @import '../src/assets/styles/main'
 
 header
+
   display: flex
 
 component
@@ -166,8 +131,16 @@ component
 .table
   background-color: rgba(0, 0, 0, 0)
 
+.checkbox
+  width: 5%
+
 .btn
   width: 5%
+
+.btn-create
+  display: flex
+  justify-content: center
+  align-items: center
 
 .days-left
   width: 5%
@@ -194,6 +167,11 @@ component
   vertical-align: middle
   text-align: center
   width: 10%
+
+.empty-table
+  padding-top: 20px
+  display: flex
+  justify-content: center
 
 tr:hover
   background-color: $table-hover-row
