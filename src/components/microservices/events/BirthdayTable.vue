@@ -81,7 +81,6 @@
       <td class="btn">
         <UpdateBForm
           :selectedUnit="item"
-
           @update="update"
           style="justify-content: center"
         ></UpdateBForm>
@@ -90,9 +89,9 @@
     </tbody>
   </v-table>
 
-<!--  <div class="empty-table" v-if="useBirthdaysStore.units.length===0">-->
-<!--    <h1>No data</h1>-->
-<!--  </div>-->
+  <div class="empty-table" v-if="useBirthdaysStore().units.length===0">
+    <h1>No data</h1>
+  </div>
 
 </template>
 
@@ -134,6 +133,11 @@ header
 component
   display: flex
 
+.btn-create
+  display: flex
+  justify-content: center
+  align-items: center
+
 .table
   background-color: rgba(0, 0, 0, 0)
 
@@ -143,16 +147,12 @@ component
 .btn
   width: 5%
 
-.btn-create
-  display: flex
-  justify-content: center
-  align-items: center
 
 .days-left
   width: 5%
 
 .date
-  width: 10%
+  width: 20%
 
 .names
   width: 20%

@@ -3,7 +3,7 @@ import birthdayService from "@/components/microservices/events/js/birthday.servi
 
 export const useBirthdaysStore = defineStore('birthdays',{
   state: () => ({
-    units: null,
+    units: [],
     selected: [],
     unitToUpdate: null,
   }),

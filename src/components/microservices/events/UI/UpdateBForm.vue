@@ -18,7 +18,7 @@
               <v-row>
                 <v-col cols="12" sm="4" md="4">
                   <v-text-field clearable
-                                v-model.trim="unit.firstName"
+                                v-model.trim="selectedUnit.firstName"
                                 label="First name"
                                 variant="outlined"
                                 density="compact"
@@ -28,7 +28,7 @@
                 </v-col>
                 <v-col cols="12" sm="4" md="4">
                   <v-text-field clearable
-                                v-model.trim="unit.middleName"
+                                v-model.trim="selectedUnit.middleName"
                                 label="Middle name"
                                 variant="outlined"
                                 density="compact"
@@ -37,7 +37,7 @@
                 </v-col>
                 <v-col cols="12" sm="4" md="4">
                   <v-text-field clearable
-                                v-model.trim="unit.lastName"
+                                v-model.trim="selectedUnit.lastName"
                                 label="Last name"
                                 variant="outlined"
                                 density="compact"
@@ -87,12 +87,12 @@
                     color="primary"
                     density="default"
                     label="Notify Me"
-                    v-model="unit.notify"
+                    v-model="selectedUnit.notify"
                   ></v-switch>
                 </v-col>
                 <v-col cols="12" sm="3" md="12">
                   <v-text-field clearable
-                                v-model.trim="unit.description"
+                                v-model.trim="selectedUnit.description"
                                 label="Description"
                                 variant="outlined"
                                 density="compact"
@@ -136,15 +136,6 @@ export default {
   data() {
     return {
       dialog: false,
-      unit: {
-        id: this.selectedUnit.id,
-        firstName: this.selectedUnit.firstName,
-        middleName: this.selectedUnit.middleName,
-        lastName: this.selectedUnit.lastName,
-        date: this.selectedUnit.date,
-        description: this.selectedUnit.description,
-        notify: this.selectedUnit.notify,
-      },
 
       day: this.reFormatDate(this.selectedUnit.date, 2),
       month: this.reFormatDate(this.selectedUnit.date, 1),
@@ -175,8 +166,8 @@ export default {
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
-        this.unit.date = this.formatDate();
-        useBirthdaysStore().update(this.unit);
+        this.selectedUnit.date = this.formatDate();
+        useBirthdaysStore().update(this.selectedUnit);
         this.clearAndClose();
       }
     },
