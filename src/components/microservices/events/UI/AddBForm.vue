@@ -49,7 +49,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="2" md="2">
-                  <v-text-field clearable
+                  <v-text-field
                                 label="DD"
                                 class="date"
                                 type="number"
@@ -62,7 +62,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="2" md="2">
-                  <v-text-field clearable
+                  <v-text-field
                                 label="MM"
                                 class="date"
                                 type="number"
@@ -76,8 +76,7 @@
                 </v-col>
 
                 <v-col cols="12" sm="2" md="3">
-                  <v-text-field clearable
-                                label="YYYY"
+                  <v-text-field label="YYYY"
                                 class="date"
                                 type="number"
                                 variant="outlined"

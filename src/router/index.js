@@ -41,7 +41,7 @@ const router = createRouter({
 })
 
 // router.beforeEach((to, from, next) => {
-//   if((userHelper.getUser().expires_at) > (new Date().getTime() / 1000) && (to.name !== 'Home')) {
+//   if((userHelper.getUser().expires_at) < (new Date().getTime() / 1000) && (to.name !== 'Home')) {
 //     next({name: 'Home'})
 //     userHelper.cleanLocalStorage()
 //   }

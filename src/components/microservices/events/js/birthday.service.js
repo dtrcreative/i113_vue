@@ -60,6 +60,17 @@ class BirthdayService {
       errorHandler.handle(e)
     }
   }
+
+  // async removeSelectedBirthdays(selected){
+  //   console.log(JSON.stringify(selected))
+  //   try{
+  //     return axios.dleete(getServerUrl() + API_URL + "/selected", {
+  //       units: selected
+  //     }, {headers: authHeader()})
+  //   }catch (e){
+  //     errorHandler.handle(e)
+  //   }
+  // }
 }
 
 export default new BirthdayService();

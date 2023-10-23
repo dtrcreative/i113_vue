@@ -5,12 +5,21 @@
         <AddBForm></AddBForm>
       </v-col>
       <v-col cols="12" sm="4" md="10">
-        <search-field></search-field>
+        <v-text-field clearable
+                      class="searchField"
+                      v-model.trim="useBirthdaysStore().searchValue"
+                      label="Search"
+                      variant="outlined"
+                      density="compact"
+                      append-inner-icon="mdi-magnify"
+                      hide-details
+                      :maxlength="10"
+        ></v-text-field>
       </v-col>
       <v-col cols="12" sm="4" md="1">
         <v-btn
           icon="mdi mdi-trash-can"
-          @click=removeSelected()
+          @click=useBirthdaysStore().removeSelected()
         ></v-btn>
       </v-col>
     </v-row>
@@ -25,7 +34,7 @@
           size="small"
           icon="mdi mdi-select-all"
           variant="text"
-          @click="selectAll"
+          @click=useBirthdaysStore().selectAll()
         ></v-btn>
       </th>
 
@@ -53,7 +62,7 @@
     </thead>
     <tbody>
     <tr
-      v-for="item in useBirthdaysStore().units"
+      v-for="item in useBirthdaysStore().searchUnits"
       :key="item.id"
     >
       <td class="checkbox">
@@ -109,17 +118,7 @@ onMounted(() => {
   birthdayService.getBirthdays()
 })
 
-function selectAll(){
-  useBirthdaysStore().selectAll();
-}
-
-function update(unit) {
-  useBirthdaysStore().update(unit);
-}
-
-function removeSelected() {
-  useBirthdaysStore().removeSelected();
-}
+function update(){}
 
 </script>
 
