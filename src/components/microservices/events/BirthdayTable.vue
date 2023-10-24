@@ -1,29 +1,7 @@
 <template>
+
   <v-container class="header">
-    <v-row>
-      <v-col cols="12" sm="4" md="1">
-        <BirthdayAddForm></BirthdayAddForm>
-      </v-col>
-      <v-col cols="12" sm="4" md="10">
-        <v-text-field clearable
-                      class="searchField"
-                      v-model.trim="useBirthdaysStore().searchValue"
-                      label="Search"
-                      variant="outlined"
-                      density="compact"
-                      append-inner-icon="mdi-magnify"
-                      hide-details
-                      :maxlength="10"
-        ></v-text-field>
-      </v-col>
-      <v-col cols="12" sm="4" md="1">
-        <v-btn
-          icon="mdi mdi-trash-can"
-          min-width="50px"
-          @click=useBirthdaysStore().removeSelected()
-        ></v-btn>
-      </v-col>
-    </v-row>
+    <birthday-table-header></birthday-table-header>
   </v-container>
 
   <v-table density="compact" class="table">
@@ -98,19 +76,18 @@
     <h1>No data</h1>
   </div>
 
-<!--  <test-form></test-form>-->
-
 </template>
 
 <script setup>
-import BirthdayAddForm from "@/components/microservices/events/UI/BirthdayAddForm";
 import BirthdayUpdateForm from "@/components/microservices/events/UI/BirthdayUpdateForm";
 import birthdayService from "@/components/microservices/events/js/birthday.service";
 import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
 import {onMounted} from "vue";
-import TestForm from "@/components/microservices/events/UI/TestForm";
+import BirthdayTableHeader from "@/components/microservices/events/UI/birthdays/BirthdayTableHeader";
 
 useBirthdaysStore()
+
+let show = false;
 
 onMounted(() => {
   birthdayService.getBirthdays()
