@@ -18,32 +18,12 @@
               <v-row>
                 <v-col cols="12" sm="4" md="4">
                   <v-text-field clearable
-                                v-model.trim="selectedUnit.firstName"
+                                v-model.trim="selectedUnit.eventName"
                                 label="First name"
                                 variant="outlined"
                                 density="compact"
                                 :maxlength="15"
                                 :rules="[rules.required]"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="4" md="4">
-                  <v-text-field clearable
-                                v-model.trim="selectedUnit.middleName"
-                                label="Middle name"
-                                variant="outlined"
-                                density="compact"
-                                :maxlength="15"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="4" md="4">
-                  <v-text-field clearable
-                                v-model.trim="selectedUnit.lastName"
-                                label="Last name"
-                                variant="outlined"
-                                density="compact"
-                                :maxlength="15"
-                                :rules="[rules.required]"
-                                required
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="2" md="2">
@@ -129,10 +109,10 @@
 </template>
 
 <script>
-import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
+import {useEventsStore} from "@/components/microservices/events/store/eventsStore";
+
 export default {
-  name: "UpdateBForm",
-  emits: ["update"],
+  name: "EventUpdateForm",
   data() {
     return {
       dialog: false,
@@ -155,19 +135,17 @@ export default {
       },
     }
   },
-
   props: {
     selectedUnit: {
       type: Object,
     }
   },
-
   methods: {
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
         this.selectedUnit.date = this.formatDate();
-        useBirthdaysStore().update(this.selectedUnit);
+        useEventsStore().update(this.selectedUnit);
         this.clearAndClose();
       }
     },
@@ -183,7 +161,6 @@ export default {
       return mass[numberOfValueInside];
     },
   },
-
 }
 </script>
 

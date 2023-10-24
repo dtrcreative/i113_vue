@@ -5,6 +5,7 @@
           icon="mdi-plus"
           variant="tonal"
           v-bind="props"
+          min-width="50px"
         ></v-btn>
       </template>
       <v-form ref="form" @submit.prevent="submit">
@@ -139,7 +140,7 @@
 import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
 
 export default {
-  name: "AddForm",
+  name: "BirthdayAddForm",
   data: () => ({
     dialog: false,
     unit: {

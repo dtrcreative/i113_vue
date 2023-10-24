@@ -2,7 +2,7 @@
   <v-container class="header">
     <v-row>
       <v-col cols="12" sm="4" md="1">
-        <AddBForm></AddBForm>
+        <BirthdayAddForm></BirthdayAddForm>
       </v-col>
       <v-col cols="12" sm="4" md="10">
         <v-text-field clearable
@@ -19,6 +19,7 @@
       <v-col cols="12" sm="4" md="1">
         <v-btn
           icon="mdi mdi-trash-can"
+          min-width="50px"
           @click=useBirthdaysStore().removeSelected()
         ></v-btn>
       </v-col>
@@ -28,7 +29,6 @@
   <v-table density="compact" class="table">
     <thead>
     <tr>
-      <!--      TODO AllSelections    -->
       <th class="checkbox">
         <v-btn
           size="small"
@@ -46,12 +46,8 @@
       >
         Last Name
       </th>
-      <th class="date" style="text-align: center">
-        Date
-      </th>
-      <th class="days-left" style="text-align: center">
-        Days Left
-      </th>
+      <th class="date" style="text-align: center">Date</th>
+      <th class="days-left" style="text-align: center">Days Left</th>
       <th class="notify" style="text-align: center">
         Notify
       </th>
@@ -88,11 +84,11 @@
         ></v-switch>
       </td>
       <td class="btn">
-        <UpdateBForm
+        <BirthdayUpdateForm
           :selectedUnit="item"
           @update="update"
           style="justify-content: center"
-        ></UpdateBForm>
+        ></BirthdayUpdateForm>
       </td>
     </tr>
     </tbody>
@@ -102,15 +98,17 @@
     <h1>No data</h1>
   </div>
 
+<!--  <test-form></test-form>-->
+
 </template>
 
 <script setup>
-import AddBForm from "@/components/microservices/events/UI/AddBForm";
-import UpdateBForm from "@/components/microservices/events/UI/UpdateBForm";
+import BirthdayAddForm from "@/components/microservices/events/UI/BirthdayAddForm";
+import BirthdayUpdateForm from "@/components/microservices/events/UI/BirthdayUpdateForm";
 import birthdayService from "@/components/microservices/events/js/birthday.service";
-import SearchField from "@/components/microservices/events/UI/SearchField";
 import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
 import {onMounted} from "vue";
+import TestForm from "@/components/microservices/events/UI/TestForm";
 
 useBirthdaysStore()
 
@@ -118,7 +116,8 @@ onMounted(() => {
   birthdayService.getBirthdays()
 })
 
-function update(){}
+function update() {
+}
 
 </script>
 
@@ -126,7 +125,6 @@ function update(){}
 @import '../src/assets/styles/main'
 
 header
-
   display: flex
 
 component

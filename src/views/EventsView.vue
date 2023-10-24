@@ -4,11 +4,15 @@
       v-model="value"
       :bg-color="color"
       grow>
-      <v-btn>
+      <v-btn
+        @click="getEvents"
+      >
         <v-icon>mdi-music-note</v-icon>
         <span>Events</span>
       </v-btn>
-      <v-btn>
+      <v-btn
+        @click="getBirthdays"
+      >
         <v-icon>mdi-heart</v-icon>
         <span>Birthdays</span>
       </v-btn>
@@ -47,6 +51,9 @@
 import TimeLine from "@/components/microservices/events/TimeLine";
 import BirthdayTable from "@/components/microservices/events/BirthdayTable";
 import EventTable from "@/components/microservices/events/EventTable";
+import birthdayService from "@/components/microservices/events/js/birthday.service";
+import eventsService from "@/components/microservices/events/js/events.service";
+
 export default {
   name: "BirthdayView",
   components: {EventTable, BirthdayTable, TimeLine},
@@ -68,6 +75,14 @@ export default {
       }
     },
   },
+  methods: {
+    getEvents() {
+      eventsService.getEvents()
+    },
+    getBirthdays() {
+      birthdayService.getBirthdays()
+    }
+  }
 }
 </script>
 

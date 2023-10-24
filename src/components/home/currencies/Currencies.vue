@@ -45,7 +45,6 @@
 <script>
 import {checkUser, getAuthUser, login, logout} from "@/components/auth/services/auth-helper";
 import UserHelper from "@/components/auth/services/user.helper"
-import eventsService from "@/components/microservices/events/js/events.service";
 
 export default {
   name: "Currencies",
