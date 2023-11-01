@@ -1,7 +1,42 @@
 <template>
 
   <v-container class="header">
-    <birthday-table-header></birthday-table-header>
+    <v-card-actions>
+      <v-row>
+        <v-col cols="12" sm="1" md="1">
+          <v-btn
+            icon="mdi-plus"
+            @click="useBirthdaysStore().showCUForm = !useBirthdaysStore().showCUForm"
+          ></v-btn>
+        </v-col>
+        <v-col cols="12" sm="10" md="10">
+          <v-text-field clearable
+                        class="searchField"
+                        v-model.trim="useBirthdaysStore().searchValue"
+                        label="Search"
+                        variant="outlined"
+                        density="compact"
+                        append-inner-icon="mdi-magnify"
+                        hide-details
+                        :maxlength="10"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="1" md="1">
+          <v-btn
+            icon="mdi mdi-trash-can"
+            min-width="50px"
+            @click=useBirthdaysStore().removeSelected()
+          ></v-btn>
+        </v-col>
+      </v-row>
+
+    </v-card-actions>
+
+    <v-expand-transition >
+      <div v-show="useBirthdaysStore().showCUForm">
+        <birthday-c-u-form></birthday-c-u-form>
+      </div>
+    </v-expand-transition>
   </v-container>
 
   <v-table density="compact" class="table">
@@ -62,11 +97,10 @@
         ></v-switch>
       </td>
       <td class="btn">
-        <BirthdayUpdateForm
-          :selectedUnit="item"
-          @update="update"
-          style="justify-content: center"
-        ></BirthdayUpdateForm>
+        <v-btn
+          icon="mdi mdi-pen"
+          @click="useBirthdaysStore().showUpdateForm(item)"
+        ></v-btn>
       </td>
     </tr>
     </tbody>
@@ -79,22 +113,16 @@
 </template>
 
 <script setup>
-import BirthdayUpdateForm from "@/components/microservices/events/UI/BirthdayUpdateForm";
+import BirthdayCUForm from "@/components/microservices/events/UI/birthdays/BirthdayCUForm";
 import birthdayService from "@/components/microservices/events/js/birthday.service";
 import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
 import {onMounted} from "vue";
-import BirthdayTableHeader from "@/components/microservices/events/UI/birthdays/BirthdayTableHeader";
 
 useBirthdaysStore()
-
-let show = false;
 
 onMounted(() => {
   birthdayService.getBirthdays()
 })
-
-function update() {
-}
 
 </script>
 

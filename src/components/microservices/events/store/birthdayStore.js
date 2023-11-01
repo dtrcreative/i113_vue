@@ -5,8 +5,16 @@ export const useBirthdaysStore = defineStore('birthdays', {
   state: () => ({
     units: [],
     selected: [],
-    unitToUpdate: null,
-    searchValue:""
+    unitToUpdate: {
+      id: "",
+      firstName: "",
+      lastName: "",
+      date: "",
+      description: "",
+      notify: "",
+    },
+    searchValue:"",
+    showCUForm:false,
   }),
   actions: {
     setUnits(units) {
@@ -37,7 +45,7 @@ export const useBirthdaysStore = defineStore('birthdays', {
           this.selected.push(this.units[i].id)
         }
       }
-    }
+    },
   },
   getters: {
 
@@ -60,6 +68,5 @@ export const useBirthdaysStore = defineStore('birthdays', {
         unit.date.includes(this.searchValue)
       )
     },
-
   },
 })

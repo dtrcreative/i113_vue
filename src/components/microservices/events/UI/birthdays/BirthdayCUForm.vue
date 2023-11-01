@@ -2,26 +2,28 @@
   <v-form ref="form" @submit.prevent="submit">
     <v-row>
       <v-col cols="12" sm="6" md="3">
-        <v-text-field clearable
-                      v-model.trim="unit.firstName"
-                      label="First name"
-                      variant="outlined"
-                      density="compact"
-                      hide-details
-                      :maxlength="15"
-                      :rules="[rules.required]"
+        <v-text-field
+          clearable
+          v-model.trim="useBirthdaysStore().unitToUpdate.firstName"
+          label="First name"
+          variant="outlined"
+          density="compact"
+          hide-details
+          :maxlength="15"
+          :rules="[rules.required]"
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="6" md="3">
-        <v-text-field clearable
-                      v-model.trim="unit.lastName"
-                      label="Last name"
-                      variant="outlined"
-                      density="compact"
-                      hide-details
-                      :maxlength="15"
-                      :rules="[rules.required]"
-                      required
+        <v-text-field
+          clearable
+          v-model.trim="useBirthdaysStore().unitToUpdate.lastName"
+          label="Last name"
+          variant="outlined"
+          density="compact"
+          hide-details
+          :maxlength="15"
+          :rules="[rules.required]"
+          required
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="3" md="2">
@@ -52,27 +54,29 @@
       </v-col>
 
       <v-col cols="12" sm="6" md="2">
-        <v-text-field label="YYYY"
-                      class="date"
-                      type="number"
-                      variant="outlined"
-                      density="compact"
-                      v-model="year"
-                      hide-details
-                      :maxlength="4"
-                      :rules="[rules.required, rules.range.yearMin]"
+        <v-text-field
+          label="YYYY"
+          class="date"
+          type="number"
+          variant="outlined"
+          density="compact"
+          v-model="year"
+          hide-details
+          :maxlength="4"
+          :rules="[rules.required, rules.range.yearMin]"
         ></v-text-field>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" sm="8" md="10">
-        <v-text-field clearable
-                      v-model.trim="unit.description"
-                      label="Description"
-                      variant="outlined"
-                      density="compact"
-                      :maxlength="250"
-                      required
+        <v-text-field
+          clearable
+          v-model.trim="useBirthdaysStore().unitToUpdate.description"
+          label="Description"
+          variant="outlined"
+          density="compact"
+          :maxlength="250"
+          required
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="3" md="2">
@@ -81,7 +85,7 @@
           color="primary"
           density="default"
           label="Notify Me"
-          v-model="unit.notify"
+          v-model="useBirthdaysStore().unitToUpdate.notify"
         ></v-switch>
       </v-col>
     </v-row>
@@ -114,22 +118,10 @@
 <script>
 import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
 
+
 export default {
   name: "BirthdayCUForm",
-  emits:["hide"],
   data: () => ({
-    unit: {
-      id: '',
-      firstName: '',
-      lastName: '',
-      date: '',
-      description: '',
-      notify: false,
-    },
-
-    day: '',
-    month: '',
-    year: '',
 
     rules: {
       required: value => !!value || 'Required',
@@ -146,32 +138,48 @@ export default {
   }),
 
   methods: {
+    useBirthdaysStore,
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
         this.unit.date = this.formatDate();
+        if (this.unit.id !== "") {
+          console.log("unit dont has id" + this.unit.id)
+        } else {
+          console.log("unit have id")
+        }
         useBirthdaysStore().create(this.unit);
         this.clearAndClose();
       }
     },
-    clear(){
-      this.dialog = false;
+    clear() {
       this.$refs.form.reset()
       this.$refs.form.resetValidation()
     },
     clearAndClose() {
       this.clear();
-      this.$emit('hide');
+      useBirthdaysStore().showCUForm = false
     },
     formatDate() {
       return this.year + '-' + this.month + '-' + this.day;
     },
-
     regex(value) {
       const regex = /^\d+/;
       return value.match(regex);
-    }
+    },
   },
+
+  computed: {
+    day() {
+      return useBirthdaysStore().unitToUpdate.date !== '' ? new Date(useBirthdaysStore().unitToUpdate.date).getDate() : ''
+    },
+    month() {
+      return useBirthdaysStore().unitToUpdate.date !== '' ? new Date(useBirthdaysStore().unitToUpdate.date).getMonth() + 1 : ''
+    },
+    year() {
+      return useBirthdaysStore().unitToUpdate.date !== '' ? new Date(useBirthdaysStore().unitToUpdate.date).getFullYear() : ''
+    }
+  }
 
 }
 </script>
@@ -187,7 +195,6 @@ export default {
 
 .btn-save
   width: 40%
-
 
 
 </style>

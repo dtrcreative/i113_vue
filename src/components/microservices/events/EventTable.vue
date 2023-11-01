@@ -2,7 +2,6 @@
   <v-container class="header">
     <v-row>
       <v-col cols="12" sm="4" md="1">
-        <EventAddForm></EventAddForm>
       </v-col>
       <v-col cols="12" sm="4" md="10">
         <v-text-field clearable
@@ -77,13 +76,7 @@
           v-model="item.notify"
         ></v-switch>
       </td>
-      <td class="btn">
-        <EventUpdateForm
-          :selectedUnit="item"
-          @update="update"
-          style="justify-content: center"
-        ></EventUpdateForm>
-      </td>
+
     </tr>
     </tbody>
   </v-table>
@@ -97,8 +90,6 @@
 import {useEventsStore} from "@/components/microservices/events/store/eventsStore";
 import eventsService from "@/components/microservices/events/js/events.service";
 import {onMounted} from "vue";
-import EventAddForm from "@/components/microservices/events/UI/EventAddForm";
-import EventUpdateForm from "@/components/microservices/events/UI/EventUpdateForm";
 
 useEventsStore()
 
