@@ -6,7 +6,7 @@
         <v-col cols="12" sm="1" md="1">
           <v-btn
             icon="mdi-plus"
-            @click="useBirthdaysStore().showCUForm = !useBirthdaysStore().showCUForm"
+            @click="showAddForm"
           ></v-btn>
         </v-col>
         <v-col cols="12" sm="10" md="10">
@@ -99,7 +99,7 @@
       <td class="btn">
         <v-btn
           icon="mdi mdi-pen"
-          @click="useBirthdaysStore().showUpdateForm(item)"
+          @click="showUpdateForm(item)"
         ></v-btn>
       </td>
     </tr>
@@ -123,6 +123,38 @@ useBirthdaysStore()
 onMounted(() => {
   birthdayService.getBirthdays()
 })
+
+function showAddForm(){
+  useBirthdaysStore().showCUForm = !useBirthdaysStore().showCUForm
+  useBirthdaysStore().unitToUpdate = {
+    id: '',
+    firstName: '',
+    lastName: '',
+    date:{
+      day: '',
+      month: '',
+      year: ''
+    },
+    description: '',
+    notify: true
+  };
+}
+
+function showUpdateForm(unit){
+  useBirthdaysStore().showCUForm = true
+  useBirthdaysStore().unitToUpdate = {
+    id: unit.id,
+    firstName: unit.firstName,
+    lastName: unit.lastName,
+    date:{
+      day: new Date(unit.date).getDate(),
+      month: new Date(unit.date).getMonth() + 1,
+      year: new Date(unit.date).getFullYear()
+    },
+    description: unit.description,
+    notify: unit.notify
+  };
+}
 
 </script>
 

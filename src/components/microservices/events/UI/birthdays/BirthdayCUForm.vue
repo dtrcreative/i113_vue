@@ -33,7 +33,7 @@
           type="number"
           variant="outlined"
           density="compact"
-          v-model="day"
+          v-model="useBirthdaysStore().unitToUpdate.date.day"
           hide-details
           :maxlength="2"
           :rules="[rules.required, rules.range.dayMin, rules.range.dayMax]"
@@ -46,7 +46,7 @@
           type="number"
           variant="outlined"
           density="compact"
-          v-model="month"
+          v-model="useBirthdaysStore().unitToUpdate.date.month"
           hide-details
           :maxlength="2"
           :rules="[rules.required, rules.range.monthMin, rules.range.monthMax]"
@@ -60,7 +60,7 @@
           type="number"
           variant="outlined"
           density="compact"
-          v-model="year"
+          v-model="useBirthdaysStore().unitToUpdate.date.year"
           hide-details
           :maxlength="4"
           :rules="[rules.required, rules.range.yearMin]"
@@ -142,8 +142,7 @@ export default {
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
-        this.unit.date = this.formatDate();
-        if (this.unit.id !== "") {
+        if (this.useBirthdaysStore().unitToUpdate.id !== "") {
           console.log("unit dont has id" + this.unit.id)
         } else {
           console.log("unit have id")
@@ -153,34 +152,18 @@ export default {
       }
     },
     clear() {
-      this.$refs.form.reset()
       this.$refs.form.resetValidation()
+      this.$refs.form.reset()
     },
     clearAndClose() {
       this.clear();
       useBirthdaysStore().showCUForm = false
-    },
-    formatDate() {
-      return this.year + '-' + this.month + '-' + this.day;
     },
     regex(value) {
       const regex = /^\d+/;
       return value.match(regex);
     },
   },
-
-  computed: {
-    day() {
-      return useBirthdaysStore().unitToUpdate.date !== '' ? new Date(useBirthdaysStore().unitToUpdate.date).getDate() : ''
-    },
-    month() {
-      return useBirthdaysStore().unitToUpdate.date !== '' ? new Date(useBirthdaysStore().unitToUpdate.date).getMonth() + 1 : ''
-    },
-    year() {
-      return useBirthdaysStore().unitToUpdate.date !== '' ? new Date(useBirthdaysStore().unitToUpdate.date).getFullYear() : ''
-    }
-  }
-
 }
 </script>
 

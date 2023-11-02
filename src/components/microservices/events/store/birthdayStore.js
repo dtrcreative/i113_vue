@@ -6,12 +6,16 @@ export const useBirthdaysStore = defineStore('birthdays', {
     units: [],
     selected: [],
     unitToUpdate: {
-      id: "",
-      firstName: "",
-      lastName: "",
-      date: "",
-      description: "",
-      notify: "",
+      id: '',
+      firstName: '',
+      lastName: '',
+      date:{
+        day: '',
+        month: '',
+        year: ''
+      },
+      description: '',
+      notify: true
     },
     searchValue:"",
     showCUForm:false,
@@ -21,11 +25,11 @@ export const useBirthdaysStore = defineStore('birthdays', {
       this.units = units;
     },
     async create(unit) {
-      let user = await birthdayService.createBirthday(unit)
+      let user = await birthdayService.createBirthday(this.reformatUnit(unit))
       this.units.push(user.data)
     },
     update(unit) {
-      birthdayService.updateBirthday(unit)
+      birthdayService.updateBirthday(this.reformatUnit(unit))
     },
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {
@@ -33,6 +37,17 @@ export const useBirthdaysStore = defineStore('birthdays', {
       }
       birthdayService.removeBirthday(this.selected[0]) //TODO
       this.selected = []
+    },
+
+    reformatUnit(unit){
+      return {
+        id: unit.id,
+        firstName: unit.firstName,
+        lastName: unit.lastName,
+        date: (unit.date.year + '-' + unit.date.month + '-' + unit.date.day),
+        description: unit.description,
+        notify: unit.notify
+      }
     },
 
     selectAll() {

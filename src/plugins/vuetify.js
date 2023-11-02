@@ -16,8 +16,8 @@ const lightTheme = {
   colors: {
     background: '#FFFFFF',
     surface: '#dcdcdc',
-    primary: '#6200EE',
-    secondary: '#03DAC6',
+    primary: 'rgb(48,185,58)',
+    secondary: 'rgba(74,126,58,0.44)',
     error: '#B00020',
     info: '#2196F3',
     success: '#4CAF50',
@@ -32,8 +32,8 @@ const darkTheme = {
   colors: {
     background: '#111311',
     surface: '#1E261EA0',
-    primary: '#00800b',
-    secondary: '#85d269',
+    primary: 'rgba(0,128,11,0.28)',
+    secondary: '#3c6c2a',
     error: '#B00020',
     info: '#50d5b2',
     success: '#4CAF50',

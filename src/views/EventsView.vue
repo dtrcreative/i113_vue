@@ -65,7 +65,7 @@ export default {
         case 0:
           return 'primary'
         case 1:
-          return 'teal'
+          return 'secondary'
         case 2:
           return 'brown'
         case 3:
