@@ -9,7 +9,7 @@ export const useBirthdaysStore = defineStore('birthdays', {
       id: '',
       firstName: '',
       lastName: '',
-      date:{
+      date: {
         day: '',
         month: '',
         year: ''
@@ -17,19 +17,24 @@ export const useBirthdaysStore = defineStore('birthdays', {
       description: '',
       notify: true
     },
-    searchValue:"",
-    showCUForm:false,
+    searchValue: "",
+    showCUForm: false,
   }),
   actions: {
     setUnits(units) {
       this.units = units;
     },
-    async create(unit) {
-      let user = await birthdayService.createBirthday(this.reformatUnit(unit))
-      this.units.push(user.data)
+    async create() {
+      let resonse = await birthdayService.createBirthday(this.reformatUnit(this.unitToUpdate))
+      if(resonse.status === 200){
+        this.units.push(user.data)
+      }
     },
-    update(unit) {
-      birthdayService.updateBirthday(this.reformatUnit(unit))
+    async update() {
+      let resonse = await birthdayService.updateBirthday(this.reformatUnit(this.unitToUpdate))
+      if(resonse.status === 200){
+        await birthdayService.getBirthdays()
+      }
     },
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {
@@ -39,12 +44,23 @@ export const useBirthdaysStore = defineStore('birthdays', {
       this.selected = []
     },
 
-    reformatUnit(unit){
+    reformatUnit(unit) {
+      let formattedDate = unit.date.year.toString()
+      if (unit.date.month < 10) {
+        formattedDate = formattedDate + "-0" + unit.date.month
+      } else {
+        formattedDate = formattedDate + "-" + unit.date.month
+      }
+      if (unit.date.day < 10) {
+        formattedDate = formattedDate + "-0" + unit.date.day
+      } else {
+        formattedDate = formattedDate + "-" + unit.date.day
+      }
       return {
-        id: unit.id,
+        id: this.unitToUpdate.id,
         firstName: unit.firstName,
         lastName: unit.lastName,
-        date: (unit.date.year + '-' + unit.date.month + '-' + unit.date.day),
+        date: (formattedDate),
         description: unit.description,
         notify: unit.notify
       }

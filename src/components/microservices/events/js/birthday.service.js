@@ -3,7 +3,7 @@ import {authHeader, getServerUrl} from "@/components/auth/services/axios-helper"
 import errorHandler from "@/components/microservices/utils/error-handler";
 import userHelper from "@/components/auth/services/user.helper";
 import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
-const API_URL = '/api/events/birthdays/';
+const API_URL = 'api/events/birthdays/';
 
 class BirthdayService {
   async getBirthdays() {
@@ -11,7 +11,6 @@ class BirthdayService {
       const response = await axios.get( getServerUrl() + API_URL + 'all', { headers: authHeader() });
       // console.log(response.data)
       useBirthdaysStore().setUnits(response.data)
-      // return response.data;
     } catch (e) {
       errorHandler.handle(e)
     }

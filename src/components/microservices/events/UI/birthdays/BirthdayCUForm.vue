@@ -90,7 +90,7 @@
       </v-col>
     </v-row>
     <v-btn
-      class="btn-close"
+      class="btn"
       color="primary"
       variant="elevated"
       @click="clearAndClose"
@@ -103,14 +103,12 @@
       @click="clear"
     >Clear
     </v-btn>
-
     <v-btn
-      class="btn-save"
+      class="btn"
       color="primary"
       variant="elevated"
       type="submit"
-    >
-      Save
+    >Save
     </v-btn>
   </v-form>
 </template>
@@ -122,7 +120,6 @@ import {useBirthdaysStore} from "@/components/microservices/events/store/birthda
 export default {
   name: "BirthdayCUForm",
   data: () => ({
-
     rules: {
       required: value => !!value || 'Required',
       range: {
@@ -142,12 +139,11 @@ export default {
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
-        if (this.useBirthdaysStore().unitToUpdate.id !== "") {
-          console.log("unit dont has id" + this.unit.id)
+        if (this.useBirthdaysStore().unitToUpdate.id === null) {
+          useBirthdaysStore().create();
         } else {
-          console.log("unit have id")
+          useBirthdaysStore().update();
         }
-        useBirthdaysStore().create(this.unit);
         this.clearAndClose();
       }
     },
@@ -156,7 +152,7 @@ export default {
       this.$refs.form.reset()
     },
     clearAndClose() {
-      this.clear();
+      this.$refs.form.resetValidation()
       useBirthdaysStore().showCUForm = false
     },
     regex(value) {
@@ -170,14 +166,8 @@ export default {
 <style lang="sass" scoped>
 @import '../src/assets/styles/main'
 
-.btn-close
+.btn
   width: 40%
-
 .btn-clear
   width: 20%
-
-.btn-save
-  width: 40%
-
-
 </style>

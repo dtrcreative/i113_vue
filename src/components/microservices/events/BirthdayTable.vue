@@ -127,13 +127,13 @@ onMounted(() => {
 function showAddForm(){
   useBirthdaysStore().showCUForm = !useBirthdaysStore().showCUForm
   useBirthdaysStore().unitToUpdate = {
-    id: '',
-    firstName: '',
-    lastName: '',
+    id: null,
+    firstName: null,
+    lastName: null,
     date:{
-      day: '',
-      month: '',
-      year: ''
+      day: null,
+      month: null,
+      year: null
     },
     description: '',
     notify: true
