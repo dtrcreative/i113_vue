@@ -24,7 +24,7 @@ class UserHelper {
   }
   cleanLocalStorage(){
     localStorage.removeItem(USER)
-    // localStorage.clear()
+    localStorage.clear()
     sessionStorage.clear()
   }
   isUserExist(){

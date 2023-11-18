@@ -25,16 +25,12 @@ export const useBirthdaysStore = defineStore('birthdays', {
       this.units = units;
     },
     async create() {
-      let resonse = await birthdayService.createBirthday(this.reformatUnit(this.unitToUpdate))
-      if(resonse.status === 200){
-        this.units.push(user.data)
-      }
+      let response = await birthdayService.createBirthday(this.reformatUnit(this.unitToUpdate))
+      this.units.push(response.data)
     },
     async update() {
-      let resonse = await birthdayService.updateBirthday(this.reformatUnit(this.unitToUpdate))
-      if(resonse.status === 200){
-        await birthdayService.getBirthdays()
-      }
+      await birthdayService.updateBirthday(this.reformatUnit(this.unitToUpdate))
+      await birthdayService.getBirthdays()
     },
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {

@@ -159,7 +159,7 @@ function showUpdateForm(unit){
 </script>
 
 <style lang="sass" scoped>
-@import '../src/assets/styles/main'
+@import '../../../../../assets/styles/main'
 
 header
   display: flex

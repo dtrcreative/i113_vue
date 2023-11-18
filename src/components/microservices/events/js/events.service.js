@@ -3,13 +3,13 @@ import {authHeader, getServerUrl} from "@/components/auth/services/axios-helper"
 import errorHandler from "@/components/microservices/utils/error-handler";
 import {useEventsStore} from "@/components/microservices/events/store/eventsStore";
 import userHelper from "@/components/auth/services/user.helper";
-const API_URL = '/api/events/';
+const API_URL = 'api/events/';
 
 class EventService {
 
   async getEvents() {
     try {
-      const response = await axios.get( getServerUrl() + API_URL + '/all', { headers: authHeader() });
+      const response = await axios.get( getServerUrl() + API_URL + 'all', { headers: authHeader() });
       useEventsStore().setUnits(response.data)
     } catch (e) {
       errorHandler.handle(e)

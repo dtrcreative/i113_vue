@@ -62,7 +62,7 @@ class BirthdayService {
   // async removeSelectedBirthdays(selected){
   //   console.log(JSON.stringify(selected))
   //   try{
-  //     return axios.dleete(getServerUrl() + API_URL + "/selected", {
+  //     return axios.delete(getServerUrl() + API_URL + "/selected", {
   //       units: selected
   //     }, {headers: authHeader()})
   //   }catch (e){

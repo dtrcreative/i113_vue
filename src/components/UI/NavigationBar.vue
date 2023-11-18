@@ -48,16 +48,16 @@ export default {
   methods: {
     listAction(action){
       switch (action){
-        case 'goPanda': router.push("profile");
+        case 'goPanda': router.push("profile/");
           break
-        case 'goEvents': router.push("events");
+        case 'goEvents': router.push("events/");
           break
         default:
           break
       }
     },
     goHome(){
-      router.push("./");
+      router.push("/");
     },
   }
 }

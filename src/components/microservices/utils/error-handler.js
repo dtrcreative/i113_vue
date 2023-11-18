@@ -5,7 +5,7 @@ import router from "@/router";
 class ErrorHandler {
 
   handle(error){
-    console.log(error.message)
+    console.log("here")
     // router.push("/")
     if(error.response.status === 503){
       console.log(error.message)

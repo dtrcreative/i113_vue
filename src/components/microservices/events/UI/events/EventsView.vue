@@ -1,0 +1,85 @@
+<template>
+  <div class="sections">
+    <div class="section-bottom">
+      <div class="block-bottom">
+        <event-table></event-table>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="block-bottom">
+        <time-line></time-line>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import EventTable from "@/components/microservices/events/UI/events/EventTable";
+import TimeLine from "@/components/microservices/events/UI/birthdays/TimeLine";
+export default {
+  name: "EventsView",
+  components: {TimeLine, EventTable}
+}
+</script>
+
+<style lang="sass" scoped>
+
+.page
+  position: relative
+  display: flex
+  justify-content: center
+  align-items: center
+  min-height: 100vh
+  padding: 20px 0
+  background-color: #59585d
+
+
+.sections
+  display: flex
+  width: 100%
+
+  @media (max-width: 767px)
+    flex-direction: column
+
+  &.section-error
+    min-width: 235px
+    width: auto
+    padding-right: 0
+
+.section-right
+  width: 25%
+  margin-top: 10px
+  padding-left: 5px
+  padding-right: 10px
+
+  @media (max-width: 767px)
+    width: 100%
+    margin-top: 16px
+    padding-left: 0
+
+.section-bottom
+  width: 75%
+  margin-top: 10px
+
+  @media (max-width: 767px)
+    width: 100%
+
+.error
+  padding-top: 20px
+
+  &-title
+    font-size: 18px
+    font-weight: 700
+
+  &-message
+    padding-top: 10px
+    font-size: 13px
+
+.overflow-visible
+  height: 50px
+  margin-right: 10px
+  margin-left: 10px
+  border-bottom-left-radius: 25px
+  border-bottom-right-radius: 25px
+</style>
+

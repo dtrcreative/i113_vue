@@ -5,58 +5,47 @@
       :bg-color="color"
       grow>
       <v-btn
-        @click="getEvents"
+        @click="showEvents"
       >
         <v-icon>mdi-music-note</v-icon>
         <span>Events</span>
       </v-btn>
       <v-btn
-        @click="getBirthdays"
+        @click="showBirthdays"
       >
         <v-icon>mdi-heart</v-icon>
         <span>Birthdays</span>
       </v-btn>
     </v-bottom-navigation>
   </v-layout>
+<!--  <div class="sections" v-else>-->
+<!--    <div class="section-bottom">-->
+<!--      <div class="block-bottom">-->
+<!--       <event-table></event-table>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="section-right">-->
+<!--      <div class="block-bottom">-->
+<!--        <time-line></time-line>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 
-  <div class="sections" v-if="value">
-    <div class="section-bottom">
-      <div class="block-bottom">
-        <birthday-table></birthday-table>
-      </div>
-    </div>
-    <div class="section-right">
-      <div class="block-bottom">
-        <time-line></time-line>
-      </div>
-    </div>
-  </div>
-
-  <div class="sections" v-else>
-    <div class="section-bottom">
-      <div class="block-bottom">
-        <event-table></event-table>
-      </div>
-    </div>
-    <div class="section-right">
-      <div class="block-bottom">
-        <time-line></time-line>
-      </div>
-    </div>
-  </div>
+  <router-view />
 
 </template>
 
 <script>
-import TimeLine from "@/components/microservices/events/TimeLine";
-import BirthdayTable from "@/components/microservices/events/BirthdayTable";
-import EventTable from "@/components/microservices/events/EventTable";
 import birthdayService from "@/components/microservices/events/js/birthday.service";
 import eventsService from "@/components/microservices/events/js/events.service";
+import EventTable from "@/components/microservices/events/UI/events/EventTable";
+import TimeLine from "@/components/microservices/events/UI/birthdays/TimeLine";
+import BirthdayTable from "@/components/microservices/events/UI/birthdays/BirthdayTable";
+import router from "@/router";
 
 export default {
   name: "BirthdayView",
-  components: {EventTable, BirthdayTable, TimeLine},
+  components: {BirthdayTable, TimeLine, EventTable},
   data: () => ({value: 1}),
 
   computed: {
@@ -76,18 +65,18 @@ export default {
     },
   },
   methods: {
-    getEvents() {
-      eventsService.getEvents()
+    showEvents() {
+      router.push("events")
     },
-    getBirthdays() {
-      birthdayService.getBirthdays()
+    showBirthdays() {
+      router.push("birthdays")
     }
   }
 }
 </script>
 
 <style lang="sass" scoped>
-@import '../assets/styles/main'
+@import '../../../assets/styles/main'
 
 .page
   position: relative
