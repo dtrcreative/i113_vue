@@ -4,7 +4,13 @@ import userHelper from "@/components/auth/services/user.helper";
 
 const routes = [
   {
+    path: '/auth',
+    name: 'Auth',
+    component: () => import('@/views/AuthPage.vue'),
+  },
+  {
     path: '/',
+    name: 'Main',
     component: () => import('@/layouts/default/Main.vue'),
     children: [
       {
@@ -16,7 +22,7 @@ const routes = [
         path: '/callback',
         name: 'RedirectCallBack',
         component: () => import('@/views/RedirectCallBack.vue'),
-      }
+      },
     ],
   },
   {
@@ -49,24 +55,16 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // console.log(userHelper.isUserExist())
-  // if(userHelper.isUserExist()){
-  //   console.log("expires " + ((userHelper.getUser().expires_at) > (new Date().getTime() / 1000) && (to.name !== 'Home')))
   //   // if((userHelper.getUser().expires_at) > (new Date().getTime() / 1000) && (to.name !== 'Home')) {
-  //   //   next({name: 'Home'})
-  //   //   userHelper.cleanLocalStorage()
-  //   // }else{
-  //   //   next()
-  //   // }
-  // }else{
-  //   next({name: 'Home'})
-  // }
-  console.log(!userHelper.isUserExist())
-  // if(!userHelper.isUserExist()){
-  //   console.log("redirect")
-  //   next({name: 'Home'})
-  // }
-  next()
+  if(userHelper.getUser() === null &&
+    (to.name !== 'Home') &&
+    // (from.name !== 'Home') &&
+    (to.name !== 'RedirectCallBack'))
+  {
+    next({name: 'Home'})
+  }else{
+    next()
+  }
 })
 
 export default router
