@@ -9,7 +9,7 @@
             @click="showAddForm"
           ></v-btn>
         </v-col>
-        <v-col cols="12" sm="10" md="10">
+        <v-col cols="12" sm="10" md="8">
           <v-text-field clearable
                         class="searchField"
                         v-model.trim="useBirthdaysStore().searchValue"
@@ -23,6 +23,20 @@
         </v-col>
         <v-col cols="12" sm="1" md="1">
           <v-btn
+            icon="mdi mdi-upload"
+            @click="upload"
+          >
+          </v-btn>
+        </v-col>
+        <v-col cols="12" sm="1" md="1">
+          <v-btn
+            icon="mdi mdi-download"
+            @click="download"
+          >
+          </v-btn>
+        </v-col>
+        <v-col cols="12" sm="1" md="1">
+          <v-btn
             icon="mdi mdi-trash-can"
             min-width="50px"
             @click=useBirthdaysStore().removeSelected()
@@ -32,7 +46,7 @@
 
     </v-card-actions>
 
-    <v-expand-transition >
+    <v-expand-transition>
       <div v-show="useBirthdaysStore().showCUForm">
         <birthday-c-u-form></birthday-c-u-form>
       </div>
@@ -124,13 +138,13 @@ onMounted(() => {
   birthdayService.getBirthdays()
 })
 
-function showAddForm(){
+function showAddForm() {
   useBirthdaysStore().showCUForm = !useBirthdaysStore().showCUForm
   useBirthdaysStore().unitToUpdate = {
     id: null,
     firstName: null,
     lastName: null,
-    date:{
+    date: {
       day: null,
       month: null,
       year: null
@@ -140,13 +154,13 @@ function showAddForm(){
   };
 }
 
-function showUpdateForm(unit){
+function showUpdateForm(unit) {
   useBirthdaysStore().showCUForm = true
   useBirthdaysStore().unitToUpdate = {
     id: unit.id,
     firstName: unit.firstName,
     lastName: unit.lastName,
-    date:{
+    date: {
       day: new Date(unit.date).getDate(),
       month: new Date(unit.date).getMonth() + 1,
       year: new Date(unit.date).getFullYear()
@@ -154,6 +168,14 @@ function showUpdateForm(unit){
     description: unit.description,
     notify: unit.notify
   };
+}
+
+function download() {
+  console.log("download")
+}
+
+function upload() {
+  console.log("upload")
 }
 
 </script>

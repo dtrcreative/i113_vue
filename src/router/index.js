@@ -4,11 +4,6 @@ import userHelper from "@/components/auth/services/user.helper";
 
 const routes = [
   {
-    path: '/auth',
-    name: 'Auth',
-    component: () => import('@/views/AuthPage.vue'),
-  },
-  {
     path: '/',
     name: 'Main',
     component: () => import('@/layouts/default/Main.vue'),
@@ -58,7 +53,6 @@ router.beforeEach((to, from, next) => {
   //   // if((userHelper.getUser().expires_at) > (new Date().getTime() / 1000) && (to.name !== 'Home')) {
   if(userHelper.getUser() === null &&
     (to.name !== 'Home') &&
-    // (from.name !== 'Home') &&
     (to.name !== 'RedirectCallBack'))
   {
     next({name: 'Home'})

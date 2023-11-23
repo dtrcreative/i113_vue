@@ -18,26 +18,12 @@
       </v-btn>
     </v-bottom-navigation>
   </v-layout>
-<!--  <div class="sections" v-else>-->
-<!--    <div class="section-bottom">-->
-<!--      <div class="block-bottom">-->
-<!--       <event-table></event-table>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="section-right">-->
-<!--      <div class="block-bottom">-->
-<!--        <time-line></time-line>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
 
-  <router-view />
+  <router-view/>
 
 </template>
 
 <script>
-import birthdayService from "@/components/microservices/events/js/birthday.service";
-import eventsService from "@/components/microservices/events/js/events.service";
 import EventTable from "@/components/microservices/events/UI/events/EventTable";
 import TimeLine from "@/components/microservices/events/UI/birthdays/TimeLine";
 import BirthdayTable from "@/components/microservices/events/UI/birthdays/BirthdayTable";

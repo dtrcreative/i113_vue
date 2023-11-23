@@ -43,14 +43,13 @@ import ToggleTheme from "@/components/UI/ToggleTheme";
 import TranlateList from "@/components/UI/TranlateList";
 import UserProfileList from "@/components/UI/UserProfileList";
 import NavigationBar from "@/components/UI/NavigationBar";
-import LogInVue from "@/components/auth2/LogInView";
 import userHelper from "@/components/auth/services/user.helper";
 
 export default {
   name: "AppBar",
   components: {
-    LogInVue,
-    NavigationBar, UserProfileList, TranlateList, ToggleTheme, LogOutButton, LogInButton, SignIn, LogIn},
+    NavigationBar, UserProfileList, TranlateList, ToggleTheme, LogOutButton, LogInButton, SignIn, LogIn
+  },
 
   data() {
     return {
@@ -60,7 +59,6 @@ export default {
 
   computed: {
     isExist() {
-      console.log(userHelper.isUserExist())
       return userHelper.isUserExist();
     },
   },

@@ -59,6 +59,8 @@ class BirthdayService {
     }
   }
 
+  
+
   // async removeSelectedBirthdays(selected){
   //   console.log(JSON.stringify(selected))
   //   try{
