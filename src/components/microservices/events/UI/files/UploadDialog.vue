@@ -1,9 +1,9 @@
 <template>
   <v-dialog transition="dialog-bottom-transition" width="auto">
     <template v-slot:activator="{ props }">
-      <v-btn icon="mdi mdi-upload" v-bind="props"></v-btn>
+      <v-btn icon="mdi mdi-upload" v-bind="props" @click="clear"></v-btn>
     </template>
-    <template v-slot:default="{ isActive }">
+    <template v-slot:default="{isActive}">
       <v-card class="dialog">
 
         <v-card-title>Upload</v-card-title>
@@ -20,6 +20,8 @@
             :rules="rules"
             v-model="selectedFile"
             @change="readFile"
+            @click:clear="clear"
+            @click:append="clear"
           >
           </v-file-input>
         </v-card-text>
@@ -57,13 +59,14 @@
           ></v-progress-linear>
         </div>
 
-        <v-card-text
-          v-if="errorMessage!==''">
+        <v-card-text v-if="errorMessage!==''">
           <v-textarea
             rows="2"
             variant="outlined"
+            hide-details
             v-model="errorMessage">
           </v-textarea>
+          <v-btn style="width: 100%" @click="clear">Clear</v-btn>
         </v-card-text>
 
       </v-card>
@@ -90,55 +93,59 @@ export default {
 
     reader: new FileReader(),
   }),
+
   props:{
     service:{
       type: Object,
       required: true
     }
   },
+
   methods: {
     useBirthdaysStore,
 
     getTemplate() {
-      console.log(this.reader.result)
-      console.log(this.inProcess)
+      console.log('template')
     },
 
     apply() {
       if(this.json !== undefined){
-        console.log(this.json)
         this.convertAndValidateJson()
       }else{
-        console.log('undefined')
+        this.errorMessage = "Please select File first"
       }
     },
 
     readFile() {
-      this.clear()
-      this.inProcess = true
-      this.reader.readAsText(this.selectedFile[0]);
-      this.reader.addEventListener('load', (e) => {
-        try {
-          this.json = JSON.parse(e.target.result.toString())
-        } catch (e) {
-          this.errorMessage = e.toString()
-        }
-        this.inProcess = false
-      })
+      if(this.selectedFile[0] !== undefined){
+        this.inProcess = true
+        this.reader.readAsText(this.selectedFile[0]);
+        this.reader.addEventListener('load', (e) => {
+          try {
+            this.json = JSON.parse(e.target.result.toString())
+          } catch (e) {
+            this.errorMessage = e.toString()
+          }
+          this.inProcess = false
+        })
+      }
     },
     clear(){
       this.inProcess = false;
       this.errorMessage = ''
-      this.reader.abort()
+      this.selectedFile = []
+      this.json = {}
     },
+
+    //needed inputProps service. caused usability this component in different components
     convertAndValidateJson(){
       this.inProcess = true
 
-      this.service.validateUploadJson()
+      this.service.validateUploadJson(this.json)
 
       this.inProcess = false
     }
-  }
+  },
 }
 </script>
 

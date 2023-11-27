@@ -59,8 +59,36 @@ class BirthdayService {
     }
   }
 
-  validateUploadJson(){
-    console.log("BirthdayValidateJson")
+  validateUploadJson(json){
+    let unitNumber = 0;
+    let objects = [];
+    let failed = []
+      for(unitNumber; unitNumber<json.length;unitNumber++){
+        if(failed.length > 5){
+          break;
+        }
+        try {
+          objects.push({
+            firstName: json[unitNumber].firstName !== undefined ?
+              json[unitNumber].firstName : failed.push(unitNumber + ":firstName "),
+            lastName: json[unitNumber].lastName !== undefined ?
+              json[unitNumber].lastName : failed.push(unitNumber + ":lastName "),
+            date: json[unitNumber].date !== undefined ?
+              json[unitNumber].date : failed.push(unitNumber + ":date "),
+            notify: json[unitNumber].notify !== undefined ?
+              json[unitNumber].notify : failed.push(unitNumber + ":notify "),
+            description: json[unitNumber].description !== undefined ?
+              json[unitNumber].description : failed.push(unitNumber + ":description "),
+          })
+        } catch (e) {
+          console.log('ощибка')
+        }
+      }
+    if(failed.length>0){
+      return failed
+    }else{
+      return objects
+    }
   }
 
   // async removeSelectedBirthdays(selected){
