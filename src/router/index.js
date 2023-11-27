@@ -57,7 +57,19 @@ router.beforeEach((to, from, next) => {
   {
     next({name: 'Home'})
   }else{
-    next()
+    if(userHelper.getUser() !== null && (userHelper.getUser().expires_at) < (new Date().getTime() / 1000) &&
+      (to.name !== 'Home') &&
+      (to.name !== 'RedirectCallBack')){
+      // console.log("вот тут")
+      // console.log(userHelper.getUser().expires_at)
+      // console.log((new Date().getTime() / 1000))
+      userHelper.cleanLocalStorage()
+      next({name: 'Home'})
+    }else{
+      // console.log("а тут норм")
+      next()
+    }
+
   }
 })
 

@@ -59,7 +59,9 @@ class BirthdayService {
     }
   }
 
-  
+  validateUploadJson(){
+    console.log("BirthdayValidateJson")
+  }
 
   // async removeSelectedBirthdays(selected){
   //   console.log(JSON.stringify(selected))

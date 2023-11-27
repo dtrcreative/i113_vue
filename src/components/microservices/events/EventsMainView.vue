@@ -4,18 +4,21 @@
       v-model="value"
       :bg-color="color"
       grow>
+
       <v-btn
         @click="showEvents"
       >
         <v-icon>mdi-music-note</v-icon>
         <span>Events</span>
       </v-btn>
+
       <v-btn
         @click="showBirthdays"
       >
         <v-icon>mdi-heart</v-icon>
         <span>Birthdays</span>
       </v-btn>
+
     </v-bottom-navigation>
   </v-layout>
 
@@ -56,7 +59,7 @@ export default {
     },
     showBirthdays() {
       router.push("birthdays")
-    }
+    },
   }
 }
 </script>

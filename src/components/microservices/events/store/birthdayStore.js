@@ -5,6 +5,11 @@ export const useBirthdaysStore = defineStore('birthdays', {
   state: () => ({
     units: [],
     selected: [],
+    searchValue: "",
+    showCUForm: false,
+
+    uploadJSON: '',
+
     unitToUpdate: {
       id: '',
       firstName: '',
@@ -17,8 +22,7 @@ export const useBirthdaysStore = defineStore('birthdays', {
       description: '',
       notify: true
     },
-    searchValue: "",
-    showCUForm: false,
+
   }),
   actions: {
     setUnits(units) {

@@ -22,11 +22,9 @@
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="1" md="1">
-          <v-btn
-            icon="mdi mdi-upload"
-            @click="upload"
-          >
-          </v-btn>
+          <UploadDialog
+          :service="birthdayService"
+          ></UploadDialog>
         </v-col>
         <v-col cols="12" sm="1" md="1">
           <v-btn
@@ -130,6 +128,8 @@
 import BirthdayCUForm from "@/components/microservices/events/UI/birthdays/BirthdayCUForm";
 import birthdayService from "@/components/microservices/events/js/birthday.service";
 import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
+import UploadDialog from "@/components/microservices/events/UI/files/UploadDialog";
+import DownloadDialog from "@/components/microservices/events/UI/files/DownloadDialog";
 import {onMounted} from "vue";
 
 useBirthdaysStore()

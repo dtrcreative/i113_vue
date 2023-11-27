@@ -1,10 +1,10 @@
 <template>
-<v-btn>Test</v-btn>
+
 </template>
 
 <script>
 export default {
-  name: "ImportExport"
+  name: "DownloadDialog"
 }
 </script>
 
