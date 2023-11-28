@@ -110,16 +110,13 @@ class BirthdayService {
     }
   }
 
-  // async removeSelectedBirthdays(selected){
-  //   console.log(JSON.stringify(selected))
-  //   try{
-  //     return axios.delete(getServerUrl() + API_URL + "/selected", {
-  //       units: selected
-  //     }, {headers: authHeader()})
-  //   }catch (e){
-  //     errorHandler.handle(e)
-  //   }
-  // }
+  async removeSelectedBirthdays(selected){
+    try{
+      return axios.post(getServerUrl() + API_URL + "/selected", selected, {headers: authHeader()})
+    }catch (e){
+      errorHandler.handle(e)
+    }
+  }
 }
 
 export default new BirthdayService();

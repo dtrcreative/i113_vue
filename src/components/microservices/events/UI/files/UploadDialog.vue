@@ -95,7 +95,7 @@ export default {
     selectedFile: [],
     inline: 'add',
     errorMessage: '',
-    successMessage:'',
+    successMessage: '',
     inProcess: false,
     json: [],
     rules: [
@@ -107,8 +107,8 @@ export default {
     reader: new FileReader(),
   }),
 
-  props:{
-    service:{
+  props: {
+    service: {
       type: Object,
       required: true
     }
@@ -122,15 +122,15 @@ export default {
     },
 
     apply() {
-      if(this.json !== undefined && this.selectedFile.length>0){
-       this.save()
-      }else{
+      if (this.json !== undefined && this.selectedFile.length > 0) {
+        this.save()
+      } else {
         this.errorMessage = "Please select File first"
       }
     },
 
     readFile() {
-      if(this.selectedFile[0] !== undefined){
+      if (this.selectedFile[0] !== undefined) {
         this.inProcess = true
         this.reader.readAsText(this.selectedFile[0]);
         this.reader.addEventListener('load', (e) => {
@@ -143,7 +143,7 @@ export default {
         })
       }
     },
-    clear(){
+    clear() {
       this.inProcess = false;
       this.errorMessage = ''
       this.successMessage = ''
@@ -152,16 +152,18 @@ export default {
     },
 
     //needed inputProps service. caused usability this component in different components
-    async save(){
+    async save() {
       this.inProcess = true
-      let result  = this.service.convertAndValidateJson(this.json)
-      if(typeof result === typeof JSON && result.length>0){
-       let response = await birthdayService.uploadJSON(result, this.inline === 'replace')
-        if(response.status !== undefined && response.status === 200){
-            this.service.getUnits();
-            this.successMessage = "Successfully added: " + response.data
-          }
-      }else{
+      let result = this.service.convertAndValidateJson(this.json)
+      if (typeof result === typeof JSON && result.length > 0) {
+        let response = await birthdayService.uploadJSON(result, this.inline === 'replace')
+        if (response.status !== undefined && response.status === 200) {
+          await this.service.getUnits();
+          this.successMessage = "Successfully added: " + response.data
+        } else {
+          this.errorMessage = "Somenthing Went Wrong"
+        }
+      } else {
         this.errorMessage = result
       }
       this.inProcess = false

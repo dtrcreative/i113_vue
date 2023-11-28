@@ -40,7 +40,9 @@ export const useBirthdaysStore = defineStore('birthdays', {
       for (let i = 0; i < this.selected.length; i++) {
         this.units = this.units.filter(unit => unit.id !== this.selected[i])
       }
-      birthdayService.removeBirthday(this.selected[0]) //TODO
+      console.log(this.selected)
+      // birthdayService.removeBirthday(this.selected[0]) //TODO
+      birthdayService.removeSelectedBirthdays(this.selected)
       this.selected = []
     },
 

@@ -29,7 +29,8 @@
         <v-col cols="12" sm="1" md="1">
           <v-btn
             icon="mdi mdi-download"
-            @click="download"
+
+
           >
           </v-btn>
         </v-col>
@@ -168,14 +169,6 @@ function showUpdateForm(unit) {
     description: unit.description,
     notify: unit.notify
   };
-}
-
-function download() {
-  console.log("download")
-}
-
-function upload() {
-  console.log("upload")
 }
 
 </script>
