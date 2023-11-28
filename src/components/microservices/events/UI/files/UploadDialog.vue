@@ -69,6 +69,17 @@
           <v-btn style="width: 100%" @click="clear">Clear</v-btn>
         </v-card-text>
 
+        <v-card-text v-if="successMessage!==''">
+          <v-textarea
+            rows="1"
+            variant="outlined"
+            color="primary"
+            hide-details
+            v-model="successMessage">
+          </v-textarea>
+          <v-btn style="width: 100%" @click="clear">Clear</v-btn>
+        </v-card-text>
+
       </v-card>
     </template>
   </v-dialog>
@@ -76,6 +87,7 @@
 
 <script>
 import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
+import birthdayService from "@/components/microservices/events/js/birthday.service";
 
 export default {
   name: "UploadDialog",
@@ -83,6 +95,7 @@ export default {
     selectedFile: [],
     inline: 'add',
     errorMessage: '',
+    successMessage:'',
     inProcess: false,
     json: [],
     rules: [
@@ -109,8 +122,8 @@ export default {
     },
 
     apply() {
-      if(this.json !== undefined){
-        this.convertAndValidateJson()
+      if(this.json !== undefined && this.selectedFile.length>0){
+       this.save()
       }else{
         this.errorMessage = "Please select File first"
       }
@@ -133,16 +146,24 @@ export default {
     clear(){
       this.inProcess = false;
       this.errorMessage = ''
+      this.successMessage = ''
       this.selectedFile = []
       this.json = {}
     },
 
     //needed inputProps service. caused usability this component in different components
-    convertAndValidateJson(){
+    async save(){
       this.inProcess = true
-
-      this.service.validateUploadJson(this.json)
-
+      let result  = this.service.convertAndValidateJson(this.json)
+      if(typeof result === typeof JSON && result.length>0){
+       let response = await birthdayService.uploadJSON(result, this.inline === 'replace')
+        if(response.status !== undefined && response.status === 200){
+            this.service.getUnits();
+            this.successMessage = "Successfully added: " + response.data
+          }
+      }else{
+        this.errorMessage = result
+      }
       this.inProcess = false
     }
   },

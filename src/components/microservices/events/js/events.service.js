@@ -58,7 +58,7 @@ class EventService {
     }
   }
 
-  validateUploadJson(json){
+  convertAndValidateJson(json){
     console.log("EventsValidateJson")
   }
 

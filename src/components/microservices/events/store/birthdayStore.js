@@ -34,7 +34,7 @@ export const useBirthdaysStore = defineStore('birthdays', {
     },
     async update() {
       await birthdayService.updateBirthday(this.reformatUnit(this.unitToUpdate))
-      await birthdayService.getBirthdays()
+      await birthdayService.getUnits()
     },
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {

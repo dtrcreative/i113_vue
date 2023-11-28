@@ -135,7 +135,7 @@ import {onMounted} from "vue";
 useBirthdaysStore()
 
 onMounted(() => {
-  birthdayService.getBirthdays()
+  birthdayService.getUnits()
 })
 
 function showAddForm() {
