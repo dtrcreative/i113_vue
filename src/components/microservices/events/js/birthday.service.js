@@ -10,13 +10,12 @@ const API_ALL = 'all';
 const API_ADD = 'upload-add';
 const API_REPLACE = 'upload-replace';
 
-//TODO Check catch working
+const SERVICE_NAME = 'Birthdays'
 
 class BirthdayService {
   async getUnits() {
     try {
       const response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
-      // console.log(response.data)
       useBirthdaysStore().setUnits(response.data)
     } catch (e) {
       errorHandler.handle(e)
@@ -110,12 +109,53 @@ class BirthdayService {
     }
   }
 
-  async removeSelectedBirthdays(selected){
-    try{
+  async removeSelectedBirthdays(selected) {
+    try {
       return axios.post(getServerUrl() + API_URL + "/selected", selected, {headers: authHeader()})
-    }catch (e){
+    } catch (e) {
       errorHandler.handle(e)
     }
+  }
+
+  getTemplateObject() {
+    let template = [];
+    for (let i = 0; i < 2; i++) {
+      template.push({
+          firstName: '',
+          lastName: '',
+          date: '',
+          notify: '',
+          description: ''
+        }
+      )
+    }
+    return template
+  }
+
+  async getBackUp(){
+    let backUpObjects = []
+    try {
+      let response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
+      let values = response.data
+      for(let i = 0; i< values.length; i++){
+        backUpObjects.push(
+          {
+            firstName: values[i].firstName,
+            lastName: values[i].lastName,
+            date: values[i].date,
+            notify: values[i].notify,
+            description: values[i].description
+          }
+        )
+      }
+      return backUpObjects;
+    } catch (e) {
+      errorHandler.handle(e)
+    }
+  }
+
+  getBackUpFileName(){
+    return SERVICE_NAME + '_BackUp.json'
   }
 }
 

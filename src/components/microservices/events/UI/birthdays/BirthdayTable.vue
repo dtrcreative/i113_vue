@@ -23,16 +23,13 @@
         </v-col>
         <v-col cols="12" sm="1" md="1">
           <UploadDialog
-          :service="birthdayService"
+            :service="birthdayService"
           ></UploadDialog>
         </v-col>
         <v-col cols="12" sm="1" md="1">
-          <v-btn
-            icon="mdi mdi-download"
-
-
-          >
-          </v-btn>
+          <DownloadDialog
+            :service="birthdayService"
+          ></DownloadDialog>
         </v-col>
         <v-col cols="12" sm="1" md="1">
           <v-btn

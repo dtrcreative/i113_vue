@@ -39,7 +39,7 @@
               color="primary"
             ></v-radio>
           </v-radio-group>
-          <v-btn class="btn" variant="text" @click="getTemplate">
+          <v-btn class="btn" variant="text" @click="downloadTemplate">
             GetTemplate
           </v-btn>
           <v-btn class="btn" variant="outlined" color="error" @click="isActive.value = false">
@@ -117,10 +117,6 @@ export default {
   methods: {
     useBirthdaysStore,
 
-    getTemplate() {
-      console.log('template')
-    },
-
     apply() {
       if (this.json !== undefined && this.selectedFile.length > 0) {
         this.save()
@@ -149,6 +145,20 @@ export default {
       this.successMessage = ''
       this.selectedFile = []
       this.json = {}
+    },
+
+    downloadTemplate(){
+      let text = JSON.stringify(this.service.getTemplateObject());
+      let filename = 'Template.json';
+      let element = document.createElement('a');
+      element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', filename);
+
+      element.style.display = 'none';
+      document.body.appendChild(element);
+
+      element.click();
+      document.body.removeChild(element);
     },
 
     //needed inputProps service. caused usability this component in different components
