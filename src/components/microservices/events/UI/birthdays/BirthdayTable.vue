@@ -49,7 +49,7 @@
     </v-expand-transition>
   </v-container>
 
-  <v-table density="compact" class="table">
+  <v-table class="table">
     <thead>
     <tr>
       <th class="checkbox">
@@ -79,6 +79,7 @@
       </th>
     </tr>
     </thead>
+
     <tbody>
     <tr
       v-for="item in useBirthdaysStore().searchUnits"
@@ -114,12 +115,12 @@
       </td>
     </tr>
     </tbody>
+
+    <div class="empty-table" v-if="useBirthdaysStore().units.length===0">
+      <h1>No data</h1>
+    </div>
+
   </v-table>
-
-  <div class="empty-table" v-if="useBirthdaysStore().units.length===0">
-    <h1>No data</h1>
-  </div>
-
 </template>
 
 <script setup>
@@ -186,6 +187,8 @@ component
 
 .table
   background-color: rgba(0, 0, 0, 0)
+  max-height: 600px
+  overflow: hidden
 
 .checkbox
   width: 5%
