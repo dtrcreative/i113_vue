@@ -49,6 +49,10 @@ export const useEventsStore = defineStore('events', {
       return [...this.filterByEventName].sort((unit1, unit2) => unit1.daysLeft - unit2.daysLeft)
     },
 
+    getFirstTenUnits(){
+      return [...this.filterByDaysLeft].slice(0, 10)
+    },
+
     searchUnits() {
       return [...this.filterByDaysLeft].filter(unit =>
         unit.eventName.toLowerCase().includes(this.searchValue.toLowerCase()) |

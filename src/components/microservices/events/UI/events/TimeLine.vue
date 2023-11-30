@@ -1,16 +1,18 @@
 <template>
+  <v-card-title align="center">
+    Nearest Events
+  </v-card-title>
   <v-timeline side="end">
       <v-timeline-item
-        size="small"
-        v-for="item in useEventsStore().filterByEventName"
-        :key="item.id"
+        v-for="item in useEventsStore().getFirstTenUnits" :key="item.id"
+        size="x-small"
+        max-height="600"
       >
-        <template v-slot:opposite>
-          <span>{{item.eventName}}</span>
-        </template>
-        <v-card class="elevation-2">
-          <v-card-title class="text-h5"> {{item.daysLeft}} </v-card-title>
-        </v-card>
+        <div class="mb-4">
+          <div class="font-weight-normal">
+            <strong>{{ item.daysLeft }}</strong> -- {{ item.eventName }}
+          </div>
+        </div>
       </v-timeline-item>
   </v-timeline>
 </template>
