@@ -40,8 +40,6 @@ export const useBirthdaysStore = defineStore('birthdays', {
       for (let i = 0; i < this.selected.length; i++) {
         this.units = this.units.filter(unit => unit.id !== this.selected[i])
       }
-      console.log(this.selected)
-      // birthdayService.removeBirthday(this.selected[0]) //TODO
       birthdayService.removeSelectedBirthdays(this.selected)
       this.selected = []
     },
@@ -92,6 +90,10 @@ export const useBirthdaysStore = defineStore('birthdays', {
 
     filterByDaysLeft() {
       return [...this.filterByLastName].sort((unit1, unit2) => unit1.daysLeft - unit2.daysLeft)
+    },
+
+    getFirstTenUnits(){
+      return [...this.filterByDaysLeft].slice(0, 10)
     },
 
     searchUnits() {

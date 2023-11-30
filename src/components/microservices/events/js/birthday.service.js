@@ -100,6 +100,7 @@ class BirthdayService {
         })
       } catch (e) {
         console.log('ощибка')
+        console.log(e)
       }
     }
     if (failed.length > 0) {

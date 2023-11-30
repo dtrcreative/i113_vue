@@ -3,13 +3,13 @@
   <v-container class="header">
     <v-card-actions>
       <v-row>
-        <v-col cols="12" sm="1" md="1">
+        <v-col cols="12" xs="1" sm="1" md="1">
           <v-btn
             icon="mdi-plus"
             @click="showAddForm"
           ></v-btn>
         </v-col>
-        <v-col cols="12" sm="10" md="8">
+        <v-col cols="12" xs="1" sm="8" md="8">
           <v-text-field clearable
                         class="searchField"
                         v-model.trim="useBirthdaysStore().searchValue"
@@ -21,17 +21,17 @@
                         :maxlength="10"
           ></v-text-field>
         </v-col>
-        <v-col cols="12" sm="1" md="1">
+        <v-col cols="12" xs="1" sm="1" md="1">
           <UploadDialog
             :service="birthdayService"
           ></UploadDialog>
         </v-col>
-        <v-col cols="12" sm="1" md="1">
+        <v-col cols="12" xs="1" sm="1" md="1">
           <DownloadDialog
             :service="birthdayService"
           ></DownloadDialog>
         </v-col>
-        <v-col cols="12" sm="1" md="1">
+        <v-col cols="12" xs="1" sm="1" md="1">
           <v-btn
             icon="mdi mdi-trash-can"
             min-width="50px"

@@ -6,11 +6,11 @@
         <birthday-table></birthday-table>
       </div>
     </div>
-<!--    <div class="section-right">-->
-<!--      <div class="block-bottom">-->
-<!--        <time-line></time-line>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="section-right">
+      <div class="block-bottom">
+        <time-line></time-line>
+      </div>
+    </div>
   </div>
 
 </template>
@@ -49,15 +49,13 @@ export default {
     padding-right: 0
 
 .section-right
-  width: 50%
+  width: 25%
   margin-top: 10px
   padding-left: 5px
   padding-right: 10px
 
   @media (max-width: 767px)
-    width: 100%
-    margin-top: 16px
-    padding-left: 0
+    display: none
 
 .section-bottom
   width: 75%
