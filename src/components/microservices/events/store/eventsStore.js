@@ -1,30 +1,69 @@
 import {defineStore} from "pinia";
 import eventsService from "@/components/microservices/events/js/events.service";
+import birthdayService from "@/components/microservices/events/js/birthday.service";
 
 export const useEventsStore = defineStore('events', {
   state: () => ({
     units: [],
     selected: [],
-    unitToUpdate: null,
-    searchValue:""
+    searchValue:"",
+    showCUForm: false,
+
+    uploadJSON: '',
+
+    unitToUpdate: {
+      id: '',
+      eventName: '',
+      date: {
+        day: '',
+        month: '',
+        year: '',
+      },
+      description: '',
+      notify: true
+    },
+
   }),
   actions: {
     setUnits(units) {
       this.units = units;
     },
-    async create(unit) {
-      let user = await eventsService.createEvent(unit)
-      this.units.push(user.data)
+    async create() {
+      let response = await eventsService.createEvent(this.reformatUnit(this.unitToUpdate))
+      this.units.push(response.data)
     },
-    update(unit) {
-      eventsService.updateEvent(unit)
+    //TO Update
+    async update() {
+      await eventsService.updateEvent(this.reformatUnit(this.unitToUpdate))
+      await eventsService.getUnits()
     },
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {
         this.units = this.units.filter(unit => unit.id !== this.selected[i])
       }
-      eventsService.removeEvent(this.selected[0]) //TODO
+      eventsService.removeSelectedEvents(this.selected) //TODO
       this.selected = []
+    },
+
+    reformatUnit(unit) {
+      let formattedDate = unit.date.year.toString()
+      if (unit.date.month < 10) {
+        formattedDate = formattedDate + "-0" + unit.date.month
+      } else {
+        formattedDate = formattedDate + "-" + unit.date.month
+      }
+      if (unit.date.day < 10) {
+        formattedDate = formattedDate + "-0" + unit.date.day
+      } else {
+        formattedDate = formattedDate + "-" + unit.date.day
+      }
+      return {
+        id: this.unitToUpdate.id,
+        eventName: unit.eventName,
+        date: (formattedDate),
+        description: unit.description,
+        notify: unit.notify
+      }
     },
 
     selectAll() {

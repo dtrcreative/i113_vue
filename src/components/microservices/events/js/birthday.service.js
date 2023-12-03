@@ -59,14 +59,6 @@ class BirthdayService {
     }
   }
 
-  async removeBirthday(id) {
-    try {
-      return axios.delete(getServerUrl() + API_URL + id, {headers: authHeader()})
-    } catch (e) {
-      errorHandler.handle(e)
-    }
-  }
-
   async uploadJSON(json, isReplace) {
     try {
       return await axios.post(getServerUrl() + API_URL + (isReplace ? API_REPLACE : API_ADD), json, {headers: authHeader()})

@@ -39,7 +39,6 @@
           ></v-btn>
         </v-col>
       </v-row>
-
     </v-card-actions>
 
     <v-expand-transition>
@@ -47,9 +46,10 @@
         <birthday-c-u-form></birthday-c-u-form>
       </div>
     </v-expand-transition>
+
   </v-container>
 
-  <v-table class="table">
+  <v-table density="compact" class="table">
     <thead>
     <tr>
       <th class="checkbox">
@@ -61,22 +61,13 @@
         ></v-btn>
       </th>
 
-      <th class="names">
-        First Name
-      </th>
-      <th class="names"
-          @click=""
-      >
-        Last Name
-      </th>
+      <th class="names">First Name</th>
+      <th class="names" @click="">Last Name</th>
       <th class="date" style="text-align: center">Date</th>
       <th class="days-left" style="text-align: center">Days Left</th>
-      <th class="notify" style="text-align: center">
-        Notify
-      </th>
-      <th class="btn">
-        Update
-      </th>
+      <th class="notify" style="text-align: center">Notify</th>
+      <th class="btn">Update</th>
+
     </tr>
     </thead>
 

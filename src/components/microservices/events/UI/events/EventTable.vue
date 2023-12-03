@@ -1,28 +1,52 @@
 <template>
+
   <v-container class="header">
-    <v-row>
-      <v-col cols="12" sm="4" md="1">
-      </v-col>
-      <v-col cols="12" sm="4" md="10">
-        <v-text-field clearable
-                      class="searchField"
-                      v-model.trim="useEventsStore().searchValue"
-                      label="Search"
-                      variant="outlined"
-                      density="compact"
-                      append-inner-icon="mdi-magnify"
-                      hide-details
-                      :maxlength="10"
-        ></v-text-field>
-      </v-col>
-      <v-col cols="12" sm="4" md="1">
-        <v-btn
-          icon="mdi mdi-trash-can"
-          min-width="50px"
-          @click=useEventsStore().removeSelected()
-        ></v-btn>
-      </v-col>
-    </v-row>
+    <v-card-actions>
+      <v-row>
+        <v-col cols="12" xs="1" sm="1" md="1">
+          <v-btn
+            icon="mdi-plus"
+            @click="showAddForm"
+          ></v-btn>
+        </v-col>
+        <v-col cols="12" xs="1" sm="8" md="8">
+          <v-text-field clearable
+                        class="searchField"
+                        v-model.trim="useEventsStore().searchValue"
+                        label="Search"
+                        variant="outlined"
+                        density="compact"
+                        append-inner-icon="mdi-magnify"
+                        hide-details
+                        :maxlength="10"
+          ></v-text-field>
+        </v-col>
+<!--        <v-col cols="12" xs="1" sm="1" md="1">-->
+<!--          <UploadDialog-->
+<!--            :service="eventsService"-->
+<!--          ></UploadDialog>-->
+<!--        </v-col>-->
+<!--        <v-col cols="12" xs="1" sm="1" md="1">-->
+<!--          <DownloadDialog-->
+<!--            :service="eventsService"-->
+<!--          ></DownloadDialog>-->
+<!--        </v-col>-->
+        <v-col cols="12" xs="1" sm="1" md="1">
+          <v-btn
+            icon="mdi mdi-trash-can"
+            min-width="50px"
+            @click=useEventsStore().removeSelected()
+          ></v-btn>
+        </v-col>
+      </v-row>
+    </v-card-actions>
+
+    <v-expand-transition>
+      <div v-show="useEventsStore().showCUForm">
+        <event-c-u-form></event-c-u-form>
+      </div>
+    </v-expand-transition>
+
   </v-container>
 
   <v-table density="compact" class="table">
@@ -37,19 +61,15 @@
         ></v-btn>
       </th>
 
-      <th class="names">
-        Event Name
-      </th>
+      <th class="names" style="text-align: center">Event Name</th>
       <th class="date" style="text-align: center">Date</th>
       <th class="days-left" style="text-align: center">Days Left</th>
-      <th class="notify" style="text-align: center">
-        Notify
-      </th>
-      <th class="btn">
-        Update
-      </th>
+      <th class="notify" style="text-align: center">Notify</th>
+      <th class="btn">Update</th>
+
     </tr>
     </thead>
+
     <tbody>
     <tr
       v-for="item in useEventsStore().searchUnits"
@@ -76,37 +96,71 @@
           v-model="item.notify"
         ></v-switch>
       </td>
-
+      <td class="btn">
+        <v-btn
+          icon="mdi mdi-pen"
+          @click="showUpdateForm(item)"
+        ></v-btn>
+      </td>
     </tr>
     </tbody>
-  </v-table>
 
   <div class="empty-table" v-if="useEventsStore().units.length===0">
     <h1>No data</h1>
   </div>
+
+  </v-table>
 </template>
 
 <script setup>
 import {useEventsStore} from "@/components/microservices/events/store/eventsStore";
 import eventsService from "@/components/microservices/events/js/events.service";
+import UploadDialog from "@/components/microservices/events/UI/files/UploadDialog";
+import DownloadDialog from "@/components/microservices/events/UI/files/DownloadDialog";
 import {onMounted} from "vue";
+import EventCUForm from "@/components/microservices/events/UI/events/EventCUForm";
 
 useEventsStore()
 
 onMounted(() => {
-  eventsService.getEvents()
+  eventsService.getUnits()
 })
 
-function update() {
+function showAddForm() {
+  useEventsStore().showCUForm = !useEventsStore().showCUForm
+  useEventsStore().unitToUpdate = {
+    id: null,
+    eventName: null,
+    date: {
+      day: null,
+      month: new Date().getMonth() + 1,
+      year: new Date().getFullYear()
+    },
+    description: '',
+    notify: true
+  };
+}
+
+function showUpdateForm(unit) {
+  useEventsStore().showCUForm = true
+  useEventsStore().unitToUpdate = {
+    id: unit.id,
+    eventName: unit.eventName,
+    date: {
+      day: new Date(unit.date).getDate(),
+      month: new Date(unit.date).getMonth() + 1,
+      year: new Date(unit.date).getFullYear()
+    },
+    description: unit.description,
+    notify: unit.notify
+  };
 }
 
 </script>
 
 <style lang="sass" scoped>
 @import '../../../../../assets/styles/main'
-
 header
-
   display: flex
 
 component
@@ -119,6 +173,8 @@ component
 
 .table
   background-color: rgba(0, 0, 0, 0)
+  max-height: 600px
+  overflow: hidden
 
 .checkbox
   width: 5%
@@ -134,7 +190,8 @@ component
   width: 20%
 
 .names
-  width: 20%
+  text-align: center
+  width: 50%
 
 .names:hover
   width: 20%

@@ -7,7 +7,7 @@ const API_URL = 'api/events/';
 
 class EventService {
 
-  async getEvents() {
+  async getUnits() {
     try {
       const response = await axios.get( getServerUrl() + API_URL + 'all', { headers: authHeader() });
       useEventsStore().setUnits(response.data)
@@ -28,6 +28,7 @@ class EventService {
       },{ headers: authHeader()
       })
     }catch (e) {
+      console.log(e)
       errorHandler.handle(e)
     }
   }
@@ -50,18 +51,13 @@ class EventService {
     }
   }
 
-  async removeEvent(id){
-    try{
-      return axios.delete(getServerUrl() + API_URL + id, {headers: authHeader()})
-    }catch (e){
+  async removeSelectedEvents(selected) {
+    try {
+      return axios.post(getServerUrl() + API_URL + "/selected", selected, {headers: authHeader()})
+    } catch (e) {
       errorHandler.handle(e)
     }
   }
-
-  convertAndValidateJson(json){
-    console.log("EventsValidateJson")
-  }
-
 
 }
 
