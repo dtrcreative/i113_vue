@@ -4,6 +4,17 @@ import userHelper from "@/components/auth/services/user.helper";
 
 const routes = [
   {
+    path: "/",
+    name: 'login',
+    component: () => import('@/layouts/default/Login.vue'),
+    children: []
+  },
+  {
+    path: '/callback',
+    name: 'RedirectCallBack',
+    component: () => import('@/views/RedirectCallBack.vue'),
+  },
+  {
     path: '/main',
     name: 'Main',
     component: () => import('@/layouts/default/Main.vue'),
@@ -15,27 +26,18 @@ const routes = [
       },
     ],
   },
+
   {
-    path: "/profile",
+    path: '/panda',
     component: () => import('@/layouts/default/Main.vue'),
     children: [
-      {path: '', name: 'Profile', component: () => import('@/views/ProfileView.vue'),},
+      {
+        path: '',
+        name: 'Panda',
+        component: () => import('@/components/microservices/panda/PandaMainView.vue'),
+      },
     ]
   },
-  {
-    path: "/",
-    name: 'login',
-    component: () => import('@/layouts/default/Login.vue'),
-    children: [
-
-    ]
-  },
-  {
-    path: '/callback',
-    name: 'RedirectCallBack',
-    component: () => import('@/views/RedirectCallBack.vue'),
-  },
-
   {
     path: "/events",
     component: () => import('@/layouts/default/Main.vue'),

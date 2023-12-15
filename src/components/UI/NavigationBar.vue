@@ -48,7 +48,7 @@ export default {
   methods: {
     listAction(action){
       switch (action){
-        case 'goPanda': router.push("profile/");
+        case 'goPanda': router.push("panda/");
           break
         case 'goEvents': router.push("events/");
           break

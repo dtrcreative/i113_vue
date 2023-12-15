@@ -1,6 +1,5 @@
 import {UserManager, WebStorageStateStore} from 'oidc-client';
 import userHelper from "@/components/auth/services/user.helper";
-import router from "@/router";
 
 const KEYCLOAK_URL = "http://localhost:28080/";
 const APP_URL = "http://localhost:3000/"
