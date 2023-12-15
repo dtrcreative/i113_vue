@@ -1,4 +1,5 @@
 <template>
+  <label></label>
 </template>
 
 <script>

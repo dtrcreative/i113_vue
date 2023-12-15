@@ -22,8 +22,10 @@ class UserHelper {
        }
      });
   }
-  cleanLocalStorage(){
+  cleanUserData(){
     localStorage.removeItem(USER)
+  }
+  cleanStorage(){
     localStorage.clear()
     sessionStorage.clear()
   }

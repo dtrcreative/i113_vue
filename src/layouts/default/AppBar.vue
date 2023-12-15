@@ -2,7 +2,7 @@
   <v-app-bar
     image="$background-image-vbaner-green"
   >
-    <div v-if="isExist">
+    <div>
       <v-app-bar-nav-icon
         variant="text"
         @click.stop="drawer = !drawer"
@@ -13,13 +13,7 @@
       <v-avatar icon="$fox" image="src/assets/Fox.png" size="30"> Ellie</v-avatar>
     </v-app-bar-title>
 
-    <div class="auth" v-if="!isExist">
-      <div class="user-info">
-        <log-in-button></log-in-button>
-      </div>
-    </div>
-    <div class="auth" v-else>
-
+    <div class="auth">
       <toggle-theme></toggle-theme>
       <tranlate-list></tranlate-list>
       <user-profile-list></user-profile-list>
@@ -36,19 +30,16 @@
 <script>
 import LogIn from "@/components/auth/LogIn";
 import SignIn from "@/components/auth/SignIn";
-import LogInButton from "@/components/auth/LogInButton";
-import LogOutButton from "@/components/auth/LogOutButton";
 
 import ToggleTheme from "@/components/UI/ToggleTheme";
 import TranlateList from "@/components/UI/TranlateList";
 import UserProfileList from "@/components/UI/UserProfileList";
 import NavigationBar from "@/components/UI/NavigationBar";
-import userHelper from "@/components/auth/services/user.helper";
 
 export default {
   name: "AppBar",
   components: {
-    NavigationBar, UserProfileList, TranlateList, ToggleTheme, LogOutButton, LogInButton, SignIn, LogIn
+    NavigationBar, UserProfileList, TranlateList, ToggleTheme, SignIn, LogIn
   },
 
   data() {
@@ -57,11 +48,6 @@ export default {
     }
   },
 
-  computed: {
-    isExist() {
-      return userHelper.isUserExist();
-    },
-  },
 }
 
 </script>

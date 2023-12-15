@@ -46,9 +46,9 @@
 </template>
 
 <script>
-import {isUser, logout} from "@/components/auth/services/auth-helper";
-import router from "@/router";
+import {logout} from "@/components/auth/services/auth-helper";
 import userHelper from "@/components/auth/services/user.helper";
+import router from "@/router";
 
 export default {
   name: "UserProfileList",
@@ -62,7 +62,10 @@ export default {
   methods:{
     listAction(action){
       switch (action){
-        case 'logout': logout();
+        case 'logout': {
+          logout();
+          userHelper.cleanUserData();
+        }
           break
         case 'goProfile': router.push("profile");
           break
