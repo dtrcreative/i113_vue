@@ -10,7 +10,7 @@
     >
       <div class="mb-4">
         <div class="font-weight-normal">
-          <strong>{{ item.daysLeft }}</strong> -- {{ item.firstName }}
+          <strong>{{ item.firstName }}</strong> -- {{ item.daysLeft }}
         </div>
       </div>
     </v-timeline-item>
