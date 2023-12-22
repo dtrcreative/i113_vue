@@ -1,7 +1,7 @@
 <template>
   <div class="sections">
-    <div class="section-bottom">
-      <div class="block-bottom">
+    <div class="section-left">
+      <div class="block">
         <label>Panda</label>
       </div>
     </div>
@@ -38,7 +38,7 @@ export default {
     width: auto
     padding-right: 0
 
-.section-bottom
+.section-left
   width: 100%
   margin-top: 10px
 

@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import birthdayService from "@/components/microservices/events/js/birthday.service";
+import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
 
 export const useBirthdaysStore = defineStore('birthdays', {
   state: () => ({

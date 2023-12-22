@@ -50,12 +50,12 @@ const routes = [
           {
             path: 'birthdays',
             name: 'Birthdays',
-            component: () => import('@/components/microservices/events/UI/birthdays/BirthdayView'),
+            component: () => import('@/components/microservices/events/birthdays/BirthdayView'),
           },
           {
             path: 'events',
             name: 'Events',
-            component: () => import('@/components/microservices/events/UI/events/EventsView'),
+            component: () => import('@/components/microservices/events/events/EventsView'),
           },
         ]
       },

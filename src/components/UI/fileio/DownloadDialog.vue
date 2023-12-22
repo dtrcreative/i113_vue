@@ -18,7 +18,6 @@ export default {
     async downloadBackUp(){
       let json = await this.service.getBackUp()
       let text = JSON.stringify(json);
-      console.log(text)
       let filename = this.service.getBackUpFileName();
       let element = document.createElement('a');
       element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(text));

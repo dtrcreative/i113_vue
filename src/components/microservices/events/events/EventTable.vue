@@ -113,12 +113,12 @@
 </template>
 
 <script setup>
-import {useEventsStore} from "@/components/microservices/events/store/eventsStore";
-import eventsService from "@/components/microservices/events/js/events.service";
-import UploadDialog from "@/components/microservices/events/UI/files/UploadDialog";
-import DownloadDialog from "@/components/microservices/events/UI/files/DownloadDialog";
+import {useEventsStore} from "@/components/microservices/events/events/js/eventsStore";
+import eventsService from "@/components/microservices/events/events/js/events.service";
+import UploadDialog from "@/components/UI/fileio/UploadDialog";
+import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
 import {onMounted} from "vue";
-import EventCUForm from "@/components/microservices/events/UI/events/EventCUForm";
+import EventCUForm from "@/components/microservices/events/events/EventCUForm";
 
 useEventsStore()
 
@@ -159,7 +159,7 @@ function showUpdateForm(unit) {
 </script>
 
 <style lang="sass" scoped>
-@import '../../../../../assets/styles/main'
+@import '../../../../assets/styles/main'
 header
   display: flex
 

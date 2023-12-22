@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
+import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
 
 useBirthdaysStore()
 </script>

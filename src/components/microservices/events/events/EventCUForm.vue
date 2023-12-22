@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import {useEventsStore} from "@/components/microservices/events/store/eventsStore";
+import {useEventsStore} from "@/components/microservices/events/events/js/eventsStore";
 
 export default {
   name: "EventCUForm",
@@ -149,7 +149,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../src/assets/styles/main'
+@import '../../../../assets/styles/main'
 
 .btn
   width: 40%

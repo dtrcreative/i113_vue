@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import {useEventsStore} from "@/components/microservices/events/store/eventsStore";
+import {useEventsStore} from "@/components/microservices/events/events/js/eventsStore";
 useEventsStore()
 </script>
 

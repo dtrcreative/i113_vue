@@ -27,9 +27,9 @@
 </template>
 
 <script>
-import EventTable from "@/components/microservices/events/UI/events/EventTable";
-import TimeLine from "@/components/microservices/events/UI/birthdays/TimeLine";
-import BirthdayTable from "@/components/microservices/events/UI/birthdays/BirthdayTable";
+import EventTable from "@/components/microservices/events/events/EventTable";
+import TimeLine from "@/components/microservices/events/birthdays/TimeLine";
+import BirthdayTable from "@/components/microservices/events/birthdays/BirthdayTable";
 import router from "@/router";
 
 export default {
@@ -67,56 +67,12 @@ export default {
 <style lang="sass" scoped>
 @import '../../../assets/styles/main'
 
-.page
-  position: relative
-  display: flex
-  justify-content: center
-  align-items: center
-  min-height: 100vh
-  padding: 20px 0
-  background-color: #59585d
-
-
-.sections
-  display: flex
-  width: 100%
-
-  @media (max-width: 767px)
-    flex-direction: column
-
-  &.section-error
-    min-width: 235px
-    width: auto
-    padding-right: 0
-
-.section-right
-  width: 25%
-  margin-top: 10px
-  padding-left: 5px
-  padding-right: 10px
-
-  @media (max-width: 767px)
-    width: 100%
-    margin-top: 16px
-    padding-left: 0
-
-.section-bottom
+.section-left
   width: 75%
   margin-top: 10px
 
   @media (max-width: 767px)
     width: 100%
-
-.error
-  padding-top: 20px
-
-  &-title
-    font-size: 18px
-    font-weight: 700
-
-  &-message
-    padding-top: 10px
-    font-size: 13px
 
 .overflow-visible
   height: 50px

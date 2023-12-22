@@ -86,8 +86,8 @@
 </template>
 
 <script>
-import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
-import birthdayService from "@/components/microservices/events/js/birthday.service";
+import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
+import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
 
 export default {
   name: "UploadDialog",
@@ -183,7 +183,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../src/assets/styles/main'
+@import '../../../assets/styles/main'
 
 .dialog
   width: 600px

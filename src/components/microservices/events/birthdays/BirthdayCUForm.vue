@@ -114,7 +114,7 @@
 </template>
 
 <script>
-import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
+import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
 
 
 export default {
@@ -164,10 +164,11 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../src/assets/styles/main'
+@import '../../../../assets/styles/main'
 
 .btn
   width: 40%
 .btn-clear
   width: 20%
+
 </style>

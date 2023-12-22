@@ -1,12 +1,12 @@
 <template>
   <div class="sections">
-    <div class="section-bottom">
-      <div class="block-bottom">
+    <div class="section-left">
+      <div class="block">
         <event-table></event-table>
       </div>
     </div>
     <div class="section-right">
-      <div class="block-bottom">
+      <div class="block">
         <time-line></time-line>
       </div>
     </div>
@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import EventTable from "@/components/microservices/events/UI/events/EventTable";
-import TimeLine from "@/components/microservices/events/UI/events/TimeLine";
+import EventTable from "@/components/microservices/events/events/EventTable";
+import TimeLine from "@/components/microservices/events/events/TimeLine";
 export default {
   name: "EventsView",
   components: {TimeLine, EventTable}
@@ -24,27 +24,12 @@ export default {
 
 <style lang="sass" scoped>
 
-.page
-  position: relative
-  display: flex
-  justify-content: center
-  align-items: center
-  min-height: 100vh
-  padding: 20px 0
-  background-color: #59585d
-
-
 .sections
   display: flex
   width: 100%
 
   @media (max-width: 767px)
     flex-direction: column
-
-  &.section-error
-    min-width: 235px
-    width: auto
-    padding-right: 0
 
 .section-right
   width: 25%
@@ -57,23 +42,12 @@ export default {
     margin-top: 16px
     padding-left: 0
 
-.section-bottom
+.section-left
   width: 75%
   margin-top: 10px
 
   @media (max-width: 767px)
     width: 100%
-
-.error
-  padding-top: 20px
-
-  &-title
-    font-size: 18px
-    font-weight: 700
-
-  &-message
-    padding-top: 10px
-    font-size: 13px
 
 .overflow-visible
   height: 50px

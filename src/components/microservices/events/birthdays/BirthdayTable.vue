@@ -115,11 +115,11 @@
 </template>
 
 <script setup>
-import BirthdayCUForm from "@/components/microservices/events/UI/birthdays/BirthdayCUForm";
-import birthdayService from "@/components/microservices/events/js/birthday.service";
-import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
-import UploadDialog from "@/components/microservices/events/UI/files/UploadDialog";
-import DownloadDialog from "@/components/microservices/events/UI/files/DownloadDialog";
+import BirthdayCUForm from "@/components/microservices/events/birthdays/BirthdayCUForm";
+import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
+import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
+import UploadDialog from "@/components/UI/fileio/UploadDialog";
+import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
 import {onMounted} from "vue";
 
 useBirthdaysStore()
@@ -163,7 +163,7 @@ function showUpdateForm(unit) {
 </script>
 
 <style lang="sass" scoped>
-@import '../../../../../assets/styles/main'
+@import '../../../../assets/styles/main'
 
 header
   display: flex
@@ -186,7 +186,6 @@ component
 
 .btn
   width: 5%
-
 
 .days-left
   width: 5%

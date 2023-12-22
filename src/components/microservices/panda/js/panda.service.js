@@ -2,7 +2,7 @@ import axios from "axios";
 import {authHeader, getServerUrl} from "@/components/auth/services/axios-helper";
 import errorHandler from "@/components/microservices/utils/error-handler";
 import userHelper from "@/components/auth/services/user.helper";
-import {useBirthdaysStore} from "@/components/microservices/events/store/birthdayStore";
+import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
 
 const API_URL = 'api/events/birthdays/';
 
