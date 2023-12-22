@@ -6,7 +6,6 @@
       <v-timeline-item
         v-for="item in useEventsStore().getFirstTenUnits" :key="item.id"
         size="x-small"
-        max-height="600"
       >
         <div class="mb-4">
           <div class="font-weight-normal">

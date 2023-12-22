@@ -21,16 +21,16 @@
                         :maxlength="10"
           ></v-text-field>
         </v-col>
-<!--        <v-col cols="12" xs="1" sm="1" md="1">-->
-<!--          <UploadDialog-->
-<!--            :service="eventsService"-->
-<!--          ></UploadDialog>-->
-<!--        </v-col>-->
-<!--        <v-col cols="12" xs="1" sm="1" md="1">-->
-<!--          <DownloadDialog-->
-<!--            :service="eventsService"-->
-<!--          ></DownloadDialog>-->
-<!--        </v-col>-->
+        <v-col cols="12" xs="1" sm="1" md="1">
+          <UploadDialog
+            :service="eventsService"
+          ></UploadDialog>
+        </v-col>
+        <v-col cols="12" xs="1" sm="1" md="1">
+          <DownloadDialog
+            :service="eventsService"
+          ></DownloadDialog>
+        </v-col>
         <v-col cols="12" xs="1" sm="1" md="1">
           <v-btn
             icon="mdi mdi-trash-can"
@@ -181,7 +181,6 @@ component
 
 .btn
   width: 5%
-
 
 .days-left
   width: 5%

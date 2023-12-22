@@ -11,7 +11,7 @@ import 'vuetify/styles'
 // Composables
 import { createVuetify} from 'vuetify'
 
-const lightTheme = {
+const light = {
   dark: false,
   colors: {
     background: '#FFFFFF',
@@ -27,7 +27,7 @@ const lightTheme = {
     banner: '@/assets/img/vbanner-green.jpg'
   }
 }
-const darkTheme = {
+const dark = {
   dark: true,
   colors: {
     background: '#111311',
@@ -47,9 +47,9 @@ const darkTheme = {
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
   theme: {
-    defaultTheme: 'darkTheme',
+    defaultTheme: 'dark',
     themes: {
-      darkTheme, lightTheme
+      dark, light
     },
   },
 })
