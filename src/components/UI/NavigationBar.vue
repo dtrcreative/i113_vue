@@ -4,7 +4,7 @@
       prepend-icon="mdi-view-dashboard"
       title="Home"
       value="home"
-      @click="goHome"
+      @click="listAction('goHome')"
     ></v-list-item>
     <v-divider :thickness="3" class="border-opacity-50"></v-divider>
 
@@ -48,16 +48,15 @@ export default {
   methods: {
     listAction(action){
       switch (action){
-        case 'goPanda': router.push("panda/");
+        case 'goHome': router.push("/home");
           break
-        case 'goEvents': router.push("events/");
+        case 'goPanda': router.push("/panda/");
+          break
+        case 'goEvents': router.push("/events/calendar");
           break
         default:
           break
       }
-    },
-    goHome(){
-      router.push("/");
     },
   }
 }

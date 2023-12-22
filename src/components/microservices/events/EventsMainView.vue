@@ -5,16 +5,17 @@
       :bg-color="color"
       grow>
 
-      <v-btn
-        @click="showEvents"
-      >
-        <v-icon>mdi-music-note</v-icon>
+      <v-btn @click="showCalendar">
+        <v-icon>mdi mdi-calendar-badge</v-icon>
+        <span>Calendar</span>
+      </v-btn>
+
+      <v-btn @click="showEvents">
+        <v-icon>mdi mdi-book-arrow-right</v-icon>
         <span>Events</span>
       </v-btn>
 
-      <v-btn
-        @click="showBirthdays"
-      >
+      <v-btn @click="showBirthdays">
         <v-icon>mdi-heart</v-icon>
         <span>Birthdays</span>
       </v-btn>
@@ -35,7 +36,7 @@ import router from "@/router";
 export default {
   name: "BirthdayView",
   components: {BirthdayTable, TimeLine, EventTable},
-  data: () => ({value: 1}),
+  data: () => ({value: 0}),
 
   computed: {
     color() {
@@ -45,7 +46,7 @@ export default {
         case 1:
           return 'secondary'
         case 2:
-          return 'brown'
+          return 'blue-grey'
         case 3:
           return 'indigo'
         default:
@@ -54,6 +55,9 @@ export default {
     },
   },
   methods: {
+    showCalendar() {
+      router.push("calendar")
+    },
     showEvents() {
       router.push("events")
     },

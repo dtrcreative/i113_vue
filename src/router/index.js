@@ -48,6 +48,11 @@ const routes = [
         component: () => import('@/components/microservices/events/EventsMainView.vue'),
         children: [
           {
+            path: 'calendar',
+            name: 'Calendar',
+            component: () => import('@/components/microservices/events/calendar/CalendarView'),
+          },
+          {
             path: 'birthdays',
             name: 'Birthdays',
             component: () => import('@/components/microservices/events/birthdays/BirthdayView'),
