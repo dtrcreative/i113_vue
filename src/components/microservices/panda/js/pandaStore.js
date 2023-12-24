@@ -1,6 +1,5 @@
 import {defineStore} from "pinia";
 import pandaService from "@/components/microservices/panda/js/panda.service";
-import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
 
 export const usePandaStore = defineStore('pandas', {
   state: () => ({
@@ -17,10 +16,10 @@ export const usePandaStore = defineStore('pandas', {
     unitToUpdate: {
       id: '',
       userId: '',
-      firstName: '',
-      lastName: '',
-      date: '',
-      notify: '',
+      name: '',
+      account: '',
+      mail: '',
+      password: '',
       link: '',
       type: '',
       description: '',
@@ -36,7 +35,7 @@ export const usePandaStore = defineStore('pandas', {
     },
     async update() {
       await pandaService.updateAccount(this.unitToUpdate)
-      await pandaService.getUnits()
+      await pandaService.getAccounts()
     },
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {

@@ -2,15 +2,17 @@
   <div class="sections">
     <div class="section-center">
       <div class="block">
-        <label>Panda</label>
+        <PandaTable></PandaTable>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import PandaTable from "@/components/microservices/panda/PandaTable";
 export default {
-  name: "PandaMainView"
+  name: "PandaMainView",
+  components: {PandaTable}
 }
 </script>
 

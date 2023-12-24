@@ -5,7 +5,7 @@ import userHelper from "@/components/auth/services/user.helper";
 import {usePandaStore} from "@/components/microservices/panda/js/pandaStore";
 
 
-const API_URL = 'api/events/birthdays/';
+const API_URL = 'api/panda/';
 
 const API_ALL = 'all';
 const API_ADD = 'upload-add';
@@ -14,10 +14,11 @@ const API_REPLACE = 'upload-replace';
 const SERVICE_NAME = 'Panda'
 
 class PandaService {
-  async getUnits(){
+  async getAccounts(){
     try {
       const response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
       usePandaStore().setAccounts(response.data)
+      console.log(response.data)
     } catch (e) {
       errorHandler.handle(e)
     }
@@ -27,10 +28,10 @@ class PandaService {
     try {
       return await axios.post(getServerUrl() + API_URL, {
         userId: account.userId,
-        firstName: account.name,
-        lastName: account.account,
-        date: account.mail,
-        notify: account.password,
+        name: account.name,
+        account: account.account,
+        mail: account.mail,
+        password: account.password,
         link: account.link,
         type: account.type,
         description: account.description,
@@ -47,10 +48,10 @@ class PandaService {
       return await axios.put(getServerUrl() + API_URL, {
         id: account.id,
         userId: account.userId,
-        firstName: account.name,
-        lastName: account.account,
-        date: account.mail,
-        notify: account.password,
+        name: account.name,
+        account: account.account,
+        mail: account.mail,
+        password: account.password,
         link: account.link,
         type: account.type,
         description: account.description,
