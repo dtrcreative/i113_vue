@@ -1,6 +1,6 @@
 <template>
   <div class="sections">
-    <div class="section-left">
+    <div class="section-center">
       <div class="block">
         <label>Panda</label>
       </div>
@@ -33,28 +33,12 @@ export default {
   @media (max-width: 767px)
     flex-direction: column
 
-  &.section-error
-    min-width: 235px
-    width: auto
-    padding-right: 0
-
-.section-left
+.section-center
   width: 100%
   margin-top: 10px
 
   @media (max-width: 767px)
     width: 100%
-
-.error
-  padding-top: 20px
-
-  &-title
-    font-size: 18px
-    font-weight: 700
-
-  &-message
-    padding-top: 10px
-    font-size: 13px
 
 .overflow-visible
   height: 50px

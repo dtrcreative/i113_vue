@@ -117,9 +117,9 @@
 <script setup>
 import BirthdayCUForm from "@/components/microservices/events/birthdays/BirthdayCUForm";
 import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
-import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
 import UploadDialog from "@/components/UI/fileio/UploadDialog";
 import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
+import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
 import {onMounted} from "vue";
 
 useBirthdaysStore()
