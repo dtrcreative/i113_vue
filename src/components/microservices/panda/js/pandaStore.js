@@ -79,7 +79,6 @@ export const usePandaStore = defineStore('pandas', {
       }
     },
     searchUnits() {
-      console.log(this.searchValue)
       return [...this.searchByType].filter(unit =>
         unit.name.toLowerCase().includes(this.searchValue !== null ? this.searchValue.toLowerCase() : '') |
         unit.password.toLowerCase().includes(this.searchValue !== null ? this.searchValue.toLowerCase() : '')

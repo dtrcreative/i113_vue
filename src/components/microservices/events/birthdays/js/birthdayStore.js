@@ -98,8 +98,8 @@ export const useBirthdaysStore = defineStore('birthdays', {
 
     searchUnits() {
       return [...this.filterByDaysLeft].filter(unit =>
-        unit.firstName.toLowerCase().includes(this.searchValue.toLowerCase()) |
-        unit.lastName.toLowerCase().includes(this.searchValue.toLowerCase()) |
+        unit.firstName.toLowerCase().includes(this.searchValue !== null ? this.searchValue.toLowerCase() : '') |
+        unit.lastName.toLowerCase().includes(this.searchValue !== null ? this.searchValue.toLowerCase() : '') |
         unit.date.includes(this.searchValue)
       )
     },
