@@ -92,13 +92,13 @@
           color="indigo-darken-3"
         ></v-checkbox>
       </td>
-      <td class="names">{{ item.name }}</td>
-      <td class="names">{{ item.account }}</td>
-      <td class="names">{{ item.mail }}</td>
+      <td class="names" @click="copyToClipboard(item.name)">{{ item.name }}</td>
+      <td class="names" @click="copyToClipboard(item.account)">{{ item.account }}</td>
+      <td class="names" @click="copyToClipboard(item.mail)">{{ item.mail }}</td>
       <td class="btn">
         <v-btn
           icon="mdi mdi-lock"
-          @click=""
+          @click="copyToClipboard(item.password)"
         ></v-btn>
       </td>
       <td class="btn">
@@ -122,6 +122,7 @@ import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
 import {usePandaStore} from "@/components/microservices/panda/js/pandaStore";
 import {onMounted} from "vue";
 import PandaCUForm from "@/components/microservices/panda/PandaCUForm";
+import utilService from "@/components/microservices/utils/util-service";
 
 usePandaStore()
 
@@ -141,6 +142,14 @@ function showAddForm() {
     type: 'TRASH',
     description: null,
   };
+}
+
+function getPassword(item){
+  utilService.copyToClipboard(item.password)
+}
+
+function copyToClipboard(value){
+  utilService.copyToClipboard(value)
 }
 
 function showUpdateForm(unit) {
