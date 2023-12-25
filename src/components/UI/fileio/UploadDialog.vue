@@ -86,8 +86,6 @@
 </template>
 
 <script>
-import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
-import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
 
 export default {
   name: "UploadDialog",
@@ -111,11 +109,10 @@ export default {
     service: {
       type: Object,
       required: true
-    }
+    },
   },
 
   methods: {
-    useBirthdaysStore,
 
     apply() {
       if (this.json !== undefined && this.selectedFile.length > 0) {
@@ -166,7 +163,7 @@ export default {
       this.inProcess = true
       let result = this.service.convertAndValidateJson(this.json)
       if (typeof result === typeof JSON && result.length > 0) {
-        let response = await birthdayService.uploadJSON(result, this.inline === 'replace')
+        let response = await this.service.uploadJSON(result, this.inline === 'replace')
         if (response.status !== undefined && response.status === 200) {
           await this.service.getUnits();
           this.successMessage = "Successfully added: " + response.data

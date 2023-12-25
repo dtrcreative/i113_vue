@@ -127,7 +127,7 @@ import utilService from "@/components/microservices/utils/util-service";
 usePandaStore()
 
 onMounted(() => {
-  pandaService.getAccounts()
+  pandaService.getUnits()
 })
 
 function showAddForm() {

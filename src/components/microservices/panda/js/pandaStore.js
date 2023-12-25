@@ -46,7 +46,7 @@ export const usePandaStore = defineStore('pandas', {
     },
     async update() {
       await pandaService.updateAccount(this.unitToUpdate)
-      await pandaService.getAccounts()
+      await pandaService.getUnits()
     },
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {
