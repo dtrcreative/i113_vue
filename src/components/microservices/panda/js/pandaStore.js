@@ -71,10 +71,18 @@ export const usePandaStore = defineStore('pandas', {
     filterByName() {
       return [...this.accounts].sort((unit1, unit2) => unit1.name?.localeCompare(unit2.name))
     },
+    searchByType(){
+      if(this.selectedType !== 'ALL'){
+        return [...this.accounts].filter(unit1 => unit1.type?.includes(this.selectedType))
+      }else {
+        return [...this.filterByName]
+      }
+    },
     searchUnits() {
-      return [...this.filterByName].filter(unit =>
-        unit.name.toLowerCase().includes(this.searchValue.toLowerCase()) |
-        unit.password.toLowerCase().includes(this.searchValue.toLowerCase())
+      console.log(this.searchValue)
+      return [...this.searchByType].filter(unit =>
+        unit.name.toLowerCase().includes(this.searchValue !== null ? this.searchValue.toLowerCase() : '') |
+        unit.password.toLowerCase().includes(this.searchValue !== null ? this.searchValue.toLowerCase() : '')
       )
     },
   },

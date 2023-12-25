@@ -17,6 +17,7 @@ const SERVICE_NAME = 'Panda'
 
 class PandaService {
   async getUnits() {
+    console.log('getAccounts start' + new Date().getMilliseconds())
     try {
       const responseAccounts = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
       const responseData = await axios.get(getServerUrl() + API_URL + API_SERVICE_TYPES, {headers: authHeader()});
