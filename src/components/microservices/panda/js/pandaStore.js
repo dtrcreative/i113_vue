@@ -9,7 +9,8 @@ export const usePandaStore = defineStore('pandas', {
     showCUForm: false,
 
     types: [],
-    mails:[],
+    allTypes: [],
+    selectedType: 'ALL',
 
     uploadJSON: '',
 
@@ -21,7 +22,7 @@ export const usePandaStore = defineStore('pandas', {
       mail: '',
       password: '',
       link: '',
-      type: '',
+      type: 'TRASH',
       description: '',
     },
   }),
@@ -29,9 +30,19 @@ export const usePandaStore = defineStore('pandas', {
     setAccounts(accounts) {
       this.accounts = accounts;
     },
+    setTypes(types){
+      this.types = types
+      this.allTypes = [...types]
+      this.allTypes.push('ALL')
+      this.types.sort()
+      this.allTypes.sort()
+    },
+    setNewPassword(password){
+      this.unitToUpdate.password = password
+    },
     async create() {
-      let response = await pandaService.createAccount(this.reformatUnit(this.unitToUpdate))
-      this.units.push(response.data)
+      let response = await pandaService.createAccount(this.unitToUpdate)
+      this.accounts.push(response.data)
     },
     async update() {
       await pandaService.updateAccount(this.unitToUpdate)
@@ -39,7 +50,7 @@ export const usePandaStore = defineStore('pandas', {
     },
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {
-        this.units = this.units.filter(unit => unit.id !== this.selected[i])
+        this.accounts = this.accounts.filter(unit => unit.id !== this.selected[i])
       }
       pandaService.removeSelectedAccounts(this.selected)
       this.selected = []

@@ -8,17 +8,20 @@ import {usePandaStore} from "@/components/microservices/panda/js/pandaStore";
 const API_URL = 'api/panda/';
 
 const API_ALL = 'all';
-const API_ADD = 'upload-add';
-const API_REPLACE = 'upload-replace';
+const API_PASSGEN = 'utils/passgen'
+const API_SERVICE_TYPES = 'data/types'
+const API_JSON_ADD = 'upload-add';
+const API_JSON_REPLACE = 'upload-replace';
 
 const SERVICE_NAME = 'Panda'
 
 class PandaService {
   async getAccounts(){
     try {
-      const response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
-      usePandaStore().setAccounts(response.data)
-      console.log(response.data)
+      const responseAccounts = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
+      const responseData = await axios.get(getServerUrl() + API_URL + API_SERVICE_TYPES, {headers: authHeader()});
+      usePandaStore().setAccounts(responseAccounts.data)
+      usePandaStore().setTypes(responseData.data)
     } catch (e) {
       errorHandler.handle(e)
     }
@@ -27,7 +30,7 @@ class PandaService {
     let user = userHelper.getUser();
     try {
       return await axios.post(getServerUrl() + API_URL, {
-        userId: account.userId,
+        userId: user.userId,
         name: account.name,
         account: account.account,
         mail: account.mail,
@@ -47,7 +50,7 @@ class PandaService {
     try {
       return await axios.put(getServerUrl() + API_URL, {
         id: account.id,
-        userId: account.userId,
+        userId: user.userId,
         name: account.name,
         account: account.account,
         mail: account.mail,
@@ -64,7 +67,7 @@ class PandaService {
   }
   async uploadJSON(json, isReplace) {
     try {
-      return await axios.post(getServerUrl() + API_URL + (isReplace ? API_REPLACE : API_ADD), json, {headers: authHeader()})
+      return await axios.post(getServerUrl() + API_URL + (isReplace ? API_JSON_REPLACE : API_JSON_ADD), json, {headers: authHeader()})
     } catch (e) {
       errorHandler.handle(e)
     }
@@ -75,6 +78,14 @@ class PandaService {
   async removeSelectedAccounts(selected){
     try {
       return axios.post(getServerUrl() + API_URL + "/selected", selected, {headers: authHeader()})
+    } catch (e) {
+      errorHandler.handle(e)
+    }
+  }
+  async generatePassword(){
+    try{
+      let result = await axios.get(getServerUrl() + API_URL + API_PASSGEN,  {headers: authHeader()})
+      usePandaStore().setNewPassword(result.data)
     } catch (e) {
       errorHandler.handle(e)
     }

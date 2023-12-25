@@ -9,7 +9,7 @@
             @click="showAddForm"
           ></v-btn>
         </v-col>
-        <v-col cols="12" xs="1" sm="8" md="8">
+        <v-col cols="12" xs="1" sm="8" md="6">
           <v-text-field clearable
                         v-model.trim="usePandaStore().searchValue"
                         label="Search"
@@ -19,6 +19,16 @@
                         hide-details
                         :maxlength="10"
           ></v-text-field>
+        </v-col>
+        <v-col cols="12" xs="1" sm="8" md="2">
+          <v-select
+            variant="outlined"
+            density="compact"
+            return-object
+            single-line
+            :items="usePandaStore().allTypes"
+            v-model="usePandaStore().selectedType"
+          ></v-select>
         </v-col>
         <v-col cols="12" xs="1" sm="1" md="1">
           <UploadDialog
@@ -123,12 +133,12 @@ function showAddForm() {
   usePandaStore().showCUForm = !usePandaStore().showCUForm
   usePandaStore().unitToUpdate = {
     id: null,
-    firstName: null,
-    lastName: null,
-    date: null,
-    notify: null,
+    name: null,
+    account: null,
+    mail: null,
+    password: null,
     link: null,
-    type: null,
+    type: 'TRASH',
     description: null,
   };
 }

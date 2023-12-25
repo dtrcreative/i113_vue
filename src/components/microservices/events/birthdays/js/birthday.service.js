@@ -7,8 +7,8 @@ import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/
 const API_URL = 'api/events/birthdays/';
 
 const API_ALL = 'all';
-const API_ADD = 'upload-add';
-const API_REPLACE = 'upload-replace';
+const API_JSON_ADD = 'upload-add';
+const API_JSON_REPLACE = 'upload-replace';
 
 const SERVICE_NAME = 'Birthdays'
 
@@ -61,7 +61,7 @@ class BirthdayService {
 
   async uploadJSON(json, isReplace) {
     try {
-      return await axios.post(getServerUrl() + API_URL + (isReplace ? API_REPLACE : API_ADD), json, {headers: authHeader()})
+      return await axios.post(getServerUrl() + API_URL + (isReplace ? API_JSON_REPLACE : API_JSON_ADD), json, {headers: authHeader()})
     } catch (e) {
       errorHandler.handle(e)
     }

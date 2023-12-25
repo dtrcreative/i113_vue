@@ -4,30 +4,28 @@
       <v-col cols="12" sm="2" md="4">
         <v-text-field
           clearable
-          class="textField"
           v-model.trim="usePandaStore().unitToUpdate.name"
           label="Name"
           variant="outlined"
           density="compact"
           hide-details
           :maxlength="15"
-          :rules="[rules.required]"
+          :rules="[rules.required, rules.range.nameMin]"
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="2" md="4">
         <v-text-field
           clearable
-          class="textField"
           v-model.trim="usePandaStore().unitToUpdate.mail"
           label="Mail"
           variant="outlined"
           density="compact"
           hide-details
-          :maxlength="15"
-          :rules="[rules.required]"
+          :maxlength="30"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="2" md="3">
+      <v-col cols="12" sm="2" md="4">
+        <!--TODO-->
         <v-text-field
           clearable
           v-model.trim="usePandaStore().unitToUpdate.password"
@@ -35,15 +33,11 @@
           variant="outlined"
           density="compact"
           hide-details
+          :append-icon="'mdi mdi-refresh'"
+          @click:append="generatePassword"
           :maxlength="15"
-          :rules="[rules.required]"
+          :rules="[rules.required, rules.range.passwordMin]"
         ></v-text-field>
-      </v-col>
-      <v-col cols="12" sm="6" md="1">
-        <v-btn
-        variant="plain"
-        @click=""
-        >New</v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -55,8 +49,8 @@
           variant="outlined"
           density="compact"
           hide-details
-          :maxlength="15"
-          :rules="[rules.required]"
+          :maxlength="30"
+          :rules="[rules.required, rules.range.accountMin]"
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="2" md="4">
@@ -67,21 +61,18 @@
           variant="outlined"
           density="compact"
           hide-details
-          :maxlength="15"
-          :rules="[rules.required]"
+          :maxlength="200"
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="2" md="4">
-        <v-text-field
-          clearable
-          v-model.trim="usePandaStore().unitToUpdate.password"
+        <v-select
           label="Type"
+          :items="usePandaStore().types"
+          v-model="usePandaStore().unitToUpdate.type"
           variant="outlined"
           density="compact"
           hide-details
-          :maxlength="15"
-          :rules="[rules.required]"
-        ></v-text-field>
+        ></v-select>
       </v-col>
     </v-row>
     <v-row>
@@ -93,42 +84,47 @@
           variant="outlined"
           density="compact"
           hide-details
-          :maxlength="15"
-          :rules="[]"
+          :maxlength="200"
         ></v-text-field>
       </v-col>
     </v-row>
     <v-row>
-      <v-btn
-        class="btn"
-        color="primary"
-        variant="elevated"
-        @click="clearAndClose"
-      >Close
-      </v-btn>
-      <v-btn
-        class="btn-clear"
-        color="primary"
-        variant="outlined"
-        @click="clear"
-      >Clear
-      </v-btn>
-      <v-btn
-        class="btn"
-        color="primary"
-        variant="elevated"
-        type="submit"
-      >Save
-      </v-btn>
+      <v-col cols="12" sm="2" md="5">
+        <v-btn
+          class="btn"
+          color="primary"
+          variant="elevated"
+          @click="clearAndClose"
+        >Close
+        </v-btn>
+      </v-col>
+      <v-col cols="12" sm="1" md="2">
+        <v-btn
+          class="btn"
+          color="primary"
+          variant="outlined"
+          @click="clear"
+        >Clear
+        </v-btn>
+      </v-col>
+      <v-col cols="12" sm="2" md="5">
+        <v-btn
+          class="btn"
+          color="primary"
+          variant="elevated"
+          type="submit"
+        >Save
+        </v-btn>
+      </v-col>
     </v-row>
 
   </v-form>
+
 </template>
 
 <script>
 import {usePandaStore} from "@/components/microservices/panda/js/pandaStore";
-import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
-
+import pandaService from "@/components/microservices/panda/js/panda.service";
 
 export default {
   name: "PandaCUForm",
@@ -136,13 +132,9 @@ export default {
     rules: {
       required: value => !!value || 'Required',
       range: {
-        dayMin: value => value > 0 || 'Sure?',
-        dayMax: value => value < 32 || 'Sure?',
-
-        monthMin: value => value > 0 || 'Sure?',
-        monthMax: value => value <= 12 || 'Sure?',
-
-        yearMin: value => value >= 1900 || 'Too Early',
+        nameMin: value => value.length > 3 || 'Too short',
+        accountMin: value => value.length > 3 || 'Too short',
+        passwordMin: value => value.length > 3 || 'Too short',
       },
     },
   }),
@@ -165,12 +157,11 @@ export default {
     },
     clearAndClose() {
       this.$refs.form.resetValidation()
-      useBirthdaysStore().showCUForm = false
+      usePandaStore().showCUForm = false
     },
-    regex(value) {
-      const regex = /^\d+/;
-      return value.match(regex);
-    },
+    generatePassword(){
+      pandaService.generatePassword()
+    }
   },
 }
 </script>
@@ -178,11 +169,10 @@ export default {
 <style lang="sass" scoped>
 @import '../../../assets/styles/main'
 
-.textField
-  align-content: center
 .btn
-  width: 40%
+  width: 100%
 
-.btn-clear
-  width: 20%
+.btn-update
+  width: 100%
+
 </style>
