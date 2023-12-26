@@ -52,7 +52,7 @@ export default {
           break
         case 'goPanda': router.push("/panda/");
           break
-        case 'goEvents': router.push("/events/calendar");
+        case 'goEvents': router.push("/events/");
           break
         default:
           break

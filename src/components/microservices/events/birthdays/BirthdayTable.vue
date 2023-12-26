@@ -182,7 +182,7 @@ component
   overflow: hidden
 
 .checkbox
-  width: 5%
+  width: 0%
 
 .btn
   width: 5%

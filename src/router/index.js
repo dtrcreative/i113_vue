@@ -54,25 +54,8 @@ const routes = [
     children: [
       {
         path: '',
-        name: 'events',
+        name: 'Events',
         component: () => import('@/components/microservices/events/EventsMainView.vue'),
-        children: [
-          {
-            path: 'calendar',
-            name: 'Calendar',
-            component: () => import('@/components/microservices/events/calendar/CalendarView'),
-          },
-          {
-            path: 'birthdays',
-            name: 'Birthdays',
-            component: () => import('@/components/microservices/events/birthdays/BirthdayView'),
-          },
-          {
-            path: 'events',
-            name: 'Events',
-            component: () => import('@/components/microservices/events/events/EventsView'),
-          },
-        ]
       },
     ]
   }

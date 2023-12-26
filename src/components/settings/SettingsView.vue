@@ -1,8 +1,12 @@
 <template>
   <v-card>
-    <v-tabs v-model="tab" bg-color="primary" fixed-tabs class="tabbar">
-      <v-tab value="language">Language</v-tab>
-      <v-tab value="Sheduling">Sheduling</v-tab>
+    <v-tabs v-model="tab" bg-color="primary" fixed-tabs class="tabbar" >
+      <v-tab value="language">
+        <span>Language</span>
+      </v-tab>
+      <v-tab value="Sheduling">
+        <span>Sheduling</span>
+      </v-tab>
     </v-tabs>
 
     <v-card-text>
