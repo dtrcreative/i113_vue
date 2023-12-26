@@ -7,6 +7,7 @@
           <v-date-picker
             hide-header
             show-adjacent-months
+            multiple=""
             class="calendar"
           ></v-date-picker>
         </v-col>
@@ -14,8 +15,8 @@
           <v-date-picker
             hide-header
             show-adjacent-months
+            multiple=""
             class="calendar"
-
           ></v-date-picker>
         </v-col>
         <v-col>

@@ -144,10 +144,6 @@ function showAddForm() {
   };
 }
 
-function getPassword(item){
-  utilService.copyToClipboard(item.password)
-}
-
 function copyToClipboard(value){
   utilService.copyToClipboard(value)
 }

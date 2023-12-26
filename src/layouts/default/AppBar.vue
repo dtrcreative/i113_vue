@@ -1,7 +1,5 @@
 <template>
-  <v-app-bar
-    image="$background-image-vbaner-green"
-  >
+  <v-app-bar>
     <div>
       <v-app-bar-nav-icon
         variant="text"
@@ -10,7 +8,7 @@
     </div>
 
     <v-app-bar-title>
-      <v-avatar icon="$fox" image="src/assets/Fox.png" size="30"> Ellie</v-avatar>
+      <v-avatar icon="$fox" image="/src/assets/Fox.png" size="30"> Ellie</v-avatar>
     </v-app-bar-title>
 
     <div class="auth">
@@ -31,10 +29,10 @@
 import LogIn from "@/components/auth/LogIn";
 import SignIn from "@/components/auth/SignIn";
 
-import ToggleTheme from "@/components/UI/ToggleTheme";
-import TranlateList from "@/components/UI/TranlateList";
-import UserProfileList from "@/components/UI/UserProfileList";
-import NavigationBar from "@/components/UI/NavigationBar";
+import ToggleTheme from "@/components/appbar/ToggleTheme";
+import TranlateList from "@/components/appbar/TranlateList";
+import UserProfileList from "@/components/appbar/UserProfileList";
+import NavigationBar from "@/components/appbar/NavigationBar";
 
 export default {
   name: "AppBar",

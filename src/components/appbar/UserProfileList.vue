@@ -56,6 +56,7 @@ export default {
     selectedItem: 0,
     items: [
       {text: 'Profile', icon: 'mdi-account-multiple', action: "goProfile"},
+      {text: 'Settings', icon: 'mdi mdi-cog', action: "goSettings"},
       {text: 'Logout', icon: 'mdi mdi-logout', action: "logout"},
     ],
   }),
@@ -67,7 +68,9 @@ export default {
           userHelper.cleanUserData();
         }
           break
-        case 'goProfile': router.push("profile");
+        case 'goProfile': router.push("/profile");
+          break
+        case 'goSettings': router.push("/settings");
           break
         case 'goHome': router.push("./");
           break
@@ -94,6 +97,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../src/assets/styles/main'
+@import '../../assets/styles/main'
 
 </style>
