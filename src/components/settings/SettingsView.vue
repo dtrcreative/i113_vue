@@ -13,7 +13,7 @@
       <v-window v-model="tab">
 
         <v-window-item value="language">
-          Language
+          <language-view></language-view>
         </v-window-item>
 
         <v-window-item value="Sheduling">
@@ -28,9 +28,10 @@
 <script>
 
 import PandaMainView from "@/components/microservices/panda/PandaMainView";
+import LanguageView from "@/components/settings/language/LanguageView";
 export default {
   name: "SettingsView",
-  components: {PandaMainView},
+  components: {LanguageView, PandaMainView},
   data: () => ({
     tab: null,
   }),

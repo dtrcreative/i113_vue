@@ -9,9 +9,10 @@
     </template>
     <v-list>
       <v-list-item
-        v-for="(item, index) in items"
+        v-for="(item, index) in useAppStore().languageTypes"
         :key="index"
         :value="index"
+        @click="changeLanguage(item.value)"
       >
         <v-list-item-title>{{ item.title }}</v-list-item-title>
       </v-list-item>
@@ -20,15 +21,23 @@
 </template>
 
 <script>
+import {useAppStore} from "@/store/app";
+
 export default {
+
   name: "TranlateList",
   data: () => ({
-    items: [
-      { title: 'Eng' },
-      { title: 'Rus' },
-    ],
     location: 'end',
   }),
+
+  methods: {
+    useAppStore,
+    changeLanguage(value){
+      useAppStore().languageSelected = value
+    }
+  }
+
+
 }
 </script>
 
