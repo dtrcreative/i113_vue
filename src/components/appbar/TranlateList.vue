@@ -2,17 +2,17 @@
   <v-menu>
     <template v-slot:activator="{ props }">
       <v-btn
-        icon = "mdi-translate"
+        icon="mdi-translate"
         v-bind="props"
       >
       </v-btn>
     </template>
     <v-list>
       <v-list-item
-        v-for="(item, index) in useAppStore().languageTypes"
+        v-for="(item, index) in useLangStore().languageTypes"
         :key="index"
         :value="index"
-        @click="changeLanguage(item.name)"
+        @click="changeLanguage(item.value)"
       >
         <v-list-item-title>{{ item.title }}</v-list-item-title>
       </v-list-item>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import {useAppStore} from "@/store/app";
+import {useLangStore} from "@/components/settings/language/js/languageStore";
 
 export default {
 
@@ -31,9 +31,9 @@ export default {
   }),
 
   methods: {
-    useAppStore,
-    changeLanguage(name){
-      useAppStore().languageSelected = name;
+    useLangStore,
+    changeLanguage(value) {
+      useLangStore().changeLanguage(value)
     }
   }
 

@@ -1,16 +1,18 @@
 <template>
   <div class="sections">
-    <div class="section-left">
+    <div class="section-center">
       <div class="block">
-
+        <language-table></language-table>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import LanguageTable from "@/components/settings/language/LanguageTable";
 export default {
-  name: "LanguageView"
+  name: "LanguageView",
+  components: {LanguageTable}
 }
 </script>
 
@@ -24,7 +26,7 @@ export default {
     flex-direction: column
 
 .section-center
-  width: 25%
+  width: 100%
   margin-top: 10px
   padding-left: 5px
   padding-right: 10px

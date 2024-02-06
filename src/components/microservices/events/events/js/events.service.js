@@ -35,7 +35,6 @@ class EventService {
 
   async updateEvent(unit){
     let user = userHelper.getUser();
-    console.log(unit.id)
     try{
       return await axios.put(getServerUrl() + API_URL,{
         id: unit.id,
