@@ -33,7 +33,7 @@
         </v-col>
         <v-col cols="12" xs="1" sm="1" md="1">
           <v-btn
-            icon="mdi mdi-trash-can"
+            icon="mdi-trash-can"
             min-width="50px"
             @click=useBirthdaysStore().removeSelected()
           ></v-btn>
@@ -55,7 +55,7 @@
       <th class="checkbox">
         <v-btn
           size="small"
-          icon="mdi mdi-select-all"
+          icon="mdi-select-all"
           variant="text"
           @click=useBirthdaysStore().selectAll()
         ></v-btn>
@@ -100,7 +100,7 @@
       </td>
       <td class="btn">
         <v-btn
-          icon="mdi mdi-pen"
+          icon="mdi-pen"
           @click="showUpdateForm(item)"
         ></v-btn>
       </td>

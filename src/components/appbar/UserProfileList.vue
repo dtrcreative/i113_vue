@@ -56,8 +56,8 @@ export default {
     selectedItem: 0,
     items: [
       {text: 'Profile', icon: 'mdi-account-multiple', action: "goProfile"},
-      {text: 'Settings', icon: 'mdi mdi-cog', action: "goSettings"},
-      {text: 'Logout', icon: 'mdi mdi-logout', action: "logout"},
+      {text: 'Settings', icon: 'mdi-cog', action: "goSettings"},
+      {text: 'Logout', icon: 'mdi-logout', action: "logout"},
     ],
   }),
   methods:{

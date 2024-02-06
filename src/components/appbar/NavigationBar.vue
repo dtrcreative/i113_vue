@@ -40,8 +40,8 @@ export default {
   data(){
     return{
       items: [
-        {text: 'Panda', icon: 'mdi mdi-panda', action: "goPanda"},
-        {text: 'Events', icon: 'mdi mdi-calendar', action: "goEvents"},
+        {text: 'Panda', icon: 'mdi-panda', action: "goPanda"},
+        {text: 'Events', icon: 'mdi-calendar', action: "goEvents"},
       ],
     }
   },

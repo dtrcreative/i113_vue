@@ -3,8 +3,10 @@ import { defineStore } from 'pinia'
 
 export const useAppStore = defineStore('app', {
   state: () => ({
-    languageSelected: 0,
-    languageTypes: [{title: 'Eng', value: 0}, {title: 'Rus', value: 1}],
+    languageSelected: "EN",
+    languageTypes: [
+      {title: 'Eng', name: "EN"},
+      {title: 'Rus', name: "RU"}],
     languageInUse: [],
     languages:[],
   }),

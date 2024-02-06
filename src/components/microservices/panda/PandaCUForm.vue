@@ -33,7 +33,7 @@
           variant="outlined"
           density="compact"
           hide-details
-          :append-icon="'mdi mdi-refresh'"
+          :append-icon="'mdi-refresh'"
           @click:append="generatePassword"
           :maxlength="15"
           :rules="[rules.required, rules.range.passwordMin]"

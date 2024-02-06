@@ -13,7 +13,7 @@
 
     <div class="auth">
       <toggle-theme></toggle-theme>
-      <tranlate-list></tranlate-list>
+      <translate-list></translate-list>
       <user-profile-list></user-profile-list>
     </div>
 
@@ -26,18 +26,16 @@
 </template>
 
 <script>
-import LogIn from "@/components/auth/LogIn";
-import SignIn from "@/components/auth/SignIn";
 
 import ToggleTheme from "@/components/appbar/ToggleTheme";
-import TranlateList from "@/components/appbar/TranlateList";
+import TranslateList from "@/components/appbar/TranlateList";
 import UserProfileList from "@/components/appbar/UserProfileList";
 import NavigationBar from "@/components/appbar/NavigationBar";
 
 export default {
   name: "AppBar",
   components: {
-    NavigationBar, UserProfileList, TranlateList, ToggleTheme, SignIn, LogIn
+    NavigationBar, UserProfileList, TranslateList, ToggleTheme
   },
 
   data() {

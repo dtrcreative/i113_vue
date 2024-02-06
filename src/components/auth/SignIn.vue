@@ -15,7 +15,7 @@
         <v-card
           class="mx-auto"
           title="User Registration"
-          prepend-icon="mdi mdi-account-key"
+          prepend-icon="mdi-account-key"
         >
           <v-card-text class="signIn">
             <v-container>

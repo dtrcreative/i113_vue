@@ -1,7 +1,7 @@
 <template>
   <v-dialog transition="dialog-bottom-transition" width="auto">
     <template v-slot:activator="{ props }">
-      <v-btn icon="mdi mdi-upload" v-bind="props" @click="clear"></v-btn>
+      <v-btn icon="mdi-upload" v-bind="props" @click="clear"></v-btn>
     </template>
     <template v-slot:default="{isActive}">
       <v-card class="dialog">

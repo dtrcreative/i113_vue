@@ -51,6 +51,9 @@ export default createVuetify({
     themes: {
       dark, light
     },
+    icons:{
+      defaultSet: 'mdi'
+    }
   },
 })
 

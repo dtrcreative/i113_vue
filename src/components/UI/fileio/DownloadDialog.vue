@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    icon="mdi mdi-download"
+    icon="mdi-download"
     @click="downloadBackUp"
   ></v-btn>
 </template>

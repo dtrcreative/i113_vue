@@ -2,7 +2,7 @@
   <div>
     <div class="component">
       <v-text-field
-        label="Current balance:"
+        label="CurrentBalance"
         variant="outlined"
         v-model="inputBalance"
         v-on:keyup="calcDaysLeft"
@@ -24,7 +24,7 @@
       <VBtn
         size="large"
         variant="text"
-        icon="mdi mdi-trash-can-outline"
+        icon="mdi-trash-can-outline"
         rounded="xl"
         @click="clear"
       >
