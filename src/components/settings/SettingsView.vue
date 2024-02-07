@@ -4,8 +4,11 @@
       <v-tab value="language">
         <span>Language</span>
       </v-tab>
-      <v-tab value="Sheduling">
+      <v-tab value="sheduling">
         <span>Sheduling</span>
+      </v-tab>
+      <v-tab value="status">
+        <span>Status</span>
       </v-tab>
     </v-tabs>
 
@@ -16,8 +19,12 @@
           <language-view></language-view>
         </v-window-item>
 
-        <v-window-item value="Sheduling">
+        <v-window-item value="sheduling">
           Sheduling
+        </v-window-item>
+
+        <v-window-item value="status">
+          Status
         </v-window-item>
 
       </v-window>

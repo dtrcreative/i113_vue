@@ -4,9 +4,9 @@ import languageService from "@/components/settings/language/js/language.service"
 export const useLangStore = defineStore('languages', {
   state: () => ({
     languageSelected: 0,
+    languages: languageService.getUnits(),
     languageTypes: [{title: 'Eng', value: 0}, {title: 'Rus', value: 1}],
     languageInUse: {},
-    languages: [],
     searchValue: '',
     paramToUpdate: '',
     showCUForm: false,
@@ -30,20 +30,27 @@ export const useLangStore = defineStore('languages', {
     },
     changeLanguage(langValue) {
       this.languageSelected = langValue;
-      this.languageInUse = new Map();
-      this.languages.forEach((line) =>{
-        switch(this.languageSelected){
-          case 0 :
-            this.languageInUse.set(line.param, line.eng)
-            break
-          case 1:
-            this.languageInUse.set(line.param, line.rus)
-        }
-      })
+      this.fillLanguageInUse();
     },
+    fillLanguageInUse(){
+      if(this.languages.length !== 0){
+        let languageMap = new Map();
+        this.languages.forEach((line) =>{
+          if(this.languageSelected===0){
+            languageMap.set(line.param, line.eng)
+          }else{
+            languageMap.set(line.param, line.rus)
+          }
+        })
+        console.log(this.languageInUse.get("b_add"));
+        return languageMap;
+      }else{
+        return {}
+      }
+    }
   },
   getters: {
-    get(name){
+    getParam(name){
       return this.languageInUse.get(name)
     },
     filterByParamName() {

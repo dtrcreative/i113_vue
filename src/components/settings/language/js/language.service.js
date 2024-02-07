@@ -1,7 +1,6 @@
 import errorHandler from "@/components/microservices/utils/error-handler";
 import axios from "axios";
 import {authHeader, getServerUrl} from "@/components/auth/services/axios-helper";
-import {useLangStore} from "@/components/settings/language/js/languageStore";
 
 const API_URL = 'api/resource/language/';
 const API_ALL = 'all';
@@ -15,7 +14,7 @@ class LanguageService {
   async getUnits() {
     try {
       const response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
-      useLangStore().setUnits(response.data)
+      return response.data;
     } catch (e) {
       errorHandler.handle(e)
     }

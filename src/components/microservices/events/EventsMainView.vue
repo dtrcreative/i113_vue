@@ -44,7 +44,7 @@ export default {
   data: () => ({
     tab: null,
   }),
-
+  mounted() {console.log(this.lang.languages)}
 }
 </script>
 
