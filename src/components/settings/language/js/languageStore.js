@@ -1,20 +1,28 @@
 import {defineStore} from 'pinia'
 import languageService from "@/components/settings/language/js/language.service";
+import {computed} from "vue";
 
 export const useLangStore = defineStore('languages', {
   state: () => ({
     languageSelected: 0,
-    languages: languageService.getUnits(),
+    languages: {},
     languageTypes: [{title: 'Eng', value: 0}, {title: 'Rus', value: 1}],
-    languageInUse: {},
     searchValue: '',
     paramToUpdate: '',
     showCUForm: false,
+    inuse: {}
   }),
   actions: {
-    setUnits(units) {
-      this.languages = units;
-      this.languageInUse = [...this.languages]
+
+    async init(){
+      //TODO user init languageSelected
+      this.languages = await languageService.getUnits();
+      this.fillLanguageInUse()
+    },
+
+    setUnits() {
+      this.languages = languageService.getUnits();
+      this.fillLanguageInUse()
     },
     async create() {
       let response = await languageService.create(this.paramToUpdate)
@@ -28,30 +36,28 @@ export const useLangStore = defineStore('languages', {
       this.languages = this.languages.filter(unit => unit.id !== item.id)
       languageService.remove(item.id)
     },
-    changeLanguage(langValue) {
+    async changeLanguage(langValue) {
       this.languageSelected = langValue;
+      this.languages = await languageService.getUnits()
       this.fillLanguageInUse();
     },
     fillLanguageInUse(){
-      if(this.languages.length !== 0){
-        let languageMap = new Map();
+      if(this.languages!== undefined && this.languages.length !== 0){
         this.languages.forEach((line) =>{
           if(this.languageSelected===0){
-            languageMap.set(line.param, line.eng)
+            this.inuse[line.param] = line.eng
           }else{
-            languageMap.set(line.param, line.rus)
+            this.inuse[line.param] = line.rus
           }
         })
-        console.log(this.languageInUse.get("b_add"));
-        return languageMap;
       }else{
-        return {}
+        console.log("Languages is Empty")
       }
     }
   },
   getters: {
     getParam(name){
-      return this.languageInUse.get(name)
+      return this.inuse[name]
     },
     filterByParamName() {
       return [...this.languages].sort((unit1, unit2) => unit1.param?.localeCompare(unit2.param))

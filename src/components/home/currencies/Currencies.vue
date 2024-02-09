@@ -6,37 +6,9 @@
   ></v-card>
 
   <v-btn
-    @click="logintest"
+    @click="jsontest"
   >
-    TestLogin
-  </v-btn>
-  <v-btn
-    @click="logouttest"
-  >
-    TestLogout
-  </v-btn>
-  <v-btn
-    @click="apiCall"
-  >
-    apiCall
-  </v-btn>
-
-  <v-btn
-    @click="userData"
-  >
-    userData
-  </v-btn>
-
-  <v-btn
-    @click="checkUser"
-  >
-    checkUser
-  </v-btn>
-
-  <v-btn
-    @click="userHelperFill"
-  >
-    userHelperFill
+    JsonTest
   </v-btn>
 
 
@@ -62,6 +34,10 @@ export default {
     // 643 - RUB
     // 978 - EUR
     // 840 - USD
+
+    async jsontest() {
+      console.log(this.lang.inuse.b_clear)
+    },
 
     logintest() {
       login();

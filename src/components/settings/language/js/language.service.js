@@ -11,6 +11,15 @@ const SERVICE_NAME = 'Languages'
 
 class LanguageService {
 
+  async init(){
+    try {
+      const response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
+      return response.data;
+    } catch (e) {
+      errorHandler.handle(e)
+    }
+  }
+
   async getUnits() {
     try {
       const response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});

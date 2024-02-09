@@ -1,8 +1,8 @@
 class UtilService {
 
-  async copyToClipboard(data) {
+  async copyToClipboard(data, prefix) {
     if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(data);
+      await navigator.clipboard.writeText(prefix!== undefined? prefix+data : data);
     } else {
       // Use the 'out of viewport hidden text area' trick
       const textArea = document.createElement("textarea");

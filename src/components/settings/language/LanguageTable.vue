@@ -125,7 +125,8 @@ function deleteItem(item){
 }
 
 function copyToClipboard(value){
-  utilService.copyToClipboard(value)
+  let prefix = "this.lang.inuse."
+  utilService.copyToClipboard(value, prefix)
 }
 
 </script>

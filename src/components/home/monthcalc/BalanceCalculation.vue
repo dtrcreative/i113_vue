@@ -2,21 +2,21 @@
   <div>
     <div class="component">
       <v-text-field
-        label="CurrentBalance"
+        :label=this.lang.inuse.bc_current
         variant="outlined"
         v-model="inputBalance"
         v-on:keyup="calcDaysLeft"
       ></v-text-field>
         <v-text-field
           class="reserve"
-          label="Reserved:"
+          :label="this.lang.inuse.bc_reserved"
           variant="outlined"
           v-model="reserved"
           v-on:keyup="calcDaysLeft"
         ></v-text-field>
         <v-text-field
           class="reserve"
-          label="Multiplier:"
+          :label=this.lang.inuse.bc_reserved
           variant="outlined"
           v-model="multiplier"
           v-on:keyup="calcDaysLeft"
@@ -32,19 +32,19 @@
     </div>
     <div class="component">
       <v-text-field clearable
-        label="DayOn"
+        :label=this.lang.inuse.bc_dayon
         variant="outlined"
         v-model="dayOn"
         v-on:keyup="calcDaysLeft"
       ></v-text-field>
       <v-text-field clearable
-        label="DayOff"
+        :label=this.lang.inuse.bc_dayoff
         variant="outlined"
         v-model="dayOff"
         v-on:keyup="calcDaysLeft"
       ></v-text-field>
       <v-text-field
-        label="DaysLeft"
+        :label=this.lang.inuse.bc_daysleft
         variant="outlined"
         v-model="daysLeft"
         disabled
@@ -52,7 +52,7 @@
     </div>
     <div>
       <v-text-field
-        label="Balance for the day"
+        :label=this.lang.inuse.bc_result
         variant="outlined"
         v-model="calculatedValue"
         disabled

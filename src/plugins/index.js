@@ -19,4 +19,5 @@ export function registerPlugins (app) {
     .use(createPinia())
 
   app.config.globalProperties.lang = useLangStore()
+  app.config.globalProperties.lang.init()
 }
