@@ -180,6 +180,7 @@ component
   width: 5%
 
 .btn
+  text-align: center
   width: 5%
 
 .days-left

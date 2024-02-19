@@ -5,7 +5,6 @@
         <v-col cols="12" xs="1" sm="1" md="1">
           <v-btn
             icon="mdi-plus"
-            min-width="50px"
             @click="showAddForm"
           ></v-btn>
         </v-col>
@@ -168,7 +167,6 @@ function showUpdateForm(unit) {
 
 header
   display: flex
-  width: 800px
 
 component
   display: flex
@@ -177,9 +175,6 @@ component
   display: flex
   justify-content: center
   align-items: center
-
-.searchField
-  width: 100%
 
 .table
   background-color: rgba(0, 0, 0, 0)
@@ -195,14 +190,14 @@ component
 
 .names
   text-align: center
-  width: 20%
+  width: 30%
 
 .names:hover
-  width: 20%
+  width: 30%
   background-color: $table-hover-cell
 
 .names:hover
-  width: 20%
+  width: 30%
 
 .create
   padding-top: 20px

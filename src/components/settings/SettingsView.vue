@@ -2,13 +2,13 @@
   <v-card>
     <v-tabs v-model="tab" bg-color="primary" fixed-tabs class="tabbar" >
       <v-tab value="language">
-        <span>Language</span>
+        <span>{{ this.lang.inuse.settings_language }}</span>
       </v-tab>
       <v-tab value="sheduling">
-        <span>Sheduling</span>
+        <span>{{ this.lang.inuse.settings_sheduling }}</span>
       </v-tab>
       <v-tab value="status">
-        <span>Status</span>
+        <span>{{ this.lang.inuse.settings_status }}</span>
       </v-tab>
     </v-tabs>
 

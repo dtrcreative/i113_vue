@@ -61,8 +61,8 @@
         ></v-btn>
       </th>
 
-      <th class="names">First Name</th>
-      <th class="names" @click="">Last Name</th>
+      <th class="names" style="text-align: center">First Name</th>
+      <th class="names" style="text-align: center" @click="">Last Name</th>
       <th class="date" style="text-align: center">Date</th>
       <th class="days-left" style="text-align: center">Days Left</th>
       <th class="notify" style="text-align: center">Notify</th>
@@ -191,17 +191,17 @@ component
   width: 5%
 
 .date
-  width: 20%
+  width: 30%
 
 .names
-  width: 20%
+  width: 30%
 
 .names:hover
-  width: 20%
+  width: 30%
   background-color: $table-hover-cell
 
 .names:hover
-  width: 20%
+  width: 30%
 
 .create
   padding-top: 20px

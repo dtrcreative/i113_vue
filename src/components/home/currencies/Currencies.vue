@@ -17,6 +17,7 @@
 <script>
 import {checkUser, getAuthUser, login, logout} from "@/components/auth/services/auth-helper";
 import UserHelper from "@/components/auth/services/user.helper"
+import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
 
 export default {
   name: "Currencies",
@@ -36,7 +37,7 @@ export default {
     // 840 - USD
 
     async jsontest() {
-      console.log(this.lang.inuse.b_clear)
+        await birthdayService.checkServiceStatus();
     },
 
     logintest() {

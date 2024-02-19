@@ -150,6 +150,16 @@ class BirthdayService {
   getBackUpFileName(){
     return SERVICE_NAME + '_BackUp.json'
   }
+
+  async checkServiceStatus(){
+    try {
+      let response = await axios.get("http://localhost:8080/actuator/health", {headers: authHeader()});
+      console.log(response.data)
+    }catch (e){
+      errorHandler.handle(e)
+    }
+  }
+
 }
 
 export default new BirthdayService();
