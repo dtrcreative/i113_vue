@@ -171,6 +171,7 @@ export default {
 
 .btn
   width: 40%
+
 .btn-clear
   width: 20%
 

@@ -161,7 +161,7 @@ export default {
           return pattern.test(value) || 'Invalid e-mail.'
         },
       },
-      user:{
+      user: {
         firstName: '',
         middleName: '',
         lastName: '',
@@ -201,8 +201,8 @@ export default {
       this.$refs.form.reset()
       this.$refs.form.resetValidation()
     },
-    clearError(){
-      this.errorHandler('','')
+    clearError() {
+      this.errorHandler('', '')
     },
     errorHandler(errorCode, errorMessage) {
       this.errorCode = errorCode;

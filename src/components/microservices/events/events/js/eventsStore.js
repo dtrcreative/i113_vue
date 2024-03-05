@@ -6,7 +6,7 @@ export const useEventsStore = defineStore('events', {
   state: () => ({
     units: [],
     selected: [],
-    searchValue:"",
+    searchValue: "",
     showCUForm: false,
 
     uploadJSON: '',
@@ -88,7 +88,7 @@ export const useEventsStore = defineStore('events', {
       return [...this.filterByEventName].sort((unit1, unit2) => unit1.daysLeft - unit2.daysLeft)
     },
 
-    getFirstTenUnits(){
+    getFirstTenUnits() {
       return [...this.filterByDaysLeft].slice(0, 10)
     },
 

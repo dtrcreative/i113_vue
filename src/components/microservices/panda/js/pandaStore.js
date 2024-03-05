@@ -30,14 +30,14 @@ export const usePandaStore = defineStore('pandas', {
     setAccounts(accounts) {
       this.accounts = accounts;
     },
-    setTypes(types){
+    setTypes(types) {
       this.types = types
       this.allTypes = [...types]
       this.allTypes.push('ALL')
       this.types.sort()
       this.allTypes.sort()
     },
-    setNewPassword(password){
+    setNewPassword(password) {
       this.unitToUpdate.password = password
     },
     async create() {
@@ -71,10 +71,10 @@ export const usePandaStore = defineStore('pandas', {
     filterByName() {
       return [...this.accounts].sort((unit1, unit2) => unit1.name?.localeCompare(unit2.name))
     },
-    searchByType(){
-      if(this.selectedType !== 'ALL'){
+    searchByType() {
+      if (this.selectedType !== 'ALL') {
         return [...this.accounts].filter(unit1 => unit1.type?.includes(this.selectedType))
-      }else {
+      } else {
         return [...this.filterByName]
       }
     },

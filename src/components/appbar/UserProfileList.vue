@@ -10,7 +10,7 @@
         </v-avatar>
       </v-btn>
     </template>
-    <v-card rounded  width="200">
+    <v-card rounded width="200">
       <v-list align="center">
         <v-list-item>
           <v-avatar
@@ -21,8 +21,8 @@
           </v-avatar>
         </v-list-item>
         <v-list-item
-          :title = getUserFullName
-          :subtitle = getEmail
+          :title=getUserFullName
+          :subtitle=getEmail
         >
         </v-list-item>
       </v-list>
@@ -60,35 +60,38 @@ export default {
       {text: 'Logout', icon: 'mdi-logout', action: "logout"},
     ],
   }),
-  methods:{
-    listAction(action){
-      switch (action){
+  methods: {
+    listAction(action) {
+      switch (action) {
         case 'logout': {
           logout();
           userHelper.cleanUserData();
         }
           break
-        case 'goProfile': router.push("/profile");
+        case 'goProfile':
+          router.push("/profile");
           break
-        case 'goSettings': router.push("/settings");
+        case 'goSettings':
+          router.push("/settings");
           break
-        case 'goHome': router.push("./");
+        case 'goHome':
+          router.push("./");
           break
         default:
           break
       }
     },
   },
-  computed:{
-    getUserInitials(){
+  computed: {
+    getUserInitials() {
       let user = userHelper.getUser();
       return user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase();
     },
-    getUserFullName(){
+    getUserFullName() {
       let user = userHelper.getUser();
       return user.fullName;
     },
-    getEmail(){
+    getEmail() {
       let user = userHelper.getUser();
       return user.email;
     }

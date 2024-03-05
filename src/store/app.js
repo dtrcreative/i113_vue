@@ -1,5 +1,5 @@
 // Utilities
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 
 export const useAppStore = defineStore('app', {
   state: () => ({
@@ -8,13 +8,13 @@ export const useAppStore = defineStore('app', {
       {title: 'Eng', name: "EN"},
       {title: 'Rus', name: "RU"}],
     languageInUse: [],
-    languages:[],
+    languages: [],
   }),
   actions: {
-    setLanguages(fullLanguageArray){
+    setLanguages(fullLanguageArray) {
       this.languages = fullLanguageArray;
     },
-    async createLangVariable(){
+    async createLangVariable() {
 
     }
   },

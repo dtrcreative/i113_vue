@@ -34,7 +34,7 @@
             :service="pandaService"
           ></UploadDialog>
         </v-col>
-        <v-col  xs="1" sm="1" md="1">
+        <v-col xs="1" sm="1" md="1">
           <DownloadDialog
             :service="pandaService"
           ></DownloadDialog>
@@ -143,7 +143,7 @@ function showAddForm() {
   };
 }
 
-function copyToClipboard(value){
+function copyToClipboard(value) {
   utilService.copyToClipboard(value)
 }
 

@@ -14,7 +14,7 @@ export const useLangStore = defineStore('languages', {
   }),
   actions: {
 
-    async init(){
+    async init() {
       //TODO user init languageSelected
       this.languages = await languageService.getUnits();
       this.fillLanguageInUse()
@@ -41,22 +41,22 @@ export const useLangStore = defineStore('languages', {
       this.languages = await languageService.getUnits()
       this.fillLanguageInUse();
     },
-    fillLanguageInUse(){
-      if(this.languages!== undefined && this.languages.length !== 0){
-        this.languages.forEach((line) =>{
-          if(this.languageSelected===0){
+    fillLanguageInUse() {
+      if (this.languages !== undefined && this.languages.length !== 0) {
+        this.languages.forEach((line) => {
+          if (this.languageSelected === 0) {
             this.inuse[line.param] = line.eng
-          }else{
+          } else {
             this.inuse[line.param] = line.rus
           }
         })
-      }else{
+      } else {
         console.log("Languages is Empty")
       }
     }
   },
   getters: {
-    getParam(name){
+    getParam(name) {
       return this.inuse[name]
     },
     filterByParamName() {

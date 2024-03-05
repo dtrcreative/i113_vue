@@ -14,8 +14,8 @@ export default {
       required: true
     }
   },
-  methods:{
-    async downloadBackUp(){
+  methods: {
+    async downloadBackUp() {
       let json = await this.service.getBackUp()
       let text = JSON.stringify(json);
       let filename = this.service.getBackUpFileName();

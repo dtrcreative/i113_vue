@@ -1,5 +1,5 @@
 <template>
-<v-btn>AssPain</v-btn>
+  <v-btn>AssPain</v-btn>
 </template>
 
 <script>

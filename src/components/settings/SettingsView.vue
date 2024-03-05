@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-tabs v-model="tab" bg-color="primary" fixed-tabs class="tabbar" >
+    <v-tabs v-model="tab" bg-color="primary" fixed-tabs class="tabbar">
       <v-tab value="language">
         <span>{{ this.lang.inuse.settings_language }}</span>
       </v-tab>
@@ -36,6 +36,7 @@
 
 import PandaMainView from "@/components/microservices/panda/PandaMainView";
 import LanguageView from "@/components/settings/language/LanguageView";
+
 export default {
   name: "SettingsView",
   components: {LanguageView, PandaMainView},

@@ -10,6 +10,7 @@
 
 <script>
 import PandaTable from "@/components/microservices/panda/PandaTable";
+
 export default {
   name: "PandaMainView",
   components: {PandaTable}

@@ -11,7 +11,7 @@ const SERVICE_NAME = 'Languages'
 
 class LanguageService {
 
-  async init(){
+  async init() {
     try {
       // const response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
       // return response.data;
@@ -121,12 +121,12 @@ class LanguageService {
     return template;
   }
 
-  async getBackUp(){
+  async getBackUp() {
     let backUpObjects = []
     try {
       let response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
       let values = response.data
-      for(let i = 0; i< values.length; i++){
+      for (let i = 0; i < values.length; i++) {
         backUpObjects.push(
           {
             param: values[i].param,
@@ -141,7 +141,7 @@ class LanguageService {
     }
   }
 
-  getBackUpFileName(){
+  getBackUpFileName() {
     return SERVICE_NAME + '_BackUp.json'
   }
 }

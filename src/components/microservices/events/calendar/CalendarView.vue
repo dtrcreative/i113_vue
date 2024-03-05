@@ -3,29 +3,29 @@
     <div class="section-center">
       <div class="block">
         <v-row>
-        <v-col>
-          <v-date-picker
-            hide-header
-            show-adjacent-months
-            multiple=""
-            class="calendar"
-          ></v-date-picker>
-        </v-col>
-        <v-col>
-          <v-date-picker
-            hide-header
-            show-adjacent-months
-            multiple=""
-            class="calendar"
-          ></v-date-picker>
-        </v-col>
-        <v-col>
-          <v-date-picker
-            hide-header
-            show-adjacent-months
-            class="calendar"
-          ></v-date-picker>
-        </v-col>
+          <v-col>
+            <v-date-picker
+              hide-header
+              show-adjacent-months
+              multiple=""
+              class="calendar"
+            ></v-date-picker>
+          </v-col>
+          <v-col>
+            <v-date-picker
+              hide-header
+              show-adjacent-months
+              multiple=""
+              class="calendar"
+            ></v-date-picker>
+          </v-col>
+          <v-col>
+            <v-date-picker
+              hide-header
+              show-adjacent-months
+              class="calendar"
+            ></v-date-picker>
+          </v-col>
         </v-row>
       </div>
     </div>
@@ -43,7 +43,7 @@ export default {
     nextMonth: new Date()
   }),
   methods: {
-    getPreviousMonth(){
+    getPreviousMonth() {
       let date = new Date();
 
     }
@@ -72,7 +72,7 @@ export default {
 
 .calendar
   width: 100%
-  background-color: rgba(0,0,0,0.17)
+  background-color: rgba(0, 0, 0, 0.17)
 
 .overflow-visible
   height: 50px

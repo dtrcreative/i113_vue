@@ -16,14 +16,15 @@ class ErrorHandler {
         break;
       case 400 :
         console.log(400)
-       return error.response.data
+        return error.response.data
       case 409 :
         console.log(409)
         console.log(error.response.data)
         break;
       case 401:
         console.log(401)
-        logout().then(r => {})
+        logout().then(r => {
+        })
         router.push("/")
         break;
       default:

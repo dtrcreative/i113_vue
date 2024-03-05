@@ -9,13 +9,13 @@ export const getServerUrl = () => {
 
 export const authHeader = () => {
   let user = userHelper.getUser();
-  if(user){
+  if (user) {
     return {
       Accept: "application/json",
       Authorization: "Bearer " + user.token,
       UserId: user.userId
     };
-  }else{
+  } else {
     throw new Error('user is not logged in');
   }
 }

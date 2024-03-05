@@ -16,6 +16,7 @@
 <script>
 import EventTable from "@/components/microservices/events/events/EventTable";
 import TimeLine from "@/components/microservices/events/events/TimeLine";
+
 export default {
   name: "EventsView",
   components: {TimeLine, EventTable}

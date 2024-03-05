@@ -154,7 +154,7 @@ class PandaService {
     try {
       let response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
       let values = response.data
-      for(let i = 0; i< values.length; i++){
+      for (let i = 0; i < values.length; i++) {
         backUpObjects.push(
           {
             name: values[i].name,

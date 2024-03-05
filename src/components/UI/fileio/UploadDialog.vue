@@ -144,7 +144,7 @@ export default {
       this.json = {}
     },
 
-    downloadTemplate(){
+    downloadTemplate() {
       let text = JSON.stringify(this.service.getTemplateObject());
       let filename = 'Template.json';
       let element = document.createElement('a');

@@ -7,20 +7,20 @@
         v-model="inputBalance"
         v-on:keyup="calcDaysLeft"
       ></v-text-field>
-        <v-text-field
-          class="reserve"
-          label="Reserved:"
-          variant="outlined"
-          v-model="reserved"
-          v-on:keyup="calcDaysLeft"
-        ></v-text-field>
-        <v-text-field
-          class="reserve"
-          label="Multiplier:"
-          variant="outlined"
-          v-model="multiplier"
-          v-on:keyup="calcDaysLeft"
-        ></v-text-field>
+      <v-text-field
+        class="reserve"
+        label="Reserved:"
+        variant="outlined"
+        v-model="reserved"
+        v-on:keyup="calcDaysLeft"
+      ></v-text-field>
+      <v-text-field
+        class="reserve"
+        label="Multiplier:"
+        variant="outlined"
+        v-model="multiplier"
+        v-on:keyup="calcDaysLeft"
+      ></v-text-field>
       <VBtn
         size="large"
         variant="text"
@@ -32,16 +32,16 @@
     </div>
     <div class="component">
       <v-text-field clearable
-        label="DayOn"
-        variant="outlined"
-        v-model="dayOn"
-        v-on:keyup="calcDaysLeft"
+                    label="DayOn"
+                    variant="outlined"
+                    v-model="dayOn"
+                    v-on:keyup="calcDaysLeft"
       ></v-text-field>
       <v-text-field clearable
-        label="DayOff"
-        variant="outlined"
-        v-model="dayOff"
-        v-on:keyup="calcDaysLeft"
+                    label="DayOff"
+                    variant="outlined"
+                    v-model="dayOff"
+                    v-on:keyup="calcDaysLeft"
       ></v-text-field>
       <v-text-field
         label="DaysLeft"
@@ -81,7 +81,7 @@ export default {
   methods: {
     calcDaysLeft() {
       const currentDate = new Date();
-      const todayDate = new Date(currentDate.getFullYear() + '-' + (currentDate.getMonth()+1) + '-' + this.dayOn);
+      const todayDate = new Date(currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + this.dayOn);
       if (this.dayOn <= this.dayOff) {
         this.daysLeft = this.dayOff - this.dayOn;
       } else if (this.dayOn > this.dayOff) {
@@ -100,11 +100,11 @@ export default {
         this.calculatedValue = this.calcResultBalance(this.inputBalance);
       }
     },
-    calcResultBalance(value){
-      if(this.reserved === ''){
+    calcResultBalance(value) {
+      if (this.reserved === '') {
         return value;
       }
-      return value-this.reserved*this.multiplier;
+      return value - this.reserved * this.multiplier;
     },
     clear() {
       this.inputBalance = '';
@@ -113,9 +113,9 @@ export default {
   },
   mounted() {
     this.dayOn = new Date().getDate();
-    if(this.dayOn<15){
+    if (this.dayOn < 15) {
       this.dayOff = 15;
-    }else{
+    } else {
       this.dayOff = 26;
     }
     this.calcDaysLeft();
@@ -128,10 +128,12 @@ export default {
 * {
   display: -moz-grid-line;
 }
+
 .component {
   display: flex;
 }
-.reserve{
+
+.reserve {
   width: 1%;
 }
 </style>

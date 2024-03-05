@@ -125,12 +125,12 @@ class BirthdayService {
     return template
   }
 
-  async getBackUp(){
+  async getBackUp() {
     let backUpObjects = []
     try {
       let response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
       let values = response.data
-      for(let i = 0; i< values.length; i++){
+      for (let i = 0; i < values.length; i++) {
         backUpObjects.push(
           {
             firstName: values[i].firstName,
@@ -147,15 +147,15 @@ class BirthdayService {
     }
   }
 
-  getBackUpFileName(){
+  getBackUpFileName() {
     return SERVICE_NAME + '_BackUp.json'
   }
 
-  async checkServiceStatus(){
+  async checkServiceStatus() {
     try {
       let response = await axios.get("http://localhost:8080/actuator/health", {headers: authHeader()});
       console.log(response.data)
-    }catch (e){
+    } catch (e) {
       errorHandler.handle(e)
     }
   }

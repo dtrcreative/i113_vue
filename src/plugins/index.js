@@ -5,13 +5,13 @@
  */
 
 // Plugins
-import { loadFonts } from './webfontloader'
-import { createPinia } from 'pinia'
+import {loadFonts} from './webfontloader'
+import {createPinia} from 'pinia'
 import vuetify from './vuetify'
 import router from '../router'
 import {useLangStore} from "@/components/settings/language/js/languageStore";
 
-export function registerPlugins (app) {
+export function registerPlugins(app) {
   loadFonts()
   app
     .use(router)

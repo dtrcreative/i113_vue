@@ -1,4 +1,4 @@
- <template>
+<template>
   <v-form ref="form" @submit.prevent="submit">
     <v-row style="height: 50px;" no-gutters>
       <v-col xs="4" sm="4" md="4">
@@ -64,6 +64,7 @@
 
 <script>
 import {useLangStore} from "@/components/settings/language/js/languageStore";
+
 export default {
   name: "LanguageCUForm",
   data: () => ({
@@ -71,7 +72,7 @@ export default {
       required: value => !!value || 'Required',
     },
   }),
-  methods:{
+  methods: {
     useLangStore,
     async submit() {
       const {valid} = await this.$refs.form.validate()
@@ -100,6 +101,7 @@ export default {
 
 .btn
   width: 40%
+
 .btn-clear
   width: 20%
 

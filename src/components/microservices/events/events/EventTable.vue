@@ -105,9 +105,9 @@
     </tr>
     </tbody>
 
-  <div class="empty-table" v-if="useEventsStore().units.length===0">
-    <h1>No data</h1>
-  </div>
+    <div class="empty-table" v-if="useEventsStore().units.length===0">
+      <h1>No data</h1>
+    </div>
 
   </v-table>
 </template>

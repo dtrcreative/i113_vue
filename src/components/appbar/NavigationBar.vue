@@ -37,8 +37,8 @@ import router from "@/router";
 
 export default {
   name: "NavigationBar",
-  data(){
-    return{
+  data() {
+    return {
       items: [
         {text: 'Panda', icon: 'mdi-panda', action: "goPanda"},
         {text: 'Events', icon: 'mdi-calendar', action: "goEvents"},
@@ -46,13 +46,16 @@ export default {
     }
   },
   methods: {
-    listAction(action){
-      switch (action){
-        case 'goHome': router.push("/home");
+    listAction(action) {
+      switch (action) {
+        case 'goHome':
+          router.push("/home");
           break
-        case 'goPanda': router.push("/panda/");
+        case 'goPanda':
+          router.push("/panda/");
           break
-        case 'goEvents': router.push("/events/");
+        case 'goEvents':
+          router.push("/events/");
           break
         default:
           break

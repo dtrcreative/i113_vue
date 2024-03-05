@@ -92,7 +92,7 @@ export const useBirthdaysStore = defineStore('birthdays', {
       return [...this.filterByLastName].sort((unit1, unit2) => unit1.daysLeft - unit2.daysLeft)
     },
 
-    getFirstTenUnits(){
+    getFirstTenUnits() {
       return [...this.filterByDaysLeft].slice(0, 10)
     },
 
