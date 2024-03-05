@@ -18,10 +18,8 @@
 
 <script setup>
 import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
-
 useBirthdaysStore()
 </script>
 
 <style scoped>
-
 </style>

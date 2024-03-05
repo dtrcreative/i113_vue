@@ -216,7 +216,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../src/assets/styles/main.sass'
 
 .signIn
   background: url('../src/assets/img/gradient-1.jpg')

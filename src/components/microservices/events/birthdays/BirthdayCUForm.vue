@@ -120,7 +120,6 @@
 <script>
 import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
 
-
 export default {
   name: "BirthdayCUForm",
   data: () => ({

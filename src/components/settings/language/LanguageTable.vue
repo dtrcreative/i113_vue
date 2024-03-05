@@ -6,13 +6,13 @@
   <v-container class="header">
     <v-card-actions>
       <v-row>
-        <v-col cols="12" xs="1" sm="1" md="1">
+        <v-col xs="1" sm="1" md="1">
           <v-btn
             icon="mdi-plus"
             @click="showAddForm"
           ></v-btn>
         </v-col>
-        <v-col cols="12" xs="1" sm="8" md="8">
+        <v-col xs="8" sm="8" md="8">
           <v-text-field clearable
                         class="searchField"
                         v-model.trim="useLangStore().searchValue"
@@ -24,12 +24,12 @@
                         :maxlength="10"
           ></v-text-field>
         </v-col>
-        <v-col cols="12" xs="1" sm="1" md="1">
+        <v-col xs="1" sm="1" md="1">
           <UploadDialog
             :service="languageService"
           ></UploadDialog>
         </v-col>
-        <v-col cols="12" xs="1" sm="1" md="1">
+        <v-col xs="1" sm="1" md="1">
           <DownloadDialog
             :service="languageService"
           ></DownloadDialog>
@@ -132,7 +132,6 @@ function copyToClipboard(value){
 </script>
 
 <style lang="sass" scoped>
-@import '../../../assets/styles/main'
 
 header
   display: flex

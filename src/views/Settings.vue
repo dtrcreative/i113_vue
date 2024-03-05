@@ -13,7 +13,6 @@ export default {
 
 
 <style lang="sass" scoped>
-@import '../assets/styles/main'
 
 .page
   position: relative

@@ -1,7 +1,7 @@
-<template>
+ <template>
   <v-form ref="form" @submit.prevent="submit">
-    <v-row>
-      <v-col cols="12" sm="3" md="4">
+    <v-row style="height: 50px;" no-gutters>
+      <v-col xs="4" sm="4" md="4">
         <v-text-field
           clearable
           v-model.trim="useLangStore().paramToUpdate.param"
@@ -13,7 +13,7 @@
           :rules="[rules.required]"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="3" md="4">
+      <v-col xs="4" sm="4" md="4">
         <v-text-field
           label="Eng"
           variant="outlined"
@@ -24,7 +24,7 @@
           :rules="[rules.required]"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="3" md="4">
+      <v-col xs="4" sm="4" md="4">
         <v-text-field
           label="Rus"
           variant="outlined"
@@ -35,7 +35,7 @@
         ></v-text-field>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row style="height: 50px;" no-gutters>
       <v-btn
         class="btn"
         color="primary"
@@ -97,7 +97,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../../../assets/styles/main'
 
 .btn
   width: 40%
