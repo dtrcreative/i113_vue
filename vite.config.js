@@ -36,8 +36,16 @@ export default defineConfig({
       '.vue',
     ],
   },
+  sourcemap: {
+    server: false,
+    client: false
+  },
   server: {
     // host: true,
     port: 3000,
+  },
+
+  build: {
+    transpile: ['vuetify']
   },
 })

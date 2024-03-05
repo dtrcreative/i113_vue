@@ -1,7 +1,7 @@
 <template>
   <v-form ref="form" @submit.prevent="submit">
     <v-row>
-      <v-col cols="12" sm="2" md="4">
+      <v-col cols="12" sm="2" md="4" xs="1">
         <v-text-field
           clearable
           v-model.trim="usePandaStore().unitToUpdate.name"
@@ -13,7 +13,7 @@
           :rules="[rules.required, rules.range.nameMin]"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="2" md="4">
+      <v-col cols="" sm="2" md="4" xs="1">
         <v-text-field
           clearable
           v-model.trim="usePandaStore().unitToUpdate.mail"
@@ -24,7 +24,7 @@
           :maxlength="30"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="2" md="4">
+      <v-col cols="12" sm="2" md="4" xs="1">
         <!--TODO-->
         <v-text-field
           clearable
@@ -41,7 +41,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" sm="2" md="4">
+      <v-col cols="12" sm="2" md="4" xs="1">
         <v-text-field
           clearable
           v-model.trim="usePandaStore().unitToUpdate.account"
@@ -53,7 +53,7 @@
           :rules="[rules.required, rules.range.accountMin]"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="2" md="4">
+      <v-col cols="12" sm="2" md="4" xs="1">
         <v-text-field
           clearable
           v-model.trim="usePandaStore().unitToUpdate.link"
@@ -64,7 +64,7 @@
           :maxlength="200"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="2" md="4">
+      <v-col cols="12" sm="2" md="4" xs="1">
         <v-select
           label="Type"
           :items="usePandaStore().types"
@@ -76,7 +76,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" sm="6" md="12">
+      <v-col cols="12" sm="6" md="12" xs="1" >
         <v-text-field
           clearable
           v-model.trim="usePandaStore().unitToUpdate.description"
@@ -89,7 +89,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" sm="2" md="5">
+      <v-col cols="12" sm="2" md="5" xs="1">
         <v-btn
           class="btn"
           color="primary"
@@ -98,7 +98,7 @@
         >Close
         </v-btn>
       </v-col>
-      <v-col cols="12" sm="1" md="2">
+      <v-col cols="12" sm="1" md="2" xs="1">
         <v-btn
           class="btn"
           color="primary"
@@ -107,7 +107,7 @@
         >Clear
         </v-btn>
       </v-col>
-      <v-col cols="12" sm="2" md="5">
+      <v-col cols="12" sm="2" md="5" xs="1">
         <v-btn
           class="btn"
           color="primary"

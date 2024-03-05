@@ -8,7 +8,7 @@ import { createApp } from 'vue'
 import { registerPlugins } from '@/plugins'
 
 // Styles
-import './assets/styles/main.sass'
+import '@/assets/styles/main.sass'
 
 const app = createApp(App)
 

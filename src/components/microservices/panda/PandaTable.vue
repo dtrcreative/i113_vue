@@ -2,13 +2,13 @@
   <v-container class="header">
     <v-card-actions>
       <v-row>
-        <v-col cols="12" xs="1" sm="1" md="1">
+        <v-col xs="1" sm="1" md="1">
           <v-btn
             icon="mdi-plus"
             @click="showAddForm"
           ></v-btn>
         </v-col>
-        <v-col cols="12" xs="1" sm="8" md="6">
+        <v-col xs="4" sm="8" md="6">
           <v-text-field clearable
                         v-model.trim="usePandaStore().searchValue"
                         label="Search"
@@ -19,7 +19,7 @@
                         :maxlength="10"
           ></v-text-field>
         </v-col>
-        <v-col cols="12" xs="1" sm="8" md="2">
+        <v-col xs="1" sm="8" md="2">
           <v-select
             variant="outlined"
             density="compact"
@@ -29,17 +29,17 @@
             v-model="usePandaStore().selectedType"
           ></v-select>
         </v-col>
-        <v-col cols="12" xs="1" sm="1" md="1">
+        <v-col xs="1" sm="1" md="1">
           <UploadDialog
             :service="pandaService"
           ></UploadDialog>
         </v-col>
-        <v-col cols="12" xs="1" sm="1" md="1">
+        <v-col xs="1" sm="1" md="1">
           <DownloadDialog
             :service="pandaService"
           ></DownloadDialog>
         </v-col>
-        <v-col cols="12" xs="1" sm="1" md="1">
+        <v-col xs="1" sm="1" md="1">
           <v-btn
             icon="mdi-trash-can"
             min-width="50px"

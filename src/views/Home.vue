@@ -19,8 +19,6 @@ import Currencies from "@/components/home/currencies/Currencies";
 </script>
 
 <style lang="sass" scoped>
-@import '../assets/styles/main'
-
 
 .sections
   display: flex
