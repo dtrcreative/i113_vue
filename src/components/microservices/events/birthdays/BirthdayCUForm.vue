@@ -1,7 +1,7 @@
 <template>
   <v-form ref="form" @submit.prevent="submit">
-    <v-row>
-      <v-col cols="12" sm="6" md="3">
+    <v-row style="height: 50px;" no-gutters>
+      <v-col xs="6" sm="6" md="6">
         <v-text-field
           clearable
           v-model.trim="useBirthdaysStore().unitToUpdate.firstName"
@@ -13,7 +13,7 @@
           :rules="[rules.required]"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="6" md="3">
+      <v-col xs="6" sm="6" md="6">
         <v-text-field
           clearable
           v-model.trim="useBirthdaysStore().unitToUpdate.lastName"
@@ -26,7 +26,9 @@
           required
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="3" md="2">
+    </v-row>
+    <v-row style="height: 50px;" no-gutters>
+      <v-col xs="2" sm="2" md="2">
         <v-text-field
           label="DD"
           class="date"
@@ -39,7 +41,7 @@
           :rules="[rules.required, rules.range.dayMin, rules.range.dayMax]"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="3" md="2">
+      <v-col xs="2" sm="2" md="2">
         <v-text-field
           label="MM"
           class="date"
@@ -52,8 +54,7 @@
           :rules="[rules.required, rules.range.monthMin, rules.range.monthMax]"
         ></v-text-field>
       </v-col>
-
-      <v-col cols="12" sm="6" md="2">
+      <v-col xs="4" sm="4" md="4">
         <v-text-field
           label="YYYY"
           class="date"
@@ -66,9 +67,18 @@
           :rules="[rules.required, rules.range.yearMin]"
         ></v-text-field>
       </v-col>
+      <v-col xs="3" sm="3" md="3">
+        <v-switch
+          style="display: flex; justify-content: center;"
+          color="primary"
+          density="default"
+          label="Notify Me"
+          v-model="useBirthdaysStore().unitToUpdate.notify"
+        ></v-switch>
+      </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="12" sm="8" md="10">
+    <v-row style="height: 50px;" no-gutters>
+      <v-col xs="12" sm="12" md="12">
         <v-text-field
           clearable
           v-model.trim="useBirthdaysStore().unitToUpdate.description"
@@ -79,37 +89,31 @@
           required
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="3" md="2">
-        <v-switch
-          style="display: flex; justify-content: center;"
-          color="primary"
-          density="default"
-          label="Notify Me"
-          v-model="useBirthdaysStore().unitToUpdate.notify"
-        ></v-switch>
-      </v-col>
     </v-row>
-    <v-btn
-      class="btn"
-      color="primary"
-      variant="elevated"
-      @click="clearAndClose"
-    >Close
-    </v-btn>
-    <v-btn
-      class="btn-clear"
-      color="primary"
-      variant="outlined"
-      @click="clear"
-    >Clear
-    </v-btn>
-    <v-btn
-      class="btn"
-      color="primary"
-      variant="elevated"
-      type="submit"
-    >Save
-    </v-btn>
+    <v-row style="height: 50px;" no-gutters>
+      <v-btn
+        class="btn"
+        color="primary"
+        variant="elevated"
+        @click="clearAndClose"
+      >Close
+      </v-btn>
+      <v-btn
+        class="btn-clear"
+        color="primary"
+        variant="outlined"
+        @click="clear"
+      >Clear
+      </v-btn>
+      <v-btn
+        class="btn"
+        color="primary"
+        variant="elevated"
+        type="submit"
+      >Save
+      </v-btn>
+    </v-row>
+
   </v-form>
 </template>
 

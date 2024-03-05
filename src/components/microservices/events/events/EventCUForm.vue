@@ -1,7 +1,7 @@
 <template>
   <v-form ref="form" @submit.prevent="submit">
-    <v-row>
-      <v-col cols="12" sm="3" md="6">
+    <v-row style="height: 50px;" no-gutters>
+      <v-col xs="12" sm="12" md="12">
         <v-text-field
           clearable
           v-model.trim="useEventsStore().unitToUpdate.eventName"
@@ -13,7 +13,9 @@
           :rules="[rules.required]"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="3" md="2">
+    </v-row>
+    <v-row style="height: 50px;" no-gutters>
+      <v-col xs="3" sm="3" md="3">
         <v-text-field
           label="DD"
           class="date"
@@ -26,7 +28,7 @@
           :rules="[rules.required, rules.range.dayMin, rules.range.dayMax]"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="3" md="2">
+      <v-col xs="3" sm="3" md="3">
         <v-text-field
           label="MM"
           class="date"
@@ -39,7 +41,7 @@
           :rules="[rules.required, rules.range.monthMin, rules.range.monthMax]"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="6" md="2">
+      <v-col xs="6" sm="6" md="6">
         <v-text-field
           label="YYYY"
           class="date"
@@ -53,8 +55,8 @@
         ></v-text-field>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="12" sm="8" md="10">
+    <v-row style="height: 50px;" no-gutters>
+      <v-col xs="8" sm="8" md="8">
         <v-text-field
           clearable
           v-model.trim="useEventsStore().unitToUpdate.description"
@@ -65,7 +67,7 @@
           required
         ></v-text-field>
       </v-col>
-      <v-col cols="12" sm="3" md="2">
+      <v-col xs="4" sm="4" md="4">
         <v-switch
           style="display: flex; justify-content: center;"
           color="primary"
@@ -75,27 +77,30 @@
         ></v-switch>
       </v-col>
     </v-row>
-    <v-btn
-      class="btn"
-      color="primary"
-      variant="elevated"
-      @click="clearAndClose"
-    >Close
-    </v-btn>
-    <v-btn
-      class="btn-clear"
-      color="primary"
-      variant="outlined"
-      @click="clear"
-    >Clear
-    </v-btn>
-    <v-btn
-      class="btn"
-      color="primary"
-      variant="elevated"
-      type="submit"
-    >Save
-    </v-btn>
+    <v-row style="height: 50px;" no-gutters>
+      <v-btn
+        class="btn"
+        color="primary"
+        variant="elevated"
+        @click="clearAndClose"
+      >Close
+      </v-btn>
+      <v-btn
+        class="btn-clear"
+        color="primary"
+        variant="outlined"
+        @click="clear"
+      >Clear
+      </v-btn>
+      <v-btn
+        class="btn"
+        color="primary"
+        variant="elevated"
+        type="submit"
+      >Save
+      </v-btn>
+    </v-row>
+
   </v-form>
 </template>
 
@@ -119,7 +124,7 @@ export default {
     },
   }),
 
-  methods:{
+  methods: {
     useEventsStore,
     async submit() {
       const {valid} = await this.$refs.form.validate()
@@ -153,6 +158,7 @@ export default {
 
 .btn
   width: 40%
+
 .btn-clear
   width: 20%
 

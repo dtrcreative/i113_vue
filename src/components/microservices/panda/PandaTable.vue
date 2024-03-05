@@ -1,14 +1,14 @@
 <template>
   <v-container class="header">
     <v-card-actions>
-      <v-row>
+      <v-row style="height: 50px;" no-gutters>
         <v-col xs="1" sm="1" md="1">
           <v-btn
             icon="mdi-plus"
             @click="showAddForm"
           ></v-btn>
         </v-col>
-        <v-col xs="4" sm="8" md="6">
+        <v-col xs="6" sm="5" md="6">
           <v-text-field clearable
                         v-model.trim="usePandaStore().searchValue"
                         label="Search"
@@ -19,7 +19,7 @@
                         :maxlength="10"
           ></v-text-field>
         </v-col>
-        <v-col xs="1" sm="8" md="2">
+        <v-col xs="2" sm="2" md="2">
           <v-select
             variant="outlined"
             density="compact"
@@ -34,7 +34,7 @@
             :service="pandaService"
           ></UploadDialog>
         </v-col>
-        <v-col xs="1" sm="1" md="1">
+        <v-col  xs="1" sm="1" md="1">
           <DownloadDialog
             :service="pandaService"
           ></DownloadDialog>
@@ -163,7 +163,7 @@ function showUpdateForm(unit) {
 </script>
 
 <style lang="sass" scoped>
-@import '../../../assets/styles/main'
+@import '@/assets/styles/main'
 
 header
   display: flex
