@@ -159,6 +159,8 @@ function showUpdateForm(unit) {
 </script>
 
 <style lang="sass" scoped>
+@import '@/assets/styles/main'
+
 header
   display: flex
 
