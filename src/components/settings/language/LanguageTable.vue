@@ -132,7 +132,7 @@ function copyToClipboard(value) {
 </script>
 
 <style lang="sass" scoped>
-
+@import '@/assets/styles/main'
 header
   display: flex
 

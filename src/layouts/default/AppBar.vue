@@ -1,14 +1,8 @@
 <template>
   <v-app-bar>
-    <div>
-      <v-app-bar-nav-icon
-        variant="text"
-        @click.stop="drawer = !drawer"
-      ></v-app-bar-nav-icon>
-    </div>
 
     <v-app-bar-title>
-      <v-avatar icon="$fox" image="/src/assets/Fox.png" size="30"> Ellie</v-avatar>
+      <v-avatar icon="$fox" image="@/assets/Fox.png" size="30"> Ellie</v-avatar>
     </v-app-bar-title>
 
     <div class="auth">
@@ -19,9 +13,9 @@
 
   </v-app-bar>
 
-  <v-navigation-drawer v-model="drawer" location="left">
-    <navigation-bar></navigation-bar>
-  </v-navigation-drawer>
+<v-navigation-drawer location="left" expand-on-hover="" rail="">
+  <navigation-bar></navigation-bar>
+</v-navigation-drawer>
 
 </template>
 
@@ -38,18 +32,12 @@ export default {
     NavigationBar, UserProfileList, TranslateList, ToggleTheme
   },
 
-  data() {
-    return {
-      drawer: false,
-    }
-  },
-
 }
 
 </script>
 
 <style lang="sass" scoped>
-@import '../src/assets/styles/main'
+@import '@/assets/styles/main'
 
 .user-info
   padding-left: 5px

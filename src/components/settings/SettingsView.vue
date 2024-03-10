@@ -2,13 +2,13 @@
   <v-card>
     <v-tabs v-model="tab" bg-color="primary" fixed-tabs class="tabbar">
       <v-tab value="language">
-        <span>{{ this.lang.inuse.settings_language }}</span>
+        <span>Language</span>
       </v-tab>
       <v-tab value="sheduling">
-        <span>{{ this.lang.inuse.settings_sheduling }}</span>
+        <span>Sheduling</span>
       </v-tab>
       <v-tab value="status">
-        <span>{{ this.lang.inuse.settings_status }}</span>
+        <span>Status</span>
       </v-tab>
     </v-tabs>
 
@@ -20,7 +20,7 @@
         </v-window-item>
 
         <v-window-item value="sheduling">
-          Sheduling
+          <ShedulingView></ShedulingView>
         </v-window-item>
 
         <v-window-item value="status">
@@ -36,10 +36,11 @@
 
 import PandaMainView from "@/components/microservices/panda/PandaMainView";
 import LanguageView from "@/components/settings/language/LanguageView";
+import ShedulingView from "@/components/settings/sheduling/ShedulingView";
 
 export default {
   name: "SettingsView",
-  components: {LanguageView, PandaMainView},
+  components: {ShedulingView, LanguageView, PandaMainView},
   data: () => ({
     tab: null,
   }),

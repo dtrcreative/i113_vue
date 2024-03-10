@@ -1,32 +1,32 @@
 <template>
   <v-list>
     <v-list-item
-      prepend-icon="mdi-view-dashboard"
-      title="Home"
-      value="home"
-      @click="listAction('goHome')"
+      :title=useNavStore().appPage.home.title
+      :value=useNavStore().appPage.home.value
+      :prepend-icon="useNavStore().appPage.home.icon"
+      :color="useNavStore().appPage.home.color"
+      @click="redirect(useNavStore().appPage.home)"
     ></v-list-item>
-    <v-divider :thickness="3" class="border-opacity-50"></v-divider>
+    <v-divider :thickness="1" class="border-opacity-50"></v-divider>
 
     <v-list-item
-      v-for="(item, i) in items"
+      v-for="(item, i) in useNavStore().microPages"
       :key="i"
       :value="item"
-      @click="listAction(item.action)"
+      :prepend-icon="item.icon"
+      :color="item.color"
+      :title="item.title"
+      @click="redirect(item)"
     >
-
-      <v-list-item-title v-text="item.text"></v-list-item-title>
-      <template v-slot:prepend>
-        <v-icon :icon="item.icon" size="x-large"></v-icon>
-      </template>
-
     </v-list-item>
 
-    <v-divider :thickness="3" class="border-opacity-50"></v-divider>
+    <v-divider :thickness="1" class="border-opacity-50"></v-divider>
     <v-list-item
-      prepend-icon="mdi-forum"
-      title="About"
-      value="about"
+      :title=useNavStore().appPage.about.title
+      :value=useNavStore().appPage.about.value
+      :prepend-icon="useNavStore().appPage.about.icon"
+      :color="useNavStore().appPage.about.color"
+      @click="redirect(useNavStore().appPage.about)"
     ></v-list-item>
   </v-list>
 </template>
@@ -34,7 +34,7 @@
 <script>
 
 import router from "@/router";
-
+import {useNavStore} from "@/components/appbar/js/navigation";
 export default {
   name: "NavigationBar",
   data() {
@@ -46,20 +46,9 @@ export default {
     }
   },
   methods: {
-    listAction(action) {
-      switch (action) {
-        case 'goHome':
-          router.push("/home");
-          break
-        case 'goPanda':
-          router.push("/panda/");
-          break
-        case 'goEvents':
-          router.push("/events/");
-          break
-        default:
-          break
-      }
+    useNavStore,
+    redirect(item){
+      router.push(item.redirect);
     },
   }
 }

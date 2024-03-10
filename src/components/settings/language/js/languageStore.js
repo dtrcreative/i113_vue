@@ -1,6 +1,5 @@
 import {defineStore} from 'pinia'
 import languageService from "@/components/settings/language/js/language.service";
-import {computed} from "vue";
 
 export const useLangStore = defineStore('languages', {
   state: () => ({
