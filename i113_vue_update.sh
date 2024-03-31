@@ -1,6 +1,6 @@
 #!/bin/bash
-readonly container_name=vue3-server
-readonly image_name=vue3-serverr
+readonly container_name=i113_vue
+readonly image_name=vue3-server
 
 echo $container_name
 echo $image_name
