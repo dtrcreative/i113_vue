@@ -11,13 +11,6 @@
     JsonTest
   </v-btn>
 
-  <v-btn
-    @click="checkUser"
-  >
-    Test
-  </v-btn>
-
-
 </template>
 
 <script>
