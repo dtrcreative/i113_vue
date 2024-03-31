@@ -11,6 +11,12 @@
     JsonTest
   </v-btn>
 
+  <v-btn
+    @click="jsontest"
+  >
+    JsonTest
+  </v-btn>
+
 </template>
 
 <script>
