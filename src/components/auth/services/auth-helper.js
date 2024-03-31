@@ -1,9 +1,9 @@
 import {UserManager, WebStorageStateStore} from 'oidc-client';
 import userHelper from "@/components/auth/services/user.helper";
 
-const KEYCLOAK_URL = "http://192.168.100.9:28080/";
+const KEYCLOAK_URL = "http://192.168.100.8:28080/";
 // const APP_URL = "http://localhost:3000/"
-const APP_URL = "http://192.168.100.9:3000/"
+const APP_URL = "http://192.168.100.8:3000/"
 
 const settings = {
   authority: KEYCLOAK_URL + "realms/i113_realm_prod/",
