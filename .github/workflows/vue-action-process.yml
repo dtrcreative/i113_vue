@@ -22,6 +22,5 @@ jobs:
 
       - name: Vue npm build
         run : |
-          cd i113_eureka
-          mvn clean
-          mvn install         
+          npm install
+          npm run build       
