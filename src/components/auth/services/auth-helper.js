@@ -8,11 +8,10 @@ const APP_URL = "http://192.168.100.9:3000/"
 const settings = {
   authority: KEYCLOAK_URL + "realms/i113_realm_prod",
   client_id: "i113_frontend_client",
-  redirect_uri: APP_URL + "/callback",
+  redirect_uri: APP_URL + "",
   response_type: 'code',
   scope: "openid profile message.read",
   post_logout_redirect_uri: APP_URL + "",
-  post_login_redirect_uri: APP_URL + "home",
   userStore: new WebStorageStateStore({store: window.localStorage}),
   stateStore: new WebStorageStateStore({store: window.sessionStorage}),
   automaticSilentRenew: false,
