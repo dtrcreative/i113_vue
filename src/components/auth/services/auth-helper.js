@@ -12,8 +12,9 @@ const settings = {
   response_type: 'code',
   scope: "openid profile message.read",
   post_logout_redirect_uri: APP_URL + "",
-  userStore: new WebStorageStateStore({ store: window.localStorage }),
-  stateStore: new WebStorageStateStore({ store: window.sessionStorage }),
+  keycloak_frontend_uri: APP_URL + "",
+  userStore: new WebStorageStateStore({store: window.localStorage}),
+  stateStore: new WebStorageStateStore({store: window.sessionStorage}),
   automaticSilentRenew: false,
   sessionMonitor: false
 };
