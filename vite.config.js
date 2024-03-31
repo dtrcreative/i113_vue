@@ -41,7 +41,7 @@ export default defineConfig({
     client: false
   },
   server: {
-    // host: true,
+    host: true,
     port: 3000,
   },
 

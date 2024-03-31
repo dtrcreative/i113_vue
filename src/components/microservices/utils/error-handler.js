@@ -6,6 +6,7 @@ class ErrorHandler {
 
   handle(error) {
     console.log("ErrorHandler")
+    console.log(error)
     switch (error.response.status) {
       case 503 :
         console.log(503)

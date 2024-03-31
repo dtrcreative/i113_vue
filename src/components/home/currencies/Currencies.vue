@@ -11,6 +11,12 @@
     JsonTest
   </v-btn>
 
+  <v-btn
+    @click="checkUser"
+  >
+    Test
+  </v-btn>
+
 
 </template>
 
@@ -18,6 +24,7 @@
 import {checkUser, getAuthUser, login, logout} from "@/components/auth/services/auth-helper";
 import UserHelper from "@/components/auth/services/user.helper"
 import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
+import pandaService from "@/components/microservices/panda/js/panda.service";
 
 export default {
   name: "Currencies",
@@ -54,7 +61,7 @@ export default {
       console.log(getAuthUser())
     },
     async checkUser() {
-      console.log(checkUser())
+      console.log(await pandaService.generatePassword())
     },
     userHelperFill() {
       UserHelper.fillLocalsStorageUser();
