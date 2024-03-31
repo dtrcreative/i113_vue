@@ -12,6 +12,7 @@ const settings = {
   response_type: 'code',
   scope: "openid profile message.read",
   post_logout_redirect_uri: APP_URL + "",
+  post_login_redirect_uri: APP_URL + "home",
   userStore: new WebStorageStateStore({store: window.localStorage}),
   stateStore: new WebStorageStateStore({store: window.sessionStorage}),
   automaticSilentRenew: false,
