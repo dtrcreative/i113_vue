@@ -1,0 +1,21 @@
+name: vue-action-process
+env:
+  APPLICATION_NAME : "elli_Vue"
+on: 
+  push:
+    branches: 
+      - master
+
+jobs:
+  UpdateVueService:
+    runs-on: self-hosted
+
+    steps:
+      - name: PrintAppData
+        run : |
+          echo "Application name: ${{ env.APPLICATION_NAME}}"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with: 
+          clean: 'false'          
