@@ -17,5 +17,11 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
-        with: 
-          clean: 'false'          
+        # with: 
+        #   clean: 'false'    
+
+      - name: Vue npm build
+        run : |
+          cd i113_eureka
+          mvn clean
+          mvn install         
