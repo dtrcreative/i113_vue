@@ -6,7 +6,7 @@ const KEYCLOAK_URL = "http://192.168.100.8:28080/";
 const APP_URL = "http://192.168.100.8:3000/"
 
 const settings = {
-  authority: KEYCLOAK_URL + "realms/i113_realm",
+  authority: KEYCLOAK_URL + "realms/i113_realm_prod",
   client_id: "i113_frontend_client",
   redirect_uri: APP_URL + "/callback",
   response_type: 'code',
