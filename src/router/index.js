@@ -4,7 +4,7 @@ import userHelper from "@/components/auth/services/user.helper";
 
 const routes = [
   {
-    path: "/",
+    path: "/auth",
     name: 'login',
     component: () => import('@/layouts/default/Login.vue'),
     children: []
