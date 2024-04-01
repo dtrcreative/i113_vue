@@ -1,8 +1,7 @@
 import userHelper from "@/components/auth/services/user.helper";
 import axios from "axios";
-import {authHeader, getServerUrl} from "@/components/auth/services/axios-helper";
+import {authHeader, getGatewayUrl} from "@/components/auth/services/axios-helper";
 import errorHandler from "@/components/microservices/utils/error-handler";
-import {useEventsStore} from "@/components/microservices/events/events/js/eventsStore";
 
 const API_URL = 'api/telbot/';
 const API_REG = 'reg'
@@ -13,7 +12,7 @@ class TelegramService {
   async register() {
     let user = userHelper.getUser();
     try {
-      return await axios.post(getServerUrl() + API_URL + API_REG, {
+      return await axios.post(getGatewayUrl() + API_URL + API_REG, {
         userId: user.userId,
         userSecretKey: ''
       }, {
@@ -26,7 +25,7 @@ class TelegramService {
   async status() {
     let user = userHelper.getUser();
     try {
-      return await axios.post(getServerUrl() + API_URL + API_STATUS, {
+      return await axios.post(getGatewayUrl() + API_URL + API_STATUS, {
         userId: user.userId,
         userSecretKey: ''
       }, {
@@ -39,7 +38,7 @@ class TelegramService {
 
   async test(){
     try {
-      const response = await axios.get(getServerUrl() + 'api/events/' + 'alltest', {headers: authHeader()});
+      const response = await axios.get(getGatewayUrl() + 'api/events/' + 'alltest', {headers: authHeader()});
       return response;
     } catch (e) {
       errorHandler.handle(e)

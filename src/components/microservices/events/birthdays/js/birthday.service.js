@@ -1,5 +1,5 @@
 import axios from "axios";
-import {authHeader, getServerUrl} from "@/components/auth/services/axios-helper";
+import {authHeader, getGatewayUrl} from "@/components/auth/services/axios-helper";
 import errorHandler from "@/components/microservices/utils/error-handler";
 import userHelper from "@/components/auth/services/user.helper";
 import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
@@ -15,7 +15,7 @@ const SERVICE_NAME = 'Birthdays'
 class BirthdayService {
   async getUnits() {
     try {
-      const response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
+      const response = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: authHeader()});
       useBirthdaysStore().setUnits(response.data)
     } catch (e) {
       errorHandler.handle(e)
@@ -25,7 +25,7 @@ class BirthdayService {
   async createBirthday(unit) {
     let user = userHelper.getUser();
     try {
-      return await axios.post(getServerUrl() + API_URL, {
+      return await axios.post(getGatewayUrl() + API_URL, {
         userId: user.userId,
         firstName: unit.firstName,
         lastName: unit.lastName,
@@ -43,7 +43,7 @@ class BirthdayService {
   async updateBirthday(unit) {
     let user = userHelper.getUser();
     try {
-      return await axios.put(getServerUrl() + API_URL, {
+      return await axios.put(getGatewayUrl() + API_URL, {
         id: unit.id,
         userId: user.userId,
         firstName: unit.firstName,
@@ -61,7 +61,7 @@ class BirthdayService {
 
   async uploadJSON(json, isReplace) {
     try {
-      return await axios.post(getServerUrl() + API_URL + (isReplace ? API_JSON_REPLACE : API_JSON_ADD), json, {headers: authHeader()})
+      return await axios.post(getGatewayUrl() + API_URL + (isReplace ? API_JSON_REPLACE : API_JSON_ADD), json, {headers: authHeader()})
     } catch (e) {
       errorHandler.handle(e)
     }
@@ -104,7 +104,7 @@ class BirthdayService {
 
   async removeSelectedBirthdays(selected) {
     try {
-      return axios.post(getServerUrl() + API_URL + "/selected", selected, {headers: authHeader()})
+      return axios.post(getGatewayUrl() + API_URL + "/selected", selected, {headers: authHeader()})
     } catch (e) {
       errorHandler.handle(e)
     }
@@ -128,7 +128,7 @@ class BirthdayService {
   async getBackUp() {
     let backUpObjects = []
     try {
-      let response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
+      let response = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: authHeader()});
       let values = response.data
       for (let i = 0; i < values.length; i++) {
         backUpObjects.push(

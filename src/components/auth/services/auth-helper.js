@@ -1,17 +1,19 @@
 import {UserManager, WebStorageStateStore} from 'oidc-client';
 import userHelper from "@/components/auth/services/user.helper";
+import {getKeycloakRealmUrl, getKeycloakUrl} from "@/components/auth/services/axios-helper"
 
-const KEYCLOAK_URL = "http://192.168.100.9:28080/";
-// const APP_URL = "http://localhost:3000/"
-const APP_URL = "http://192.168.100.9:3000/"
+const REDIRECT_URI = "/callback"
+const RESPONSE_TYPE = "code"
+const SCOPES = "openid profile message.read"
+const CLIENT_ID = "i113_frontend_client"
 
 const settings = {
-  authority: KEYCLOAK_URL + "realms/i113_realm_prod",
-  client_id: "i113_frontend_client",
-  redirect_uri: APP_URL + "/callback",
-  response_type: 'code',
-  scope: "openid profile message.read",
-  post_logout_redirect_uri: APP_URL + "",
+  authority: getKeycloakRealmUrl(),
+  client_id: CLIENT_ID.toString(),
+  redirect_uri: getKeycloakUrl() + REDIRECT_URI,
+  response_type: RESPONSE_TYPE.toString(),
+  scope: SCOPES.toString(),
+  post_logout_redirect_uri: getKeycloakUrl(),
   userStore: new WebStorageStateStore({store: window.localStorage}),
   stateStore: new WebStorageStateStore({store: window.sessionStorage}),
   automaticSilentRenew: false,
