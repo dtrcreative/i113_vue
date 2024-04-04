@@ -49,13 +49,13 @@
         @click:append-inner="showPassword = !showPassword"
       ></v-text-field>
 
-      <v-btn v-if="this.user.userStatus !== 'DISABLED'"
+      <v-btn v-if="!isUserDisabled()"
              text="Disable bot for me"
              variant="tonal"
              @click="showDialog=true"
       ></v-btn>
 
-      <v-btn v-if="this.user.userStatus === 'DISABLED'"
+      <v-btn v-else
              text="Enable bot for me"
              variant="tonal"
              @click="showDialog=true"
@@ -76,12 +76,12 @@
               text="Cancel"
               @click="showDialog=false"
             ></v-btn>
-            <v-btn v-if="this.user.userStatus==='DISABLED'"
-                   text="Confirm"
+            <v-btn v-if="isUserDisabled()"
+                   text="Enable"
                    @click=enable
             ></v-btn>
             <v-btn v-else
-                   text="Confirm"
+                   text="Disable"
                    @click=disable
             ></v-btn>
           </v-card-actions>
@@ -130,6 +130,9 @@ export default {
       this.user = response.data
       this.showDialog = false;
     },
+    isUserDisabled(){
+      return this.user.userStatus==='DISABLED'
+    }
 
   },
 
