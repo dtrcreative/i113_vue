@@ -56,7 +56,6 @@ export const useBirthdaysStore = defineStore('birthdays', {
       } else {
         formattedDate = formattedDate + "-" + unit.date.day
       }
-      console.log(formattedDate)
       return {
         id: this.unitToUpdate.id,
         firstName: unit.firstName,
