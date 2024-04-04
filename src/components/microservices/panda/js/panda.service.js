@@ -17,7 +17,6 @@ const SERVICE_NAME = 'Panda'
 class PandaService {
   async getUnits() {
     try {
-      console.log(getGatewayUrl())
       const responseAccounts = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: authHeader()});
       const responseData = await axios.get(getGatewayUrl() + API_URL + API_SERVICE_TYPES, {headers: authHeader()});
       usePandaStore().setAccounts(responseAccounts.data)
