@@ -38,18 +38,6 @@ class TelegramService {
     }
   }
 
-  async disble() {
-    let user = userHelper.getUser();
-    try {
-      return await axios.post(getGatewayUrl() + API_URL + API_DISABLE, {
-        userId: user.userId,
-      }, {
-        headers: authHeader()
-      })
-    } catch (e) {
-      errorHandler.handle(e)
-    }
-  }
   async disable() {
     let user = userHelper.getUser();
     try {

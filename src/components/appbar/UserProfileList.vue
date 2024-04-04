@@ -15,7 +15,7 @@
         <v-list-item>
           <v-avatar
             color="primary"
-            size="small"
+            size="large"
           >
             <strong>{{ getUserInitials }}</strong>
           </v-avatar>
@@ -85,10 +85,16 @@ export default {
   computed: {
     getUserInitials() {
       let user = userHelper.getUser();
+      if(user.firstName === "" || user.lastName === ""){
+        return user.userName.charAt(0)
+      }
       return user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase();
     },
     getUserFullName() {
       let user = userHelper.getUser();
+      if(user.fullName === undefined){
+        return user.userName
+      }
       return user.fullName;
     },
     getEmail() {

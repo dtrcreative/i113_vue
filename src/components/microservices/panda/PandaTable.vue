@@ -29,17 +29,17 @@
             v-model="usePandaStore().selectedType"
           ></v-select>
         </v-col>
-        <v-col xs="1" sm="1" md="1">
+        <v-col class="btn" xs="1" sm="1" md="1">
           <UploadDialog
             :service="pandaService"
           ></UploadDialog>
         </v-col>
-        <v-col xs="1" sm="1" md="1">
+        <v-col class="btn" xs="1" sm="1" md="1">
           <DownloadDialog
             :service="pandaService"
           ></DownloadDialog>
         </v-col>
-        <v-col xs="1" sm="1" md="1">
+        <v-col class="btn" xs="1" sm="1" md="1">
           <v-btn
             icon="mdi-trash-can"
             min-width="50px"

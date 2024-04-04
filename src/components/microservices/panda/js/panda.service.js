@@ -123,8 +123,11 @@ class PandaService {
   }
 
   async generatePassword() {
+    let user = userHelper.getUser();
     try {
-      let result = await axios.get(getGatewayUrl() + API_URL + API_PASSGEN, {headers: authHeader()})
+      let result = await axios.post(getGatewayUrl() + API_URL + API_PASSGEN,{
+        userId: user.userId,
+      }, {headers: authHeader()})
       usePandaStore().setNewPassword(result.data)
     } catch (e) {
       errorHandler.handle(e)
