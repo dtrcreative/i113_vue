@@ -1,7 +1,7 @@
 import userHelper from "@/components/auth/services/user.helper";
 
-const ActiveProfile = "dev"
-// const ActiveProfile = "prod"
+// const ActiveProfile = "dev"
+const ActiveProfile = "prod"
 
 const GATEWAY_URL_DEV = 'http://localhost:8080/';
 const GATEWAY_URL_PROD = 'http://192.168.100.9:8080/';
