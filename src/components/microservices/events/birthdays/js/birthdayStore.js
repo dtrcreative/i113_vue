@@ -46,16 +46,17 @@ export const useBirthdaysStore = defineStore('birthdays', {
 
     reformatUnit(unit) {
       let formattedDate = unit.date.year.toString()
-      if (unit.date.month < 10) {
+      if (unit.date.month.length===1) {
         formattedDate = formattedDate + "-0" + unit.date.month
       } else {
         formattedDate = formattedDate + "-" + unit.date.month
       }
-      if (unit.date.day < 10) {
+      if (unit.date.day.length===1) {
         formattedDate = formattedDate + "-0" + unit.date.day
       } else {
         formattedDate = formattedDate + "-" + unit.date.day
       }
+      console.log(formattedDate)
       return {
         id: this.unitToUpdate.id,
         firstName: unit.firstName,
