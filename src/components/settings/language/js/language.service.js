@@ -13,9 +13,8 @@ class LanguageService {
 
   async init() {
     try {
-      // const response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
-      // return response.data;
-      return '';
+      const response = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: authHeader()});
+      return response.data;
     } catch (e) {
       errorHandler.handle(e)
     }
@@ -23,9 +22,8 @@ class LanguageService {
 
   async getUnits() {
     try {
-      // const response = await axios.get(getServerUrl() + API_URL + API_ALL, {headers: authHeader()});
-      // return response.data;
-      return "";
+      const response = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: authHeader()});
+      return response.data;
     } catch (e) {
       errorHandler.handle(e)
     }
