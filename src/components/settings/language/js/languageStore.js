@@ -4,7 +4,7 @@ import languageService from "@/components/settings/language/js/language.service"
 export const useLangStore = defineStore('languages', {
   state: () => ({
     languageSelected: 0,
-    languages: {},
+    languages: [],
     languageTypes: [{title: 'Eng', value: 0}, {title: 'Rus', value: 1}],
     searchValue: '',
     paramToUpdate: '',

@@ -1,66 +1,77 @@
 <template>
   <v-card variant="tonal" class="card">
     <v-card-title>Telegram</v-card-title>
-    <v-card-actions v-if="user.userStatus === 'UNDEFINED'">
+    <v-container v-if="user.userStatus === 'UNDEFINED'">
       <v-btn
         @click="register">
         Register
       </v-btn>
-    </v-card-actions>
-    <v-card-actions v-else>
-      <v-btn
-        variant="tonal"
-        @click="status"
-        density="comfortable"
-        icon="mdi-update"
-        class="btn"
-      >
-      </v-btn>
-      <v-text-field
-        :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-        :type="showPassword ? 'text' : 'password'"
-        v-model.trim="this.user.userSecretKey"
-        variant="outlined"
-        density="compact"
-        hide-details
-        label="SecretKey"
-        class="textfield"
-        :readonly="true"
-        @click:append-inner="showPassword = !showPassword"
-      ></v-text-field>
-      <v-text-field
-        v-model.trim="this.bot.name"
-        variant="plain"
-        density="compact"
-        hide-details
-        label="Bot name"
-        class="textfield"
-        :readonly="true"
-        @click:append-inner="showPassword = !showPassword"
-      ></v-text-field>
-      <v-text-field
-        v-model.trim="this.user.userStatus"
-        variant="plain"
-        density="compact"
-        hide-details
-        label="User Status"
-        class="textfield"
-        :readonly="true"
-        @click:append-inner="showPassword = !showPassword"
-      ></v-text-field>
+    </v-container>
+      <v-container v-else>
+      <v-row>
+        <v-col cols="2" sm="2" md="1">
+          <v-btn
+            variant="tonal"
+            @click="status"
+            density="comfortable"
+            icon="mdi-update"
+            class="btn"
+          >
+          </v-btn>
+        </v-col>
+        <v-col cols="10" sm="10" md="3">
+          <v-text-field
+            :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="showPassword ? 'text' : 'password'"
+            v-model.trim="this.user.userSecretKey"
+            variant="outlined"
+            density="compact"
+            hide-details
+            label="SecretKey"
+            class="textfield"
+            :readonly="true"
+            @click:append-inner="showPassword = !showPassword"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="6" sm="6" md="2">
+          <v-text-field
+            v-model.trim="this.bot.name"
+            variant="plain"
+            density="compact"
+            hide-details
+            label="Bot name"
+            class="textfield"
+            :readonly="true"
+            @click:append-inner="showPassword = !showPassword"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="6" sm="6" md="2">
+          <v-text-field
+            v-model.trim="this.user.userStatus"
+            variant="plain"
+            density="compact"
+            hide-details
+            label="User Status"
+            class="textfield"
+            :readonly="true"
+            @click:append-inner="showPassword = !showPassword"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="6" sm="6" md="3">
+          <v-btn v-if="!isUserDisabled()"
+                 text="Disable Shedule"
+                 variant="tonal"
+                 @click="showDialog=true"
+          ></v-btn>
 
-      <v-btn v-if="!isUserDisabled()"
-             text="Disable bot for me"
-             variant="tonal"
-             @click="showDialog=true"
-      ></v-btn>
-
-      <v-btn v-else
-             text="Enable bot for me"
-             variant="tonal"
-             @click="showDialog=true"
-      ></v-btn>
-
+          <v-btn v-else
+                 text="Enable Shedule"
+                 variant="tonal"
+                 @click="showDialog=true"
+          ></v-btn>
+        </v-col>
+      </v-row>
+      </v-container>
       <v-dialog
         max-width="500"
         v-model="showDialog"
@@ -88,7 +99,6 @@
         </v-card>
 
       </v-dialog>
-    </v-card-actions>
     <v-card-item>
     </v-card-item>
   </v-card>
@@ -104,7 +114,7 @@ export default {
     user: {},
     showPassword: false,
     showDialog: false,
-    bot:{
+    bot: {
       name: '@i113_assistant_bot',
       link: 'https://t.me/i113_assistant_bot'
     }
@@ -128,8 +138,8 @@ export default {
       this.user = response.data
       this.showDialog = false;
     },
-    isUserDisabled(){
-      return this.user.userStatus==='DISABLED'
+    isUserDisabled() {
+      return this.user.userStatus === 'DISABLED'
     }
 
   },
@@ -152,9 +162,9 @@ export default {
   border-radius: 15px
 
 .textfield
-  margin-right: 15px
-  margin-left: 15px
-  max-width: 200px
+  //margin-right: 15px
+  //margin-left: 15px
+  //max-width: 200px
 
 .btn
   margin-left: 15px
