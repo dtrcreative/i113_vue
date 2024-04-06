@@ -35,7 +35,7 @@
           <v-btn
             icon="mdi-trash-can"
             min-width="50px"
-            @click=useBirthdaysStore().removeSelected()
+            @click="removeBtn"
           ></v-btn>
         </v-col>
       </v-row>
@@ -48,6 +48,11 @@
     </v-expand-transition>
 
   </v-container>
+
+  <ConfirmRemoveDialog
+    :store="useBirthdaysStore()"
+  >
+  </ConfirmRemoveDialog>
 
   <v-table density="compact" class="table">
     <thead>
@@ -122,6 +127,7 @@ import UploadDialog from "@/components/UI/fileio/UploadDialog";
 import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
 import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
 import {onMounted} from "vue";
+import ConfirmRemoveDialog from "@/components/UI/ConfirmRemoveDialog";
 
 useBirthdaysStore()
 
@@ -159,15 +165,12 @@ function showUpdateForm(unit) {
     description: unit.description,
     notify: unit.notify
   };
-
-function changeUnitNotification(unit){
-  console.log(unit)
-  // birthdayService.updateBirthday()
 }
 
-function test(){
-  console.log('test')
-}
+function removeBtn() {
+  if (useBirthdaysStore().selected.length > 0) {
+    useBirthdaysStore().showConfirmDialog = true
+  }
 }
 
 </script>

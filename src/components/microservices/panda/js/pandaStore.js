@@ -8,6 +8,8 @@ export const usePandaStore = defineStore('pandas', {
     searchValue: "",
     showCUForm: false,
 
+    showConfirmDialog: false,
+
     types: [],
     allTypes: [],
     selectedType: 'ALL',
@@ -48,6 +50,7 @@ export const usePandaStore = defineStore('pandas', {
       await pandaService.updateAccount(this.unitToUpdate)
       await pandaService.getUnits()
     },
+    //Method used in ConfirmRemoveDialog
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {
         this.accounts = this.accounts.filter(unit => unit.id !== this.selected[i])

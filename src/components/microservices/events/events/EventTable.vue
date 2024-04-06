@@ -35,7 +35,7 @@
           <v-btn
             icon="mdi-trash-can"
             min-width="50px"
-            @click=useEventsStore().removeSelected()
+            @click="removeBtn"
           ></v-btn>
         </v-col>
       </v-row>
@@ -48,6 +48,11 @@
     </v-expand-transition>
 
   </v-container>
+
+  <ConfirmRemoveDialog
+    :store="useEventsStore()"
+  >
+  </ConfirmRemoveDialog>
 
   <v-table density="compact" class="table">
     <thead>
@@ -120,6 +125,8 @@ import UploadDialog from "@/components/UI/fileio/UploadDialog";
 import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
 import {onMounted} from "vue";
 import EventCUForm from "@/components/microservices/events/events/EventCUForm";
+import {usePandaStore} from "@/components/microservices/panda/js/pandaStore";
+import ConfirmRemoveDialog from "@/components/UI/ConfirmRemoveDialog";
 
 useEventsStore()
 
@@ -155,6 +162,12 @@ function showUpdateForm(unit) {
     description: unit.description,
     notify: unit.notify
   };
+}
+
+function removeBtn() {
+  if (useEventsStore().selected.length > 0) {
+    useEventsStore().showConfirmDialog = true
+  }
 }
 
 </script>

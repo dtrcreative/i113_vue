@@ -119,13 +119,11 @@ export default {
       this.user = response.data
     },
     async enable() {
-      console.log('enable')
       let response = await telegramService.enable();
       this.user = response.data
       this.showDialog = false;
     },
     async disable() {
-      console.log('disable')
       let response = await telegramService.disable();
       this.user = response.data
       this.showDialog = false;

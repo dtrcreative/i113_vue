@@ -43,7 +43,7 @@
           <v-btn
             icon="mdi-trash-can"
             min-width="50px"
-            @click=usePandaStore().removeSelected()
+            @click="removeBtn"
           ></v-btn>
         </v-col>
       </v-row>
@@ -55,6 +55,11 @@
     </v-expand-transition>
 
   </v-container>
+
+  <ConfirmRemoveDialog
+    :store="usePandaStore()"
+  >
+  </ConfirmRemoveDialog>
 
   <v-table density="compact" class="table">
     <thead>
@@ -122,6 +127,7 @@ import {usePandaStore} from "@/components/microservices/panda/js/pandaStore";
 import {onMounted} from "vue";
 import PandaCUForm from "@/components/microservices/panda/PandaCUForm";
 import utilService from "@/components/microservices/utils/util-service";
+import ConfirmRemoveDialog from "@/components/UI/ConfirmRemoveDialog";
 
 usePandaStore()
 
@@ -159,6 +165,12 @@ function showUpdateForm(unit) {
     type: unit.type,
     description: unit.description,
   };
+}
+
+function removeBtn(){
+  if(usePandaStore().selected.length>0){
+    usePandaStore().showConfirmDialog = true
+  }
 }
 </script>
 

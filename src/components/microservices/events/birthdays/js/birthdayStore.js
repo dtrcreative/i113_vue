@@ -8,6 +8,8 @@ export const useBirthdaysStore = defineStore('birthdays', {
     searchValue: "",
     showCUForm: false,
 
+    showConfirmDialog: false,
+
     uploadJSON: '',
 
     unitToUpdate: {
@@ -36,6 +38,7 @@ export const useBirthdaysStore = defineStore('birthdays', {
       await birthdayService.updateBirthday(this.reformatUnit(this.unitToUpdate))
       await birthdayService.getUnits()
     },
+    //Method used in ConfirmRemoveDialog
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {
         this.units = this.units.filter(unit => unit.id !== this.selected[i])

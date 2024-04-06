@@ -1,6 +1,5 @@
 import {defineStore} from "pinia";
 import eventsService from "@/components/microservices/events/events/js/events.service";
-import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
 
 export const useEventsStore = defineStore('events', {
   state: () => ({
@@ -8,6 +7,8 @@ export const useEventsStore = defineStore('events', {
     selected: [],
     searchValue: "",
     showCUForm: false,
+
+    showConfirmDialog: false,
 
     uploadJSON: '',
 
@@ -37,6 +38,7 @@ export const useEventsStore = defineStore('events', {
       await eventsService.updateEvent(this.reformatUnit(this.unitToUpdate))
       await eventsService.getUnits()
     },
+    //Method used in ConfirmRemoveDialog
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {
         this.units = this.units.filter(unit => unit.id !== this.selected[i])
