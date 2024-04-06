@@ -94,6 +94,7 @@
           color="primary"
           density="compact"
           v-model="item.notify"
+          @change="eventsService.updateEvent(item)"
         ></v-switch>
       </td>
       <td class="btn">

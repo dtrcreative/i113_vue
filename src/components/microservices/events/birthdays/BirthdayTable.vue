@@ -96,6 +96,7 @@
           color="primary"
           density="compact"
           v-model="item.notify"
+          @change="birthdayService.updateBirthday(item)"
         ></v-switch>
       </td>
       <td class="btn">
@@ -158,6 +159,15 @@ function showUpdateForm(unit) {
     description: unit.description,
     notify: unit.notify
   };
+
+function changeUnitNotification(unit){
+  console.log(unit)
+  // birthdayService.updateBirthday()
+}
+
+function test(){
+  console.log('test')
+}
 }
 
 </script>
