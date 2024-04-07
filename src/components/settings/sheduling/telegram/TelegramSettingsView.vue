@@ -122,26 +122,30 @@ export default {
   methods: {
     async register() {
       let response = await telegramService.register();
-      this.user = response.data
+      this.setUserData(response)
     },
     async status() {
       let response = await telegramService.status();
-      this.user = response.data
+      this.setUserData(response)
     },
     async enable() {
       let response = await telegramService.enable();
-      this.user = response.data
+      this.setUserData(response)
       this.showDialog = false;
     },
     async disable() {
       let response = await telegramService.disable();
-      this.user = response.data
+      this.setUserData(response)
       this.showDialog = false;
     },
     isUserDisabled() {
       return this.user.userStatus === 'DISABLED'
+    },
+    setUserData(response){
+      if(response !== undefined){
+        this.user = response.data
+      }
     }
-
   },
 
   mounted() {

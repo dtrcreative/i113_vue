@@ -1,38 +1,71 @@
 import {logout} from "@/components/auth/services/auth.service";
 import router from "@/router";
-
+import {useExcStore} from "@/components/UI/exceptions/exceptionStore";
 
 class ExceptionHandler {
 
   handle(error) {
-    console.log("ExceptionHandler")
-    console.log(error)
     switch (error.response.status) {
-      case 503 :
-        console.log(503)
+      case 400 : //Bad Request
+        this.handle400(error)
         break;
-      case 500 :
-        console.log(500)
-        console.log(error.message)
+      case 401: //Unauthorized
+        this.handle401(error)
         break;
-      case 400 :
-        console.log(400)
-        return error.response.data
-      case 409 :
-        console.log(409)
-        console.log(error.response.data)
+      case 409 : //Conflict
+        this.handle409(error)
         break;
-      case 401:
-        console.log(401)
-        logout().then(r => {
-        })
-        router.push("/")
+      case 500 : //Internal Server Error
+        this.handle500(error)
+        break;
+      case 503 : //Service Unavailable
+        this.handle503(error)
         break;
       default:
-        console.log('default')
-        console.log(error.response.data)
+        this.handle503(error)
         break;
     }
+  }
+
+  handle400(error) {
+    console.log("Bad Request")
+    console.log(error)
+  }
+
+  handle401(error) {
+    console.log("Unauthorized")
+    console.log(error)
+    logout().then(r => {
+    })
+    router.push("/")
+  }
+
+  handle409(error) {
+    console.log("Conflict")
+    console.log(error.response.data)
+  }
+
+  handle500(error) {
+    console.log("Internal Server Error")
+    useExcStore().setExceptionData(
+      error.response.status,
+      error.response.statusText,
+      error.response.message,
+    )
+  }
+
+  handle503(error) {
+    console.log("Service Unavailable")
+    useExcStore().setExceptionData(
+      error.response.status,
+      error.response.statusText,
+      error.response.message,
+    )
+  }
+
+  handleDefault(error) {
+    console.log('default')
+    console.log(error)
   }
 
 }

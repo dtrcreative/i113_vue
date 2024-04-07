@@ -17,6 +17,8 @@
   <navigation-bar></navigation-bar>
 </v-navigation-drawer>
 
+  <ExceptionSnackBar></ExceptionSnackBar>
+
 </template>
 
 <script>
@@ -25,10 +27,12 @@ import ToggleTheme from "@/components/appbar/ToggleTheme";
 import TranslateList from "@/components/appbar/TranlateList";
 import UserProfileList from "@/components/appbar/UserProfileList";
 import NavigationBar from "@/components/appbar/NavigationBar";
+import ExceptionSnackBar from "@/components/UI/exceptions/ExceptionSnackBar";
 
 export default {
   name: "AppBar",
   components: {
+    ExceptionSnackBar,
     NavigationBar, UserProfileList, TranslateList, ToggleTheme
   },
 
