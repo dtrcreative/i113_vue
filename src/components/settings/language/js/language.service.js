@@ -1,6 +1,6 @@
 import exceptionHandler from "@/components/UI/exceptions/exception-handler";
 import axios from "axios";
-import {authHeader, getGatewayUrl} from "@/components/auth/services/axios-helper";
+import {authHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
 
 const API_URL = 'api/resource/language/';
 const API_ALL = 'all';

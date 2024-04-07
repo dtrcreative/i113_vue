@@ -1,6 +1,6 @@
 import userService from "@/components/auth/services/user.service";
 import axios from "axios";
-import {authHeader, getGatewayUrl} from "@/components/auth/services/axios-helper";
+import {authHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
 import exceptionHandler from "@/components/UI/exceptions/exception-handler";
 
 const API_URL = 'api/telbot/';

@@ -1,6 +1,6 @@
 import {UserManager, WebStorageStateStore} from 'oidc-client';
 import userService from "@/components/auth/services/user.service";
-import {getKeycloakRealmUrl, getKeycloakUrl} from "@/components/auth/services/axios-helper"
+import {getKeycloakRealmUrl, getKeycloakUrl} from "@/components/auth/services/axios.service"
 
 const REDIRECT_URI = "/callback"
 const RESPONSE_TYPE = "code"
