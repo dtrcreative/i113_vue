@@ -2,7 +2,7 @@ import {getAuthUser} from "@/components/auth/services/auth-helper";
 
 const USER = "user"
 
-class UserHelper {
+class UserService {
   fillLocalsStorageUser() {
     getAuthUser().then(user => {
       if (user) {
@@ -42,4 +42,4 @@ class UserHelper {
 
 }
 
-export default new UserHelper();
+export default new UserService();

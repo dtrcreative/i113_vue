@@ -4,12 +4,12 @@
 
 <script>
 import {login} from "@/components/auth/services/auth-helper";
-import userHelper from "@/components/auth/services/user.helper";
+import userService from "@/components/auth/services/user.service";
 
 export default {
   name: "LogIn",
   mounted() {
-    userHelper.cleanStorage()
+    userService.cleanStorage()
     login();
   }
 }

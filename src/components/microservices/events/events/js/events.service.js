@@ -2,7 +2,7 @@ import axios from "axios";
 import {authHeader, getGatewayUrl} from "@/components/auth/services/axios-helper";
 import exceptionHandler from "@/components/UI/exceptions/exception-handler";
 import {useEventsStore} from "@/components/microservices/events/events/js/eventsStore";
-import userHelper from "@/components/auth/services/user.helper";
+import userService from "@/components/auth/services/user.service";
 
 const API_URL = 'api/events/';
 
@@ -18,7 +18,7 @@ class EventService {
   }
 
   async createEvent(unit) {
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     try {
       return await axios.post(getGatewayUrl() + API_URL, {
         userId: user.userId,
@@ -36,7 +36,7 @@ class EventService {
   }
 
   async updateEvent(unit) {
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     try {
       return await axios.put(getGatewayUrl() + API_URL, {
         id: unit.id,

@@ -1,7 +1,7 @@
 import axios from "axios";
 import {authHeader, getGatewayUrl} from "@/components/auth/services/axios-helper";
 import exceptionHandler from "@/components/UI/exceptions/exception-handler";
-import userHelper from "@/components/auth/services/user.helper";
+import userService from "@/components/auth/services/user.service";
 import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
 
 const API_URL = 'api/events/birthdays/';
@@ -23,7 +23,7 @@ class BirthdayService {
   }
 
   async createBirthday(unit) {
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     try {
       return await axios.post(getGatewayUrl() + API_URL, {
         userId: user.userId,
@@ -41,7 +41,7 @@ class BirthdayService {
   }
 
   async updateBirthday(unit) {
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     try {
       return await axios.put(getGatewayUrl() + API_URL, {
         id: unit.id,
@@ -71,7 +71,7 @@ class BirthdayService {
     let unitNumber = 0;
     let objects = [];
     let failed = [];
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     for (unitNumber; unitNumber < json.length; unitNumber++) {
       if (failed.length > 5) {
         break;

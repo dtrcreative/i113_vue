@@ -21,7 +21,7 @@
 
 <script>
 import {checkUser, getAuthUser, login, logout} from "@/components/auth/services/auth-helper";
-import UserHelper from "@/components/auth/services/user.helper"
+import UserService from "@/components/auth/services/user.service"
 import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
 import pandaService from "@/components/microservices/panda/js/panda.service";
 
@@ -63,7 +63,7 @@ export default {
       console.log(await pandaService.generatePassword())
     },
     userHelperFill() {
-      UserHelper.fillLocalsStorageUser();
+      UserService.fillLocalsStorageUser();
     }
   }
 }

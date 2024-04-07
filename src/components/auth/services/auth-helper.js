@@ -1,5 +1,5 @@
 import {UserManager, WebStorageStateStore} from 'oidc-client';
-import userHelper from "@/components/auth/services/user.helper";
+import userService from "@/components/auth/services/user.service";
 import {getKeycloakRealmUrl, getKeycloakUrl} from "@/components/auth/services/axios-helper"
 
 const REDIRECT_URI = "/callback"
@@ -32,7 +32,7 @@ export const logout = () => {
 
 export const redirectCallBack = () => {
   userManager.signinRedirectCallback("").then(function () {
-    userHelper.fillLocalsStorageUser();
+    userService.fillLocalsStorageUser();
     window.location = "/home";
   }).catch(function (e) {
     console.error(e);

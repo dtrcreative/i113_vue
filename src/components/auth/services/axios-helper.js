@@ -1,4 +1,4 @@
-import userHelper from "@/components/auth/services/user.helper";
+import userService from "@/components/auth/services/user.service";
 
 // const ActiveProfile = "dev"
 const ActiveProfile = "prod"
@@ -25,7 +25,7 @@ export const getKeycloakRealmUrl = () => {
 }
 
 export const authHeader = () => {
-  let user = userHelper.getUser();
+  let user = userService.getUser();
   if (user) {
     return {
       Accept: "application/json",

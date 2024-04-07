@@ -1,6 +1,6 @@
 // Composables
 import {createRouter, createWebHistory} from 'vue-router'
-import userHelper from "@/components/auth/services/user.helper";
+import userService from "@/components/auth/services/user.service";
 
 const routes = [
   {
@@ -67,16 +67,16 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (userHelper.getUser() === null &&
+  if (userService.getUser() === null &&
     (to.name !== 'login') &&
     (to.name !== 'RedirectCallBack')) {
     next({name: 'login'})
   } else {
-    if (userHelper.getUser() !== null && (userHelper.getUser().expires_at) < (new Date().getTime() / 1000) &&
+    if (userService.getUser() !== null && (userService.getUser().expires_at) < (new Date().getTime() / 1000) &&
       (to.name !== 'login') &&
       (to.name !== 'RedirectCallBack')) {
-      userHelper.cleanUserData()
-      userHelper.cleanStorage()
+      userService.cleanUserData()
+      userService.cleanStorage()
       next({name: 'login'})
     } else {
       next()

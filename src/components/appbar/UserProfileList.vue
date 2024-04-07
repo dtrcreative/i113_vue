@@ -47,7 +47,7 @@
 
 <script>
 import {logout} from "@/components/auth/services/auth-helper";
-import userHelper from "@/components/auth/services/user.helper";
+import userService from "@/components/auth/services/user.service";
 import router from "@/router";
 
 export default {
@@ -65,7 +65,7 @@ export default {
       switch (action) {
         case 'logout': {
           logout();
-          userHelper.cleanUserData();
+          userService.cleanUserData();
         }
           break
         case 'goProfile':
@@ -84,21 +84,21 @@ export default {
   },
   computed: {
     getUserInitials() {
-      let user = userHelper.getUser();
+      let user = userService.getUser();
       if(user.firstName === "" || user.lastName === ""){
         return user.userName.charAt(0)
       }
       return user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase();
     },
     getUserFullName() {
-      let user = userHelper.getUser();
+      let user = userService.getUser();
       if(user.fullName === undefined){
         return user.userName
       }
       return user.fullName;
     },
     getEmail() {
-      let user = userHelper.getUser();
+      let user = userService.getUser();
       return user.email;
     }
   }

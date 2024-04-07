@@ -1,4 +1,4 @@
-import userHelper from "@/components/auth/services/user.helper";
+import userService from "@/components/auth/services/user.service";
 import axios from "axios";
 import {authHeader, getGatewayUrl} from "@/components/auth/services/axios-helper";
 import exceptionHandler from "@/components/UI/exceptions/exception-handler";
@@ -12,7 +12,7 @@ const API_ENABLE = 'enable'
 class TelegramService {
 
   async register() {
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     try {
       return await axios.post(getGatewayUrl() + API_URL + API_REG, {
         userId: user.userId,
@@ -25,7 +25,7 @@ class TelegramService {
     }
   }
   async status() {
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     try {
       return await axios.post(getGatewayUrl() + API_URL + API_STATUS, {
         userId: user.userId,
@@ -39,7 +39,7 @@ class TelegramService {
   }
 
   async disable() {
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     try {
       return await axios.post(getGatewayUrl() + API_URL + API_DISABLE, {
         userId: user.userId,
@@ -51,7 +51,7 @@ class TelegramService {
     }
   }
   async enable() {
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     try {
       return await axios.post(getGatewayUrl() + API_URL + API_ENABLE, {
         userId: user.userId,

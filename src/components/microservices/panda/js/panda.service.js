@@ -1,7 +1,7 @@
 import axios from "axios";
 import {authHeader, getGatewayUrl} from "@/components/auth/services/axios-helper";
 import exceptionHandler from "@/components/UI/exceptions/exception-handler";
-import userHelper from "@/components/auth/services/user.helper";
+import userService from "@/components/auth/services/user.service";
 import {usePandaStore} from "@/components/microservices/panda/js/pandaStore";
 
 const API_URL = 'api/panda/';
@@ -27,7 +27,7 @@ class PandaService {
   }
 
   async createAccount(account) {
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     try {
       return await axios.post(getGatewayUrl() + API_URL, {
         userId: user.userId,
@@ -47,7 +47,7 @@ class PandaService {
   }
 
   async updateAccount(account) {
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     try {
       return await axios.put(getGatewayUrl() + API_URL, {
         id: account.id,
@@ -79,7 +79,7 @@ class PandaService {
     let unitNumber = 0;
     let objects = [];
     let failed = [];
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     for (unitNumber; unitNumber < json.length; unitNumber++) {
       if (failed.length > 5) {
         break;
@@ -123,7 +123,7 @@ class PandaService {
   }
 
   async generatePassword() {
-    let user = userHelper.getUser();
+    let user = userService.getUser();
     try {
       let result = await axios.post(getGatewayUrl() + API_URL + API_PASSGEN,{
         userId: user.userId,
