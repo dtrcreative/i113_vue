@@ -12,6 +12,7 @@
 
 <script setup>
 import {useExcStore} from "@/components/UI/exceptions/exceptionStore";
+
 useExcStore()
 </script>
 

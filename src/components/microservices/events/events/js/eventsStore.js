@@ -49,12 +49,12 @@ export const useEventsStore = defineStore('events', {
 
     reformatUnit(unit) {
       let formattedDate = unit.date.year.toString()
-      if (unit.date.month.length===1) {
+      if (unit.date.month.length === 1) {
         formattedDate = formattedDate + "-0" + unit.date.month
       } else {
         formattedDate = formattedDate + "-" + unit.date.month
       }
-      if (unit.date.day.length===1) {
+      if (unit.date.day.length === 1) {
         formattedDate = formattedDate + "-0" + unit.date.day
       } else {
         formattedDate = formattedDate + "-" + unit.date.day

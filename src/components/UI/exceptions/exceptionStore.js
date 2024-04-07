@@ -18,7 +18,7 @@ export const useExcStore = defineStore('exception', {
     }
   },
   getters: {
-    getExceptionText(){
+    getExceptionText() {
       return this.exception.exCode + ": " + this.exception.exTitle
     }
   }

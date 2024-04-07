@@ -35,6 +35,7 @@
 
 import router from "@/router";
 import {useNavStore} from "@/components/appbar/js/navigation";
+
 export default {
   name: "NavigationBar",
   data() {
@@ -47,7 +48,7 @@ export default {
   },
   methods: {
     useNavStore,
-    redirect(item){
+    redirect(item) {
       router.push(item.redirect);
     },
   }

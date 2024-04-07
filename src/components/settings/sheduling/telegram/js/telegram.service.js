@@ -24,6 +24,7 @@ class TelegramService {
       exceptionHandler.handle(e)
     }
   }
+
   async status() {
     let user = userService.getUser();
     try {
@@ -50,6 +51,7 @@ class TelegramService {
       exceptionHandler.handle(e)
     }
   }
+
   async enable() {
     let user = userService.getUser();
     try {
@@ -63,7 +65,7 @@ class TelegramService {
     }
   }
 
-  async test(){
+  async test() {
     try {
       const response = await axios.get(getGatewayUrl() + 'api/events/' + 'alltest', {headers: authHeader()});
       return response;

@@ -125,7 +125,6 @@ import UploadDialog from "@/components/UI/fileio/UploadDialog";
 import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
 import {onMounted} from "vue";
 import EventCUForm from "@/components/microservices/events/events/EventCUForm";
-import {usePandaStore} from "@/components/microservices/panda/js/pandaStore";
 import ConfirmRemoveDialog from "@/components/UI/ConfirmRemoveDialog";
 
 useEventsStore()

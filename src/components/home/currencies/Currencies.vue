@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {checkUser, getAuthUser, login, logout} from "@/components/auth/services/auth.service";
+import {getAuthUser, login, logout} from "@/components/auth/services/auth.service";
 import UserService from "@/components/auth/services/user.service"
 import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
 import pandaService from "@/components/microservices/panda/js/panda.service";
@@ -43,7 +43,7 @@ export default {
     // 840 - USD
 
     async jsontest() {
-        await birthdayService.checkServiceStatus();
+      await birthdayService.checkServiceStatus();
     },
 
     logintest() {

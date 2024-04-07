@@ -7,5 +7,4 @@
 
 <script setup>
 import AppBar from './AppBar.vue'
-import View from "@/layouts/default/View";
-</script>
+import View from "@/layouts/default/View";</script>

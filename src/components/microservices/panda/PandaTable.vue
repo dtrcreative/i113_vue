@@ -167,8 +167,8 @@ function showUpdateForm(unit) {
   };
 }
 
-function removeBtn(){
-  if(usePandaStore().selected.length>0){
+function removeBtn() {
+  if (usePandaStore().selected.length > 0) {
     usePandaStore().showConfirmDialog = true
   }
 }

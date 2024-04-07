@@ -7,7 +7,7 @@
         Register
       </v-btn>
     </v-container>
-      <v-container v-else>
+    <v-container v-else>
       <v-row>
         <v-col cols="2" sm="2" md="1">
           <v-btn
@@ -71,34 +71,34 @@
           ></v-btn>
         </v-col>
       </v-row>
-      </v-container>
-      <v-dialog
-        max-width="500"
-        v-model="showDialog"
-      >
-        <v-card title="Elli-bot disable confirmation">
-          <v-card-text>
-            Please confirm deactivation of the bot.
-          </v-card-text>
+    </v-container>
+    <v-dialog
+      max-width="500"
+      v-model="showDialog"
+    >
+      <v-card title="Elli-bot disable confirmation">
+        <v-card-text>
+          Please confirm deactivation of the bot.
+        </v-card-text>
 
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              text="Cancel"
-              @click="showDialog=false"
-            ></v-btn>
-            <v-btn v-if="isUserDisabled()"
-                   text="Enable"
-                   @click=enable
-            ></v-btn>
-            <v-btn v-else
-                   text="Disable"
-                   @click=disable
-            ></v-btn>
-          </v-card-actions>
-        </v-card>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            text="Cancel"
+            @click="showDialog=false"
+          ></v-btn>
+          <v-btn v-if="isUserDisabled()"
+                 text="Enable"
+                 @click=enable
+          ></v-btn>
+          <v-btn v-else
+                 text="Disable"
+                 @click=disable
+          ></v-btn>
+        </v-card-actions>
+      </v-card>
 
-      </v-dialog>
+    </v-dialog>
     <v-card-item>
     </v-card-item>
   </v-card>
@@ -141,8 +141,8 @@ export default {
     isUserDisabled() {
       return this.user.userStatus === 'DISABLED'
     },
-    setUserData(response){
-      if(response !== undefined){
+    setUserData(response) {
+      if (response !== undefined) {
         this.user = response.data
       }
     }
@@ -166,9 +166,9 @@ export default {
   border-radius: 15px
 
 .textfield
-  //margin-right: 15px
-  //margin-left: 15px
-  //max-width: 200px
+//margin-right: 15px
+//margin-left: 15px
+//max-width: 200px
 
 .btn
   margin-left: 15px

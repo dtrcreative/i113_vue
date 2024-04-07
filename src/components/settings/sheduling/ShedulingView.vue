@@ -10,6 +10,7 @@
 
 <script>
 import TelegramSettingsView from "@/components/settings/sheduling/telegram/TelegramSettingsView";
+
 export default {
   name: "ShedulingView",
   components: {TelegramSettingsView}

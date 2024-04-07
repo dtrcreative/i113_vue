@@ -22,7 +22,7 @@ class ExceptionHandler {
         this.handle503(error)
         break;
       default:
-        this.handle503(error)
+        this.handleDefault(error)
         break;
     }
   }

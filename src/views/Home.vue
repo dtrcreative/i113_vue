@@ -15,8 +15,7 @@
 
 <script setup>
 import MonthCalculation from "@/components/home/monthcalc/BalanceCalculation";
-import Currencies from "@/components/home/currencies/Currencies";
-</script>
+import Currencies from "@/components/home/currencies/Currencies";</script>
 
 <style lang="sass" scoped>
 

@@ -34,10 +34,10 @@ export default {
       required: true
     },
   },
-  methods:{
-    remove(){
+  methods: {
+    remove() {
       this.store.removeSelected()
-      this.store.showConfirmDialog=false
+      this.store.showConfirmDialog = false
     }
   }
 }
