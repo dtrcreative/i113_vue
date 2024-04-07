@@ -13,7 +13,7 @@
 
   </v-app-bar>
 
-<v-navigation-drawer location="left" expand-on-hover="" rail="">
+<v-navigation-drawer location="left" expand-on-hover rail>
   <navigation-bar></navigation-bar>
 </v-navigation-drawer>
 

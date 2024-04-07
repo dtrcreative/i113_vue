@@ -190,7 +190,7 @@ export default {
       setTimeout(() => {
         (this.loading = false)
         if (errorExist) {
-          this.errorHandler('404', 'Page not found')
+          this.exceptionHandler('404', 'Page not found')
         }
 
       }, 3000)
@@ -202,9 +202,9 @@ export default {
       this.$refs.form.resetValidation()
     },
     clearError() {
-      this.errorHandler('', '')
+      this.exceptionHandler('', '')
     },
-    errorHandler(errorCode, errorMessage) {
+    exceptionHandler(errorCode, errorMessage) {
       this.errorCode = errorCode;
       this.errorMessage = errorMessage;
     },

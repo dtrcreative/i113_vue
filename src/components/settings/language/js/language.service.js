@@ -1,4 +1,4 @@
-import errorHandler from "@/components/microservices/utils/error-handler";
+import exceptionHandler from "@/components/UI/exceptions/exception-handler";
 import axios from "axios";
 import {authHeader, getGatewayUrl} from "@/components/auth/services/axios-helper";
 
@@ -16,7 +16,7 @@ class LanguageService {
       const response = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: authHeader()});
       return response.data;
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -25,7 +25,7 @@ class LanguageService {
       const response = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: authHeader()});
       return response.data;
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -41,7 +41,7 @@ class LanguageService {
         headers: authHeader()
       })
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -57,7 +57,7 @@ class LanguageService {
         headers: authHeader()
       })
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -65,7 +65,7 @@ class LanguageService {
     try {
       return axios.delete(getGatewayUrl() + API_URL + id, {headers: authHeader()})
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -73,7 +73,7 @@ class LanguageService {
     try {
       return await axios.post(getGatewayUrl() + API_URL + (isReplace ? API_JSON_REPLACE : API_JSON_ADD), json, {headers: authHeader()})
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -135,7 +135,7 @@ class LanguageService {
       }
       return backUpObjects;
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 

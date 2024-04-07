@@ -2,10 +2,10 @@ import {logout} from "@/components/auth/services/auth-helper";
 import router from "@/router";
 
 
-class ErrorHandler {
+class ExceptionHandler {
 
   handle(error) {
-    console.log("ErrorHandler")
+    console.log("ExceptionHandler")
     console.log(error)
     switch (error.response.status) {
       case 503 :
@@ -37,4 +37,4 @@ class ErrorHandler {
 
 }
 
-export default new ErrorHandler();
+export default new ExceptionHandler();

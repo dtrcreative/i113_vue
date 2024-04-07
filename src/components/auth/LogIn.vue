@@ -125,12 +125,12 @@ export default {
       this.$refs.form.resetValidation()
     },
     clearError() {
-      this.errorHandler('', '')
+      this.exceptionHandler('', '')
     },
     closeDialog() {
       this.dialog = false;
     },
-    errorHandler(errorCode, errorMessage) {
+    exceptionHandler(errorCode, errorMessage) {
       this.errorCode = errorCode;
       this.errorMessage = errorMessage;
     }

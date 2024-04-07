@@ -1,6 +1,6 @@
 import axios from "axios";
 import {authHeader, getGatewayUrl} from "@/components/auth/services/axios-helper";
-import errorHandler from "@/components/microservices/utils/error-handler";
+import exceptionHandler from "@/components/UI/exceptions/exception-handler";
 import {useEventsStore} from "@/components/microservices/events/events/js/eventsStore";
 import userHelper from "@/components/auth/services/user.helper";
 
@@ -13,7 +13,7 @@ class EventService {
       const response = await axios.get(getGatewayUrl() + API_URL + 'all', {headers: authHeader()});
       useEventsStore().setUnits(response.data)
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -31,7 +31,7 @@ class EventService {
       })
     } catch (e) {
       console.log(e)
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -49,7 +49,7 @@ class EventService {
         headers: authHeader()
       })
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -57,7 +57,7 @@ class EventService {
     try {
       return axios.post(getGatewayUrl() + API_URL + "/selected", selected, {headers: authHeader()})
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 

@@ -1,7 +1,7 @@
 import userHelper from "@/components/auth/services/user.helper";
 import axios from "axios";
 import {authHeader, getGatewayUrl} from "@/components/auth/services/axios-helper";
-import errorHandler from "@/components/microservices/utils/error-handler";
+import exceptionHandler from "@/components/UI/exceptions/exception-handler";
 
 const API_URL = 'api/telbot/';
 const API_REG = 'reg'
@@ -21,7 +21,7 @@ class TelegramService {
         headers: authHeader()
       })
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
   async status() {
@@ -34,7 +34,7 @@ class TelegramService {
         headers: authHeader()
       })
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -47,7 +47,7 @@ class TelegramService {
         headers: authHeader()
       })
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
   async enable() {
@@ -59,7 +59,7 @@ class TelegramService {
         headers: authHeader()
       })
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -68,7 +68,7 @@ class TelegramService {
       const response = await axios.get(getGatewayUrl() + 'api/events/' + 'alltest', {headers: authHeader()});
       return response;
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 }

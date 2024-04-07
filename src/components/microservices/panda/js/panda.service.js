@@ -1,6 +1,6 @@
 import axios from "axios";
 import {authHeader, getGatewayUrl} from "@/components/auth/services/axios-helper";
-import errorHandler from "@/components/microservices/utils/error-handler";
+import exceptionHandler from "@/components/UI/exceptions/exception-handler";
 import userHelper from "@/components/auth/services/user.helper";
 import {usePandaStore} from "@/components/microservices/panda/js/pandaStore";
 
@@ -22,7 +22,7 @@ class PandaService {
       usePandaStore().setAccounts(responseAccounts.data)
       usePandaStore().setTypes(responseData.data)
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -42,7 +42,7 @@ class PandaService {
         headers: authHeader()
       })
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -63,7 +63,7 @@ class PandaService {
         headers: authHeader()
       })
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -71,7 +71,7 @@ class PandaService {
     try {
       return await axios.post(getGatewayUrl() + API_URL + (isReplace ? API_JSON_REPLACE : API_JSON_ADD), json, {headers: authHeader()})
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -118,7 +118,7 @@ class PandaService {
     try {
       return axios.post(getGatewayUrl() + API_URL + "/selected", selected, {headers: authHeader()})
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -130,7 +130,7 @@ class PandaService {
       }, {headers: authHeader()})
       usePandaStore().setNewPassword(result.data)
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
@@ -171,7 +171,7 @@ class PandaService {
       }
       return backUpObjects;
     } catch (e) {
-      errorHandler.handle(e)
+      exceptionHandler.handle(e)
     }
   }
 
