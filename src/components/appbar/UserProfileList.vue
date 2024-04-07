@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import {logout} from "@/components/auth/services/auth-helper";
+import {logout} from "@/components/auth/services/auth.service";
 import userService from "@/components/auth/services/user.service";
 import router from "@/router";
 

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {redirectCallBack} from "@/components/auth/services/auth-helper";
+import {redirectCallBack} from "@/components/auth/services/auth.service";
 
 export default {
   name: "RedirectCallBack",

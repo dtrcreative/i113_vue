@@ -1,4 +1,4 @@
-import {getAuthUser} from "@/components/auth/services/auth-helper";
+import {getAuthUser} from "@/components/auth/services/auth.service";
 
 const USER = "user"
 

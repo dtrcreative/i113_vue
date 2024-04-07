@@ -1,4 +1,4 @@
-import {logout} from "@/components/auth/services/auth-helper";
+import {logout} from "@/components/auth/services/auth.service";
 import router from "@/router";
 
 
