@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import {useExcStore} from "@/components/UI/exceptions/exceptionStore";
+import {useExcStore} from "@/components/UI/exceptions/js/exceptionStore";
 
 useExcStore()
 </script>

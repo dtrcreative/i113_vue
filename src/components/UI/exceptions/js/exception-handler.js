@@ -1,6 +1,6 @@
 import {logout} from "@/components/auth/services/auth.service";
 import router from "@/router";
-import {useExcStore} from "@/components/UI/exceptions/exceptionStore";
+import {useExcStore} from "@/components/UI/exceptions/js/exceptionStore";
 
 class ExceptionHandler {
 

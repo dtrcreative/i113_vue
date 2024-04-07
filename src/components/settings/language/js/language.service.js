@@ -1,4 +1,4 @@
-import exceptionHandler from "@/components/UI/exceptions/exception-handler";
+import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 import axios from "axios";
 import {authHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 import {authHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
-import exceptionHandler from "@/components/UI/exceptions/exception-handler";
+import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 import {useEventsStore} from "@/components/microservices/events/events/js/eventsStore";
 import userService from "@/components/auth/services/user.service";
 
