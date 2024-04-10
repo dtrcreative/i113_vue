@@ -7,13 +7,13 @@ const GATEWAY_URL_DEV =         'http://localhost:8080/';
 const KEYCLOAK_URL_DEV =        'http://localhost:3000/';
 const KEYCLOAK_URL_REALM_DEV =  'http://localhost:28080/realms/i113_realm';
 
-// const GATEWAY_URL_PROD =        'http://192.168.192.125:8080/';
-// const KEYCLOAK_URL_PROD =       'http://192.168.192.125:3000/';
-// const KEYCLOAK_URL_REALM_PROD = 'http://192.168.192.125:28080/realms/i113_realm_prod';
+const GATEWAY_URL_PROD =        'http://192.168.192.125:8080/';
+const KEYCLOAK_URL_PROD =       'http://192.168.192.125:3000/';
+const KEYCLOAK_URL_REALM_PROD = 'http://192.168.192.125:28080/realms/i113_realm_prod';
 
-const GATEWAY_URL_PROD =         'http://192.168.100.9:8080/';
-const KEYCLOAK_URL_PROD =        'http://192.168.100.9:3000/';
-const KEYCLOAK_URL_REALM_PROD =  'http://192.168.100.9:28080/realms/i113_realm_prod';
+// const GATEWAY_URL_PROD =         'http://192.168.100.9:8080/';
+// const KEYCLOAK_URL_PROD =        'http://192.168.100.9:3000/';
+// const KEYCLOAK_URL_REALM_PROD =  'http://192.168.100.9:28080/realms/i113_realm_prod';
 
 export const getGatewayUrl = () => {
   return ActiveProfile === "prod" ? GATEWAY_URL_PROD : GATEWAY_URL_DEV;

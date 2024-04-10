@@ -12,6 +12,9 @@ class ExceptionHandler {
       case 401: //Unauthorized
         this.handle401(error)
         break;
+      case 404: //Not Found
+        this.handle404(error)
+        break;
       case 409 : //Conflict
         this.handle409(error)
         break;
@@ -38,6 +41,15 @@ class ExceptionHandler {
     logout().then(r => {
     })
     router.push("/")
+  }
+
+  handle404(error) {
+    console.log("Not Found")
+    useExcStore().setExceptionData(
+      error.response.status,
+      error.response.statusText,
+      error.response.message,
+    )
   }
 
   handle409(error) {

@@ -5,17 +5,11 @@
     title="TestButtons"
   ></v-card>
 
-  <v-btn
-    @click="jsontest"
-  >
-    JsonTest
-  </v-btn>
-
-  <v-btn
-    @click="jsontest"
-  >
-    JsonTest
-  </v-btn>
+  <v-btn @click="gatewayHealth">GatewayHealth</v-btn>
+  <v-btn @click="resourcesHealth">ResourcesHealth</v-btn>
+  <v-btn @click="pandaHealth">PandaHealth</v-btn>
+  <v-btn @click="eventsHealth">EventsHealth</v-btn>
+  <v-btn @click="telbotHealth">TelbotHealth</v-btn>
 
 </template>
 
@@ -24,6 +18,10 @@ import {getAuthUser, login, logout} from "@/components/auth/services/auth.servic
 import UserService from "@/components/auth/services/user.service"
 import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
 import pandaService from "@/components/microservices/panda/js/panda.service";
+import axios from "axios";
+import {authHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
+import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
+import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 
 export default {
   name: "Currencies",
@@ -42,29 +40,47 @@ export default {
     // 978 - EUR
     // 840 - USD
 
-    async jsontest() {
-      await birthdayService.checkServiceStatus();
+    async gatewayHealth() {
+      try {
+        const response = await axios.get(getGatewayUrl() + "gateway/info/health", {headers: authHeader()});
+        console.log(response)
+      } catch (e) {
+        exceptionHandler.handle(e)
+      }
+    },
+    async resourcesHealth() {
+      try {
+        const response = await axios.get(getGatewayUrl() + "api/resources/info/health", {headers: authHeader()});
+        console.log(response)
+      } catch (e) {
+        exceptionHandler.handle(e)
+      }
+    },
+    async eventsHealth() {
+      try {
+        const response = await axios.get(getGatewayUrl() + "api/events/info/health", {headers: authHeader()});
+        console.log(response)
+      } catch (e) {
+        exceptionHandler.handle(e)
+      }
+    },
+    async pandaHealth() {
+      try {
+        const response = await axios.get(getGatewayUrl() + "api/panda/info/health", {headers: authHeader()});
+        console.log(response)
+      } catch (e) {
+        exceptionHandler.handle(e)
+      }
+    },
+    async telbotHealth() {
+      try {
+        const response = await axios.get(getGatewayUrl() + "api/telbot/info/health", {headers: authHeader()});
+        console.log(response)
+      } catch (e) {
+        exceptionHandler.handle(e)
+      }
     },
 
-    logintest() {
-      login();
-    },
-    logouttest() {
-      logout();
-    },
-    apiCall() {
-      console.log()
-      // eventsService.getEvents();
-    },
-    userData() {
-      console.log(getAuthUser())
-    },
-    async checkUser() {
-      console.log(await pandaService.generatePassword())
-    },
-    userHelperFill() {
-      UserService.fillLocalsStorageUser();
-    }
   }
 }
 </script>
