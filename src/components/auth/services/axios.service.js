@@ -11,7 +11,7 @@ const KEYCLOAK_URL_REALM_DEV =  'http://localhost:28080/realms/i113_realm';
 // const KEYCLOAK_URL_PROD =       'http://192.168.192.125:3000/';
 // const KEYCLOAK_URL_REALM_PROD = 'http://192.168.192.125:28080/realms/i113_realm_prod';
 
-const GATEWAY_URL_PROD =         'http://192.168.100.9:98080/';
+const GATEWAY_URL_PROD =         'http://192.168.100.9:18080/';
 const KEYCLOAK_URL_PROD =        'http://192.168.100.9:23000/';
 const KEYCLOAK_URL_REALM_PROD =  'http://192.168.100.9:28080/realms/i113_realm_prod';
 
