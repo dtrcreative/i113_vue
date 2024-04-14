@@ -86,9 +86,9 @@ class ExceptionHandler {
   handleNotLogin(error){
     console.log(error)
     useExcStore().setExceptionData(
+      error.code,
+      error.message,
       "",
-      "User not logIn",
-      "User not logIn",
     )
   }
 

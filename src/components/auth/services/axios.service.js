@@ -8,7 +8,8 @@ const KEYCLOAK_URL_DEV =        'http://localhost:3000/';
 const KEYCLOAK_URL_REALM_DEV =  'http://localhost:28080/realms/i113_realm';
 
 const GATEWAY_URL_PROD =        'http://192.168.192.81:18080/';
-const KEYCLOAK_URL_PROD =       'http://192.168.100.8:23000/';
+// const KEYCLOAK_URL_PROD =       'http://localhost:23000/';
+const KEYCLOAK_URL_PROD =       'http://192.168.192.81:23000/';
 const KEYCLOAK_URL_REALM_PROD = 'http://192.168.192.81:28080/realms/i113_realm_prod/';
 
 // const GATEWAY_URL_PROD =         'http://192.168.100.9:18080/';

@@ -10,6 +10,7 @@
   <v-btn @click="pandaHealth">PandaHealth</v-btn>
   <v-btn @click="eventsHealth">EventsHealth</v-btn>
   <v-btn @click="telbotHealth">TelbotHealth</v-btn>
+  <v-btn @click="showUserInfo">UserInfo</v-btn>
 
 </template>
 
@@ -80,6 +81,9 @@ export default {
         exceptionHandler.handle(e)
       }
     },
+    async showUserInfo(){
+      console.log(await getAuthUser())
+    }
 
   }
 }

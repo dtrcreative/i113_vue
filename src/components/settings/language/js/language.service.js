@@ -2,7 +2,7 @@ import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 import axios from "axios";
 import {authHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
 
-const API_URL = 'api/resource/language/';
+const API_URL = 'api/resources/language/';
 const API_ALL = 'all';
 const API_JSON_ADD = 'upload-add';
 const API_JSON_REPLACE = 'upload-replace';
