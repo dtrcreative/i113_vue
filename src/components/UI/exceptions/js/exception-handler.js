@@ -5,29 +5,32 @@ import {useExcStore} from "@/components/UI/exceptions/js/exceptionStore";
 class ExceptionHandler {
 
   handle(error) {
-    switch (error.response.status) {
-      case 400 : //Bad Request
-        this.handle400(error)
-        break;
-      case 401: //Unauthorized
-        this.handle401(error)
-        break;
-      case 404: //Not Found
-        this.handle404(error)
-        break;
-      case 409 : //Conflict
-        this.handle409(error)
-        break;
-      case 500 : //Internal Server Error
-        this.handle500(error)
-        break;
-      case 503 : //Service Unavailable
-        this.handle503(error)
-        break;
-      default:
-        this.handleDefault(error)
-        break;
+    if(error.response !== undefined){
+      switch (error.response.status) {
+        case 400 : //Bad Request
+          this.handle400(error)
+          break;
+        case 401: //Unauthorized
+          this.handle401(error)
+          break;
+        case 404: //Not Found
+          this.handle404(error)
+          break;
+        case 409 : //Conflict
+          this.handle409(error)
+          break;
+        case 500 : //Internal Server Error
+          this.handle500(error)
+          break;
+        case 503 : //Service Unavailable
+          this.handle503(error)
+          break;
+        default:
+          this.handleDefault(error)
+          break;
+      }
     }
+    this.handleNotLogin(error)
   }
 
   handle400(error) {
@@ -78,6 +81,15 @@ class ExceptionHandler {
   handleDefault(error) {
     console.log('default')
     console.log(error)
+  }
+
+  handleNotLogin(error){
+    console.log(error)
+    useExcStore().setExceptionData(
+      "",
+      "User not logIn",
+      "User not logIn",
+    )
   }
 
 }
