@@ -25,9 +25,6 @@ const light = {
     success: '#4CAF50',
     warning: '#FB8C00',
   },
-  image: {
-    banner: '@/assets/img/vbanner-green.jpg'
-  }
 }
 const dark = {
   dark: true,
@@ -41,9 +38,6 @@ const dark = {
     success: '#4CAF50',
     warning: '#FB8C00',
   },
-  image: {
-    banner: '@/assets/img/vbanner-green.jpg'
-  }
 }
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
