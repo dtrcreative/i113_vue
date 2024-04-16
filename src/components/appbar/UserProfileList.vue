@@ -55,8 +55,8 @@ export default {
   data: () => ({
     selectedItem: 0,
     items: [
-      {text: 'Profile', icon: 'mdi-account-multiple', action: "goProfile"},
-      {text: 'Settings', icon: 'mdi-cog', action: "goSettings"},
+      {text: 'Profile', icon: 'mdi-account-multiple', action: "profile"},
+      {text: 'Settings', icon: 'mdi-cog', action: "settings"},
       {text: 'Logout', icon: 'mdi-logout', action: "logout"},
     ],
   }),
@@ -68,13 +68,13 @@ export default {
           userService.cleanUserData();
         }
           break
-        case 'goProfile':
+        case 'profile':
           router.push("/profile");
           break
-        case 'goSettings':
+        case 'settings':
           router.push("/settings");
           break
-        case 'goHome':
+        case 'home':
           router.push("./");
           break
         default:
