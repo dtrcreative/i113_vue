@@ -11,17 +11,15 @@
   <v-btn @click="eventsHealth">EventsHealth</v-btn>
   <v-btn @click="telbotHealth">TelbotHealth</v-btn>
   <v-btn @click="showUserInfo">UserInfo</v-btn>
+  <v-btn @click="newLogin">NewLogin</v-btn>
 
 </template>
 
 <script>
-import {getAuthUser, login, logout} from "@/components/auth/services/auth.service";
-import UserService from "@/components/auth/services/user.service"
-import birthdayService from "@/components/microservices/events/birthdays/js/birthday.service";
-import pandaService from "@/components/microservices/panda/js/panda.service";
+import router from "@/router";
+import {getAuthUser} from "@/components/auth/services/auth.service";
 import axios from "axios";
 import {authHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
-import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
 import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 
 export default {
@@ -81,8 +79,12 @@ export default {
         exceptionHandler.handle(e)
       }
     },
-    async showUserInfo(){
+    async showUserInfo() {
       console.log(await getAuthUser())
+    },
+
+    newLogin() {
+      router.push("./login")
     }
 
   }
@@ -90,8 +92,5 @@ export default {
 </script>
 
 <style scoped>
-.component {
-  display: flex;
-  /*@media (max-width: 767 px) display: flex;*/
-}
+
 </style>

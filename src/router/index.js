@@ -3,17 +3,17 @@ import {createRouter, createWebHistory} from 'vue-router'
 import userService from "@/components/auth/services/user.service";
 
 const routes = [
-  {
-    path: "/",
-    name: 'login',
-    component: () => import('@/layouts/default/Login.vue'),
-    children: []
-  },
-  {
-    path: '/callback',
-    name: 'RedirectCallBack',
-    component: () => import('@/views/RedirectCallBack.vue'),
-  },
+  // {
+  //   path: "/",
+  //   name: 'login',
+  //   component: () => import('@/layouts/default/Login.vue'),
+  //   children: []
+  // },
+  // {
+  //   path: '/callback',
+  //   name: 'RedirectCallBack',
+  //   component: () => import('@/views/RedirectCallBack.vue'),
+  // },
   {
     path: '/main',
     name: 'Main',
@@ -58,6 +58,27 @@ const routes = [
         component: () => import('@/components/microservices/events/EventsMainView.vue'),
       },
     ]
+  },
+  {
+    path: "/",
+    component: () => import('@/pages/AuthPage.vue'),
+    children: [
+      {
+        path: '/',
+        name: 'Login',
+        component: () => import('@/components/auth2/LoginView.vue'),
+      },
+      {
+        path: '/reg',
+        name: 'reg',
+        component: () => import('@/components/auth2/RegView.vue'),
+      },
+      {
+        path: '/reinit',
+        name: 'reinit',
+        component: () => import('@/components/auth2/ui/RestorePasswordView'),
+      },
+    ]
   }
 ]
 
@@ -67,21 +88,21 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (userService.getUser() === null &&
-    (to.name !== 'login') &&
-    (to.name !== 'RedirectCallBack')) {
-    next({name: 'login'})
-  } else {
-    if (userService.getUser() !== null && (userService.getUser().expires_at) < (new Date().getTime() / 1000) &&
-      (to.name !== 'login') &&
-      (to.name !== 'RedirectCallBack')) {
-      userService.cleanUserData()
-      userService.cleanStorage()
-      next({name: 'login'})
-    } else {
+  // if (userService.getUser() === null &&
+  //   (to.name !== 'login') &&
+  //   (to.name !== 'RedirectCallBack')) {
+  //   next({name: 'login'})
+  // } else {
+  //   if (userService.getUser() !== null && (userService.getUser().expires_at) < (new Date().getTime() / 1000) &&
+  //     (to.name !== 'login') &&
+  //     (to.name !== 'RedirectCallBack')) {
+  //     userService.cleanUserData()
+  //     userService.cleanStorage()
+  //     next({name: 'login'})
+  //   } else {
       next()
-    }
-  }
+    // }
+  // }
 })
 
 export default router

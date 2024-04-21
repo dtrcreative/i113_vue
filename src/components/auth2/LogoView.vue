@@ -1,25 +1,17 @@
 <template>
   <v-card class="section-center">
-    <div class="vek-logo">
+    <div class="elli-logo">
       <v-img
-        src="@/assets/img/main-logo.png"
+        src="@/assets/Logo.png"
       ></v-img>
     </div>
-
     <div class="card-text">
 
       <p class="text-center, text-h1, card-text">
-        {{ "Онлайн бронирование временных слотов для осуществления разгрузки товаров на складе" }}
+        {{ "Добро пожаловать в уютный уголок Элли" }}
       </p>
 
     </div>
-
-    <div class="slot-logo">
-      <v-img
-        src="@/assets/img/authpage-slot-image.png"
-      ></v-img>
-    </div>
-
   </v-card>
 </template>
 
@@ -35,7 +27,7 @@ export default {
 .section-center
   text-align: center
   width: 100%
-  height: 900px
+  height: 800px
   margin-top: 10px
   background-color: rgba(42,19,9,0)
 
@@ -43,12 +35,12 @@ export default {
     visibility: collapse
 
 .card-text
-  padding: 7% 10px
+  padding: 20px 10px
   font-size: 150%
 
-.vek-logo
-  padding-top: 10px
-  max-width: 700px
+.elli-logo
+  padding-top: 40px
+  max-width: 400px
   position: center
   justify-content: center
   align-items: center

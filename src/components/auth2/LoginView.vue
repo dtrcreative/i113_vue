@@ -12,14 +12,24 @@
       <div class="inputs">
         <v-text-field
           clearable
-          label="Введите электронную почту"
+          label="Введите имя пользователя"
           variant="outlined"
           density="compact"
           type="email"
-          v-model.trim="useAuthStore().email"
+          v-model.trim="useAuthStore().username"
           :maxlength="50"
-          :rules="[useAuthStore().rules.required, useAuthStore().rules.email]"
+          :rules="[useAuthStore().rules.required]"
         ></v-text-field>
+<!--        <v-text-field-->
+<!--          clearable-->
+<!--          label="Введите электронную почту"-->
+<!--          variant="outlined"-->
+<!--          density="compact"-->
+<!--          type="email"-->
+<!--          v-model.trim="useAuthStore().email"-->
+<!--          :maxlength="50"-->
+<!--          :rules="[useAuthStore().rules.required, useAuthStore().rules.email]"-->
+<!--        ></v-text-field>-->
         <v-text-field
           label="Введите пароль"
           variant="outlined"
@@ -65,7 +75,7 @@
 <script>
 import router from "@/router";
 import ForgotPasswordEmailDialog from "@/components/auth2/ui/ForgotPasswordEmailDialog";
-import authService from "@/components/auth2/js/auth.service";
+import {useAuthStore} from "@/components/auth2/js/authStore";
 
 export default {
   name: "LoginView",
@@ -81,14 +91,14 @@ export default {
   methods: {
     useAuthStore,
     showRegistrationView(){
-      router.push("/registration")
+      router.push("/reg")
     },
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
         this.isLoading=true
         this.clearError()
-        setTimeout(() => (this.redirect()), 4000)
+        // setTimeout(() => (this.redirect()), 4000)
         useAuthStore().login();
       }else{
         this.errorMessage = 'Неверный адрес электронной почты или пароль. Повторите попытку'
@@ -110,7 +120,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "@/components/auth/css/auth.sass"
+@import "@/components/auth2/css/auth.sass"
 
 .card-text
   padding: 10% 10px 20px 10px
