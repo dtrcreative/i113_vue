@@ -208,11 +208,11 @@ component
   width: 50%
 
 .names:hover
-  width: 20%
+  width: 50%
   background-color: $table-hover-cell
 
 .names:hover
-  width: 20%
+  width: 50%
 
 .create
   padding-top: 20px
