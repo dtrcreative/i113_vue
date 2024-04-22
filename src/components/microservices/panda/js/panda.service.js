@@ -1,5 +1,5 @@
 import axios from "axios";
-import {authHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
+import {getAuthHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
 import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 import userService from "@/components/auth/services/user.service";
 import {usePandaStore} from "@/components/microservices/panda/js/pandaStore";
@@ -17,8 +17,8 @@ const SERVICE_NAME = 'Panda'
 class PandaService {
   async getUnits() {
     try {
-      const responseAccounts = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: authHeader()});
-      const responseData = await axios.get(getGatewayUrl() + API_URL + API_SERVICE_TYPES, {headers: authHeader()});
+      const responseAccounts = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: getAuthHeader()});
+      const responseData = await axios.get(getGatewayUrl() + API_URL + API_SERVICE_TYPES, {headers: getAuthHeader()});
       usePandaStore().setAccounts(responseAccounts.data)
       usePandaStore().setTypes(responseData.data)
     } catch (e) {
@@ -39,7 +39,7 @@ class PandaService {
         type: account.type,
         description: account.description,
       }, {
-        headers: authHeader()
+        headers: getAuthHeader()
       })
     } catch (e) {
       exceptionHandler.handle(e)
@@ -60,7 +60,7 @@ class PandaService {
         type: account.type,
         description: account.description,
       }, {
-        headers: authHeader()
+        headers: getAuthHeader()
       })
     } catch (e) {
       exceptionHandler.handle(e)
@@ -69,7 +69,7 @@ class PandaService {
 
   async uploadJSON(json, isReplace) {
     try {
-      return await axios.post(getGatewayUrl() + API_URL + (isReplace ? API_JSON_REPLACE : API_JSON_ADD), json, {headers: authHeader()})
+      return await axios.post(getGatewayUrl() + API_URL + (isReplace ? API_JSON_REPLACE : API_JSON_ADD), json, {headers: getAuthHeader()})
     } catch (e) {
       exceptionHandler.handle(e)
     }
@@ -116,7 +116,7 @@ class PandaService {
 
   async removeSelectedAccounts(selected) {
     try {
-      return axios.post(getGatewayUrl() + API_URL + "/selected", selected, {headers: authHeader()})
+      return axios.post(getGatewayUrl() + API_URL + "/selected", selected, {headers: getAuthHeader()})
     } catch (e) {
       exceptionHandler.handle(e)
     }
@@ -127,7 +127,7 @@ class PandaService {
     try {
       let result = await axios.post(getGatewayUrl() + API_URL + API_PASSGEN,{
         userId: user.userId,
-      }, {headers: authHeader()})
+      }, {headers: getAuthHeader()})
       usePandaStore().setNewPassword(result.data)
     } catch (e) {
       exceptionHandler.handle(e)
@@ -154,7 +154,7 @@ class PandaService {
   async getBackUp() {
     let backUpObjects = []
     try {
-      let response = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: authHeader()});
+      let response = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: getAuthHeader()});
       let values = response.data
       for (let i = 0; i < values.length; i++) {
         backUpObjects.push(

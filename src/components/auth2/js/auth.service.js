@@ -1,19 +1,45 @@
 import axios from "axios";
+import {cleanUserData, saveUserData} from "@/store/user.service";
+import {getGatewayUrl} from "@/store/app.service";
+import router from "@/router";
+import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 
-const auth_api = "http://192.168.100.8:8080/api/auth/"
-const USER = "user"
+const API_URL = "api/auth/"
+const API_LOGIN = "api/auth/login"
+const API_SIGNUP = "api/auth/signup"
 class AuthService {
 
   async login(username, email, password) {
-    let response = await axios.post(auth_api + "login", {
-      username: username,
-      password: password,
-    })
-    this.saveUserData(response.data)
+    try{
+      let response = await axios.post(getGatewayUrl() + API_LOGIN, {
+        username: username,
+        password: password,
+      })
+      saveUserData(response.data);
+      return response.status
+    }catch (e){
+      exceptionHandler.handle(e)
+    }
   }
 
-  registration(email, password) {
-    console.log("UserRegistration: ", email + " " + password);
+  async logout() {
+    cleanUserData()
+    await router.push("./")
+  }
+
+  async signup(user) {
+    try{
+      let response = await axios.post(getGatewayUrl() + API_SIGNUP, {
+        username: user.username,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        password: user.password,
+      })
+      return response.status
+    }catch (e){
+      exceptionHandler.handle(e)
+    }
   }
 
   reinitPassword(email, password) {
@@ -22,21 +48,6 @@ class AuthService {
 
   sendMail(email) {
     console.log("UserRegistration: ", email);
-  }
-
-  saveUserData(data){
-    let tokenData = JSON.parse(atob(data.token.split('.')[1]));
-    if(tokenData !== undefined){
-      let userData = {
-        userId : tokenData.uuid,
-        userName : tokenData.sub,
-        userStatus : tokenData.status,
-        userRole : tokenData.role,
-        userToken : data,
-        expireAt : tokenData.exp
-      }
-      localStorage.setItem(USER, JSON.stringify(userData))
-    }
   }
 
 }

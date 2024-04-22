@@ -1,5 +1,5 @@
 import axios from "axios";
-import {authHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
+import {getAuthHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
 import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 import {useEventsStore} from "@/components/microservices/events/events/js/eventsStore";
 import userService from "@/components/auth/services/user.service";
@@ -10,7 +10,7 @@ class EventService {
 
   async getUnits() {
     try {
-      const response = await axios.get(getGatewayUrl() + API_URL + 'all', {headers: authHeader()});
+      const response = await axios.get(getGatewayUrl() + API_URL + 'all', {headers: getAuthHeader()});
       useEventsStore().setUnits(response.data)
     } catch (e) {
       exceptionHandler.handle(e)
@@ -27,7 +27,7 @@ class EventService {
         notify: unit.notify,
         description: unit.description
       }, {
-        headers: authHeader()
+        headers: getAuthHeader()
       })
     } catch (e) {
       console.log(e)
@@ -46,7 +46,7 @@ class EventService {
         notify: unit.notify,
         description: unit.description
       }, {
-        headers: authHeader()
+        headers: getAuthHeader()
       })
     } catch (e) {
       exceptionHandler.handle(e)
@@ -55,7 +55,7 @@ class EventService {
 
   async removeSelectedEvents(selected) {
     try {
-      return axios.post(getGatewayUrl() + API_URL + "/selected", selected, {headers: authHeader()})
+      return axios.post(getGatewayUrl() + API_URL + "/selected", selected, {headers: getAuthHeader()})
     } catch (e) {
       exceptionHandler.handle(e)
     }

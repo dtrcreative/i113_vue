@@ -1,6 +1,7 @@
-import {logout} from "@/components/auth/services/auth.service";
+// import {logout} from "@/components/auth/services/auth.service";
 import router from "@/router";
 import {useExcStore} from "@/components/UI/exceptions/js/exceptionStore";
+import {cleanUserData} from "@/store/user.service";
 
 class ExceptionHandler {
 
@@ -30,7 +31,7 @@ class ExceptionHandler {
           break;
       }
     }
-    this.handleNotLogin(error)
+    // this.handleNotLogin(error)
   }
 
   handle400(error) {
@@ -39,43 +40,34 @@ class ExceptionHandler {
   }
 
   handle401(error) {
-    console.log("Unauthorized")
-    console.log(error)
-    logout().then(r => {
-    })
-    router.push("/")
+    let exceptionTitle = 'Unauthorized'
+    console.log(exceptionTitle + ":" + error)
+    cleanUserData()
+    router.push("./")
   }
 
   handle404(error) {
-    console.log("Not Found")
-    useExcStore().setExceptionData(
-      error.response.status,
-      error.response.statusText,
-      error.response.message,
-    )
+    let exceptionTitle = 'Not Found'
+    console.log(exceptionTitle + ":" + error)
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
   }
 
   handle409(error) {
-    console.log("Conflict")
-    console.log(error.response.data)
+    let exceptionTitle = 'Conflict'
+    console.log(error)
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.data)
   }
 
   handle500(error) {
-    console.log("Internal Server Error")
-    useExcStore().setExceptionData(
-      error.response.status,
-      error.response.statusText,
-      error.response.message,
-    )
+    let exceptionTitle = 'Internal Server Error'
+    console.log(exceptionTitle + ":" + error)
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
   }
 
   handle503(error) {
-    console.log("Service Unavailable")
-    useExcStore().setExceptionData(
-      error.response.status,
-      error.response.statusText,
-      error.response.message,
-    )
+    let exceptionTitle = 'Service Unavailable'
+    console.log(exceptionTitle + ":" + error)
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
   }
 
   handleDefault(error) {
@@ -84,12 +76,16 @@ class ExceptionHandler {
   }
 
   handleNotLogin(error){
-    console.log(error)
-    useExcStore().setExceptionData(
-      error.code,
-      error.message,
-      "",
-    )
+    let exceptionTitle = 'Response Undefined'
+    console.log(exceptionTitle + ":" + error)
+    // this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
+  }
+
+  showSnackBar(exCode, exStatus, exMessage){
+    useExcStore().isException = true;
+    useExcStore().exCode = exCode
+    useExcStore().exStatus = exStatus
+    useExcStore().exMessage = exMessage
   }
 
 }

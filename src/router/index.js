@@ -1,6 +1,5 @@
 // Composables
 import {createRouter, createWebHistory} from 'vue-router'
-import userService from "@/components/auth/services/user.service";
 
 const routes = [
   // {
@@ -22,43 +21,43 @@ const routes = [
       {
         path: '/home',
         name: 'Home',
-        component: () => import('@/views/Home.vue'),
+        component: () => import('@/pages/HomePage.vue'),
       },
-      {
-        path: '/profile',
-        name: 'Profile',
-        component: () => import('@/views/Profile.vue'),
-      },
-      {
-        path: '/settings',
-        name: 'Settings',
-        component: () => import('@/views/Settings.vue'),
-      },
+      // {
+      //   path: '/profile',
+      //   name: 'Profile',
+      //   component: () => import('@/views/Profile.vue'),
+      // },
+      // {
+      //   path: '/settings',
+      //   name: 'Settings',
+      //   component: () => import('@/views/Settings.vue'),
+      // },
     ],
   },
 
-  {
-    path: '/panda',
-    component: () => import('@/layouts/default/Main.vue'),
-    children: [
-      {
-        path: '',
-        name: 'Panda',
-        component: () => import('@/components/microservices/panda/PandaMainView.vue'),
-      },
-    ]
-  },
-  {
-    path: "/events",
-    component: () => import('@/layouts/default/Main.vue'),
-    children: [
-      {
-        path: '',
-        name: 'Events',
-        component: () => import('@/components/microservices/events/EventsMainView.vue'),
-      },
-    ]
-  },
+  // {
+  //   path: '/panda',
+  //   component: () => import('@/layouts/default/Main.vue'),
+  //   children: [
+  //     {
+  //       path: '',
+  //       name: 'Panda',
+  //       component: () => import('@/components/microservices/panda/PandaMainView.vue'),
+  //     },
+  //   ]
+  // },
+  // {
+  //   path: "/events",
+  //   component: () => import('@/layouts/default/Main.vue'),
+  //   children: [
+  //     {
+  //       path: '',
+  //       name: 'Events',
+  //       component: () => import('@/components/microservices/events/EventsMainView.vue'),
+  //     },
+  //   ]
+  // },
   {
     path: "/",
     component: () => import('@/pages/AuthPage.vue'),
@@ -69,9 +68,9 @@ const routes = [
         component: () => import('@/components/auth2/LoginView.vue'),
       },
       {
-        path: '/reg',
-        name: 'reg',
-        component: () => import('@/components/auth2/RegView.vue'),
+        path: '/signup',
+        name: 'signup',
+        component: () => import('@/components/auth2/SignupView.vue'),
       },
       {
         path: '/reinit',

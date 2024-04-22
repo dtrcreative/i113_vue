@@ -34,7 +34,7 @@
 <script>
 
 import router from "@/router";
-import {useNavStore} from "@/components/appbar/js/navigation";
+import {useNavStore} from "@/components/appbar/js/navigationStore";
 
 export default {
   name: "NavigationBar",

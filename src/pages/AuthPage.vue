@@ -7,14 +7,16 @@
       <router-view/>
     </div>
   </div>
+  <exception-snack-bar></exception-snack-bar>
 </template>
 
 <script>
 import LogoView from "@/components/auth2/LogoView";
+import ExceptionSnackBar from "@/components/UI/exceptions/ExceptionSnackBar";
 
 export default {
   name: "AuthPage",
-  components: {LogoView}
+  components: {ExceptionSnackBar, LogoView}
 }
 </script>
 

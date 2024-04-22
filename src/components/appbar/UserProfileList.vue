@@ -46,9 +46,10 @@
 </template>
 
 <script>
-import {logout} from "@/components/auth/services/auth.service";
-import userService from "@/components/auth/services/user.service";
+
+import authService from "@/components/auth2/js/auth.service";
 import router from "@/router";
+import {cleanUserData, getUser} from "@/store/user.service";
 
 export default {
   name: "UserProfileList",
@@ -64,8 +65,8 @@ export default {
     listAction(action) {
       switch (action) {
         case 'logout': {
-          logout();
-          userService.cleanUserData();
+          authService.logout();
+          cleanUserData();
         }
           break
         case 'profile':
@@ -84,21 +85,21 @@ export default {
   },
   computed: {
     getUserInitials() {
-      let user = userService.getUser();
+      let user = getUser();
       if (user.firstName === "" || user.lastName === "") {
         return user.userName.charAt(0)
       }
       return user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase();
     },
     getUserFullName() {
-      let user = userService.getUser();
+      let user = getUser();
       if (user.fullName === undefined) {
         return user.userName
       }
       return user.fullName;
     },
     getEmail() {
-      let user = userService.getUser();
+      let user = getUser();
       return user.email;
     }
   }

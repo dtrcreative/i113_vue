@@ -17,9 +17,7 @@
 
 <script>
 import router from "@/router";
-import {getAuthUser} from "@/components/auth/services/auth.service";
 import axios from "axios";
-import {authHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
 import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 
 export default {
@@ -41,7 +39,7 @@ export default {
 
     async gatewayHealth() {
       try {
-        const response = await axios.get(getGatewayUrl() + "gateway/info/health", {headers: authHeader()});
+        const response = await axios.get(getGatewayUrl() + "gateway/info/health", {headers: getAuthHeader()});
         console.log(response)
       } catch (e) {
         exceptionHandler.handle(e)
@@ -49,7 +47,7 @@ export default {
     },
     async resourcesHealth() {
       try {
-        const response = await axios.get(getGatewayUrl() + "api/resources/info/health", {headers: authHeader()});
+        const response = await axios.get(getGatewayUrl() + "api/resources/info/health", {headers: getAuthHeader()});
         console.log(response)
       } catch (e) {
         exceptionHandler.handle(e)
@@ -57,7 +55,7 @@ export default {
     },
     async eventsHealth() {
       try {
-        const response = await axios.get(getGatewayUrl() + "api/events/info/health", {headers: authHeader()});
+        const response = await axios.get(getGatewayUrl() + "api/events/info/health", {headers: getAuthHeader()});
         console.log(response)
       } catch (e) {
         exceptionHandler.handle(e)
@@ -65,7 +63,7 @@ export default {
     },
     async pandaHealth() {
       try {
-        const response = await axios.get(getGatewayUrl() + "api/panda/info/health", {headers: authHeader()});
+        const response = await axios.get(getGatewayUrl() + "api/panda/info/health", {headers: getAuthHeader()});
         console.log(response)
       } catch (e) {
         exceptionHandler.handle(e)
@@ -73,7 +71,7 @@ export default {
     },
     async telbotHealth() {
       try {
-        const response = await axios.get(getGatewayUrl() + "api/telbot/info/health", {headers: authHeader()});
+        const response = await axios.get(getGatewayUrl() + "api/telbot/info/health", {headers: getAuthHeader()});
         console.log(response)
       } catch (e) {
         exceptionHandler.handle(e)

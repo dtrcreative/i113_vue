@@ -16,25 +16,15 @@
           variant="outlined"
           density="compact"
           type="email"
-          v-model.trim="useAuthStore().username"
+          v-model.trim="useAuthStore().user.username"
           :maxlength="50"
           :rules="[useAuthStore().rules.required]"
         ></v-text-field>
-<!--        <v-text-field-->
-<!--          clearable-->
-<!--          label="Введите электронную почту"-->
-<!--          variant="outlined"-->
-<!--          density="compact"-->
-<!--          type="email"-->
-<!--          v-model.trim="useAuthStore().email"-->
-<!--          :maxlength="50"-->
-<!--          :rules="[useAuthStore().rules.required, useAuthStore().rules.email]"-->
-<!--        ></v-text-field>-->
         <v-text-field
           label="Введите пароль"
           variant="outlined"
           density="compact"
-          v-model.trim="useAuthStore().password"
+          v-model.trim="useAuthStore().user.password"
           :maxlength="30"
           :rules="[useAuthStore().rules.required, useAuthStore().rules.range.passwordMin]"
           :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -90,31 +80,32 @@ export default {
 
   methods: {
     useAuthStore,
-    showRegistrationView(){
-      router.push("/reg")
-    },
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
         this.isLoading=true
         this.clearError()
-        // setTimeout(() => (this.redirect()), 4000)
-        useAuthStore().login();
+        useAuthStore().login() ?  this.redirect() : this.showErrorMessage("Упс, что-то пошло не так")
       }else{
-        this.errorMessage = 'Неверный адрес электронной почты или пароль. Повторите попытку'
+        this.showErrorMessage('Неверный адрес электронной почты или пароль. Повторите попытку')
       }
     },
     redirect(){
-      this.isLoading = false
       router.push("./home")
-      //TODO router.push("./home")
+    },
+    showRegistrationView(){
+      router.push("/signup")
     },
     clearError(){
       this.errorMessage = ""
+    },
+    showErrorMessage(message){
+      this.isLoading = false;
+      this.errorMessage = message
     }
   },
   mounted() {
-    useAuthStore().clearFieldsData()
+    useAuthStore().clearFieldsData();
   }
 }
 </script>
