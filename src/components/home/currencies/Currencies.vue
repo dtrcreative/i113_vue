@@ -16,9 +16,10 @@
 </template>
 
 <script>
-import router from "@/router";
 import axios from "axios";
 import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
+import {getAuthUser} from "@/store/user.service";
+import {getGatewayUrl} from "@/store/app.service";
 
 export default {
   name: "Currencies",
@@ -78,11 +79,11 @@ export default {
       }
     },
     async showUserInfo() {
-      console.log(await getAuthUser())
+      console.log(getAuthUser())
     },
 
     newLogin() {
-      router.push("./login")
+      console.log("TEEST")
     }
 
   }

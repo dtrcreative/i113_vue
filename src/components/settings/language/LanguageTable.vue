@@ -88,17 +88,12 @@
 <script setup>
 import {useLangStore} from "@/components/settings/language/js/languageStore";
 import LanguageCUForm from "@/components/settings/language/LanguageCUForm";
-import {onMounted} from "vue";
 import languageService from "@/components/settings/language/js/language.service";
 import utilService from "@/components/UI/utils/util-service";
 import UploadDialog from "@/components/UI/fileio/UploadDialog";
 import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
 
 useLangStore()
-
-onMounted(() => {
-  languageService.getUnits()
-})
 
 function showAddForm() {
   useLangStore().showCUForm = !useLangStore().showCUForm

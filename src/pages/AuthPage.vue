@@ -1,4 +1,5 @@
 <template>
+  <particles></particles>
   <div class="sections">
     <div class="section-left">
       <logo-view></logo-view>
@@ -13,10 +14,11 @@
 <script>
 import LogoView from "@/components/auth/LogoView";
 import ExceptionSnackBar from "@/components/UI/exceptions/ExceptionSnackBar";
+import Particles from "@/layouts/default/Particles";
 
 export default {
   name: "AuthPage",
-  components: {ExceptionSnackBar, LogoView}
+  components: {Particles, ExceptionSnackBar, LogoView}
 }
 </script>
 

@@ -66,7 +66,6 @@ export default {
       switch (action) {
         case 'logout': {
           authService.logout();
-          cleanUserData();
         }
           break
         case 'profile':

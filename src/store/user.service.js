@@ -1,10 +1,12 @@
 import {jwtDecode} from "jwt-decode";
+import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
+
 const USER = "user"
 
 export const saveUserData = (data) => {
   let tokenData = jwtDecode(data.token)
   if (tokenData !== undefined && tokenData !== "") {
-    cleanUserData()
+    // cleanUserData()
     let userData = {
       uuid: tokenData.uuid,
       firstName: tokenData.firstname,
@@ -17,27 +19,33 @@ export const saveUserData = (data) => {
     }
     localStorage.setItem(USER, JSON.stringify(userData))
     return true;
-  }else{
+  } else {
     return false;
   }
 }
 
 export const getAuthUser = () => {
-  return localStorage.getItem(USER)
+  return JSON.parse(localStorage.getItem(USER))
 }
 
 export const getAuthHeader = () => {
-  let user = localStorage.getItem(USER);
+  let user = JSON.parse(localStorage.getItem(USER));
   if (user) {
     return {
       // Accept: "application/json",
       // Authorization: "Bearer " + user.token,
       // UserId: user.userId
+      Accept: "application/json",
       Authorization: user.token,
-      User: user.username
+      UserId: user.uuid
     };
   } else {
-    throw new Error('user is not logged in');
+    exceptionHandler.handleAppError(
+      {
+        code: 0,
+        message: "User not logged in"
+      }
+    )
   }
 }
 

@@ -4,9 +4,8 @@ import {useExcStore} from "@/components/UI/exceptions/js/exceptionStore";
 import {cleanUserData} from "@/store/user.service";
 
 class ExceptionHandler {
-
   handle(error) {
-    if(error.response !== undefined){
+    if (error.response !== undefined) {
       switch (error.response.status) {
         case 400 : //Bad Request
           this.handle400(error)
@@ -33,8 +32,25 @@ class ExceptionHandler {
           this.handleDefault(error)
           break;
       }
+    } else {
+      if(error.code !== 0){
+        this.handleAppError(error)
+      }else{
+        this.handleAppException(error)
+      }
     }
-    // this.handleNotLogin(error)
+  }
+
+  handleAppError(error){
+    let exceptionTitle = 'App Exception'
+    console.log(error)
+    this.showSnackBar(error.code, exceptionTitle, error.message)
+  }
+
+  handleAppException(error, appError) {
+    let exceptionTitle = 'App Exception'
+    console.log(error)
+    this.showSnackBar(appError.code, exceptionTitle, appError.message)
   }
 
   handle400(error) {
@@ -84,13 +100,13 @@ class ExceptionHandler {
     console.log(error)
   }
 
-  handleNotLogin(error){
+  handleNotLogin(error) {
     let exceptionTitle = 'Response Undefined'
     console.log(error)
     this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
   }
 
-  showSnackBar(exCode, exStatus, exMessage){
+  showSnackBar(exCode, exStatus, exMessage) {
     useExcStore().isException = true;
     useExcStore().exCode = exCode
     useExcStore().exStatus = exStatus

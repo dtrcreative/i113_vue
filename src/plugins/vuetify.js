@@ -29,7 +29,7 @@ const light = {
 const dark = {
   dark: true,
   colors: {
-    background: '#111311',
+    background: 'rgba(0,0,0,0)',
     surface: '#1E261EA0',
     primary: 'rgba(0,128,11,0.28)',
     secondary: '#3c6c2a',

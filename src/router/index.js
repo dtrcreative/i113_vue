@@ -27,28 +27,28 @@ const routes = [
     ],
   },
 
-  // {
-  //   path: '/panda',
-  //   component: () => import('@/layouts/default/Main.vue'),
-  //   children: [
-  //     {
-  //       path: '',
-  //       name: 'Panda',
-  //       component: () => import('@/components/microservices/panda/PandaMainView.vue'),
-  //     },
-  //   ]
-  // },
-  // {
-  //   path: "/events",
-  //   component: () => import('@/layouts/default/Main.vue'),
-  //   children: [
-  //     {
-  //       path: '',
-  //       name: 'Events',
-  //       component: () => import('@/components/microservices/events/EventsMainView.vue'),
-  //     },
-  //   ]
-  // },
+  {
+    path: '/panda',
+    component: () => import('@/layouts/default/Main.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Panda',
+        component: () => import('@/components/microservices/panda/PandaMainView.vue'),
+      },
+    ]
+  },
+  {
+    path: "/events",
+    component: () => import('@/layouts/default/Main.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Events',
+        component: () => import('@/components/microservices/events/EventsMainView.vue'),
+      },
+    ]
+  },
   {
     path: "/",
     component: () => import('@/pages/AuthPage.vue'),
@@ -79,6 +79,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   let user = getUser();
+
   if(
     user === null &&
     (to.name !== 'login') &&

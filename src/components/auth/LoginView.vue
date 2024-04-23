@@ -66,7 +66,7 @@
 import router from "@/router";
 import ForgotPasswordEmailDialog from "@/components/auth/ui/ForgotPasswordEmailDialog";
 import {useAuthStore} from "@/components/auth/js/authStore";
-import {cleanUserData} from "@/store/user.service";
+import {cleanStorage, cleanUserData} from "@/store/user.service";
 
 export default {
   name: "LoginView",
