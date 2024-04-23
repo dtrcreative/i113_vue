@@ -1,5 +1,6 @@
 // Composables
 import {createRouter, createWebHistory} from 'vue-router'
+import {getUser} from "@/store/user.service";
 
 const routes = [
 
@@ -16,7 +17,7 @@ const routes = [
       {
         path: '/profile',
         name: 'Profile',
-        component: () => import('@/views/Profile.vue'),
+        component: () => import('@/pages/ProfilePage.vue'),
       },
       {
         path: '/settings',
@@ -54,7 +55,7 @@ const routes = [
     children: [
       {
         path: '/',
-        name: 'Login',
+        name: 'login',
         component: () => import('@/components/auth/LoginView.vue'),
       },
       {
@@ -77,21 +78,24 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // if (userService.getUser() === null &&
-  //   (to.name !== 'login') &&
-  //   (to.name !== 'RedirectCallBack')) {
-  //   next({name: 'login'})
-  // } else {
-  //   if (userService.getUser() !== null && (userService.getUser().expires_at) < (new Date().getTime() / 1000) &&
-  //     (to.name !== 'login') &&
-  //     (to.name !== 'RedirectCallBack')) {
-  //     userService.cleanUserData()
-  //     userService.cleanStorage()
-  //     next({name: 'login'})
-  //   } else {
-      next()
-    // }
-  // }
+  let user = getUser();
+  if(
+    user === null &&
+    (to.name !== 'login') &&
+    (to.name !== 'signup') &&
+    (to.name !== 'reinit'))
+  {
+    next({name: 'login'})
+  }
+  if(
+    user !== null &&
+    user.expireAt<(new Date().getTime() / 1000) &&
+    (to.name !== 'login'))
+  {
+    next({name: 'login'})
+  } else{
+    next()
+  }
 })
 
 export default router

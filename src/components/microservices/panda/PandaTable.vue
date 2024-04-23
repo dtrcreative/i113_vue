@@ -126,7 +126,7 @@ import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
 import {usePandaStore} from "@/components/microservices/panda/js/pandaStore";
 import {onMounted} from "vue";
 import PandaCUForm from "@/components/microservices/panda/PandaCUForm";
-import utilService from "@/components/microservices/utils/util-service";
+import utilService from "@/components/UI/utils/util-service";
 import ConfirmRemoveDialog from "@/components/UI/ConfirmRemoveDialog";
 
 usePandaStore()
