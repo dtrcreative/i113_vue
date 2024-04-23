@@ -112,8 +112,7 @@ export default {
     async redirect(){
       this.isLoading = false
       this.isEmailMessageDialogVisible=false
-      // await router.push("./")
-      await router.push("./reinit") //TODO remove when uri is ready
+      // await router.push("./") //TODO remove when uri is ready
     },
     async clear() {
       this.$refs.form.resetValidation()

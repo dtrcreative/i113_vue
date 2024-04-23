@@ -9,14 +9,16 @@ const API_LOGIN = "api/auth/login"
 const API_SIGNUP = "api/auth/signup"
 class AuthService {
 
-  async login(username, email, password) {
+  async login(username, password) {
     try{
       let response = await axios.post(getGatewayUrl() + API_LOGIN, {
         username: username,
         password: password,
       })
+      // console.log("response")
+      // console.log(await response)
       saveUserData(response.data);
-      return response.status
+      return await response
     }catch (e){
       exceptionHandler.handle(e)
     }
@@ -29,14 +31,13 @@ class AuthService {
 
   async signup(user) {
     try{
-      let response = await axios.post(getGatewayUrl() + API_SIGNUP, {
+      return await axios.post(getGatewayUrl() + API_SIGNUP, {
         username: user.username,
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
         password: user.password,
       })
-      return response.status
     }catch (e){
       exceptionHandler.handle(e)
     }

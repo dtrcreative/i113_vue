@@ -1,15 +1,17 @@
+import {jwtDecode} from "jwt-decode";
 const USER = "user"
 
 export const saveUserData = (data) => {
-  let tokenData = JSON.parse(atob(data.token.split('.')[1]));
-  console.log(tokenData)
-  if (tokenData !== undefined) {
+  let tokenData = jwtDecode(data.token)
+  if (tokenData !== undefined && tokenData !== "") {
+    cleanUserData()
     let userData = {
-      userId: tokenData.uuid,
-      userName: tokenData.sub,
-      userStatus: tokenData.status,
-      userRole: tokenData.role,
-      userToken: data,
+      uuid: tokenData.uuid,
+      firstName: tokenData.firstname,
+      lastName: tokenData.lastname,
+      status: tokenData.status,
+      role: tokenData.role,
+      token: data,
       expireAt: tokenData.exp
     }
     localStorage.setItem(USER, JSON.stringify(userData))

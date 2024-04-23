@@ -6,11 +6,11 @@ export const useAuthStore = defineStore("auth", {
 
     user:{
       username: 'master',
-      firstname: 'Дмитрий',
-      lastname: 'Рогожников',
-      email: 'Ditar@gmail.com',
+      firstname: '',
+      lastname: '',
+      email: '',
       password: '4180',
-      confirmPassword: '4180',
+      confirmPassword: '',
     },
 
     rules: {
@@ -26,10 +26,10 @@ export const useAuthStore = defineStore("auth", {
   actions: {
     async login() {
       //TODO validation and login process
-      return await authService.login(this.user.username, this.user.password) !== undefined
+      return authService.login(this.user.username, this.user.password)
     },
     signup(){
-      authService.signup(this.user)
+      return authService.signup(this.user)
     },
     sendEmail(){
       //TODO check email and save it if valid
@@ -41,11 +41,11 @@ export const useAuthStore = defineStore("auth", {
     clearFieldsData(){
       this.user = {
           username: 'master',
-          firstname: 'Дмитрий',
-          lastname: 'Рогожников',
-          email: 'Ditar@gmail.com',
+          firstname: '',
+          lastname: '',
+          email: '',
           password: '4180',
-          confirmPassword: '4180',
+          confirmPassword: '',
       }
     }
   },

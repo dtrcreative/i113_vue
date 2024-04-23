@@ -90,7 +90,7 @@ export default {
       if (this.step === this.items.length - 1) {
         this.isLoading = true
         let response = await useAuthStore().signup()
-        if (await response !== undefined && await response.status===200) {
+        if (response !== undefined && response.status===200) {
           this.isLoading = false
           await router.push("./")
         }

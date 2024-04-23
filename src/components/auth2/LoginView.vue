@@ -66,6 +66,7 @@
 import router from "@/router";
 import ForgotPasswordEmailDialog from "@/components/auth2/ui/ForgotPasswordEmailDialog";
 import {useAuthStore} from "@/components/auth2/js/authStore";
+import {cleanUserData} from "@/store/user.service";
 
 export default {
   name: "LoginView",
@@ -85,7 +86,13 @@ export default {
       if (valid) {
         this.isLoading=true
         this.clearError()
-        useAuthStore().login() ?  this.redirect() : this.showErrorMessage("Упс, что-то пошло не так")
+        let response = await useAuthStore().login()
+        if (response !== undefined && response.status===200) {
+          console.log("Redirect")
+          // this.redirect()
+        }else{
+          this.showErrorMessage("Упс, что-то пошло не так")
+        }
       }else{
         this.showErrorMessage('Неверный адрес электронной почты или пароль. Повторите попытку')
       }
@@ -105,6 +112,7 @@ export default {
     }
   },
   mounted() {
+    cleanUserData()
     useAuthStore().clearFieldsData();
   }
 }

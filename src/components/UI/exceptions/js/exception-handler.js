@@ -14,6 +14,9 @@ class ExceptionHandler {
         case 401: //Unauthorized
           this.handle401(error)
           break;
+        case 403: //BadRequest
+          this.handle403(error)
+          break;
         case 404: //Not Found
           this.handle404(error)
           break;
@@ -41,9 +44,15 @@ class ExceptionHandler {
 
   handle401(error) {
     let exceptionTitle = 'Unauthorized'
-    console.log(exceptionTitle + ":" + error)
+    console.log(error)
     cleanUserData()
     router.push("./")
+  }
+
+  handle403(error) {
+    let exceptionTitle = 'Bad Request'
+    console.log(error)
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.data)
   }
 
   handle404(error) {
@@ -60,13 +69,13 @@ class ExceptionHandler {
 
   handle500(error) {
     let exceptionTitle = 'Internal Server Error'
-    console.log(exceptionTitle + ":" + error)
+    console.log(error)
     this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
   }
 
   handle503(error) {
     let exceptionTitle = 'Service Unavailable'
-    console.log(exceptionTitle + ":" + error)
+    console.log(error)
     this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
   }
 
@@ -77,8 +86,8 @@ class ExceptionHandler {
 
   handleNotLogin(error){
     let exceptionTitle = 'Response Undefined'
-    console.log(exceptionTitle + ":" + error)
-    // this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
+    console.log(error)
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
   }
 
   showSnackBar(exCode, exStatus, exMessage){
