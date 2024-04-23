@@ -15,8 +15,6 @@ class AuthService {
         username: username,
         password: password,
       })
-      // console.log("response")
-      // console.log(await response)
       saveUserData(response.data);
       return await response
     }catch (e){

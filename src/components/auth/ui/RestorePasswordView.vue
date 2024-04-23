@@ -61,7 +61,7 @@
 
 <script>
 import router from "@/router";
-import {useAuthStore} from "@/components/auth2/js/authStore";
+import {useAuthStore} from "@/components/auth/js/authStore";
 export default {
   name: "RestorePasswordView",
 
@@ -99,7 +99,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "@/components/auth2/css/auth.sass"
+@import "@/components/auth/css/auth.sass"
 
 .card-text
   padding: 10% 10px 45px 10px

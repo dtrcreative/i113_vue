@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import LogoView from "@/components/auth2/LogoView";
+import LogoView from "@/components/auth/LogoView";
 import ExceptionSnackBar from "@/components/UI/exceptions/ExceptionSnackBar";
 
 export default {

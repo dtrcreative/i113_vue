@@ -79,7 +79,7 @@
 
 <script>
 import router from "@/router";
-import {useAuthStore} from "@/components/auth2/js/authStore";
+import {useAuthStore} from "@/components/auth/js/authStore";
 
 export default {
   name: "ForgotPasswordEmailDialog",
@@ -126,7 +126,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "@/components/auth2/css/auth.sass"
+@import "@/components/auth/css/auth.sass"
 
 .card-info-text
   padding: 10px 10px 10px 10px

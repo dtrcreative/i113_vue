@@ -47,7 +47,7 @@
 
 <script>
 
-import authService from "@/components/auth2/js/auth.service";
+import authService from "@/components/auth/js/auth.service";
 import router from "@/router";
 import {cleanUserData, getUser} from "@/store/user.service";
 
@@ -93,10 +93,7 @@ export default {
     },
     getUserFullName() {
       let user = getUser();
-      if (user.fullName === undefined) {
-        return user.userName
-      }
-      return user.fullName;
+      return user.firstName + " " + user.lastName;
     },
     getEmail() {
       let user = getUser();

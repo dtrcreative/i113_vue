@@ -65,10 +65,10 @@
 </template>
 
 <script>
-import UserDataStep from "@/components/auth2/ui/UserDataStep";
-import UserPasswordStep from "@/components/auth2/ui/UserPasswordStep";
-import UserConfirmStep from "@/components/auth2/ui/UserConfirmStep";
-import {useAuthStore} from "@/components/auth2/js/authStore";
+import UserDataStep from "@/components/auth/ui/UserDataStep";
+import UserPasswordStep from "@/components/auth/ui/UserPasswordStep";
+import UserConfirmStep from "@/components/auth/ui/UserConfirmStep";
+import {useAuthStore} from "@/components/auth/js/authStore";
 import router from "@/router";
 
 export default {
@@ -128,7 +128,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "@/components/auth2/css/auth.sass"
+@import "@/components/auth/css/auth.sass"
 
 .loading
   width: 80%

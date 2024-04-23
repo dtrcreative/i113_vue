@@ -65,17 +65,17 @@ const routes = [
       {
         path: '/',
         name: 'Login',
-        component: () => import('@/components/auth2/LoginView.vue'),
+        component: () => import('@/components/auth/LoginView.vue'),
       },
       {
         path: '/signup',
         name: 'signup',
-        component: () => import('@/components/auth2/SignupView.vue'),
+        component: () => import('@/components/auth/SignupView.vue'),
       },
       {
         path: '/reinit',
         name: 'reinit',
-        component: () => import('@/components/auth2/ui/RestorePasswordView'),
+        component: () => import('@/components/auth/ui/RestorePasswordView'),
       },
     ]
   }

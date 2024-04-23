@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "@/components/auth2/css/auth.sass"
+@import "@/components/auth/css/auth.sass"
 
 .section-center
   text-align: center

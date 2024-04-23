@@ -64,8 +64,8 @@
 
 <script>
 import router from "@/router";
-import ForgotPasswordEmailDialog from "@/components/auth2/ui/ForgotPasswordEmailDialog";
-import {useAuthStore} from "@/components/auth2/js/authStore";
+import ForgotPasswordEmailDialog from "@/components/auth/ui/ForgotPasswordEmailDialog";
+import {useAuthStore} from "@/components/auth/js/authStore";
 import {cleanUserData} from "@/store/user.service";
 
 export default {
@@ -88,8 +88,7 @@ export default {
         this.clearError()
         let response = await useAuthStore().login()
         if (response !== undefined && response.status===200) {
-          console.log("Redirect")
-          // this.redirect()
+          this.redirect()
         }else{
           this.showErrorMessage("Упс, что-то пошло не так")
         }
@@ -119,7 +118,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "@/components/auth2/css/auth.sass"
+@import "@/components/auth/css/auth.sass"
 
 .card-text
   padding: 10% 10px 20px 10px

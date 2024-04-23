@@ -9,6 +9,7 @@ export const saveUserData = (data) => {
       uuid: tokenData.uuid,
       firstName: tokenData.firstname,
       lastName: tokenData.lastname,
+      email: tokenData.email,
       status: tokenData.status,
       role: tokenData.role,
       token: data,

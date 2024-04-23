@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import {useAuthStore} from "@/components/auth2/js/authStore";
+import {useAuthStore} from "@/components/auth/js/authStore";
 
 export default {
   name: "UserPasswordStep",
