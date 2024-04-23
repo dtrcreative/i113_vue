@@ -2,17 +2,7 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
 const routes = [
-  // {
-  //   path: "/",
-  //   name: 'login',
-  //   component: () => import('@/layouts/default/Login.vue'),
-  //   children: []
-  // },
-  // {
-  //   path: '/callback',
-  //   name: 'RedirectCallBack',
-  //   component: () => import('@/views/RedirectCallBack.vue'),
-  // },
+
   {
     path: '/main',
     name: 'Main',
@@ -23,16 +13,16 @@ const routes = [
         name: 'Home',
         component: () => import('@/pages/HomePage.vue'),
       },
-      // {
-      //   path: '/profile',
-      //   name: 'Profile',
-      //   component: () => import('@/views/Profile.vue'),
-      // },
-      // {
-      //   path: '/settings',
-      //   name: 'Settings',
-      //   component: () => import('@/views/Settings.vue'),
-      // },
+      {
+        path: '/profile',
+        name: 'Profile',
+        component: () => import('@/views/Profile.vue'),
+      },
+      {
+        path: '/settings',
+        name: 'Settings',
+        component: () => import('@/pages/SettingsPage.vue'),
+      },
     ],
   },
 

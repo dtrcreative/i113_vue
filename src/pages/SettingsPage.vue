@@ -6,7 +6,7 @@
 import SettingsView from "@/components/settings/SettingsView";
 
 export default {
-  name: "Settings",
+  name: "SettingsPage",
   components: {SettingsView}
 }
 </script>
