@@ -23,7 +23,6 @@ import {getGatewayUrl} from "@/store/app.service";
 
 export default {
   name: "Currencies",
-
   data: () => ({
     items: [
       {title: 'BYN'},

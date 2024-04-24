@@ -15,7 +15,7 @@ class LanguageService {
 
   async init() {
     try {
-      const response = await axios.get(getGatewayUrl() + API_ALL, {headers: getAuthHeader()});
+      const response = await axios.get(getGatewayUrl() + API_ALL, );
       return response.data;
     } catch (e) {
       exceptionHandler.handle(e)
@@ -24,7 +24,7 @@ class LanguageService {
 
   async getUnits() {
     try {
-      const response = await axios.get(getGatewayUrl() + API_ALL, {headers: getAuthHeader()});
+      const response = await axios.get(getGatewayUrl() + API_ALL, );
       return response.data;
     } catch (e) {
       exceptionHandler.handle(e)

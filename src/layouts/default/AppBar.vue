@@ -1,9 +1,26 @@
 <template>
-  <v-app-bar>
+  <v-app-bar prominent>
 
     <v-app-bar-title>
       <v-avatar icon="$fox" image="@/assets/Fox.png" size="30"> Ellie</v-avatar>
     </v-app-bar-title>
+
+    <div class="date-time">
+      <v-text-field
+        variant="plain"
+        hide-details
+        disabled
+        v-model="date"
+      ></v-text-field>
+    </div>
+    <div class="date-time">
+      <v-text-field
+        variant="plain"
+        hide-details
+        disabled
+        v-model="time"
+      ></v-text-field>
+    </div>
 
     <div class="auth">
       <toggle-theme></toggle-theme>
@@ -13,7 +30,9 @@
 
   </v-app-bar>
 
-  <v-navigation-drawer location="left" expand-on-hover rail>
+  <v-navigation-drawer
+    expand-on-hover
+    rail>
     <navigation-bar></navigation-bar>
   </v-navigation-drawer>
 
@@ -28,12 +47,33 @@ import TranslateList from "@/components/appbar/TranlateList";
 import UserProfileList from "@/components/appbar/UserProfileList";
 import NavigationBar from "@/components/appbar/NavigationBar";
 import ExceptionSnackBar from "@/components/UI/exceptions/ExceptionSnackBar";
+import ExpireTimer from "@/components/home/ExpireTimer";
+import {getCurentDateString} from "@/store/app.service";
 
 export default {
   name: "AppBar",
   components: {
+    ExpireTimer,
     ExceptionSnackBar,
     NavigationBar, UserProfileList, TranslateList, ToggleTheme
+  },
+  data(){
+    return{
+      interval: {},
+      date: getCurentDateString(),
+      time: ""
+    }
+  },
+
+  beforeUnmount() {
+    clearInterval(this.interval)
+  },
+
+  mounted() {
+    this.interval = setInterval(() => {
+      let date = new Date().toString().split(" ")
+        this.time = date[4]
+    }, 1000)
   },
 
 }
@@ -42,6 +82,13 @@ export default {
 
 <style lang="sass" scoped>
 @import '@/assets/styles/main'
+
+.date-time
+  padding-bottom: 1%
+  width: 9%
+
+.inline
+  float: left
 
 .user-info
   padding-left: 5px
