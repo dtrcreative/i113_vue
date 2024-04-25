@@ -44,18 +44,18 @@
                             value: '#ffffff'
                         },
                         links: {
-                            color: '#99ff00',
+                            color: '#2fff00',
                             distance: 130,
                             enable: true,
-                            opacity: 0.4,
+                            opacity: 0.3,
                             width: 0.5
                         },
                         move: {
                             direction: 'none',
                             enable: true,
                             outModes: 'bounce',
-                            random: false,
-                            speed: 1.5,
+                            random: true,
+                            speed: 1.2,
                             straight: false
                         },
                         number: {
@@ -65,7 +65,7 @@
                             value: 300
                         },
                         opacity: {
-                            value: 0.4
+                            value: 0.2
                         },
                         shape: {
                             type: 'circle'
