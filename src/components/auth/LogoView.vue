@@ -2,6 +2,7 @@
   <v-card class="section-center">
     <div class="elli-logo">
       <v-img
+        icon="$logo"
         src="@/assets/Logo.png"
       ></v-img>
     </div>
