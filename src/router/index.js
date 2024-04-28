@@ -1,19 +1,9 @@
 // Composables
 import {createRouter, createWebHistory} from 'vue-router'
-import userService from "@/components/auth/services/user.service";
+import {getUser} from "@/store/user.service";
 
 const routes = [
-  {
-    path: "/",
-    name: 'login',
-    component: () => import('@/layouts/default/Login.vue'),
-    children: []
-  },
-  {
-    path: '/callback',
-    name: 'RedirectCallBack',
-    component: () => import('@/views/RedirectCallBack.vue'),
-  },
+
   {
     path: '/main',
     name: 'Main',
@@ -22,17 +12,17 @@ const routes = [
       {
         path: '/home',
         name: 'Home',
-        component: () => import('@/views/Home.vue'),
+        component: () => import('@/pages/HomePage.vue'),
       },
       {
         path: '/profile',
         name: 'Profile',
-        component: () => import('@/views/Profile.vue'),
+        component: () => import('@/pages/ProfilePage.vue'),
       },
       {
         path: '/settings',
         name: 'Settings',
-        component: () => import('@/views/Settings.vue'),
+        component: () => import('@/pages/SettingsPage.vue'),
       },
     ],
   },
@@ -58,6 +48,27 @@ const routes = [
         component: () => import('@/components/microservices/events/EventsMainView.vue'),
       },
     ]
+  },
+  {
+    path: "/",
+    component: () => import('@/pages/AuthPage.vue'),
+    children: [
+      {
+        path: '/',
+        name: 'login',
+        component: () => import('@/components/auth/LoginView.vue'),
+      },
+      {
+        path: '/signup',
+        name: 'signup',
+        component: () => import('@/components/auth/SignupView.vue'),
+      },
+      {
+        path: '/reinit',
+        name: 'reinit',
+        component: () => import('@/components/auth/ui/RestorePasswordView'),
+      },
+    ]
   }
 ]
 
@@ -67,20 +78,24 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (userService.getUser() === null &&
+  let user = getUser();
+
+  if(
+    user === null &&
     (to.name !== 'login') &&
-    (to.name !== 'RedirectCallBack')) {
+    (to.name !== 'signup') &&
+    (to.name !== 'reinit'))
+  {
     next({name: 'login'})
-  } else {
-    if (userService.getUser() !== null && (userService.getUser().expires_at) < (new Date().getTime() / 1000) &&
-      (to.name !== 'login') &&
-      (to.name !== 'RedirectCallBack')) {
-      userService.cleanUserData()
-      userService.cleanStorage()
-      next({name: 'login'})
-    } else {
-      next()
-    }
+  }
+  if(
+    user !== null &&
+    user.expireAt<(new Date().getTime() / 1000) &&
+    (to.name !== 'login'))
+  {
+    next({name: 'login'})
+  } else{
+    next()
   }
 })
 

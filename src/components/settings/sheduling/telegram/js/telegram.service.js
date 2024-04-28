@@ -1,24 +1,26 @@
-import userService from "@/components/auth/services/user.service";
-import axios from "axios";
-import {authHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
-import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 
-const API_URL = 'api/telbot/';
-const API_REG = 'reg'
-const API_STATUS = 'status'
-const API_DISABLE = 'disable'
-const API_ENABLE = 'enable'
+import axios from "axios";
+import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
+import {getGatewayUrl} from "@/store/app.service";
+import {getAuthHeader, getUser} from "@/store/user.service";
+
+const API_URL = 'api/telbot/'
+const API_REG = 'api/telbot/reg'
+const API_STATUS = 'api/telbot/status'
+const API_DISABLE = 'api/telbot/disable'
+const API_ENABLE = 'api/telbot/enable'
+const API_TELBOT = 'api/telbot/actuator/health'
 
 class TelegramService {
 
   async register() {
-    let user = userService.getUser();
+    let user = getUser();
     try {
-      return await axios.post(getGatewayUrl() + API_URL + API_REG, {
+      return await axios.post(getGatewayUrl() + API_REG, {
         userId: user.userId,
         userSecretKey: ''
       }, {
-        headers: authHeader()
+        headers: getAuthHeader()
       })
     } catch (e) {
       exceptionHandler.handle(e)
@@ -26,13 +28,13 @@ class TelegramService {
   }
 
   async status() {
-    let user = userService.getUser();
+    let user = getUser();
     try {
-      return await axios.post(getGatewayUrl() + API_URL + API_STATUS, {
+      return await axios.post(getGatewayUrl() + API_STATUS, {
         userId: user.userId,
         userSecretKey: ''
       }, {
-        headers: authHeader()
+        headers: getAuthHeader()
       })
     } catch (e) {
       exceptionHandler.handle(e)
@@ -40,12 +42,12 @@ class TelegramService {
   }
 
   async disable() {
-    let user = userService.getUser();
+    let user = getUser();
     try {
-      return await axios.post(getGatewayUrl() + API_URL + API_DISABLE, {
+      return await axios.post(getGatewayUrl() + API_DISABLE, {
         userId: user.userId,
       }, {
-        headers: authHeader()
+        headers: getAuthHeader()
       })
     } catch (e) {
       exceptionHandler.handle(e)
@@ -53,26 +55,18 @@ class TelegramService {
   }
 
   async enable() {
-    let user = userService.getUser();
+    let user = getUser();
     try {
-      return await axios.post(getGatewayUrl() + API_URL + API_ENABLE, {
+      return await axios.post(getGatewayUrl() + API_ENABLE, {
         userId: user.userId,
       }, {
-        headers: authHeader()
+        headers: getAuthHeader()
       })
     } catch (e) {
       exceptionHandler.handle(e)
     }
   }
 
-  async test() {
-    try {
-      const response = await axios.get(getGatewayUrl() + 'api/events/' + 'alltest', {headers: authHeader()});
-      return response;
-    } catch (e) {
-      exceptionHandler.handle(e)
-    }
-  }
 }
 
 export default new TelegramService()

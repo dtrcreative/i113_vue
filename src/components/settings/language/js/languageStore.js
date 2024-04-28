@@ -1,5 +1,6 @@
 import {defineStore} from 'pinia'
 import languageService from "@/components/settings/language/js/language.service";
+import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 
 export const useLangStore = defineStore('languages', {
   state: () => ({
@@ -50,7 +51,7 @@ export const useLangStore = defineStore('languages', {
           }
         })
       } else {
-        console.log("Languages is Empty")
+        exceptionHandler.handleAppError({code: 0, message: "No language lines"})
       }
     }
   },

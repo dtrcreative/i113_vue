@@ -6,7 +6,11 @@
     variant="tonal"
     v-model="useExcStore().isException"
   >
-    {{ useExcStore().getExceptionText }}
+    {{
+      useExcStore().exCode + ": " +
+      useExcStore().exStatus + ": " +
+      useExcStore().exMessage
+    }}
   </v-snackbar>
 </template>
 

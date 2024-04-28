@@ -11,11 +11,25 @@
       </div>
     </div>
   </div>
+  <div class="sections">
+    <div class="section-left">
+      <div class="block">
+        <expire-timer></expire-timer>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="block">
+<!--        <Currencies></Currencies>-->
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import MonthCalculation from "@/components/home/monthcalc/BalanceCalculation";
-import Currencies from "@/components/home/currencies/Currencies";</script>
+import Currencies from "@/components/home/currencies/Currencies";
+import ExpireTimer from "@/components/home/ExpireTimer";
+</script>
 
 <style lang="sass" scoped>
 

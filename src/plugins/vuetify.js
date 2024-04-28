@@ -25,14 +25,11 @@ const light = {
     success: '#4CAF50',
     warning: '#FB8C00',
   },
-  image: {
-    banner: '@/assets/img/vbanner-green.jpg'
-  }
 }
 const dark = {
   dark: true,
   colors: {
-    background: '#111311',
+    background: 'rgba(0,0,0,0)',
     surface: '#1E261EA0',
     primary: 'rgba(0,128,11,0.28)',
     secondary: '#3c6c2a',
@@ -41,9 +38,6 @@ const dark = {
     success: '#4CAF50',
     warning: '#FB8C00',
   },
-  image: {
-    banner: '@/assets/img/vbanner-green.jpg'
-  }
 }
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides

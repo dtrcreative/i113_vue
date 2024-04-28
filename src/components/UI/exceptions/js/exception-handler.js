@@ -1,17 +1,20 @@
-import {logout} from "@/components/auth/services/auth.service";
+// import {logout} from "@/components/auth/services/auth.service";
 import router from "@/router";
 import {useExcStore} from "@/components/UI/exceptions/js/exceptionStore";
+import {cleanUserData} from "@/store/user.service";
 
 class ExceptionHandler {
-
   handle(error) {
-    if(error.response !== undefined){
+    if (error.response !== undefined) {
       switch (error.response.status) {
         case 400 : //Bad Request
           this.handle400(error)
           break;
         case 401: //Unauthorized
           this.handle401(error)
+          break;
+        case 403: //BadRequest
+          this.handle403(error)
           break;
         case 404: //Not Found
           this.handle404(error)
@@ -29,8 +32,25 @@ class ExceptionHandler {
           this.handleDefault(error)
           break;
       }
+    } else {
+      if(error.code !== 0){
+        this.handleAppError(error)
+      }else{
+        this.handleAppException(error)
+      }
     }
-    this.handleNotLogin(error)
+  }
+
+  handleAppError(error){
+    let exceptionTitle = 'App Exception'
+    console.log(error)
+    this.showSnackBar(error.code, exceptionTitle, error.message)
+  }
+
+  handleAppException(error, appError) {
+    let exceptionTitle = 'App Exception'
+    console.log(error)
+    this.showSnackBar(appError.code, exceptionTitle, appError.message)
   }
 
   handle400(error) {
@@ -39,43 +59,40 @@ class ExceptionHandler {
   }
 
   handle401(error) {
-    console.log("Unauthorized")
+    let exceptionTitle = 'Unauthorized'
     console.log(error)
-    logout().then(r => {
-    })
-    router.push("/")
+    cleanUserData()
+    router.push("./")
+  }
+
+  handle403(error) {
+    let exceptionTitle = 'Bad Request'
+    console.log(error)
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.data)
   }
 
   handle404(error) {
-    console.log("Not Found")
-    useExcStore().setExceptionData(
-      error.response.status,
-      error.response.statusText,
-      error.response.message,
-    )
+    let exceptionTitle = 'Not Found'
+    console.log(exceptionTitle + ":" + error)
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
   }
 
   handle409(error) {
-    console.log("Conflict")
-    console.log(error.response.data)
+    let exceptionTitle = 'Conflict'
+    console.log(error)
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.data)
   }
 
   handle500(error) {
-    console.log("Internal Server Error")
-    useExcStore().setExceptionData(
-      error.response.status,
-      error.response.statusText,
-      error.response.message,
-    )
+    let exceptionTitle = 'Internal Server Error'
+    console.log(error)
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
   }
 
   handle503(error) {
-    console.log("Service Unavailable")
-    useExcStore().setExceptionData(
-      error.response.status,
-      error.response.statusText,
-      error.response.message,
-    )
+    let exceptionTitle = 'Service Unavailable'
+    console.log(error)
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
   }
 
   handleDefault(error) {
@@ -83,13 +100,17 @@ class ExceptionHandler {
     console.log(error)
   }
 
-  handleNotLogin(error){
+  handleNotLogin(error) {
+    let exceptionTitle = 'Response Undefined'
     console.log(error)
-    useExcStore().setExceptionData(
-      error.code,
-      error.message,
-      "",
-    )
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.message)
+  }
+
+  showSnackBar(exCode, exStatus, exMessage) {
+    useExcStore().isException = true;
+    useExcStore().exCode = exCode
+    useExcStore().exStatus = exStatus
+    useExcStore().exMessage = exMessage
   }
 
 }

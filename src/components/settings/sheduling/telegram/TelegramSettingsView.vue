@@ -165,11 +165,6 @@ export default {
 .card
   border-radius: 15px
 
-.textfield
-//margin-right: 15px
-//margin-left: 15px
-//max-width: 200px
-
 .btn
   margin-left: 15px
   margin-right: 15px

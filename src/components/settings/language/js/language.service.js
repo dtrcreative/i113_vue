@@ -1,11 +1,13 @@
 import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 import axios from "axios";
-import {authHeader, getGatewayUrl} from "@/components/auth/services/axios.service";
+import {getGatewayUrl} from "@/store/app.service";
+import {getAuthHeader} from "@/store/user.service";
 
-const API_URL = 'api/resources/language/';
-const API_ALL = 'all';
-const API_JSON_ADD = 'upload-add';
-const API_JSON_REPLACE = 'upload-replace';
+const API_URL = 'api/resources/language/'
+const API_ALL = 'api/resources/language/all'
+const API_JSON_ADD = 'api/resources/language/upload-add'
+const API_JSON_REPLACE = 'api/resources/language/upload-replace'
+const API_RESOURCE_HEALTH = 'api/resources/actuator/health'
 
 const SERVICE_NAME = 'Languages'
 
@@ -13,7 +15,7 @@ class LanguageService {
 
   async init() {
     try {
-      const response = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: authHeader()});
+      const response = await axios.get(getGatewayUrl() + API_ALL, );
       return response.data;
     } catch (e) {
       exceptionHandler.handle(e)
@@ -22,7 +24,7 @@ class LanguageService {
 
   async getUnits() {
     try {
-      const response = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: authHeader()});
+      const response = await axios.get(getGatewayUrl() + API_ALL, );
       return response.data;
     } catch (e) {
       exceptionHandler.handle(e)
@@ -38,7 +40,7 @@ class LanguageService {
         eng: unit.eng,
         rus: unit.rus,
       }, {
-        headers: authHeader()
+        headers: getAuthHeader()
       })
     } catch (e) {
       exceptionHandler.handle(e)
@@ -54,7 +56,7 @@ class LanguageService {
         eng: unit.eng,
         rus: unit.rus,
       }, {
-        headers: authHeader()
+        headers: getAuthHeader()
       })
     } catch (e) {
       exceptionHandler.handle(e)
@@ -63,7 +65,7 @@ class LanguageService {
 
   async remove(id) {
     try {
-      return axios.delete(getGatewayUrl() + API_URL + id, {headers: authHeader()})
+      return axios.delete(getGatewayUrl() + API_URL + id, {headers: getAuthHeader()})
     } catch (e) {
       exceptionHandler.handle(e)
     }
@@ -71,7 +73,7 @@ class LanguageService {
 
   async uploadJSON(json, isReplace) {
     try {
-      return await axios.post(getGatewayUrl() + API_URL + (isReplace ? API_JSON_REPLACE : API_JSON_ADD), json, {headers: authHeader()})
+      return await axios.post(getGatewayUrl() + (isReplace ? API_JSON_REPLACE : API_JSON_ADD), json, {headers: getAuthHeader()})
     } catch (e) {
       exceptionHandler.handle(e)
     }
@@ -95,8 +97,12 @@ class LanguageService {
             json[unitNumber].rus : failed.push("unit:" + (unitNumber + 1) + "-field:rus"),
         })
       } catch (e) {
-        console.log('ощибка')
-        console.log(e)
+
+        exceptionHandler.handleAppException(e,{
+          code:0,
+          message: "Parse JSON exception"
+        })
+
       }
     }
     if (failed.length > 0) {
@@ -122,7 +128,7 @@ class LanguageService {
   async getBackUp() {
     let backUpObjects = []
     try {
-      let response = await axios.get(getGatewayUrl() + API_URL + API_ALL, {headers: authHeader()});
+      let response = await axios.get(getGatewayUrl() + API_ALL, {headers: getAuthHeader()});
       let values = response.data
       for (let i = 0; i < values.length; i++) {
         backUpObjects.push(

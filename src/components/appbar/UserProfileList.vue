@@ -46,17 +46,18 @@
 </template>
 
 <script>
-import {logout} from "@/components/auth/services/auth.service";
-import userService from "@/components/auth/services/user.service";
+
+import authService from "@/components/auth/js/auth.service";
 import router from "@/router";
+import {cleanUserData, getUser} from "@/store/user.service";
 
 export default {
   name: "UserProfileList",
   data: () => ({
     selectedItem: 0,
     items: [
-      {text: 'Profile', icon: 'mdi-account-multiple', action: "goProfile"},
-      {text: 'Settings', icon: 'mdi-cog', action: "goSettings"},
+      {text: 'Profile', icon: 'mdi-account-multiple', action: "profile"},
+      {text: 'Settings', icon: 'mdi-cog', action: "settings"},
       {text: 'Logout', icon: 'mdi-logout', action: "logout"},
     ],
   }),
@@ -64,17 +65,16 @@ export default {
     listAction(action) {
       switch (action) {
         case 'logout': {
-          logout();
-          userService.cleanUserData();
+          authService.logout();
         }
           break
-        case 'goProfile':
+        case 'profile':
           router.push("/profile");
           break
-        case 'goSettings':
+        case 'settings':
           router.push("/settings");
           break
-        case 'goHome':
+        case 'home':
           router.push("./");
           break
         default:
@@ -84,21 +84,18 @@ export default {
   },
   computed: {
     getUserInitials() {
-      let user = userService.getUser();
+      let user = getUser();
       if (user.firstName === "" || user.lastName === "") {
         return user.userName.charAt(0)
       }
       return user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase();
     },
     getUserFullName() {
-      let user = userService.getUser();
-      if (user.fullName === undefined) {
-        return user.userName
-      }
-      return user.fullName;
+      let user = getUser();
+      return user.firstName + " " + user.lastName;
     },
     getEmail() {
-      let user = userService.getUser();
+      let user = getUser();
       return user.email;
     }
   }
