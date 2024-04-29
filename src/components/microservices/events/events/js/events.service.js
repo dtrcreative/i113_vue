@@ -26,7 +26,7 @@ class EventService {
     let user = getUser();
     try {
       return await axios.post(getGatewayUrl() + API_URL, {
-        userId: user.userId,
+        userId: user.uuid,
         eventName: unit.eventName,
         date: unit.date,
         notify: unit.notify,
@@ -45,7 +45,7 @@ class EventService {
     try {
       return await axios.put(getGatewayUrl() + API_URL, {
         id: unit.id,
-        userId: user.userId,
+        userId: user.uuid,
         eventName: unit.eventName,
         date: unit.date,
         notify: unit.notify,

@@ -34,7 +34,7 @@ class PandaService {
     let user = getUser();
     try {
       return await axios.post(getGatewayUrl() + API_URL, {
-        userId: user.userId,
+        userId: user.uuid,
         name: account.name,
         account: account.account,
         mail: account.mail,
@@ -55,7 +55,7 @@ class PandaService {
     try {
       return await axios.put(getGatewayUrl() + API_URL, {
         id: account.id,
-        userId: user.userId,
+        userId: user.uuid,
         name: account.name,
         account: account.account,
         mail: account.mail,

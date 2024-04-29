@@ -27,7 +27,7 @@ class BirthdayService {
     let user = getUser();
     try {
       return await axios.post(getGatewayUrl() + API_URL, {
-        userId: user.userId,
+        userId: user.uuid,
         firstName: unit.firstName,
         lastName: unit.lastName,
         date: unit.date,
@@ -46,7 +46,7 @@ class BirthdayService {
     try {
       return await axios.put(getGatewayUrl() + API_URL, {
         id: unit.id,
-        userId: user.userId,
+        userId: user.uuid,
         firstName: unit.firstName,
         lastName: unit.lastName,
         date: unit.date,
