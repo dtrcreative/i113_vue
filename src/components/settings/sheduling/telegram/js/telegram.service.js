@@ -17,7 +17,7 @@ class TelegramService {
     let user = getUser();
     try {
       return await axios.post(getGatewayUrl() + API_REG, {
-        userId: user.userId,
+        userId: user.uuid,
         userSecretKey: ''
       }, {
         headers: getAuthHeader()
@@ -31,7 +31,7 @@ class TelegramService {
     let user = getUser();
     try {
       return await axios.post(getGatewayUrl() + API_STATUS, {
-        userId: user.userId,
+        userId: user.uuid,
         userSecretKey: ''
       }, {
         headers: getAuthHeader()
@@ -45,7 +45,7 @@ class TelegramService {
     let user = getUser();
     try {
       return await axios.post(getGatewayUrl() + API_DISABLE, {
-        userId: user.userId,
+        userId: user.uuid,
       }, {
         headers: getAuthHeader()
       })
@@ -58,7 +58,7 @@ class TelegramService {
     let user = getUser();
     try {
       return await axios.post(getGatewayUrl() + API_ENABLE, {
-        userId: user.userId,
+        userId: user.uuid,
       }, {
         headers: getAuthHeader()
       })
