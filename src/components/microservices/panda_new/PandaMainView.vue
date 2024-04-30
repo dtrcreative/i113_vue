@@ -19,4 +19,7 @@ export default {
 <style lang="sass" scoped>
 .sections
   padding-top: 5px
+  @media (min-width: 810px)
+    margin: 0 auto 0 auto
+    width: 70%
 </style>
