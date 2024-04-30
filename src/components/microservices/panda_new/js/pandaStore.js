@@ -49,7 +49,6 @@ export const usePandaStore = defineStore('pandas', {
     headers: [
       { title: 'Service', align: 'center', sortable: false, key: 'name', class: 'bg-color' },
       { title: 'Account', align: 'center', sortable: false,  key: 'account' },
-      { title: 'Mail', align: 'center', sortable: false,  key: 'mail' },
       { title: 'Actions', align: 'center', sortable: false, key: 'actions' },
     ]
   }),

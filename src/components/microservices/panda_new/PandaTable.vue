@@ -11,21 +11,6 @@
         <panda-control></panda-control>
     </template>
 
-
-    <template v-slot:header="{ props: { headers } }">
-      <thead class="v-data-table-header">
-      <tr>
-        <th
-          v-for="header in headers"
-          :key="header.value"
-          class="text-uppercase"
-          scope="col"
-        >
-          {{ header.title }}
-        </th>
-      </tr>
-      </thead>
-    </template>
     <template v-slot:item="{ item }">
       <tr>
         <td class="column-checkbox">
@@ -40,12 +25,13 @@
         </td>
         <td class="column-name">{{ item.name }}</td>
         <td class="column-account">{{ item.account }}</td>
-        <td class="column-mail">{{ item.mail }}</td>
         <td class="column-actions">
           <v-btn class="actions-btn-pass" variant="plain" density="comfortable" icon="mdi-content-copy"
                  @click="copyPassword(item)"></v-btn>
           <v-btn class="actions-btn-info" variant="plain" density="comfortable" icon="mdi-information-variant"
                  @click="description(item)"></v-btn>
+          <v-btn class="actions-btn-mail" variant="plain" density="comfortable" icon="mdi-at"
+                 @click="updateItem(item)"></v-btn>
           <v-btn class="actions-btn-update" variant="plain" density="comfortable" icon="mdi-pencil"
                  @click="updateItem(item)"></v-btn>
         </td>
@@ -101,10 +87,7 @@ export default {
 @import '@/assets/styles/main'
 
 .v-data-table
-  background-color: rgba(0, 0, 0, 0)
-
-.v-container
-  background-color: rgba(0, 0, 0, 0)
+  background-color: $background-transparent
 
 .column-checkbox
   width: 0
@@ -137,6 +120,9 @@ export default {
 
 .actions-btn-info
   color: rgba(0, 228, 255, 0.6)
+
+.actions-btn-mail
+  color: rgba(239, 65, 65, 0.6)
 
 .actions-btn-update
   color: rgba(0, 255, 42, 0.6)

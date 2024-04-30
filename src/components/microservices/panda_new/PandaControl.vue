@@ -81,6 +81,8 @@ function remove() {
   border-radius: 15px
   background-color: rgba(0, 11, 42, 0.25)
   width: 80%
+  @media (max-width: 400px)
+    width: 100%
 
 .v-container
   background-color: rgba(0, 11, 42, 0)

@@ -5,7 +5,7 @@
       <v-avatar icon="$fox" image="@/assets/Fox.png" size="30"> Ellie</v-avatar>
     </v-app-bar-title>
 
-    <div class="date-time">
+    <div class="date">
       <v-text-field
         variant="plain"
         hide-details
@@ -13,7 +13,7 @@
         v-model="date"
       ></v-text-field>
     </div>
-    <div class="date-time">
+    <div class="time">
       <v-text-field
         variant="plain"
         hide-details
@@ -90,9 +90,18 @@ export default {
   background-color:  rgb(var(--v-theme-background),0.8)
   //background-color: $background-transparent
 
-.date-time
+.date
   padding-bottom: 1%
+  width: 17%
+  @media (max-width: 767px)
+    width: 0
+    visibility: collapse
+
+.time
   width: 9%
+  padding-bottom: 1%
+  @media (max-width: 767px)
+    width: 20%
 
 .inline
   float: left

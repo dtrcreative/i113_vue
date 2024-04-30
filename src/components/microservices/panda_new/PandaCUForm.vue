@@ -166,6 +166,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+
 .btn
   width: 100%
 
