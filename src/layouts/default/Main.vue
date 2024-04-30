@@ -1,4 +1,5 @@
 <template>
+  <particles></particles>
   <v-app>
     <app-bar/>
     <View/>
@@ -7,4 +8,5 @@
 
 <script setup>
 import AppBar from './AppBar.vue'
-import View from "@/layouts/default/View";</script>
+import View from "@/layouts/default/View";
+import Particles from "@/layouts/default/Particles";</script>

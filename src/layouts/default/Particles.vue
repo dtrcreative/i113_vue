@@ -8,7 +8,7 @@
       :options="{
                     background: {
                         color: {
-                            value: '#000000'
+                            value: 'rgb(var(--v-theme-background))'
                         }
                     },
                     fpsLimit: 120,
@@ -88,5 +88,4 @@ const particlesLoaded = async container => {
 </script>
 
 <style scoped>
-
 </style>

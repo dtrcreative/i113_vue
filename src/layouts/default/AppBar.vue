@@ -83,6 +83,13 @@ export default {
 <style lang="sass" scoped>
 @import '@/assets/styles/main'
 
+.v-app-bar
+  background-color:  rgb(var(--v-theme-background),0.8)
+//background-color: $background-transparent
+.v-navigation-drawer
+  background-color:  rgb(var(--v-theme-background),0.8)
+  //background-color: $background-transparent
+
 .date-time
   padding-bottom: 1%
   width: 9%

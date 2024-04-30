@@ -8,6 +8,7 @@
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 
+
 // Composables
 import {createVuetify} from 'vuetify'
 import * as components from 'vuetify/components'
@@ -16,10 +17,10 @@ import * as directives from 'vuetify/directives'
 const light = {
   dark: false,
   colors: {
-    background: '#FFFFFF',
-    surface: '#dcdcdc',
+    background: 'rgb(159,154,154)',
+    surface: '#bebebe',
     primary: 'rgb(48,185,58)',
-    secondary: 'rgba(74,126,58,0.44)',
+    secondary: 'rgba(74,126,58)',
     error: '#B00020',
     info: '#2196F3',
     success: '#4CAF50',
@@ -29,9 +30,9 @@ const light = {
 const dark = {
   dark: true,
   colors: {
-    background: 'rgba(0,0,0,0)',
-    surface: 'rgba(30,38,30,0)',
-    primary: 'rgba(0,128,11,0.28)',
+    background: 'rgba(10,10,10,0.87)',
+    surface: 'rgba(27,59,27)',
+    primary: 'rgba(0,128,11)',
     secondary: '#3c6c2a',
     error: '#B00020',
     info: '#50d5b2',
