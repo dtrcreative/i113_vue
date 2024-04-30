@@ -39,6 +39,17 @@ const routes = [
     ]
   },
   {
+    path: '/panda_new',
+    component: () => import('@/layouts/default/Main.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Panda_new',
+        component: () => import('@/components/microservices/panda_new/PandaMainView.vue'),
+      },
+    ]
+  },
+  {
     path: "/events",
     component: () => import('@/layouts/default/Main.vue'),
     children: [

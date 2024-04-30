@@ -30,7 +30,7 @@ const dark = {
   dark: true,
   colors: {
     background: 'rgba(0,0,0,0)',
-    surface: '#1E261EA0',
+    surface: 'rgba(30,38,30,0)',
     primary: 'rgba(0,128,11,0.28)',
     secondary: '#3c6c2a',
     error: '#B00020',

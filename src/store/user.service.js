@@ -6,7 +6,6 @@ const USER = "user"
 export const saveUserData = (data) => {
   let tokenData = jwtDecode(data.token)
   if (tokenData !== undefined && tokenData !== "") {
-    console.log(tokenData)
     let userData = {
       uuid: tokenData.uuid,
       firstName: tokenData.firstname,

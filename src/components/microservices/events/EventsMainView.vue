@@ -51,12 +51,12 @@ export default {
 @import '@/assets/styles/main'
 
 .card
-  background-color: background
+  background-color: rgba(0,0,0,0)
   border-bottom-left-radius: 20px
   border-bottom-right-radius: 20px
 
 .tabbody
-  background-color: background
+  background-color: rgba(0,0,0,0)
   border-radius: 20px
 
 .tabbar
