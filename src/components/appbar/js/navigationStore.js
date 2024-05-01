@@ -9,8 +9,7 @@ export const useNavStore = defineStore('navigation', {
     },
 
     microPages: [
-      {title: 'Panda', value: "panda", icon: 'mdi-panda', color: 'white', redirect: '/panda/'},
-      {title: 'Panda', value: "panda", icon: 'mdi-panda', color: 'orange', redirect: '/panda_new/'},
+      {title: 'Panda', value: "panda", icon: 'mdi-panda', color: 'orange', redirect: '/panda/'},
       {title: 'Events', value: "events", icon: 'mdi-calendar', color: 'red', redirect: '/events/'},
     ]
 

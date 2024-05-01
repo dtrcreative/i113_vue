@@ -26,7 +26,6 @@ const routes = [
       },
     ],
   },
-
   {
     path: '/panda',
     component: () => import('@/layouts/default/Main.vue'),
@@ -35,17 +34,6 @@ const routes = [
         path: '',
         name: 'Panda',
         component: () => import('@/components/microservices/panda/PandaMainView.vue'),
-      },
-    ]
-  },
-  {
-    path: '/panda_new',
-    component: () => import('@/layouts/default/Main.vue'),
-    children: [
-      {
-        path: '',
-        name: 'Panda_new',
-        component: () => import('@/components/microservices/panda_new/PandaMainView.vue'),
       },
     ]
   },

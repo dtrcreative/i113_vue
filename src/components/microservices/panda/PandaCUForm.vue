@@ -4,7 +4,7 @@
       <v-col xs="1" sm="4" md="4">
         <v-text-field
           clearable
-          v-model.trim="usePandaStore().unitToUpdate.name"
+          v-model.trim="usePandaStore().updateUnit.name"
           label="Name"
           variant="outlined"
           density="compact"
@@ -16,7 +16,7 @@
       <v-col xs="1" sm="4" md="4">
         <v-text-field
           clearable
-          v-model.trim="usePandaStore().unitToUpdate.mail"
+          v-model.trim="usePandaStore().updateUnit.mail"
           label="Mail"
           variant="outlined"
           density="compact"
@@ -28,7 +28,7 @@
         <!--TODO-->
         <v-text-field
           clearable
-          v-model.trim="usePandaStore().unitToUpdate.password"
+          v-model.trim="usePandaStore().updateUnit.password"
           label="Password"
           variant="outlined"
           density="compact"
@@ -44,7 +44,7 @@
       <v-col xs="1" sm="4" md="4">
         <v-text-field
           clearable
-          v-model.trim="usePandaStore().unitToUpdate.account"
+          v-model.trim="usePandaStore().updateUnit.account"
           label="Account"
           variant="outlined"
           density="compact"
@@ -56,7 +56,7 @@
       <v-col xs="1" sm="4" md="4">
         <v-text-field
           clearable
-          v-model.trim="usePandaStore().unitToUpdate.link"
+          v-model.trim="usePandaStore().updateUnit.link"
           label="Link"
           variant="outlined"
           density="compact"
@@ -68,7 +68,7 @@
         <v-select
           label="Type"
           :items="usePandaStore().types"
-          v-model="usePandaStore().unitToUpdate.type"
+          v-model="usePandaStore().updateUnit.type"
           variant="outlined"
           density="compact"
           hide-details
@@ -79,7 +79,7 @@
       <v-col xs="1" sm="12" md="12">
         <v-text-field
           clearable
-          v-model.trim="usePandaStore().unitToUpdate.description"
+          v-model.trim="usePandaStore().updateUnit.description"
           label="Description"
           variant="outlined"
           density="compact"
@@ -117,9 +117,7 @@
         </v-btn>
       </v-col>
     </v-row>
-
   </v-form>
-
 </template>
 
 <script>
@@ -143,7 +141,7 @@ export default {
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
-        if (this.usePandaStore().unitToUpdate.id === null) {
+        if (this.usePandaStore().updateUnit.id === null) {
           usePandaStore().create();
         } else {
           usePandaStore().update();
@@ -162,16 +160,15 @@ export default {
     generatePassword() {
       pandaService.generatePassword()
     }
-  },
+  }
+
 }
 </script>
 
 <style lang="sass" scoped>
-
 .btn
   width: 100%
 
 .btn-update
   width: 100%
-
 </style>

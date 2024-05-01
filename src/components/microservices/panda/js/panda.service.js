@@ -19,6 +19,7 @@ const API_PANDA_HEALTH = 'api/panda/actuator/health'
 const SERVICE_NAME = 'Panda'
 
 class PandaService {
+
   async getUnits() {
     try {
       const responseAccounts = await axios.get(getGatewayUrl() + API_ALL, {headers: getAuthHeader()});
@@ -107,8 +108,10 @@ class PandaService {
             json[unitNumber].description : failed.push("unit:" + (unitNumber + 1) + "-field:description"),
         })
       } catch (e) {
-        console.log('ощибка')
-        console.log(e)
+        exceptionHandler.handleAppException(e,{
+          code:0,
+          message: "Parse JSON exception"
+        })
       }
     }
     if (failed.length > 0) {
@@ -132,6 +135,7 @@ class PandaService {
       let result = await axios.post(getGatewayUrl() + API_PASSGEN,{
         userId: user.userId,
       }, {headers: getAuthHeader()})
+      console.log(result.data)
       usePandaStore().setNewPassword(result.data)
     } catch (e) {
       exceptionHandler.handle(e)

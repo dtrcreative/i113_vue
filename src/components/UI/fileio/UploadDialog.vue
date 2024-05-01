@@ -6,7 +6,7 @@
     <template v-slot:default="{isActive}">
       <v-card class="dialog">
 
-        <v-card-title>Upload</v-card-title>
+        <v-card-title>Please select file to Upload</v-card-title>
 
         <v-card-text>
           <v-file-input
@@ -40,7 +40,7 @@
             ></v-radio>
           </v-radio-group>
           <v-btn class="btn" variant="text" @click="downloadTemplate">
-            GetTemplate
+            Template
           </v-btn>
           <v-btn class="btn" variant="outlined" color="error" @click="isActive.value = false">
             Close

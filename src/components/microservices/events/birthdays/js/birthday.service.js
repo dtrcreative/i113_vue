@@ -92,8 +92,10 @@ class BirthdayService {
             json[unitNumber].description : failed.push("unit:" + (unitNumber + 1) + "-field:description"),
         })
       } catch (e) {
-        console.log('ощибка')
-        console.log(e)
+        exceptionHandler.handleAppException(e,{
+          code:0,
+          message: "Parse JSON exception"
+        })
       }
     }
     if (failed.length > 0) {

@@ -3,12 +3,10 @@ import pandaService from "@/components/microservices/panda/js/panda.service";
 
 export const usePandaStore = defineStore('pandas', {
   state: () => ({
-    accounts: [],
     selected: [],
+    expanded: [],
     searchValue: "",
     showCUForm: false,
-
-    showConfirmDialog: false,
 
     types: [],
     allTypes: [],
@@ -16,7 +14,14 @@ export const usePandaStore = defineStore('pandas', {
 
     uploadJSON: '',
 
-    unitToUpdate: {
+    showSnackBar: false,
+    snackbarMessage: "",
+
+    loading:false,
+
+    accounts:[],
+
+    updateUnit: {
       id: '',
       userId: '',
       name: '',
@@ -27,6 +32,12 @@ export const usePandaStore = defineStore('pandas', {
       type: 'TRASH',
       description: '',
     },
+    headers: [
+      { title: 'Service', align: 'center', sortable: false, key: 'name'},
+      { title: 'Account', align: 'center', sortable: false,  key: 'account' },
+      { title: 'Mail', align: 'center', sortable: false,  key: 'mail' },
+      { title: 'Actions', align: 'center', sortable: false, key: 'actions' },
+    ]
   }),
   actions: {
     setAccounts(accounts) {
@@ -39,18 +50,14 @@ export const usePandaStore = defineStore('pandas', {
       this.types.sort()
       this.allTypes.sort()
     },
-    setNewPassword(password) {
-      this.unitToUpdate.password = password
-    },
     async create() {
-      let response = await pandaService.createAccount(this.unitToUpdate)
+      let response = await pandaService.createAccount(this.updateUnit)
       this.accounts.push(response.data)
     },
     async update() {
-      await pandaService.updateAccount(this.unitToUpdate)
+      await pandaService.updateAccount(this.updateUnit)
       await pandaService.getUnits()
     },
-    //Method used in ConfirmRemoveDialog
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {
         this.accounts = this.accounts.filter(unit => unit.id !== this.selected[i])
@@ -58,17 +65,21 @@ export const usePandaStore = defineStore('pandas', {
       pandaService.removeSelectedAccounts(this.selected)
       this.selected = []
     },
-    selectAll() {
-      if (this.selected.length !== 0) {
-        this.selected = []
-      } else if (this.selected.length === this.accounts.length) {
-        this.selected = []
-      } else if (this.accounts.length > 0 && this.selected.length !== this.accounts.length) {
-        for (let i = 0; i < this.accounts.length; i++) {
-          this.selected.push(this.accounts[i].id)
-        }
-      }
+    setNewPassword(password) {
+      this.updateUnit.password = password
     },
+    clearUpdateUnit(){
+      this.updateUnit = {
+        id: null,
+        name: null,
+        account: null,
+        mail: null,
+        password: null,
+        link: null,
+        type: 'TRASH',
+        description: null,
+      };
+    }
   },
   getters: {
     filterByName() {
@@ -87,5 +98,5 @@ export const usePandaStore = defineStore('pandas', {
         unit.password.toLowerCase().includes(this.searchValue !== null ? this.searchValue.toLowerCase() : '')
       )
     },
-  },
+  }
 })

@@ -1,175 +1,115 @@
 <template>
-  <v-container class="header">
-    <v-card-actions>
-      <v-row style="height: 50px;" no-gutters>
-        <v-col xs="1" sm="1" md="1">
-          <v-btn
-            icon="mdi-plus"
-            @click="showAddForm"
-          ></v-btn>
-        </v-col>
-        <v-col xs="6" sm="5" md="6">
-          <v-text-field clearable
-                        v-model.trim="usePandaStore().searchValue"
-                        label="Search"
-                        variant="outlined"
-                        density="compact"
-                        append-inner-icon="mdi-magnify"
-                        hide-details
-                        :maxlength="10"
-          ></v-text-field>
-        </v-col>
-        <v-col xs="2" sm="2" md="2">
-          <v-select
-            variant="outlined"
-            density="compact"
-            return-object
-            single-line
-            :items="usePandaStore().allTypes"
-            v-model="usePandaStore().selectedType"
-          ></v-select>
-        </v-col>
-        <v-col class="btn" xs="1" sm="1" md="1">
-          <UploadDialog
-            :service="pandaService"
-          ></UploadDialog>
-        </v-col>
-        <v-col class="btn" xs="1" sm="1" md="1">
-          <DownloadDialog
-            :service="pandaService"
-          ></DownloadDialog>
-        </v-col>
-        <v-col class="btn" xs="1" sm="1" md="1">
-          <v-btn
-            icon="mdi-trash-can"
-            min-width="50px"
-            @click="removeBtn"
-          ></v-btn>
-        </v-col>
-      </v-row>
-    </v-card-actions>
-    <v-expand-transition>
-      <div v-show="usePandaStore().showCUForm">
-        <panda-c-u-form></panda-c-u-form>
-      </div>
-    </v-expand-transition>
-
-  </v-container>
-
-  <ConfirmRemoveDialog
-    :store="usePandaStore()"
+  <v-data-table-virtual
+    class="transparent"
+    v-model="usePandaStore().selected"
+    :headers="usePandaStore().headers"
+    :items="usePandaStore().searchUnits"
+    :loading="usePandaStore().loading"
+    density="comfortable"
+    height="600"
+    show-select
   >
-  </ConfirmRemoveDialog>
 
-  <v-table density="compact" class="table">
-    <thead>
-    <tr>
-      <th class="checkbox">
-        <v-btn
-          size="small"
-          icon="mdi-select-all"
-          variant="text"
-          @click=usePandaStore().selectAll()
-        ></v-btn>
-      </th>
+    <template v-slot:top>
+      <panda-control></panda-control>
+    </template>
 
-      <th class="names" style="text-align: center">ServiceName</th>
-      <th class="names" style="text-align: center">Account</th>
-      <th class="names" style="text-align: center">Mail</th>
-      <th class="btn">Password</th>
-      <th class="btn">Update</th>
+    <template v-slot:item="{ item }">
+      <tr>
+        <td class="column-checkbox">
+          <v-checkbox
+            style="display: flex; justify-content: right"
+            v-model="usePandaStore().selected"
+            label=""
+            :value=item.id
+            density="compact"
+            color="primary"
+          ></v-checkbox>
+        </td>
+        <td class="column-name">{{ item.name }}</td>
+        <td class="column-account" @click="copyToClipboard(item.account)">{{ item.account }}</td>
+        <td class="column-mail" @click="copyToClipboard(item.mail)">{{ item.mail }}</td>
+        <td class="column-actions">
+          <v-btn class="actions-btn-pass" variant="plain" density="comfortable" icon="mdi-content-copy"
+                 @click="copyToClipboard(item.password)"></v-btn>
+          <v-btn class="actions-btn-info" variant="plain" density="comfortable" icon="mdi-information-variant"
+                 @click="description(item)"></v-btn>
+          <v-btn class="actions-btn-update" variant="plain" density="comfortable" icon="mdi-pencil"
+                 @click="showUpdateForm(item)"></v-btn>
+        </td>
+      </tr>
+      <tr v-if="usePandaStore().expanded.indexOf(item) !== -1">
+        <td :colspan=usePandaStore().headers.length+1>
+          {{ item.description }}
+        </td>
+      </tr>
+    </template>
 
-    </tr>
-    </thead>
+    <template v-slot:no-data>
+      <v-btn>There is no data yet</v-btn>
+    </template>
 
-    <tbody>
-    <tr
-      v-for="item in usePandaStore().searchUnits"
-      :key="item.id"
-    >
-      <td class="checkbox">
-        <v-checkbox
-          style="display: flex; justify-content: center;"
-          v-model="usePandaStore().selected"
-          label=""
-          :value=item.id
-          color="indigo-darken-3"
-        ></v-checkbox>
-      </td>
-      <td class="names" @click="copyToClipboard(item.name)">{{ item.name }}</td>
-      <td class="names" @click="copyToClipboard(item.account)">{{ item.account }}</td>
-      <td class="names" @click="copyToClipboard(item.mail)">{{ item.mail }}</td>
-      <td class="btn">
-        <v-btn
-          icon="mdi-lock"
-          @click="copyToClipboard(item.password)"
-        ></v-btn>
-      </td>
-      <td class="btn">
-        <v-btn
-          icon="mdi-pen"
-          @click="showUpdateForm(item)"
-        ></v-btn>
-      </td>
-    </tr>
-    </tbody>
-    <div class="empty-table" v-if="usePandaStore().accounts.length===0">
-      <h1>No data</h1>
-    </div>
-  </v-table>
+    <template v-slot:loading>
+      <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
+    </template>
+
+  </v-data-table-virtual>
+
+  <panda-snack-bar></panda-snack-bar>
+
 </template>
 
-<script setup>
-import pandaService from "@/components/microservices/panda/js/panda.service";
-import UploadDialog from "@/components/UI/fileio/UploadDialog";
-import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
+<script>
 import {usePandaStore} from "@/components/microservices/panda/js/pandaStore";
-import {onMounted} from "vue";
+import PandaControl from "@/components/microservices/panda/PandaControl";
 import PandaCUForm from "@/components/microservices/panda/PandaCUForm";
+import pandaService from "@/components/microservices/panda/js/panda.service";
 import utilService from "@/components/UI/utils/util-service";
-import ConfirmRemoveDialog from "@/components/UI/ConfirmRemoveDialog";
+import PandaSnackBar from "@/components/microservices/panda/ui/PandaSnackBar";
 
-usePandaStore()
+export default {
+  name: "PandaTable",
+  components: {PandaSnackBar, PandaCUForm, PandaControl},
+  data() {
+    return {
+      selected: [],
+    }
+  },
+  methods: {
+    usePandaStore,
 
-onMounted(() => {
-  pandaService.getUnits()
-})
+    copyToClipboard(item) {
+      utilService.copyToClipboard(item)
+      usePandaStore().snackbarMessage = "Copied to clipboard"
+      usePandaStore().showSnackBar = true
+    },
 
-function showAddForm() {
-  usePandaStore().showCUForm = !usePandaStore().showCUForm
-  usePandaStore().unitToUpdate = {
-    id: null,
-    name: null,
-    account: null,
-    mail: null,
-    password: null,
-    link: null,
-    type: 'TRASH',
-    description: null,
-  };
-}
+    showUpdateForm(item) {
+      usePandaStore().showCUForm = true
+      usePandaStore().updateUnit = {
+        id: item.id,
+        name: item.name,
+        account: item.account,
+        mail: item.mail,
+        password: item.password,
+        link: item.link,
+        type: item.type,
+        description: item.description,
+      };
+    },
+    description(item) {
+      usePandaStore().expanded.indexOf(item) === -1 ? usePandaStore().expanded.push(item) : usePandaStore().expanded.pop(item);
+    },
+    mail(){
+      console.log("Gomail")
+    }
 
-function copyToClipboard(value) {
-  utilService.copyToClipboard(value)
-}
-
-function showUpdateForm(unit) {
-  usePandaStore().showCUForm = true
-  usePandaStore().unitToUpdate = {
-    id: unit.id,
-    name: unit.name,
-    account: unit.account,
-    mail: unit.mail,
-    password: unit.password,
-    link: unit.link,
-    type: unit.type,
-    description: unit.description,
-  };
-}
-
-function removeBtn() {
-  if (usePandaStore().selected.length > 0) {
-    usePandaStore().showConfirmDialog = true
+  },
+  mounted() {
+    usePandaStore().loading=true
+    pandaService.getUnits().then(()=>{
+      usePandaStore().loading=false
+    })
   }
 }
 </script>
@@ -177,54 +117,50 @@ function removeBtn() {
 <style lang="sass" scoped>
 @import '@/assets/styles/main'
 
-header
-  display: flex
+.transparent
+  background-color: $background-transparent
 
-component
-  display: flex
+.v-skeleton-loader
+  background-color: $background-transparent
+.column-checkbox
+  width: 0
 
-.btn-create
-  display: flex
-  justify-content: center
-  align-items: center
+.column-name
+  width: content-box
+  text-align: end
 
-.table
-  background-color: rgba(0, 0, 0, 0)
-  max-height: 600px
-  overflow: hidden
+.column-name:hover
+  background-color: $table-hover-row
 
-.checkbox
-  width: 0%
+.column-account
+  width: content-box
+  text-align: start
 
-.btn
+.column-account:hover
+  background-color: $table-hover-row
+
+.column-mail
+  width: content-box
   text-align: center
-  width: 5%
 
-.names
+.column-mail:hover
+  background-color: $table-hover-row
+
+.column-actions
+  white-space: nowrap
   text-align: center
-  width: 30%
 
-.names:hover
-  width: 30%
-  background-color: $table-hover-cell
+.actions-btn-pass
+  color: rgba(255, 192, 0, 0.6)
 
-.names:hover
-  width: 30%
+.actions-btn-info
+  color: rgba(0, 228, 255, 0.6)
 
-.create
-  padding-top: 20px
-  display: flex
-  justify-content: center
+.actions-btn-mail
+  color: rgba(239, 65, 65, 0.6)
 
-.notify
-  vertical-align: middle
-  text-align: center
-  width: 10%
-
-.empty-table
-  padding-top: 20px
-  display: flex
-  justify-content: center
+.actions-btn-update
+  color: rgba(0, 255, 42, 0.6)
 
 tr:hover
   background-color: $table-hover-row
