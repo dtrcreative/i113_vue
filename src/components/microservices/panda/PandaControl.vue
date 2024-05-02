@@ -52,9 +52,11 @@
     </v-expand-transition>
   </v-container>
 
-  <panda-dialog-confirm
+  <confirm-dialog
     :store="usePandaStore()"
-  ></panda-dialog-confirm>
+    title='Сonfirm deletion'
+    text="Please confirm deletion of selected Panda-accounts."
+  ></confirm-dialog>
 
 </template>
 
@@ -64,7 +66,7 @@ import pandaService from "@/components/microservices/panda/js/panda.service";
 import UploadDialog from "@/components/UI/fileio/UploadDialog";
 import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
 import PandaCUForm from "@/components/microservices/panda/PandaCUForm";
-import PandaDialogConfirm from "@/components/microservices/panda/ui/PandaDialogConfirm";
+import ConfirmDialog from "@/components/UI/ConfirmDialog";
 
 usePandaStore()
 

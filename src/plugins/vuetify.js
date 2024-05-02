@@ -17,6 +17,7 @@ import * as directives from 'vuetify/directives'
 const light = {
   dark: false,
   colors: {
+    transparent: 'rgba(0,0,0,0)',
     background: 'rgb(159,154,154)',
     surface: '#bebebe',
     primary: 'rgb(48,185,58)',
@@ -30,6 +31,7 @@ const light = {
 const dark = {
   dark: true,
   colors: {
+    transparent: 'rgba(0,0,0,0)',
     background: 'rgba(10,10,10,0.87)',
     surface: 'rgba(27,59,27)',
     primary: 'rgba(0,128,11)',

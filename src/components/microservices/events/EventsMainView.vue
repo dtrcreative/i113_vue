@@ -1,6 +1,6 @@
 <template>
   <v-card class="card">
-    <v-tabs v-model="tab" bg-color="primary" fixed-tabs class="tabbar">
+    <v-tabs v-model="tab" bg-color="primary" fixed-tabs class="tabbar" touchless>
       <v-tab value="calendar">
         <span>Calendar</span>
       </v-tab>
