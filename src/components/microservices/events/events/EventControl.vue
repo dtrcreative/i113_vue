@@ -8,7 +8,7 @@
 
       <div class="search">
         <v-text-field clearable
-                      v-model.trim="useBirthdayStore().searchValue"
+                      v-model.trim="useEventStore().searchValue"
                       label="Search"
                       variant="outlined"
                       density="compact"
@@ -19,14 +19,6 @@
         </v-text-field>
       </div>
 
-      <upload-dialog
-        :service="birthdayService"
-      ></upload-dialog>
-
-      <download-dialog
-        :service="birthdayService"
-      ></download-dialog>
-
       <v-btn
         icon="mdi-trash-can"
         min-width="50px"
@@ -36,40 +28,37 @@
   </v-card>
 
   <v-container>
-    <v-expand-transition v-show="useBirthdayStore().showCUForm">
-      <birthday-c-u-form></birthday-c-u-form>
+    <v-expand-transition v-show="useEventStore().showCUForm">
+      <event-c-u-form></event-c-u-form>
     </v-expand-transition>
   </v-container>
 
   <confirm-dialog
-  :store="useBirthdayStore()"
-  title='Сonfirm deletion'
-  text="Please confirm deletion of selected birthdays."
+    :store="useEventStore()"
+    title='Сonfirm deletion'
+    text="Please confirm deletion of selected birthdays."
   ></confirm-dialog>
 
 </template>
 
 <script setup>
-import birthdayService from "@/components/microservices/events_new/bithdays/js/birthday.service";
-import {useBirthdayStore} from "@/components/microservices/events_new/bithdays/js/birthdayStore";
-import UploadDialog from "@/components/UI/fileio/UploadDialog";
-import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
-import ConfirmDialog from "@/components/UI/ConfirmDialog";
-import BirthdayCUForm from "@/components/microservices/events_new/bithdays/BirthdayCUForm";
 
-useBirthdayStore()
+import {useEventStore} from "@/components/microservices/events/events/js/eventStore";
+import ConfirmDialog from "@/components/UI/ConfirmDialog";
+import EventCUForm from "@/components/microservices/events/events/EventCUForm";
+
+useEventStore()
 
 function showAddForm() {
-  useBirthdayStore().showCUForm = !useBirthdayStore().showCUForm
-  useBirthdayStore().clearUpdateUnit()
+  useEventStore().showCUForm = !useEventStore().showCUForm
+  useEventStore().clearUpdateUnit()
 }
 
 function remove() {
-  if (useBirthdayStore().selected.length > 0) {
-    useBirthdayStore().showConfirmDialog = true
+  if (useEventStore().selected.length > 0) {
+    useEventStore().showConfirmDialog = true
   }
 }
-
 </script>
 
 <style lang="sass" scoped>
@@ -96,15 +85,6 @@ function remove() {
   width: 100%
 
 .search
-  width: 50%
-
-.types
-  width: 20%
-  @media (max-width: 550px)
-    width: 0
-    visibility: collapse
-
-.search
-  width: 70%
+  width: 90%
 
 </style>

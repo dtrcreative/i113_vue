@@ -2,17 +2,17 @@
   <div class="sections">
     <div class="section-center">
       <div class="block">
-        <birthday-table></birthday-table>
+        <event-table></event-table>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import BirthdayTable from "@/components/microservices/events_new/bithdays/BirthdayTable";
+import EventTable from "@/components/microservices/events/events/EventTable";
 export default {
-  name: "BirthdayMainView",
-  components: {BirthdayTable}
+  name: "EventMainView",
+  components: {EventTable}
 }
 </script>
 

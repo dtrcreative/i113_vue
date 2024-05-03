@@ -1,234 +1,156 @@
 <template>
-
-  <v-container class="header">
-    <v-card-actions>
-      <v-row>
-        <v-col xs="1" sm="1" md="1">
-          <v-btn
-            icon="mdi-plus"
-            @click="showAddForm"
-          ></v-btn>
-        </v-col>
-        <v-col xs="1" sm="8" md="8">
-          <v-text-field clearable
-                        class="searchField"
-                        v-model.trim="useEventsStore().searchValue"
-                        label="Search"
-                        variant="outlined"
-                        density="compact"
-                        append-inner-icon="mdi-magnify"
-                        hide-details
-                        :maxlength="10"
-          ></v-text-field>
-        </v-col>
-        <v-col xs="1" sm="1" md="1">
-          <UploadDialog
-            :service="eventsService"
-          ></UploadDialog>
-        </v-col>
-        <v-col xs="1" sm="1" md="1">
-          <DownloadDialog
-            :service="eventsService"
-          ></DownloadDialog>
-        </v-col>
-        <v-col xs="1" sm="1" md="1">
-          <v-btn
-            icon="mdi-trash-can"
-            min-width="50px"
-            @click="removeBtn"
-          ></v-btn>
-        </v-col>
-      </v-row>
-    </v-card-actions>
-
-    <v-expand-transition>
-      <div v-show="useEventsStore().showCUForm">
-        <event-c-u-form></event-c-u-form>
-      </div>
-    </v-expand-transition>
-
-  </v-container>
-
-  <ConfirmRemoveDialog
-    :store="useEventsStore()"
+  <v-data-table-virtual
+    class="transparent"
+    v-model="useEventStore().selected"
+    :headers="useEventStore().headers"
+    :items="useEventStore().searchUnits"
+    :loading="useEventStore().loading"
+    density="comfortable"
+    height="600"
+    mobile-breakpoint="0px"
+    show-select
   >
-  </ConfirmRemoveDialog>
+    <template v-slot:top>
+      <event-control></event-control>
+    </template>
 
-  <v-table density="compact" class="table">
-    <thead>
-    <tr>
-      <th class="checkbox">
-        <v-btn
-          size="small"
-          icon="mdi-select-all"
-          variant="text"
-          @click=useEventsStore().selectAll()
-        ></v-btn>
-      </th>
+    <template v-slot:item="{ item }">
+      <tr>
+        <td class="column-checkbox">
+          <v-checkbox
+            style="display: flex; justify-content: right"
+            v-model="useEventStore().selected"
+            label=""
+            :value=item.id
+            density="compact"
+            color="primary"
+          ></v-checkbox>
+        </td>
+        <td class="column-event-name">{{ item.eventName }}</td>
+        <td class="column-date">{{ item.date }}</td>
+        <td class="column-days-left">{{ item.daysLeft }}</td>
+        <td class="column-notify">
+          <v-switch
+            style="display: flex; justify-content: center;"
+            color="primary"
+            density="compact"
+            v-model="item.notify"
+            @change="useEventStore.updateShedule(item)"
+          ></v-switch>
+        </td>
+        <td class="column-actions">
+          <v-btn class="actions-btn-info" variant="plain" density="comfortable" icon="mdi-information-variant"
+                 @click="description(item)"></v-btn>
+          <v-btn class="actions-btn-update" variant="plain" density="comfortable" icon="mdi-pencil"
+                 @click="showUpdateForm(item)"></v-btn>
+        </td>
+      </tr>
 
-      <th class="names" style="text-align: center">Event Name</th>
-      <th class="date" style="text-align: center">Date</th>
-      <th class="days-left" style="text-align: center">Days Left</th>
-      <th class="notify" style="text-align: center">Notify</th>
-      <th class="btn">Update</th>
+      <tr v-if="useEventStore().expanded.indexOf(item) !== -1 && item.description !== null && item.description !== ''">
+        <td :colspan=useEventStore().headers.length+1>
+          {{ item.description }}
+        </td>
+      </tr>
+    </template>
 
-    </tr>
-    </thead>
 
-    <tbody>
-    <tr
-      v-for="item in useEventsStore().searchUnits"
-      :key="item.id"
-    >
-      <td class="checkbox">
-        <v-checkbox
-          style="display: flex; justify-content: center;"
-          v-model="useEventsStore().selected"
-          label=""
-          :value=item.id
-          color="indigo-darken-3"
-        ></v-checkbox>
-      </td>
-      <td class="names">{{ item.eventName }}</td>
-      <td class="dates" style="text-align: center">{{ item.date }}</td>
-      <td class="dates" style="text-align: center">{{ item.daysLeft }}</td>
-
-      <td class="notify">
-        <v-switch
-          style="display: flex; justify-content: center;"
-          color="primary"
-          density="compact"
-          v-model="item.notify"
-          @change="eventsService.updateEvent(item)"
-        ></v-switch>
-      </td>
-      <td class="btn">
-        <v-btn
-          icon="mdi-pen"
-          @click="showUpdateForm(item)"
-        ></v-btn>
-      </td>
-    </tr>
-    </tbody>
-
-    <div class="empty-table" v-if="useEventsStore().units.length===0">
-      <h1>No data</h1>
-    </div>
-
-  </v-table>
+  </v-data-table-virtual>
 </template>
 
-<script setup>
-import {useEventsStore} from "@/components/microservices/events/events/js/eventsStore";
-import eventsService from "@/components/microservices/events/events/js/events.service";
-import UploadDialog from "@/components/UI/fileio/UploadDialog";
-import DownloadDialog from "@/components/UI/fileio/DownloadDialog";
-import {onMounted} from "vue";
-import EventCUForm from "@/components/microservices/events/events/EventCUForm";
-import ConfirmRemoveDialog from "@/components/UI/ConfirmRemoveDialog";
+<script>
+import {useEventStore} from "@/components/microservices/events/events/js/eventStore";
+import EventControl from "@/components/microservices/events/events/EventControl";
+import eventService from "@/components/microservices/events/events/js/event.service";
+export default {
+  name: "EventTable",
+  components: {EventControl},
 
-useEventsStore()
+  methods:{
+    useEventStore,
 
-onMounted(() => {
-  eventsService.getUnits()
-})
-
-function showAddForm() {
-  useEventsStore().showCUForm = !useEventsStore().showCUForm
-  useEventsStore().unitToUpdate = {
-    id: null,
-    eventName: null,
-    date: {
-      day: null,
-      month: new Date().getMonth() + 1,
-      year: new Date().getFullYear()
+    showUpdateForm(item) {
+      let itemDate = new Date(item.date);
+      useEventStore().updateUnit = {
+        id: item.id,
+        eventName: item.eventName,
+        date: {
+          day: itemDate.getDate(),
+          month: itemDate.getMonth() + 1,
+          year: itemDate.getFullYear()
+        },
+        description: item.description,
+        notify: item.notify
+      };
+      useEventStore().showCUForm = true
     },
-    description: '',
-    notify: true
-  };
-}
-
-function showUpdateForm(unit) {
-  useEventsStore().showCUForm = true
-  useEventsStore().unitToUpdate = {
-    id: unit.id,
-    eventName: unit.eventName,
-    date: {
-      day: new Date(unit.date).getDate(),
-      month: new Date(unit.date).getMonth() + 1,
-      year: new Date(unit.date).getFullYear()
+    description(item) {
+      useEventStore().expanded.indexOf(item) === -1 ? useEventStore().expanded.push(item) : useEventStore().expanded.pop(item);
     },
-    description: unit.description,
-    notify: unit.notify
-  };
-}
-
-function removeBtn() {
-  if (useEventsStore().selected.length > 0) {
-    useEventsStore().showConfirmDialog = true
+  },
+  mounted() {
+    useEventStore().loading = true
+    eventService.getUnits().then(() => {
+      useEventStore().loading = false
+    })
   }
-}
 
+}
 </script>
 
 <style lang="sass" scoped>
 @import '@/assets/styles/main'
 
-header
-  display: flex
+.transparent
+  background-color: $background-transparent
 
-component
-  display: flex
+.v-skeleton-loader
+  background-color: $background-transparent
 
-.btn-create
-  display: flex
-  justify-content: center
-  align-items: center
+.column-checkbox
+  width: 0
 
-.table
-  background-color: rgba(0, 0, 0, 0)
-  max-height: 600px
-  overflow: hidden
-
-.checkbox
-  width: 5%
-
-.btn
-  text-align: center
-  width: 5%
-
-.days-left
-  width: 5%
-
-.date
-  width: 20%
-
-.names
-  text-align: center
+.column-event-name
   width: 50%
-
-.names:hover
-  width: 50%
-  background-color: $table-hover-cell
-
-.names:hover
-  width: 50%
-
-.create
-  padding-top: 20px
-  display: flex
-  justify-content: center
-
-.notify
-  vertical-align: middle
   text-align: center
-  width: 10%
 
-.empty-table
-  padding-top: 20px
-  display: flex
-  justify-content: center
+.column-event-name:hover
+  background-color: $table-hover-row
+
+.column-date
+  width: content-box
+  text-align: center
+
+.column-date:hover
+  background-color: $table-hover-row
+
+.column-days-left
+  width: content-box
+  text-align: center
+
+.column-days-left:hover
+  background-color: $table-hover-row
+
+.column-notify
+  width: content-box
+  text-align: center
+
+.column-notify:hover
+  background-color: $table-hover-row
+
+.column-actions
+  white-space: nowrap
+  text-align: center
+
+.actions-btn-pass
+  color: rgba(255, 192, 0, 0.6)
+
+.actions-btn-info
+  color: rgba(0, 228, 255, 0.6)
+
+.actions-btn-update
+  color: rgba(0, 255, 42, 0.6)
 
 tr:hover
   background-color: $table-hover-row
+
 </style>

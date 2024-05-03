@@ -1,114 +1,98 @@
 <template>
   <v-form ref="form" @submit.prevent="submit">
-    <v-row style="height: 50px;" no-gutters>
-      <v-col xs="12" sm="12" md="12">
+    <v-container>
+        <v-row>
+          <v-text-field
+            clearable
+            v-model.trim="useEventStore().updateUnit.eventName"
+            label="Event name"
+            variant="outlined"
+            density="compact"
+            hide-details
+            :maxlength="15"
+            :rules="[rules.required]"
+          ></v-text-field>
+        </v-row>
+      <v-row>
         <v-text-field
-          clearable
-          v-model.trim="useEventsStore().unitToUpdate.eventName"
-          label="Event Name"
-          variant="outlined"
-          density="compact"
           hide-details
-          :maxlength="15"
-          :rules="[rules.required]"
-        ></v-text-field>
-      </v-col>
-    </v-row>
-    <v-row style="height: 50px;" no-gutters>
-      <v-col xs="3" sm="3" md="3">
-        <v-text-field
           label="DD"
-          class="date"
-          type="number"
           variant="outlined"
           density="compact"
-          v-model="useEventsStore().unitToUpdate.date.day"
-          hide-details
           :maxlength="2"
+          v-model="useEventStore().updateUnit.date.day"
           :rules="[rules.required, rules.range.dayMin, rules.range.dayMax]"
         ></v-text-field>
-      </v-col>
-      <v-col xs="3" sm="3" md="3">
         <v-text-field
+          hide-details
           label="MM"
-          class="date"
-          type="number"
           variant="outlined"
           density="compact"
-          v-model="useEventsStore().unitToUpdate.date.month"
-          hide-details
           :maxlength="2"
+          v-model="useEventStore().updateUnit.date.month"
           :rules="[rules.required, rules.range.monthMin, rules.range.monthMax]"
         ></v-text-field>
-      </v-col>
-      <v-col xs="6" sm="6" md="6">
         <v-text-field
+          hide-details
           label="YYYY"
-          class="date"
-          type="number"
           variant="outlined"
           density="compact"
-          v-model="useEventsStore().unitToUpdate.date.year"
-          hide-details
           :maxlength="4"
+          v-model="useEventStore().updateUnit.date.year"
           :rules="[rules.required, rules.range.yearMin]"
         ></v-text-field>
-      </v-col>
-    </v-row>
-    <v-row style="height: 50px;" no-gutters>
-      <v-col xs="8" sm="8" md="8">
-        <v-text-field
-          clearable
-          v-model.trim="useEventsStore().unitToUpdate.description"
-          label="Description"
-          variant="outlined"
-          density="compact"
-          :maxlength="250"
-          required
-        ></v-text-field>
-      </v-col>
-      <v-col xs="4" sm="4" md="4">
+
         <v-switch
           style="display: flex; justify-content: center;"
           color="primary"
           density="default"
-          label="Notify Me"
-          v-model="useEventsStore().unitToUpdate.notify"
+          label="Shedule"
+          v-model="useEventStore().updateUnit.notify"
         ></v-switch>
-      </v-col>
-    </v-row>
-    <v-row style="height: 50px;" no-gutters>
-      <v-btn
-        class="btn"
-        color="primary"
-        variant="elevated"
-        @click="clearAndClose"
-      >Close
-      </v-btn>
-      <v-btn
-        class="btn-clear"
-        color="primary"
-        variant="outlined"
-        @click="clear"
-      >Clear
-      </v-btn>
-      <v-btn
-        class="btn"
-        color="primary"
-        variant="elevated"
-        type="submit"
-      >Save
-      </v-btn>
-    </v-row>
-
+      </v-row>
+      <v-row>
+        <v-text-field
+          clearable
+          label="Description"
+          variant="outlined"
+          density="compact"
+          :maxlength="250"
+          v-model.trim="useEventStore().updateUnit.description"
+        ></v-text-field>
+      </v-row>
+      <v-row>
+        <v-btn
+          class="btn"
+          color="primary"
+          variant="elevated"
+          @click="clearAndClose"
+        >Close
+        </v-btn>
+        <v-btn
+          class="btn-clear"
+          color="primary"
+          variant="outlined"
+          @click="clear"
+        >Clear
+        </v-btn>
+        <v-btn
+          class="btn"
+          color="primary"
+          variant="elevated"
+          type="submit"
+        >Save
+        </v-btn>
+      </v-row>
+    </v-container>
   </v-form>
 </template>
 
 <script>
-import {useEventsStore} from "@/components/microservices/events/events/js/eventsStore";
-
+import {useEventStore} from "@/components/microservices/events/events/js/eventStore";
+import {useBirthdayStore} from "@/components/microservices/events/bithdays/js/birthdayStore";
 export default {
   name: "EventCUForm",
+
   data: () => ({
     rules: {
       required: value => !!value || 'Required',
@@ -119,20 +103,19 @@ export default {
         monthMin: value => value > 0 || 'Sure?',
         monthMax: value => value <= 12 || 'Sure?',
 
-        yearMin: value => value >= new Date().getFullYear() || 'Too Early',
+        yearMin: value => value >= 1900 || 'Too Early',
       },
     },
   }),
-
   methods: {
-    useEventsStore,
-    async submit() {
+    useEventStore,
+    async submit(){
       const {valid} = await this.$refs.form.validate()
       if (valid) {
-        if (this.useEventsStore().unitToUpdate.id === null) {
-          useEventsStore().create();
+        if (this.useEventStore().updateUnit.id === null) {
+          useEventStore().create();
         } else {
-          useEventsStore().update();
+          useEventStore().update();
         }
         this.clearAndClose();
       }
@@ -143,7 +126,7 @@ export default {
     },
     clearAndClose() {
       this.$refs.form.resetValidation()
-      useEventsStore().showCUForm = false
+      useEventStore().showCUForm = false
     },
     regex(value) {
       const regex = /^\d+/;
@@ -155,8 +138,16 @@ export default {
 
 <style lang="sass" scoped>
 
+.v-text-field
+  padding-top: 5px
+
+.v-text-field:hover
+  color: #00b0ff
+
 .btn
   width: 40%
+  @media (max-width: 450px)
+    width: 35%
 
 .btn-clear
   width: 20%

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
-import {useEventsStore} from "@/components/microservices/events/events/js/eventsStore";
+import {useEventStore} from "@/components/microservices/events/events/js/eventStore";
 import {getGatewayUrl} from "@/store/app.service";
 import {getAuthHeader, getUser} from "@/store/user.service";
 
@@ -16,7 +16,7 @@ class EventService {
   async getUnits() {
     try {
       const response = await axios.get(getGatewayUrl() + API_ALL, {headers: getAuthHeader()});
-      useEventsStore().setUnits(response.data)
+      useEventStore().setUnits(response.data)
     } catch (e) {
       exceptionHandler.handle(e)
     }

@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import birthdayService from "@/components/microservices/events_new/bithdays/js/birthday.service";
+import birthdayService from "@/components/microservices/events/bithdays/js/birthday.service";
 
 export const useBirthdayStore = defineStore("birthdays", {
   state: () => ({
@@ -83,18 +83,6 @@ export const useBirthdayStore = defineStore("birthdays", {
         date: (formattedDate),
         description: unit.description,
         notify: unit.notify
-      }
-    },
-
-    selectAll() {
-      if (this.selected.length !== 0) {
-        this.selected = []
-      } else if (this.selected.length === this.units.length) {
-        this.selected = []
-      } else if (this.units.length > 0 && this.selected.length !== this.units.length) {
-        for (let i = 0; i < this.units.length; i++) {
-          this.selected.push(this.units[i].id)
-        }
       }
     },
 

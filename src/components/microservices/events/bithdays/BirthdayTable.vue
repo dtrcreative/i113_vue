@@ -66,9 +66,9 @@
 </template>
 
 <script>
-import {useBirthdayStore} from "@/components/microservices/events_new/bithdays/js/birthdayStore";
-import BirthdayControl from "@/components/microservices/events_new/bithdays/BirthdayControl";
-import birthdayService from "@/components/microservices/events_new/bithdays/js/birthday.service";
+import {useBirthdayStore} from "@/components/microservices/events/bithdays/js/birthdayStore";
+import BirthdayControl from "@/components/microservices/events/bithdays/BirthdayControl";
+import birthdayService from "@/components/microservices/events/bithdays/js/birthday.service";
 
 export default {
   name: "BirthdayTable",

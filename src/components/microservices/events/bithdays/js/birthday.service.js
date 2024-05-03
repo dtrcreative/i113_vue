@@ -1,6 +1,6 @@
 import axios from "axios";
 import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
-import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
+import {useBirthdayStore} from "@/components/microservices/events/bithdays/js/birthdayStore";
 import {getAuthHeader, getUser} from "@/store/user.service";
 import {getGatewayUrl} from "@/store/app.service";
 
@@ -17,7 +17,7 @@ class BirthdayService {
   async getUnits() {
     try {
       const response = await axios.get(getGatewayUrl() + API_ALL, {headers: getAuthHeader()});
-      useBirthdaysStore().setUnits(response.data)
+      useBirthdayStore().setUnits(response.data)
     } catch (e) {
       exceptionHandler.handle(e)
     }

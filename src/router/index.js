@@ -49,17 +49,6 @@ const routes = [
     ]
   },
   {
-    path: "/events_new",
-    component: () => import('@/layouts/default/Main.vue'),
-    children: [
-      {
-        path: '',
-        name: 'Events_new',
-        component: () => import('@/components/microservices/events_new/EventsMainView.vue'),
-      },
-    ]
-  },
-  {
     path: "/",
     component: () => import('@/pages/AuthPage.vue'),
     children: [

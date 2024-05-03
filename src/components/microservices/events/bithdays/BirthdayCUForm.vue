@@ -1,10 +1,10 @@
 <template>
   <v-form ref="form" @submit.prevent="submit">
-    <v-row style="height: 50px;" no-gutters>
-      <v-col xs="6" sm="6" md="6">
+    <v-container>
+      <v-row>
         <v-text-field
           clearable
-          v-model.trim="useBirthdaysStore().unitToUpdate.firstName"
+          v-model.trim="useBirthdayStore().updateUnit.firstName"
           label="First name"
           variant="outlined"
           density="compact"
@@ -12,11 +12,10 @@
           :maxlength="15"
           :rules="[rules.required]"
         ></v-text-field>
-      </v-col>
-      <v-col xs="6" sm="6" md="6">
+
         <v-text-field
           clearable
-          v-model.trim="useBirthdaysStore().unitToUpdate.lastName"
+          v-model.trim="useBirthdayStore().updateUnit.lastName"
           label="Last name"
           variant="outlined"
           density="compact"
@@ -25,103 +24,88 @@
           :rules="[rules.required]"
           required
         ></v-text-field>
-      </v-col>
-    </v-row>
-    <v-row style="height: 50px;" no-gutters>
-      <v-col xs="2" sm="2" md="2">
+      </v-row>
+      <v-row >
         <v-text-field
+          hide-details
           label="DD"
-          class="date"
-          type="number"
           variant="outlined"
           density="compact"
-          v-model="useBirthdaysStore().unitToUpdate.date.day"
-          hide-details
           :maxlength="2"
+          v-model="useBirthdayStore().updateUnit.date.day"
           :rules="[rules.required, rules.range.dayMin, rules.range.dayMax]"
         ></v-text-field>
-      </v-col>
-      <v-col xs="2" sm="2" md="2">
         <v-text-field
+          hide-details
           label="MM"
-          class="date"
-          type="number"
           variant="outlined"
           density="compact"
-          v-model="useBirthdaysStore().unitToUpdate.date.month"
-          hide-details
           :maxlength="2"
+          v-model="useBirthdayStore().updateUnit.date.month"
           :rules="[rules.required, rules.range.monthMin, rules.range.monthMax]"
         ></v-text-field>
-      </v-col>
-      <v-col xs="4" sm="4" md="4">
         <v-text-field
+          hide-details
           label="YYYY"
-          class="date"
-          type="number"
           variant="outlined"
           density="compact"
-          v-model="useBirthdaysStore().unitToUpdate.date.year"
-          hide-details
           :maxlength="4"
+          v-model="useBirthdayStore().updateUnit.date.year"
           :rules="[rules.required, rules.range.yearMin]"
         ></v-text-field>
-      </v-col>
-      <v-col xs="3" sm="3" md="3">
+
         <v-switch
           style="display: flex; justify-content: center;"
           color="primary"
           density="default"
-          label="Notify Me"
-          v-model="useBirthdaysStore().unitToUpdate.notify"
+          label="Shedule"
+          v-model="useBirthdayStore().updateUnit.notify"
         ></v-switch>
-      </v-col>
-    </v-row>
-    <v-row style="height: 50px;" no-gutters>
-      <v-col xs="12" sm="12" md="12">
+
+      </v-row>
+      <v-row>
         <v-text-field
           clearable
-          v-model.trim="useBirthdaysStore().unitToUpdate.description"
           label="Description"
           variant="outlined"
           density="compact"
           :maxlength="250"
-          required
+          v-model.trim="useBirthdayStore().updateUnit.description"
         ></v-text-field>
-      </v-col>
-    </v-row>
-    <v-row style="height: 50px;" no-gutters>
-      <v-btn
-        class="btn"
-        color="primary"
-        variant="elevated"
-        @click="clearAndClose"
-      >Close
-      </v-btn>
-      <v-btn
-        class="btn-clear"
-        color="primary"
-        variant="outlined"
-        @click="clear"
-      >Clear
-      </v-btn>
-      <v-btn
-        class="btn"
-        color="primary"
-        variant="elevated"
-        type="submit"
-      >Save
-      </v-btn>
-    </v-row>
-
+      </v-row>
+      <v-row>
+        <v-btn
+          class="btn"
+          color="primary"
+          variant="elevated"
+          @click="clearAndClose"
+        >Close
+        </v-btn>
+        <v-btn
+          class="btn-clear"
+          color="primary"
+          variant="outlined"
+          @click="clear"
+        >Clear
+        </v-btn>
+        <v-btn
+          class="btn"
+          color="primary"
+          variant="elevated"
+          type="submit"
+        >Save
+        </v-btn>
+      </v-row>
+    </v-container>
   </v-form>
 </template>
 
 <script>
-import {useBirthdaysStore} from "@/components/microservices/events/birthdays/js/birthdayStore";
-
+import {useBirthdayStore} from "@/components/microservices/events/bithdays/js/birthdayStore";
 export default {
   name: "BirthdayCUForm",
+  components: {},
+
   data: () => ({
     rules: {
       required: value => !!value || 'Required',
@@ -136,16 +120,15 @@ export default {
       },
     },
   }),
-
   methods: {
-    useBirthdaysStore,
-    async submit() {
+    useBirthdayStore,
+    async submit(){
       const {valid} = await this.$refs.form.validate()
       if (valid) {
-        if (this.useBirthdaysStore().unitToUpdate.id === null) {
-          useBirthdaysStore().create();
+        if (this.useBirthdayStore().updateUnit.id === null) {
+          useBirthdayStore().create();
         } else {
-          useBirthdaysStore().update();
+          useBirthdayStore().update();
         }
         this.clearAndClose();
       }
@@ -156,21 +139,28 @@ export default {
     },
     clearAndClose() {
       this.$refs.form.resetValidation()
-      useBirthdaysStore().showCUForm = false
+      useBirthdayStore().showCUForm = false
     },
     regex(value) {
       const regex = /^\d+/;
       return value.match(regex);
     },
-  },
+  }
 }
 </script>
 
 <style lang="sass" scoped>
-@import '@/assets/styles/main'
+
+.v-text-field
+  padding-top: 5px
+
+.v-text-field:hover
+  color: #00b0ff
 
 .btn
   width: 40%
+  @media (max-width: 450px)
+    width: 35%
 
 .btn-clear
   width: 20%

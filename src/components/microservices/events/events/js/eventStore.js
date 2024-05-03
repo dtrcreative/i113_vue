@@ -1,18 +1,24 @@
 import {defineStore} from "pinia";
-import eventsService from "@/components/microservices/events/events/js/events.service";
+import eventService from "@/components/microservices/events/events/js/event.service";
 
-export const useEventsStore = defineStore('events', {
+export const useEventStore = defineStore('events', {
   state: () => ({
-    units: [],
+
     selected: [],
+    expanded: [],
     searchValue: "",
     showCUForm: false,
 
-    showConfirmDialog: false,
-
     uploadJSON: '',
 
-    unitToUpdate: {
+    showSnackBar: false,
+    snackbarMessage: "",
+
+    loading: false,
+
+    units: [],
+
+    updateUnit: {
       id: '',
       eventName: '',
       date: {
@@ -24,43 +30,54 @@ export const useEventsStore = defineStore('events', {
       notify: true
     },
 
+    headers: [
+      {title: 'Event', align: 'center', sortable: false, key: 'eventName'},
+      {title: 'Date', align: 'center', sortable: false, key: 'date'},
+      {title: 'Via', align: 'center', sortable: false, key: 'daysLeft'},
+      {title: 'Notify', align: 'center', sortable: false, key: 'mail'},
+      {title: 'Actions', align: 'center', sortable: false, key: 'actions'},
+    ]
+
   }),
   actions: {
     setUnits(units) {
       this.units = units;
     },
     async create() {
-      let response = await eventsService.createEvent(this.reformatUnit(this.unitToUpdate))
+      let response = await eventService.createEvent(this.reformatUnit(this.updateUnit))
       this.units.push(response.data)
     },
     //TO Update
     async update() {
-      await eventsService.updateEvent(this.reformatUnit(this.unitToUpdate))
-      await eventsService.getUnits()
+      await eventService.updateEvent(this.reformatUnit(this.updateUnit))
+      await eventService.getUnits()
+    },
+    async updateShedule(unit) {
+      await eventService.updateBirthday(this.reformatUnit(unit))
     },
     //Method used in ConfirmRemoveDialog
     removeSelected() {
       for (let i = 0; i < this.selected.length; i++) {
         this.units = this.units.filter(unit => unit.id !== this.selected[i])
       }
-      eventsService.removeSelectedEvents(this.selected) //TODO
+      eventService.removeSelectedEvents(this.selected) //TODO
       this.selected = []
     },
 
     reformatUnit(unit) {
       let formattedDate = unit.date.year.toString()
-      if (unit.date.month.length === 1) {
+      if (unit.date.month.toString().length === 1) {
         formattedDate = formattedDate + "-0" + unit.date.month
       } else {
         formattedDate = formattedDate + "-" + unit.date.month
       }
-      if (unit.date.day.length === 1) {
+      if (unit.date.day.toString().length === 1) {
         formattedDate = formattedDate + "-0" + unit.date.day
       } else {
         formattedDate = formattedDate + "-" + unit.date.day
       }
       return {
-        id: this.unitToUpdate.id,
+        id: this.updateUnit.id,
         eventName: unit.eventName,
         date: (formattedDate),
         description: unit.description,
@@ -68,15 +85,17 @@ export const useEventsStore = defineStore('events', {
       }
     },
 
-    selectAll() {
-      if (this.selected.length !== 0) {
-        this.selected = []
-      } else if (this.selected.length === this.units.length) {
-        this.selected = []
-      } else if (this.units.length > 0 && this.selected.length !== this.units.length) {
-        for (let i = 0; i < this.units.length; i++) {
-          this.selected.push(this.units[i].id)
-        }
+    clearUpdateUnit() {
+      this.updateUnit = {
+        id: null,
+        eventName: null,
+        date: {
+          day: null,
+          month: null,
+          year: null,
+        },
+        description: '',
+        notify: true
       }
     }
   },
