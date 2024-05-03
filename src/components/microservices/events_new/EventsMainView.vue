@@ -1,6 +1,12 @@
 <template>
   <v-card class="card">
-    <v-tabs v-model="tab" bg-color="primary" fixed-tabs class="tabbar">
+
+    <v-tabs
+      v-model="tab"
+      align-tabs="center"
+      fixed-tabs
+      bg-color="rgb(var(--v-theme-primary),0.5)"
+    >
       <v-tab value="calendar">
         <span>Calendar</span>
       </v-tab>
@@ -12,35 +18,29 @@
       </v-tab>
     </v-tabs>
 
-    <v-card-text class="tabbody">
+    <v-card-item class="tab-body">
+
       <v-window v-model="tab">
-
         <v-window-item value="calendar">
-          <calendar-view></calendar-view>
-        </v-window-item>
 
+        </v-window-item>
         <v-window-item value="events">
-          <events-view></events-view>
+          <v-btn>test</v-btn>
         </v-window-item>
-
         <v-window-item value="birthdays">
-          <birthday-view></birthday-view>
+          <birthday-main-view></birthday-main-view>
         </v-window-item>
-
       </v-window>
-    </v-card-text>
-  </v-card>
+    </v-card-item>
 
+  </v-card>
 </template>
 
 <script>
-import CalendarView from "@/components/microservices/events/calendar/CalendarView";
-import EventsView from "@/components/microservices/events/events/EventsView";
-import BirthdayView from "@/components/microservices/events/birthdays/BirthdayView";
-
+import BirthdayMainView from "@/components/microservices/events_new/bithdays/BirthdayMainView";
 export default {
   name: "EventsMainView",
-  components: {BirthdayView, EventsView, CalendarView},
+  components: {BirthdayMainView},
   data: () => ({
     tab: null,
   }),
@@ -51,15 +51,12 @@ export default {
 @import '@/assets/styles/main'
 
 .card
-  background-color: rgba(0,0,0,0)
+  //background-color: $background-transparent
+  background-color: rgb(var(--v-theme-transparent), 0)
   border-bottom-left-radius: 20px
   border-bottom-right-radius: 20px
 
-.tabbody
-  background-color: rgba(0,0,0,0)
-  border-radius: 20px
-
-.tabbar
+.tab-body
   border-bottom-left-radius: 20px
   border-bottom-right-radius: 20px
 

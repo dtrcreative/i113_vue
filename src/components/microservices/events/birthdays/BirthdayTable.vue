@@ -1,123 +1,123 @@
 <template>
 
-<!--  <v-container class="header">-->
-<!--    <v-card-actions>-->
-<!--      <v-row>-->
-<!--        <v-col xs="1" sm="1" md="1">-->
-<!--          <v-btn-->
-<!--            icon="mdi-plus"-->
-<!--            @click="showAddForm"-->
-<!--          ></v-btn>-->
-<!--        </v-col>-->
-<!--        <v-col xs="1" sm="8" md="8">-->
-<!--          <v-text-field clearable-->
-<!--                        class="searchField"-->
-<!--                        v-model.trim="useBirthdaysStore().searchValue"-->
-<!--                        label="Search"-->
-<!--                        variant="outlined"-->
-<!--                        density="compact"-->
-<!--                        append-inner-icon="mdi-magnify"-->
-<!--                        hide-details-->
-<!--                        :maxlength="10"-->
-<!--          ></v-text-field>-->
-<!--        </v-col>-->
-<!--        <v-col xs="1" sm="1" md="1">-->
-<!--          <UploadDialog-->
-<!--            :service="birthdayService"-->
-<!--          ></UploadDialog>-->
-<!--        </v-col>-->
-<!--        <v-col xs="1" sm="1" md="1">-->
-<!--          <DownloadDialog-->
-<!--            :service="birthdayService"-->
-<!--          ></DownloadDialog>-->
-<!--        </v-col>-->
-<!--        <v-col xs="1" sm="1" md="1">-->
-<!--          <v-btn-->
-<!--            icon="mdi-trash-can"-->
-<!--            min-width="50px"-->
-<!--            @click="removeBtn"-->
-<!--          ></v-btn>-->
-<!--        </v-col>-->
-<!--      </v-row>-->
-<!--    </v-card-actions>-->
+  <v-container class="header">
+    <v-card-actions>
+      <v-row>
+        <v-col xs="1" sm="1" md="1">
+          <v-btn
+            icon="mdi-plus"
+            @click="showAddForm"
+          ></v-btn>
+        </v-col>
+        <v-col xs="1" sm="8" md="8">
+          <v-text-field clearable
+                        class="searchField"
+                        v-model.trim="useBirthdaysStore().searchValue"
+                        label="Search"
+                        variant="outlined"
+                        density="compact"
+                        append-inner-icon="mdi-magnify"
+                        hide-details
+                        :maxlength="10"
+          ></v-text-field>
+        </v-col>
+        <v-col xs="1" sm="1" md="1">
+          <UploadDialog
+            :service="birthdayService"
+          ></UploadDialog>
+        </v-col>
+        <v-col xs="1" sm="1" md="1">
+          <DownloadDialog
+            :service="birthdayService"
+          ></DownloadDialog>
+        </v-col>
+        <v-col xs="1" sm="1" md="1">
+          <v-btn
+            icon="mdi-trash-can"
+            min-width="50px"
+            @click="removeBtn"
+          ></v-btn>
+        </v-col>
+      </v-row>
+    </v-card-actions>
 
-<!--    <v-expand-transition>-->
-<!--      <div v-show="useBirthdaysStore().showCUForm">-->
-<!--        <birthday-c-u-form></birthday-c-u-form>-->
-<!--      </div>-->
-<!--    </v-expand-transition>-->
+    <v-expand-transition>
+      <div v-show="useBirthdaysStore().showCUForm">
+        <birthday-c-u-form></birthday-c-u-form>
+      </div>
+    </v-expand-transition>
 
-<!--  </v-container>-->
+  </v-container>
 
-<!--  <ConfirmRemoveDialog-->
-<!--    :store="useBirthdaysStore()"-->
-<!--  >-->
-<!--  </ConfirmRemoveDialog>-->
+  <ConfirmRemoveDialog
+    :store="useBirthdaysStore()"
+  >
+  </ConfirmRemoveDialog>
 
-<!--  <v-table density="compact" class="table">-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--      <th class="checkbox">-->
-<!--        <v-btn-->
-<!--          size="small"-->
-<!--          icon="mdi-select-all"-->
-<!--          variant="text"-->
-<!--          @click=useBirthdaysStore().selectAll()-->
-<!--        ></v-btn>-->
-<!--      </th>-->
+  <v-table density="compact" class="table">
+    <thead>
+    <tr>
+      <th class="checkbox">
+        <v-btn
+          size="small"
+          icon="mdi-select-all"
+          variant="text"
+          @click=useBirthdaysStore().selectAll()
+        ></v-btn>
+      </th>
 
-<!--      <th class="names" style="text-align: center">First Name</th>-->
-<!--      <th class="names" style="text-align: center" @click="">Last Name</th>-->
-<!--      <th class="date" style="text-align: center">Date</th>-->
-<!--      <th class="days-left" style="text-align: center">Days Left</th>-->
-<!--      <th class="notify" style="text-align: center">Notify</th>-->
-<!--      <th class="btn">Update</th>-->
+      <th class="names" style="text-align: center">First Name</th>
+      <th class="names" style="text-align: center" @click="">Last Name</th>
+      <th class="date" style="text-align: center">Date</th>
+      <th class="days-left" style="text-align: center">Days Left</th>
+      <th class="notify" style="text-align: center">Notify</th>
+      <th class="btn">Update</th>
 
-<!--    </tr>-->
-<!--    </thead>-->
+    </tr>
+    </thead>
 
-<!--    <tbody>-->
-<!--    <tr-->
-<!--      v-for="item in useBirthdaysStore().searchUnits"-->
-<!--      :key="item.id"-->
-<!--    >-->
-<!--      <td class="checkbox">-->
-<!--        <v-checkbox-->
-<!--          style="display: flex; justify-content: center;"-->
-<!--          v-model="useBirthdaysStore().selected"-->
-<!--          label=""-->
-<!--          :value=item.id-->
-<!--          color="indigo-darken-3"-->
-<!--        ></v-checkbox>-->
-<!--      </td>-->
-<!--      <td class="names">{{ item.firstName }}</td>-->
-<!--      <td class="names">{{ item.lastName }}</td>-->
-<!--      <td class="dates" style="text-align: center">{{ item.date }}</td>-->
-<!--      <td class="dates" style="text-align: center">{{ item.daysLeft }}</td>-->
+    <tbody>
+    <tr
+      v-for="item in useBirthdaysStore().searchUnits"
+      :key="item.id"
+    >
+      <td class="checkbox">
+        <v-checkbox
+          style="display: flex; justify-content: center;"
+          v-model="useBirthdaysStore().selected"
+          label=""
+          :value=item.id
+          color="indigo-darken-3"
+        ></v-checkbox>
+      </td>
+      <td class="names">{{ item.firstName }}</td>
+      <td class="names">{{ item.lastName }}</td>
+      <td class="dates" style="text-align: center">{{ item.date }}</td>
+      <td class="dates" style="text-align: center">{{ item.daysLeft }}</td>
 
-<!--      <td class="notify">-->
-<!--        <v-switch-->
-<!--          style="display: flex; justify-content: center;"-->
-<!--          color="primary"-->
-<!--          density="compact"-->
-<!--          v-model="item.notify"-->
-<!--          @change="birthdayService.updateBirthday(item)"-->
-<!--        ></v-switch>-->
-<!--      </td>-->
-<!--      <td class="btn">-->
-<!--        <v-btn-->
-<!--          icon="mdi-pen"-->
-<!--          @click="showUpdateForm(item)"-->
-<!--        ></v-btn>-->
-<!--      </td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
+      <td class="notify">
+        <v-switch
+          style="display: flex; justify-content: center;"
+          color="primary"
+          density="compact"
+          v-model="item.notify"
+          @change="birthdayService.updateBirthday(item)"
+        ></v-switch>
+      </td>
+      <td class="btn">
+        <v-btn
+          icon="mdi-pen"
+          @click="showUpdateForm(item)"
+        ></v-btn>
+      </td>
+    </tr>
+    </tbody>
 
-<!--    <div class="empty-table" v-if="useBirthdaysStore().units.length===0">-->
-<!--      <h1>No data</h1>-->
-<!--    </div>-->
+    <div class="empty-table" v-if="useBirthdaysStore().units.length===0">
+      <h1>No data</h1>
+    </div>
 
-<!--  </v-table>-->
+  </v-table>
 </template>
 
 <script setup>
