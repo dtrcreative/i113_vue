@@ -1,5 +1,5 @@
 <template>
-  <v-list>
+  <v-list bg-color="rgba(0,0,0,0)">
     <v-list-item
       :title=useNavStore().appPage.home.title
       :value=useNavStore().appPage.home.value

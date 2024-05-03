@@ -2,10 +2,9 @@
   <v-app-bar prominent>
 
     <v-app-bar-title>
-      <v-avatar icon="$fox" image="@/assets/Fox.png" size="30"> Ellie</v-avatar>
+      <v-img src="@/assets/Fox.png" width="50"></v-img>
     </v-app-bar-title>
     <div class="date">
-
       <v-text-field
         variant="plain"
         hide-details
@@ -86,10 +85,10 @@ export default {
 @import '@/assets/styles/main'
 
 .v-app-bar
-  background-color:  rgb(var(--v-theme-background),0.8)
-//background-color: $background-transparent
+  background-color:  rgb(var(--v-theme-background),0.9)
+  //background-color: $background-transparent
 .v-navigation-drawer
-  background-color:  rgb(var(--v-theme-background),0.8)
+  background-color:  rgb(var(--v-theme-background),0.9)
   //background-color: $background-transparent
 
 .date
