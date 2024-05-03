@@ -21,7 +21,7 @@
     <v-card-item class="tab-body">
       <v-window v-model="tab">
         <v-window-item value="calendar">
-          <v-btn>test</v-btn>
+          <calendar-view></calendar-view>
         </v-window-item>
         <v-window-item value="events">
           <event-main-view></event-main-view>
@@ -38,10 +38,11 @@
 <script>
 import BirthdayMainView from "@/components/microservices/events/bithdays/BirthdayMainView";
 import EventMainView from "@/components/microservices/events/events/EventMainView";
+import CalendarView from "@/components/microservices/events/calendar/CalendarView";
 
 export default {
   name: "EventsMainView",
-  components: {EventMainView, BirthdayMainView},
+  components: {CalendarView, EventMainView, BirthdayMainView},
   data: () => ({
     tab: null,
   }),
