@@ -19,7 +19,7 @@
     </div>
     <div class="section-right">
       <div class="block">
-<!--        <Currencies></Currencies>-->
+        <about></about>
       </div>
     </div>
   </div>
@@ -29,6 +29,7 @@
 import MonthCalculation from "@/components/home/monthcalc/BalanceCalculation";
 import Currencies from "@/components/home/currencies/Currencies";
 import ExpireTimer from "@/components/home/ExpireTimer";
+import About from "@/components/home/About";
 </script>
 
 <style lang="sass" scoped>

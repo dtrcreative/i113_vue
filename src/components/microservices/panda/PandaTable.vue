@@ -1,5 +1,5 @@
 <template>
-  <v-data-table-virtual
+  <v-data-table
     class="transparent"
     v-model="usePandaStore().selected"
     :headers="usePandaStore().headers"
@@ -7,6 +7,7 @@
     :loading="usePandaStore().loading"
     density="comfortable"
     height="600"
+    mobile-breakpoint="0px"
     show-select
   >
 
@@ -38,22 +39,22 @@
                  @click="showUpdateForm(item)"></v-btn>
         </td>
       </tr>
-      <tr v-if="usePandaStore().expanded.indexOf(item) !== -1">
+      <tr v-if="usePandaStore().expanded.indexOf(item) !== -1 && item.description !== null && item.description !== ''">
         <td :colspan=usePandaStore().headers.length+1>
           {{ item.description }}
         </td>
       </tr>
     </template>
 
-    <template v-slot:no-data>
-      <v-btn>There is no data yet</v-btn>
-    </template>
+<!--    <template v-slot:no-data>-->
+<!--      <v-btn>There is no data yet</v-btn>-->
+<!--    </template>-->
 
-    <template v-slot:loading>
-      <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
-    </template>
+<!--    <template v-slot:loading>-->
+<!--      <v-skeleton-loader type="table-row@10"></v-skeleton-loader>-->
+<!--    </template>-->
 
-  </v-data-table-virtual>
+  </v-data-table>
 
   <panda-snack-bar></panda-snack-bar>
 
@@ -117,6 +118,14 @@ export default {
 <style lang="sass" scoped>
 @import '@/assets/styles/main'
 
+.v-data-table__mobile-row__header
+  display: none
+
+
+.v-data-table__mobile-row__cell
+  text-align: left !important
+
+
 .transparent
   background-color: $background-transparent
 
@@ -164,5 +173,6 @@ export default {
 
 tr:hover
   background-color: $table-hover-row
+
 
 </style>

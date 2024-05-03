@@ -54,8 +54,9 @@ class ExceptionHandler {
   }
 
   handle400(error) {
-    console.log("Bad Request")
+    let exceptionTitle = 'Bad Request'
     console.log(error)
+    this.showSnackBar(error.response.status, exceptionTitle, error.response.statusText)
   }
 
   handle401(error) {
