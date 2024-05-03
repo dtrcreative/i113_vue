@@ -7,19 +7,19 @@
       fixed-tabs
       bg-color="rgb(var(--v-theme-primary),0.5)"
     >
-      <v-tab value="calendar">
+      <v-tab value="calendar" touchless>
         <span>Calendar</span>
       </v-tab>
-      <v-tab value="events">
+      <v-tab value="events" touchless>
         <span>Events</span>
       </v-tab>
-      <v-tab value="birthdays">
+      <v-tab value="birthdays" touchless>
         <span>Birthdays</span>
       </v-tab>
     </v-tabs>
 
     <v-card-item class="tab-body">
-      <v-window v-model="tab">
+      <v-window v-model="tab" :touch="false">
         <v-window-item value="calendar">
           <calendar-view></calendar-view>
         </v-window-item>
@@ -61,5 +61,13 @@ export default {
 .tab-body
   border-bottom-left-radius: 20px
   border-bottom-right-radius: 20px
+
+.v-tabs-bar__content
+  flex-wrap: wrap
+  width: 100%
+
+div.v-tabs-bar
+  height: auto
+
 
 </style>
