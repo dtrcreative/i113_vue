@@ -4,8 +4,8 @@
     <v-app-bar-title>
       <v-avatar icon="$fox" image="@/assets/Fox.png" size="30"> Ellie</v-avatar>
     </v-app-bar-title>
-
     <div class="date">
+
       <v-text-field
         variant="plain"
         hide-details
@@ -21,7 +21,7 @@
         v-model="time"
       ></v-text-field>
     </div>
-
+    <about></about>
     <div class="auth">
       <toggle-theme></toggle-theme>
       <translate-list></translate-list>
@@ -49,10 +49,12 @@ import NavigationBar from "@/components/appbar/NavigationBar";
 import ExceptionSnackBar from "@/components/UI/exceptions/ExceptionSnackBar";
 import ExpireTimer from "@/components/home/ExpireTimer";
 import {getCurentDateString} from "@/store/app.service";
+import About from "@/components/home/About";
 
 export default {
   name: "AppBar",
   components: {
+    About,
     ExpireTimer,
     ExceptionSnackBar,
     NavigationBar, UserProfileList, TranslateList, ToggleTheme
