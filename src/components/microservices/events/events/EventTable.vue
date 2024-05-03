@@ -53,6 +53,13 @@
       </tr>
     </template>
 
+    <template v-slot:no-data>
+      <v-btn>There is no data yet</v-btn>
+    </template>
+
+    <template v-slot:loading>
+      <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
+    </template>
 
   </v-data-table-virtual>
 </template>

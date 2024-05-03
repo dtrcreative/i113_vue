@@ -70,7 +70,6 @@ export const useBirthdayStore = defineStore("birthdays", {
       } else {
         formattedDate = formattedDate + "-" + unit.date.month
       }
-      console.log(unit.date.day.toString().length)
       if (unit.date.day.length === 1) {
         formattedDate = formattedDate + "-0" + unit.date.day
       } else {
