@@ -1,5 +1,5 @@
 <template>
-  <v-data-table
+  <v-data-table-virtual
     class="transparent"
     v-model="usePandaStore().selected"
     :headers="usePandaStore().headers"
@@ -54,7 +54,7 @@
 <!--      <v-skeleton-loader type="table-row@10"></v-skeleton-loader>-->
 <!--    </template>-->
 
-  </v-data-table>
+  </v-data-table-virtual>
 
   <panda-snack-bar></panda-snack-bar>
 
@@ -118,19 +118,12 @@ export default {
 <style lang="sass" scoped>
 @import '@/assets/styles/main'
 
-.v-data-table__mobile-row__header
-  display: none
-
-
-.v-data-table__mobile-row__cell
-  text-align: left !important
-
-
 .transparent
   background-color: $background-transparent
 
 .v-skeleton-loader
   background-color: $background-transparent
+
 .column-checkbox
   width: 0
 
