@@ -20,11 +20,10 @@ export default {
 <style lang="sass" scoped>
 
 .sections
-  display: flex
-  width: 100%
-
-  @media (max-width: 767px)
-    flex-direction: column
+  padding-top: 5px
+  @media (min-width: 1060px)
+    margin: 0 auto 0 auto
+    width: 80%
 
 .section-center
   width: 100%
