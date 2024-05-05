@@ -1,44 +1,60 @@
 import {defineStore} from 'pinia'
-import languageService from "@/components/settings/language/js/language.service";
+import languagesService from "@/components/settings/languages/js/languages.service";
 import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 
-export const useLangStore = defineStore('languages', {
+export const useLangsStore = defineStore('languages', {
   state: () => ({
-    languageSelected: 0,
-    languages: [],
-    languageTypes: [{title: 'Eng', value: 0}, {title: 'Rus', value: 1}],
-    searchValue: '',
-    paramToUpdate: '',
+    selected: [],
+    searchValue: "",
     showCUForm: false,
-    inuse: {}
+
+    showSnackBar: false,
+    snackbarMessage: "",
+
+    loading:false,
+
+    languages: [],
+
+    updateUnit: '',
+
+    languageSelected: 0,
+    languageTypes: [{title: 'Eng', value: 0}, {title: 'Rus', value: 1}],
+    inuse: {},
+
+    headers: [
+      { title: 'Param', align: 'center', sortable: false, key: 'param'},
+      { title: 'Eng', align: 'center', sortable: false,  key: 'eng' },
+      { title: 'Rus', align: 'center', sortable: false,  key: 'rus' },
+      { title: 'Actions', align: 'center', sortable: false, key: 'actions' },
+    ]
   }),
   actions: {
 
     async init() {
       //TODO user init languageSelected
-      this.languages = await languageService.getUnits();
+      this.languages = await languagesService.getUnits();
       this.fillLanguageInUse()
     },
 
     setUnits() {
-      this.languages = languageService.getUnits();
+      this.languages = languagesService.getUnits();
       this.fillLanguageInUse()
     },
     async create() {
-      let response = await languageService.create(this.paramToUpdate)
+      let response = await languagesService.create(this.updateUnit)
       this.languages.push(response.data)
     },
     async update() {
-      await languageService.update(this.paramToUpdate)
-      await languageService.getUnits()
+      await languagesService.update(this.updateUnit)
+      await languagesService.getUnits()
     },
     remove(item) {
       this.languages = this.languages.filter(unit => unit.id !== item.id)
-      languageService.remove(item.id)
+      languagesService.remove(item.id)
     },
     async changeLanguage(langValue) {
       this.languageSelected = langValue;
-      this.languages = await languageService.getUnits()
+      this.languages = await languagesService.getUnits()
       this.fillLanguageInUse();
     },
     fillLanguageInUse() {
@@ -53,6 +69,15 @@ export const useLangStore = defineStore('languages', {
       } else {
         exceptionHandler.handleAppError({code: 0, message: "No language lines"})
       }
+    },
+
+    clearUpdateUnit(){
+      this.updateUnit = {
+        id: null,
+        param: null,
+        eng: null,
+        rus: null,
+      };
     }
   },
   getters: {
@@ -64,7 +89,7 @@ export const useLangStore = defineStore('languages', {
     },
     searchUnits() {
       return [...this.filterByParamName].filter(unit =>
-        unit.param.toLowerCase().includes(this.searchValue.toLowerCase())
+        unit.param.toLowerCase().includes(this.searchValue !== null ? this.searchValue.toLowerCase() : '')
       )
     },
   }

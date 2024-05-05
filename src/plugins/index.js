@@ -10,7 +10,7 @@ import {createPinia} from 'pinia'
 import vuetify from './vuetify'
 import router from '../router'
 import VueParticles from "@tsparticles/vue3";
-import {useLangStore} from "@/components/settings/language/js/languageStore";
+import {useLangsStore} from "@/components/settings/languages/js/languagesStore";
 import {loadSlim} from "@tsparticles/slim";
 
 export function registerPlugins(app) {
@@ -25,6 +25,6 @@ export function registerPlugins(app) {
       },
     })
 
-  app.config.globalProperties.lang = useLangStore()
+  app.config.globalProperties.lang = useLangsStore()
   app.config.globalProperties.lang.init()
 }

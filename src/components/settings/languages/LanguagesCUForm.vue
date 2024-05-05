@@ -1,10 +1,10 @@
 <template>
   <v-form ref="form" @submit.prevent="submit">
-    <v-row style="height: 50px;" no-gutters>
-      <v-col xs="4" sm="4" md="4">
+    <v-container>
+      <v-row>
         <v-text-field
           clearable
-          v-model.trim="useLangStore().paramToUpdate.param"
+          v-model.trim="useLangsStore().updateUnit.param"
           label="ParamName"
           variant="outlined"
           density="compact"
@@ -12,75 +12,70 @@
           :maxlength="15"
           :rules="[rules.required]"
         ></v-text-field>
-      </v-col>
-      <v-col xs="4" sm="4" md="4">
         <v-text-field
           label="Eng"
           variant="outlined"
           density="compact"
-          v-model="useLangStore().paramToUpdate.eng"
+          v-model="useLangsStore().updateUnit.eng"
           hide-details
           :maxlength="200"
           :rules="[rules.required]"
         ></v-text-field>
-      </v-col>
-      <v-col xs="4" sm="4" md="4">
         <v-text-field
           label="Rus"
           variant="outlined"
           density="compact"
-          v-model="useLangStore().paramToUpdate.rus"
+          v-model="useLangsStore().updateUnit.rus"
           hide-details
           :maxlength="200"
         ></v-text-field>
-      </v-col>
-    </v-row>
-    <v-row style="height: 50px;" no-gutters>
-      <v-btn
-        class="btn"
-        color="primary"
-        variant="elevated"
-        @click="clearAndClose"
-      >Close
-      </v-btn>
-      <v-btn
-        class="btn-clear"
-        color="primary"
-        variant="outlined"
-        @click="clear"
-      >Clear
-      </v-btn>
-      <v-btn
-        class="btn"
-        color="primary"
-        variant="elevated"
-        type="submit"
-      >Save
-      </v-btn>
-    </v-row>
-
+      </v-row>
+      <v-row>
+        <v-btn
+          class="btn"
+          color="primary"
+          variant="elevated"
+          @click="clearAndClose"
+        >Close
+        </v-btn>
+        <v-btn
+          class="btn-clear"
+          color="primary"
+          variant="outlined"
+          @click="clear"
+        >Clear
+        </v-btn>
+        <v-btn
+          class="btn"
+          color="primary"
+          variant="elevated"
+          type="submit"
+        >Save
+        </v-btn>
+      </v-row>
+    </v-container>
   </v-form>
 </template>
 
 <script>
-import {useLangStore} from "@/components/settings/language/js/languageStore";
+import {useLangsStore} from "@/components/settings/languages/js/languagesStore";
 
 export default {
-  name: "LanguageCUForm",
+  name: "LanguagesCUForm",
   data: () => ({
     rules: {
       required: value => !!value || 'Required',
     },
   }),
   methods: {
-    useLangStore,
+    useLangsStore,
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
-        if (this.useLangStore().paramToUpdate.id === null) {
-          useLangStore().create();
+        if (this.useLangsStore().updateUnit.id === null) {
+          useLangsStore().create();
         } else {
-          useLangStore().update();
+          useLangsStore().update();
         }
         this.clearAndClose();
       }
@@ -91,7 +86,7 @@ export default {
     },
     clearAndClose() {
       this.$refs.form.resetValidation()
-      useLangStore().showCUForm = false
+      useLangsStore().showCUForm = false
     },
   }
 }
@@ -99,10 +94,12 @@ export default {
 
 <style lang="sass" scoped>
 
+.v-text-field
+  padding-bottom: 10px
+
 .btn
   width: 40%
 
 .btn-clear
   width: 20%
-
 </style>

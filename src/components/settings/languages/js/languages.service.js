@@ -11,7 +11,7 @@ const API_RESOURCE_HEALTH = 'api/resources/actuator/health'
 
 const SERVICE_NAME = 'Languages'
 
-class LanguageService {
+class LanguagesService {
 
   async init() {
     try {
@@ -150,4 +150,4 @@ class LanguageService {
   }
 }
 
-export default new LanguageService();
+export default new LanguagesService();

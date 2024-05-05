@@ -9,7 +9,7 @@
     </template>
     <v-list>
       <v-list-item
-        v-for="(item, index) in useLangStore().languageTypes"
+        v-for="(item, index) in useLangsStore().languageTypes"
         :key="index"
         :value="index"
         @click="changeLanguage(item.value)"
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import {useLangStore} from "@/components/settings/language/js/languageStore";
+import {useLangsStore} from "@/components/settings/languages/js/languagesStore";
 
 export default {
 
@@ -31,9 +31,9 @@ export default {
   }),
 
   methods: {
-    useLangStore,
+    useLangsStore,
     changeLanguage(value) {
-      useLangStore().changeLanguage(value)
+      useLangsStore().changeLanguage(value)
     }
   }
 
