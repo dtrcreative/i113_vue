@@ -1,6 +1,8 @@
 <template>
-  <v-card variant="tonal" class="card">
-    <v-card-title>Telegram</v-card-title>
+  <v-card variant="tonal">
+    <v-card-title>
+      Telegram Settings
+    </v-card-title>
     <v-container v-if="user.userStatus === 'UNDEFINED'">
       <v-btn
         @click="register">
@@ -9,76 +11,69 @@
     </v-container>
     <v-container v-else>
       <v-row>
-        <v-col cols="2" sm="2" md="1">
-          <v-btn
-            variant="tonal"
-            @click="status"
-            density="comfortable"
-            icon="mdi-update"
-            class="btn"
-          >
-          </v-btn>
-        </v-col>
-        <v-col cols="10" sm="10" md="3">
-          <v-text-field
-            :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="showPassword ? 'text' : 'password'"
-            v-model.trim="this.user.userSecretKey"
-            variant="outlined"
-            density="compact"
-            hide-details
-            label="SecretKey"
-            class="textfield"
-            :readonly="true"
-            @click:append-inner="showPassword = !showPassword"
-          ></v-text-field>
-        </v-col>
-        <v-col cols="6" sm="6" md="2">
-          <v-text-field
-            v-model.trim="this.bot.name"
-            variant="plain"
-            density="compact"
-            hide-details
-            label="Bot name"
-            class="textfield"
-            :readonly="true"
-            @click:append-inner="showPassword = !showPassword"
-          ></v-text-field>
-        </v-col>
-        <v-col cols="6" sm="6" md="2">
-          <v-text-field
-            v-model.trim="this.user.userStatus"
-            variant="plain"
-            density="compact"
-            hide-details
-            label="User Status"
-            class="textfield"
-            :readonly="true"
-            @click:append-inner="showPassword = !showPassword"
-          ></v-text-field>
-        </v-col>
-        <v-col cols="6" sm="6" md="3">
+        <v-btn
+          variant="tonal"
+          @click="status"
+          density="comfortable"
+          icon="mdi-update"
+        ></v-btn>
+        <v-text-field
+          :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showPassword ? 'text' : 'password'"
+          v-model.trim="this.user.userSecretKey"
+          variant="outlined"
+          density="compact"
+          hide-details
+          label="SecretKey"
+          :readonly="true"
+          @click:append-inner="showPassword = !showPassword"
+        ></v-text-field>
+        <v-text-field
+          v-model.trim="this.bot.name"
+          variant="plain"
+          density="compact"
+          hide-details
+          label="Bot name"
+          :readonly="true"
+          @click:append-inner="showPassword = !showPassword"
+        ></v-text-field>
+        <v-text-field
+          v-model.trim="this.user.userStatus"
+          variant="plain"
+          density="compact"
+          hide-details
+          label="User Status"
+          :readonly="true"
+          @click:append-inner="showPassword = !showPassword"
+        ></v-text-field>
+        <div class="btn-control">
           <v-btn v-if="!isUserDisabled()"
                  text="Disable Shedule"
                  variant="tonal"
+                 color="warning"
                  @click="showDialog=true"
           ></v-btn>
-
           <v-btn v-else
                  text="Enable Shedule"
                  variant="tonal"
+                 color="primary"
                  @click="showDialog=true"
           ></v-btn>
-        </v-col>
+        </div>
       </v-row>
     </v-container>
     <v-dialog
       max-width="500"
       v-model="showDialog"
     >
-      <v-card title="Elli-bot disable confirmation">
-        <v-card-text>
-          Please confirm deactivation of the bot.
+      <v-card>
+        <v-card-title class="dialog-title">
+          <v-icon class="icon" size="30px" icon="mdi-alert" color="orange"></v-icon>
+          <h1>{{ "Telegram-bot disable confirmation" }}</h1>
+        </v-card-title>
+
+        <v-card-text class="dialog-text">
+          {{"Are you sure you want to disable telegram bot notifications?"}}
         </v-card-text>
 
         <v-card-actions>
@@ -89,18 +84,18 @@
           ></v-btn>
           <v-btn v-if="isUserDisabled()"
                  text="Enable"
+                 color="primary"
                  @click=enable
           ></v-btn>
           <v-btn v-else
                  text="Disable"
+                 color="warning"
                  @click=disable
           ></v-btn>
         </v-card-actions>
       </v-card>
 
     </v-dialog>
-    <v-card-item>
-    </v-card-item>
   </v-card>
 
 </template>
@@ -109,7 +104,7 @@
 import telegramService from "@/components/settings/sheduling/telegram/js/telegram.service";
 
 export default {
-  name: "TelegramSettingsView",
+  name: "TelegramSettings",
   data: () => ({
     user: {},
     showPassword: false,
@@ -147,7 +142,6 @@ export default {
       }
     }
   },
-
   mounted() {
     this.status()
   },
@@ -157,18 +151,38 @@ export default {
       return this.user.userSecretKey;
     }
   }
-
 }
 </script>
 
 <style lang="sass" scoped>
-.card
+
+.v-text-field
+  padding: 10px 10px 10px 10px
+  width: 200px
+
+.v-btn
+  width: content-box
+  margin: auto auto auto auto
+
+.btn-control
+  margin: auto auto auto auto
+
+.v-card
   border-radius: 15px
 
-.btn
+.v-card-title
   margin-left: 15px
+
+.dialog-title
+  display: flex
+  width: 100%
+  background-color: rgb(var(--v-theme-background),0.8)
+  margin: auto auto auto auto
+
+.dialog-text
+  text-align: center
+
+.icon
   margin-right: 15px
 
-.btn-disable
-  float: right
 </style>

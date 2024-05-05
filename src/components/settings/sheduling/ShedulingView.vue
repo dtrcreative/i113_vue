@@ -2,18 +2,18 @@
   <div class="sections">
     <div class="section-center">
       <div class="block">
-        <telegram-settings-view></telegram-settings-view>
+       <telegram-settings></telegram-settings>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import TelegramSettingsView from "@/components/settings/sheduling/telegram/TelegramSettingsView";
+import TelegramSettings from "@/components/settings/sheduling/telegram/TelegramSettings";
 
 export default {
   name: "ShedulingView",
-  components: {TelegramSettingsView}
+  components: {TelegramSettings}
 }
 </script>
 
