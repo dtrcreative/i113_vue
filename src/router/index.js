@@ -3,7 +3,27 @@ import {createRouter, createWebHistory} from 'vue-router'
 import {getUser} from "@/store/user.service";
 
 const routes = [
-
+  {
+    path: "/",
+    component: () => import('@/pages/AuthPage.vue'),
+    children: [
+      {
+        path: '/',
+        name: 'login',
+        component: () => import('@/components/auth/LoginView.vue'),
+      },
+      {
+        path: '/signup',
+        name: 'signup',
+        component: () => import('@/components/auth/SignupView.vue'),
+      },
+      {
+        path: '/reinit',
+        name: 'reinit',
+        component: () => import('@/components/auth/ui/RestorePasswordView'),
+      },
+    ]
+  },
   {
     path: '/main',
     name: 'Main',
@@ -49,26 +69,16 @@ const routes = [
     ]
   },
   {
-    path: "/",
-    component: () => import('@/pages/AuthPage.vue'),
+    path: "/knowbase",
+    component: () => import('@/layouts/default/Main.vue'),
     children: [
       {
-        path: '/',
-        name: 'login',
-        component: () => import('@/components/auth/LoginView.vue'),
-      },
-      {
-        path: '/signup',
-        name: 'signup',
-        component: () => import('@/components/auth/SignupView.vue'),
-      },
-      {
-        path: '/reinit',
-        name: 'reinit',
-        component: () => import('@/components/auth/ui/RestorePasswordView'),
+        path: '',
+        name: 'Knowbase',
+        component: () => import('@/components/microservices/knowbase/KnowbaseMainView.vue'),
       },
     ]
-  }
+  },
 ]
 
 const router = createRouter({
