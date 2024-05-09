@@ -106,9 +106,6 @@ function remove() {
 .v-card-actions
   width: 100%
 
-.search
-  width: 50%
-
 .types
   width: 20%
   @media (max-width: 550px)

@@ -45,7 +45,6 @@
           @click="submit"
         >Войти
         </v-btn>
-      </div>
         <v-progress-linear
           class="loading"
           v-if="isLoading"
@@ -53,6 +52,7 @@
           indeterminate
           width="2"
         ></v-progress-linear>
+      </div>
 
       <div class="error" v-if="errorMessage!==''">
           {{ this.errorMessage }}
@@ -148,9 +148,7 @@ export default {
   border-radius: 30px
 
 .loading
-  display: flex
-  align-items: center
-  justify-content: center
+  margin: 0 auto 0 auto
   width: 70%
 
 .submit-btn
