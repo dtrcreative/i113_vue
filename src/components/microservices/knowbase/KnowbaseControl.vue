@@ -11,6 +11,7 @@
         label="Select Tag"
         v-model="useKnowbaseStore().selectedTags"
         :items="useKnowbaseStore().tags"
+        @change="clearSubtitle"
         hide-details
         chips
         single-line
@@ -36,6 +37,11 @@ import {useKnowbaseStore} from "@/components/microservices/knowbase/js/knowbaseS
 useKnowbaseStore()
 
 function showAddForm() {
+
+}
+
+function clearSubtitle(){
+  useKnowbaseStore().selectedSubTags = null
 
 }
 </script>

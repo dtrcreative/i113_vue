@@ -3,7 +3,7 @@
     <knowbase-control></knowbase-control>
   </v-row>
   <v-row dense>
-    <v-col v-for="(item) in useKnowbaseStore().filteredBySubtag" :key="item">
+    <v-col v-for="(item) in useKnowbaseStore().filteredBySubTag" :key="item">
       <data-card
         :card-id="item.id"
         :title="item.title"
