@@ -1,64 +1,83 @@
 <template>
-  <div>
-    <div class="component">
-      <v-text-field
-        label="CurrentBalance"
-        variant="outlined"
-        v-model="inputBalance"
-        v-on:keyup="calcDaysLeft"
-      ></v-text-field>
-      <v-text-field
-        class="reserve"
-        label="Reserved:"
-        variant="outlined"
-        v-model="reserved"
-        v-on:keyup="calcDaysLeft"
-      ></v-text-field>
-      <v-text-field
-        class="reserve"
-        label="Multiplier:"
-        variant="outlined"
-        v-model="multiplier"
-        v-on:keyup="calcDaysLeft"
-      ></v-text-field>
-      <VBtn
-        size="large"
-        variant="text"
-        icon="mdi-trash-can-outline"
-        rounded="xl"
-        @click="clear"
-      >
-      </VBtn>
-    </div>
-    <div class="component">
-      <v-text-field clearable
-                    label="DayOn"
-                    variant="outlined"
-                    v-model="dayOn"
-                    v-on:keyup="calcDaysLeft"
-      ></v-text-field>
-      <v-text-field clearable
-                    label="DayOff"
-                    variant="outlined"
-                    v-model="dayOff"
-                    v-on:keyup="calcDaysLeft"
-      ></v-text-field>
-      <v-text-field
-        label="DaysLeft"
-        variant="outlined"
-        v-model="daysLeft"
-        disabled
-      ></v-text-field>
-    </div>
-    <div>
-      <v-text-field
-        label="Balance for the day"
-        variant="outlined"
-        v-model="calculatedValue"
-        disabled
-      ></v-text-field>
-    </div>
-  </div>
+  <v-card>
+    <v-container>
+      <v-row>
+        <v-text-field
+          hide-details
+          type="number"
+          label="CurrentBalance"
+          variant="outlined"
+          density="compact"
+          v-model="inputBalance"
+          v-on:keyup="calcDaysLeft"
+        ></v-text-field>
+        <v-text-field
+          hide-details
+          label="Balance for the day"
+          variant="outlined"
+          density="compact"
+          v-model="calculatedValue"
+          disabled
+        ></v-text-field>
+        <v-btn
+          size="large"
+          variant="text"
+          icon="mdi-trash-can-outline"
+          rounded="xl"
+          @click="clear"
+        >
+        </v-btn>
+      </v-row>
+      <v-row>
+        <v-text-field clearable
+                      hide-details
+                      label="DayOn"
+                      variant="outlined"
+                      density="compact"
+                      v-model="dayOn"
+                      v-on:keyup="calcDaysLeft"
+        ></v-text-field>
+        <v-text-field clearable
+                      hide-details
+                      label="DayOff"
+                      variant="outlined"
+                      density="compact"
+                      v-model="dayOff"
+                      v-on:keyup="calcDaysLeft"
+        ></v-text-field>
+        <v-text-field
+          hide-details
+          label="DaysLeft"
+          type="number"
+          variant="outlined"
+          density="compact"
+          v-model="daysLeft"
+          disabled
+        ></v-text-field>
+      </v-row>
+      <v-row>
+
+        <v-text-field
+          hide-details
+          type="number"
+          label="Reserved:"
+          variant="outlined"
+          density="compact"
+          v-model="reserved"
+          v-on:keyup="calcDaysLeft"
+        ></v-text-field>
+        <v-text-field
+          hide-details
+          type="number"
+          label="Multiplier:"
+          variant="outlined"
+          density="compact"
+          v-model="multiplier"
+          v-on:keyup="calcDaysLeft"
+        ></v-text-field>
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -104,11 +123,17 @@ export default {
       if (this.reserved === '') {
         return value;
       }
+      console.log(this.multiplier)
+      if (this.multiplier === "") {
+        this.multiplier = 1
+      }
       return value - this.reserved * this.multiplier;
     },
     clear() {
       this.inputBalance = '';
       this.calculatedValue = '';
+      this.reserved = '';
+      this.multiplier = 1;
     }
   },
   mounted() {
@@ -124,16 +149,17 @@ export default {
 }
 </script>
 
-<style scoped>
-* {
-  display: -moz-grid-line;
-}
+<style lang="sass" scoped>
+@import '@/assets/styles/main'
 
-.component {
-  display: flex;
-}
+.v-btn
+  margin: auto auto auto auto
 
-.reserve {
-  width: 1%;
-}
+.v-card
+  background-color: $background-transparent
+
+.v-text-field
+  width: 20%
+  padding: 5px 0 5px 0
+
 </style>
