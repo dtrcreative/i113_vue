@@ -152,5 +152,14 @@ export default {
 <style lang="sass" scoped>
 @import '@/assets/styles/main'
 
+.v-btn
+  margin: auto auto auto auto
+
+.v-card
+  background-color: $background-transparent
+
+.v-text-field
+  width: 20%
+  padding: 5px 0 5px 0
 
 </style>
