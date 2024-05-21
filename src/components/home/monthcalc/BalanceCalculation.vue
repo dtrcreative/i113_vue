@@ -75,6 +75,15 @@
           v-model="multiplier"
           v-on:keyup="calcDaysLeft"
         ></v-text-field>
+        <v-text-field
+          hide-details
+          type="number"
+          label="ResultReserved:"
+          variant="outlined"
+          density="compact"
+          v-model="reserverResult"
+          disabled
+        ></v-text-field>
       </v-row>
     </v-container>
   </v-card>
@@ -93,7 +102,8 @@ export default {
       inputBalance: '',
 
       reserved: '',
-      multiplier: 1
+      multiplier: 1,
+      reserverResult: '',
 
     };
   },
@@ -123,11 +133,11 @@ export default {
       if (this.reserved === '') {
         return value;
       }
-      console.log(this.multiplier)
       if (this.multiplier === "") {
         this.multiplier = 1
       }
-      return value - this.reserved * this.multiplier;
+      this.reserverResult = this.reserved * this.multiplier;
+      return value - this.reserverResult;
     },
     clear() {
       this.inputBalance = '';
