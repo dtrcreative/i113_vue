@@ -78,7 +78,6 @@
 </template>
 
 <script>
-import router from "@/router";
 import {useAuthStore} from "@/components/auth/js/authStore";
 
 export default {
@@ -97,21 +96,21 @@ export default {
   },
   methods: {
     useAuthStore,
-     async submit() {
+    async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
-        this.isLoading=true
+        this.isLoading = true
         useAuthStore().sendEmail
         setTimeout(() => (this.showMessageDialog()), 4000)
       }
     },
-    showMessageDialog(){
+    showMessageDialog() {
       this.isEmailMessageDialogVisible = true
       this.isDialogVisible = false;
     },
-    async redirect(){
+    async redirect() {
       this.isLoading = false
-      this.isEmailMessageDialogVisible=false
+      this.isEmailMessageDialogVisible = false
       // await router.push("./") //TODO remove when uri is ready
     },
     async clear() {

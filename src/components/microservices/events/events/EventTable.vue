@@ -68,11 +68,12 @@
 import {useEventStore} from "@/components/microservices/events/events/js/eventStore";
 import EventControl from "@/components/microservices/events/events/EventControl";
 import eventService from "@/components/microservices/events/events/js/event.service";
+
 export default {
   name: "EventTable",
   components: {EventControl},
 
-  methods:{
+  methods: {
     useEventStore,
 
     showUpdateForm(item) {

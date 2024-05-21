@@ -26,11 +26,10 @@
 </template>
 
 <script setup>
-import MonthCalculation from "@/components/home/monthcalc/BalanceCalculation";
-import Currencies from "@/components/home/currencies/Currencies";
+import MonthCalculation from "@/components/home/BalanceCalculation";
+import Currencies from "@/components/home/Currencies";
 import ExpireTimer from "@/components/home/ExpireTimer";
-import About from "@/components/home/About";
-</script>
+import About from "@/components/home/About";</script>
 
 <style lang="sass" scoped>
 

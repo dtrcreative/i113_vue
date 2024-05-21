@@ -62,6 +62,7 @@
 <script>
 import router from "@/router";
 import {useAuthStore} from "@/components/auth/js/authStore";
+
 export default {
   name: "RestorePasswordView",
 
@@ -83,11 +84,11 @@ export default {
         useAuthStore().reinitPass()
         console.log("test")
         setTimeout(() => (this.redirect()), 4000)
-      }else{
+      } else {
         this.errorMessage = 'Неверный адрес электронной почты или пароль. Повторите попытку'
       }
     },
-    redirect(){
+    redirect() {
       this.isLoading = false
       router.push("./")
     },

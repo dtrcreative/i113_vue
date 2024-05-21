@@ -12,9 +12,10 @@
 
 <script>
 import {useLangsStore} from "@/components/settings/languages/js/languagesStore";
+
 export default {
   name: "LangsSnackBar",
-  methods:{
+  methods: {
     useLangsStore
   }
 }

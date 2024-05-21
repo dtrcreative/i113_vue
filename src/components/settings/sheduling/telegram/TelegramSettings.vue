@@ -73,7 +73,7 @@
         </v-card-title>
 
         <v-card-text class="dialog-text">
-          {{"Are you sure you want to disable telegram bot notifications?"}}
+          {{ "Are you sure you want to disable telegram bot notifications?" }}
         </v-card-text>
 
         <v-card-actions>
@@ -176,7 +176,7 @@ export default {
 .dialog-title
   display: flex
   width: 100%
-  background-color: rgb(var(--v-theme-background),0.8)
+  background-color: rgb(var(--v-theme-background), 0.8)
   margin: auto auto auto auto
 
 .dialog-text

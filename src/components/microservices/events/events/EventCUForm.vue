@@ -1,18 +1,18 @@
 <template>
   <v-form ref="form" @submit.prevent="submit">
     <v-container>
-        <v-row>
-          <v-text-field
-            clearable
-            v-model.trim="useEventStore().updateUnit.eventName"
-            label="Event name"
-            variant="outlined"
-            density="compact"
-            hide-details
-            :maxlength="15"
-            :rules="[rules.required]"
-          ></v-text-field>
-        </v-row>
+      <v-row>
+        <v-text-field
+          clearable
+          v-model.trim="useEventStore().updateUnit.eventName"
+          label="Event name"
+          variant="outlined"
+          density="compact"
+          hide-details
+          :maxlength="15"
+          :rules="[rules.required]"
+        ></v-text-field>
+      </v-row>
       <v-row>
         <v-text-field
           hide-details
@@ -89,7 +89,7 @@
 
 <script>
 import {useEventStore} from "@/components/microservices/events/events/js/eventStore";
-import {useBirthdayStore} from "@/components/microservices/events/bithdays/js/birthdayStore";
+
 export default {
   name: "EventCUForm",
 
@@ -109,7 +109,7 @@ export default {
   }),
   methods: {
     useEventStore,
-    async submit(){
+    async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
         if (this.useEventStore().updateUnit.id === null) {

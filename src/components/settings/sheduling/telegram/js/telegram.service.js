@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 import {getGatewayUrl} from "@/store/app.service";

@@ -33,15 +33,15 @@ class ExceptionHandler {
           break;
       }
     } else {
-      if(error.code !== 0){
+      if (error.code !== 0) {
         this.handleAppError(error)
-      }else{
+      } else {
         this.handleAppException(error)
       }
     }
   }
 
-  handleAppError(error){
+  handleAppError(error) {
     let exceptionTitle = 'App Exception'
     console.log(error)
     this.showSnackBar(error.code, exceptionTitle, error.message)

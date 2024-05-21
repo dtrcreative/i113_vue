@@ -89,21 +89,19 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   let user = getUser();
 
-  if(
+  if (
     user === null &&
     (to.name !== 'login') &&
     (to.name !== 'signup') &&
-    (to.name !== 'reinit'))
-  {
+    (to.name !== 'reinit')) {
     next({name: 'login'})
   }
-  if(
+  if (
     user !== null &&
-    user.expireAt<(new Date().getTime() / 1000) &&
-    (to.name !== 'login'))
-  {
+    user.expireAt < (new Date().getTime() / 1000) &&
+    (to.name !== 'login')) {
     next({name: 'login'})
-  } else{
+  } else {
     next()
   }
 })

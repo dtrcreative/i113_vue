@@ -1,5 +1,4 @@
 <template>
-
   <v-row>
     <v-col cols="3">
       <v-progress-circular
@@ -37,7 +36,7 @@ export default {
       interval: {},
       value: Math.floor((getUser().expireAt * 1000 - new Date().getTime()) / 1000),
 
-      timeOrigin: new Date(getUser().expireAt*1000),
+      timeOrigin: new Date(getUser().expireAt * 1000),
       secondsToExpire: Math.floor((getUser().expireAt * 1000 - new Date().getTime()) / 1000),
     }
   },

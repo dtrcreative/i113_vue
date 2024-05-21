@@ -56,7 +56,7 @@ export default {
 .v-card-title
   display: flex
   width: 100%
-  background-color: rgb(var(--v-theme-background),0.8)
+  background-color: rgb(var(--v-theme-background), 0.8)
   margin: 0 auto 0 auto
 
 .v-card-text

@@ -1,33 +1,33 @@
 <template>
-<v-card>
-  <v-card-actions>
-    <v-btn
-      icon="mdi-plus"
-      @click="showAddForm"
-    ></v-btn>
+  <v-card>
+    <v-card-actions>
+      <v-btn
+        icon="mdi-plus"
+        @click="showAddForm"
+      ></v-btn>
 
-    <div class="search">
-      <v-text-field clearable
-                    v-model.trim="useLangsStore().searchValue"
-                    label="Search"
-                    variant="outlined"
-                    density="compact"
-                    append-inner-icon="mdi-magnify"
-                    hide-details
-                    :maxlength="10"
-      >
-      </v-text-field>
-    </div>
-<!--    <div class="types">-->
-<!--      <v-select></v-select>-->
-<!--    </div>-->
-    <v-btn
-      icon="mdi-trash-can"
-      min-width="50px"
-      @click="remove"
-    ></v-btn>
-  </v-card-actions>
-</v-card>
+      <div class="search">
+        <v-text-field clearable
+                      v-model.trim="useLangsStore().searchValue"
+                      label="Search"
+                      variant="outlined"
+                      density="compact"
+                      append-inner-icon="mdi-magnify"
+                      hide-details
+                      :maxlength="10"
+        >
+        </v-text-field>
+      </div>
+      <!--    <div class="types">-->
+      <!--      <v-select></v-select>-->
+      <!--    </div>-->
+      <v-btn
+        icon="mdi-trash-can"
+        min-width="50px"
+        @click="remove"
+      ></v-btn>
+    </v-card-actions>
+  </v-card>
   <v-container>
     <v-expand-transition v-show="useLangsStore().showCUForm">
       <languages-c-u-form></languages-c-u-form>

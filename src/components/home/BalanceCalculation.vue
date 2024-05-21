@@ -11,14 +11,6 @@
           v-model="inputBalance"
           v-on:keyup="calcDaysLeft"
         ></v-text-field>
-        <v-text-field
-          hide-details
-          label="Balance for the day"
-          variant="outlined"
-          density="compact"
-          v-model="calculatedValue"
-          disabled
-        ></v-text-field>
         <v-btn
           size="large"
           variant="text"
@@ -27,6 +19,14 @@
           @click="clear"
         >
         </v-btn>
+        <v-text-field
+          hide-details
+          label="Balance for the day"
+          variant="outlined"
+          density="compact"
+          v-model="calculatedValue"
+          disabled
+        ></v-text-field>
       </v-row>
       <v-row>
         <v-text-field clearable

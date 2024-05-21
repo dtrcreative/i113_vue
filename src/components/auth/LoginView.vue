@@ -5,7 +5,7 @@
         {{ "Чтобы продолжить, войдите в систему" }}
       </p>
       <div class="lined-text-registration">
-        <div>У вас нет аккаунта? </div>
+        <div>У вас нет аккаунта?</div>
         <div class="linked-text" @click="showRegistrationView">Зарегистрируйтесь</div>
       </div>
 
@@ -55,7 +55,7 @@
       </div>
 
       <div class="error" v-if="errorMessage!==''">
-          {{ this.errorMessage }}
+        {{ this.errorMessage }}
       </div>
 
     </v-card>
@@ -66,7 +66,7 @@
 import router from "@/router";
 import ForgotPasswordEmailDialog from "@/components/auth/ui/ForgotPasswordEmailDialog";
 import {useAuthStore} from "@/components/auth/js/authStore";
-import {cleanStorage, cleanUserData} from "@/store/user.service";
+import {cleanUserData} from "@/store/user.service";
 
 export default {
   name: "LoginView",
@@ -84,28 +84,28 @@ export default {
     async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
-        this.isLoading=true
+        this.isLoading = true
         this.clearError()
         let response = await useAuthStore().login()
-        if (response !== undefined && response.status===200) {
+        if (response !== undefined && response.status === 200) {
           this.redirect()
-        }else{
+        } else {
           this.showErrorMessage("Упс, что-то пошло не так")
         }
-      }else{
+      } else {
         this.showErrorMessage('Неверный адрес электронной почты или пароль. Повторите попытку')
       }
     },
-    redirect(){
+    redirect() {
       router.push("./home")
     },
-    showRegistrationView(){
+    showRegistrationView() {
       router.push("/signup")
     },
-    clearError(){
+    clearError() {
       this.errorMessage = ""
     },
-    showErrorMessage(message){
+    showErrorMessage(message) {
       this.isLoading = false;
       this.errorMessage = message
     }

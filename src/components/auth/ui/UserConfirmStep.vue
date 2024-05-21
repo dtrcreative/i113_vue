@@ -56,6 +56,7 @@
 
 <script>
 import {useAuthStore} from "@/components/auth/js/authStore";
+
 export default {
   name: "UserConfirmStep",
   data() {
@@ -63,7 +64,7 @@ export default {
       showPassword: false,
     }
   },
-  methods:{
+  methods: {
     useAuthStore,
     async validate() {
       const {valid} = await this.$refs.form.validate()
@@ -79,6 +80,7 @@ export default {
   padding-top: 4%
   margin: 0 auto 5px
   width: 90%
+
 .inputFields
   display: inline-block
   width: 50%

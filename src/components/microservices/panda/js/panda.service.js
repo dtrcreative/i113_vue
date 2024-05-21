@@ -108,8 +108,8 @@ class PandaService {
             json[unitNumber].description : failed.push("unit:" + (unitNumber + 1) + "-field:description"),
         })
       } catch (e) {
-        exceptionHandler.handleAppException(e,{
-          code:0,
+        exceptionHandler.handleAppException(e, {
+          code: 0,
           message: "Parse JSON exception"
         })
       }
@@ -132,7 +132,7 @@ class PandaService {
   async generatePassword() {
     let user = getUser();
     try {
-      let result = await axios.post(getGatewayUrl() + API_PASSGEN,{
+      let result = await axios.post(getGatewayUrl() + API_PASSGEN, {
         userId: user.userId,
       }, {headers: getAuthHeader()})
       console.log(result.data)

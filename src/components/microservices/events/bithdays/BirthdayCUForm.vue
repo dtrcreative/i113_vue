@@ -25,7 +25,7 @@
           required
         ></v-text-field>
       </v-row>
-      <v-row >
+      <v-row>
         <v-text-field
           hide-details
           label="DD"
@@ -102,6 +102,7 @@
 
 <script>
 import {useBirthdayStore} from "@/components/microservices/events/bithdays/js/birthdayStore";
+
 export default {
   name: "BirthdayCUForm",
   components: {},
@@ -122,7 +123,7 @@ export default {
   }),
   methods: {
     useBirthdayStore,
-    async submit(){
+    async submit() {
       const {valid} = await this.$refs.form.validate()
       if (valid) {
         if (this.useBirthdayStore().updateUnit.id === null) {

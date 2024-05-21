@@ -47,7 +47,8 @@
         </td>
       </tr>
 
-      <tr v-if="useBirthdayStore().expanded.indexOf(item) !== -1 && item.description !== null && item.description !== ''">
+      <tr
+        v-if="useBirthdayStore().expanded.indexOf(item) !== -1 && item.description !== null && item.description !== ''">
         <td :colspan=useBirthdayStore().headers.length+1>
           {{ item.description }}
         </td>

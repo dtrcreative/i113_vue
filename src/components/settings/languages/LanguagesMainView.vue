@@ -10,6 +10,7 @@
 
 <script>
 import LanguagesTable from "@/components/settings/languages/LanguagesTable";
+
 export default {
   name: "LanguagesMainView",
   components: {LanguagesTable}

@@ -10,6 +10,7 @@
 
 <script>
 import EventTable from "@/components/microservices/events/events/EventTable";
+
 export default {
   name: "EventMainView",
   components: {EventTable}

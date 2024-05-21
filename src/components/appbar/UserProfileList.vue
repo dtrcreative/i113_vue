@@ -49,7 +49,7 @@
 
 import authService from "@/components/auth/js/auth.service";
 import router from "@/router";
-import {cleanUserData, getUser} from "@/store/user.service";
+import {getUser} from "@/store/user.service";
 
 export default {
   name: "UserProfileList",

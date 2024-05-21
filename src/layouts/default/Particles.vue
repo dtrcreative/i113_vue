@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-<!--    <vue-particles id="tsparticles" @particles-loaded="particlesLoaded" url="@/assets/" />-->
+    <!--    <vue-particles id="tsparticles" @particles-loaded="particlesLoaded" url="@/assets/" />-->
 
     <vue-particles
       id="tsparticles"

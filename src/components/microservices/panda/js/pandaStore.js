@@ -17,9 +17,9 @@ export const usePandaStore = defineStore('pandas', {
     showSnackBar: false,
     snackbarMessage: "",
 
-    loading:false,
+    loading: false,
 
-    accounts:[],
+    accounts: [],
 
     updateUnit: {
       id: '',
@@ -33,10 +33,10 @@ export const usePandaStore = defineStore('pandas', {
       description: '',
     },
     headers: [
-      { title: 'Service', align: 'center', sortable: false, key: 'name'},
-      { title: 'Account', align: 'center', sortable: false,  key: 'account' },
-      { title: 'Mail', align: 'center', sortable: false,  key: 'mail' },
-      { title: 'Actions', align: 'center', sortable: false, key: 'actions' },
+      {title: 'Service', align: 'center', sortable: false, key: 'name'},
+      {title: 'Account', align: 'center', sortable: false, key: 'account'},
+      {title: 'Mail', align: 'center', sortable: false, key: 'mail'},
+      {title: 'Actions', align: 'center', sortable: false, key: 'actions'},
     ]
   }),
   actions: {
@@ -68,7 +68,7 @@ export const usePandaStore = defineStore('pandas', {
     setNewPassword(password) {
       this.updateUnit.password = password
     },
-    clearUpdateUnit(){
+    clearUpdateUnit() {
       this.updateUnit = {
         id: null,
         name: null,

@@ -5,7 +5,7 @@
       align-tabs="center"
       fixed-tabs
       bg-color="rgb(var(--v-theme-primary),0.5)"
-      >
+    >
       <v-tab value="languages">
         <span>Languages</span>
       </v-tab>
@@ -19,7 +19,7 @@
 
     <v-card-item>
       <v-window v-model="tab" :touch="false">
-        <v-window-item value="languages" >
+        <v-window-item value="languages">
           <languages-main-view></languages-main-view>
         </v-window-item>
 

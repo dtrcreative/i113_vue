@@ -98,8 +98,8 @@ class LanguagesService {
         })
       } catch (e) {
 
-        exceptionHandler.handleAppException(e,{
-          code:0,
+        exceptionHandler.handleAppException(e, {
+          code: 0,
           message: "Parse JSON exception"
         })
 

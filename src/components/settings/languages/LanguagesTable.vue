@@ -57,10 +57,11 @@ import {useLangsStore} from "@/components/settings/languages/js/languagesStore";
 import LanguagesControl from "@/components/settings/languages/LanguagesControl";
 import utilService from "@/components/UI/utils/util-service";
 import LangsSnackBar from "@/components/settings/languages/ui/LangsSnackBar";
+
 export default {
   name: "LanguagesTable",
   components: {LangsSnackBar, LanguagesControl},
-  methods:{
+  methods: {
     useLangsStore,
     showUpdateForm(item) {
       useLangsStore().showCUForm = true;

@@ -10,6 +10,7 @@
 
 <script>
 import BirthdayTable from "@/components/microservices/events/bithdays/BirthdayTable";
+
 export default {
   name: "BirthdayMainView",
   components: {BirthdayTable}

@@ -11,7 +11,7 @@ export const useLangsStore = defineStore('languages', {
     showSnackBar: false,
     snackbarMessage: "",
 
-    loading:false,
+    loading: false,
 
     languages: [],
 
@@ -22,10 +22,10 @@ export const useLangsStore = defineStore('languages', {
     inuse: {},
 
     headers: [
-      { title: 'Param', align: 'center', sortable: false, key: 'param'},
-      { title: 'Eng', align: 'center', sortable: false,  key: 'eng' },
-      { title: 'Rus', align: 'center', sortable: false,  key: 'rus' },
-      { title: 'Actions', align: 'center', sortable: false, key: 'actions' },
+      {title: 'Param', align: 'center', sortable: false, key: 'param'},
+      {title: 'Eng', align: 'center', sortable: false, key: 'eng'},
+      {title: 'Rus', align: 'center', sortable: false, key: 'rus'},
+      {title: 'Actions', align: 'center', sortable: false, key: 'actions'},
     ]
   }),
   actions: {
@@ -71,7 +71,7 @@ export const useLangsStore = defineStore('languages', {
       }
     },
 
-    clearUpdateUnit(){
+    clearUpdateUnit() {
       this.updateUnit = {
         id: null,
         param: null,

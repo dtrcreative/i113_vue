@@ -7,17 +7,18 @@ import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 const API_URL = "api/auth/"
 const API_LOGIN = "api/auth/login"
 const API_SIGNUP = "api/auth/signup"
+
 class AuthService {
 
   async login(username, password) {
-    try{
+    try {
       let response = await axios.post(getGatewayUrl() + API_LOGIN, {
         username: username,
         password: password,
       })
       saveUserData(response.data);
       return await response
-    }catch (e){
+    } catch (e) {
       exceptionHandler.handle(e)
     }
   }
@@ -28,7 +29,7 @@ class AuthService {
   }
 
   async signup(user) {
-    try{
+    try {
       return await axios.post(getGatewayUrl() + API_SIGNUP, {
         username: user.username,
         firstname: user.firstname,
@@ -36,7 +37,7 @@ class AuthService {
         email: user.email,
         password: user.password,
       })
-    }catch (e){
+    } catch (e) {
       exceptionHandler.handle(e)
     }
   }

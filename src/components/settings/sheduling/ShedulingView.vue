@@ -2,7 +2,7 @@
   <div class="sections">
     <div class="section-center">
       <div class="block">
-       <telegram-settings></telegram-settings>
+        <telegram-settings></telegram-settings>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@ import authService from "@/components/auth/js/auth.service";
 export const useAuthStore = defineStore("auth", {
   state: () => ({
 
-    user:{
+    user: {
       username: 'master',
       firstname: '',
       lastname: '',
@@ -28,24 +28,24 @@ export const useAuthStore = defineStore("auth", {
       //TODO validation and login process
       return authService.login(this.user.username, this.user.password)
     },
-    signup(){
+    signup() {
       return authService.signup(this.user)
     },
-    sendEmail(){
+    sendEmail() {
       //TODO check email and save it if valid
       authService.sendMail(this.user.email)
     },
-    reinitPass(){
+    reinitPass() {
       authService.reinitPassword(this.user)
     },
-    clearFieldsData(){
+    clearFieldsData() {
       this.user = {
-          username: 'master',
-          firstname: '',
-          lastname: '',
-          email: '',
-          password: '4180',
-          confirmPassword: '',
+        username: 'master',
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '4180',
+        confirmPassword: '',
       }
     }
   },

@@ -8,9 +8,9 @@
     </div>
     <div class="card-text">
 
-<!--      <p class="text-center, text-h1, card-text">-->
-<!--        {{ "Добро пожаловать в уютный уголок Элли" }}-->
-<!--      </p>-->
+      <!--      <p class="text-center, text-h1, card-text">-->
+      <!--        {{ "Добро пожаловать в уютный уголок Элли" }}-->
+      <!--      </p>-->
 
     </div>
   </v-card>
@@ -30,7 +30,7 @@ export default {
   width: 100%
   height: 800px
   margin-top: 12%
-  background-color: rgba(42,19,9,0)
+  background-color: rgba(42, 19, 9, 0)
 
   @media (max-width: 767px)
     visibility: collapse

@@ -13,7 +13,7 @@ export const useBirthdayStore = defineStore("birthdays", {
     showSnackBar: false,
     snackbarMessage: "",
 
-    loading:false,
+    loading: false,
 
     units: [],
 
@@ -31,12 +31,12 @@ export const useBirthdayStore = defineStore("birthdays", {
     },
 
     headers: [
-      { title: 'First name', align: 'center', sortable: false, key: 'firstName'},
-      { title: 'Last name', align: 'center', sortable: false,  key: 'lastName' },
-      { title: 'Date', align: 'center', sortable: false,  key: 'date' },
-      { title: 'Via', align: 'center', sortable: false,  key: 'daysLeft' },
-      { title: 'Notify', align: 'center', sortable: false,  key: 'mail' },
-      { title: 'Actions', align: 'center', sortable: false, key: 'actions' },
+      {title: 'First name', align: 'center', sortable: false, key: 'firstName'},
+      {title: 'Last name', align: 'center', sortable: false, key: 'lastName'},
+      {title: 'Date', align: 'center', sortable: false, key: 'date'},
+      {title: 'Via', align: 'center', sortable: false, key: 'daysLeft'},
+      {title: 'Notify', align: 'center', sortable: false, key: 'mail'},
+      {title: 'Actions', align: 'center', sortable: false, key: 'actions'},
     ]
   }),
   actions: {
@@ -52,7 +52,7 @@ export const useBirthdayStore = defineStore("birthdays", {
       await birthdayService.getUnits()
     },
     async updateShedule(unit) {
-     await birthdayService.updateBirthday(this.reformatUnit(unit))
+      await birthdayService.updateBirthday(this.reformatUnit(unit))
     },
     //Method used in ConfirmRemoveDialog
     removeSelected() {
@@ -85,7 +85,7 @@ export const useBirthdayStore = defineStore("birthdays", {
       }
     },
 
-    clearUpdateUnit(){
+    clearUpdateUnit() {
       this.updateUnit = {
         id: null,
         firstName: null,

@@ -31,9 +31,6 @@ export const getAuthHeader = () => {
   let user = JSON.parse(localStorage.getItem(USER));
   if (user) {
     return {
-      // Accept: "application/json",
-      // Authorization: "Bearer " + user.token,
-      // UserId: user.userId
       Accept: "application/json",
       Authorization: user.token,
       UserId: user.uuid

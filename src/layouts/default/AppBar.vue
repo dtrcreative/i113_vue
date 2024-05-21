@@ -58,8 +58,8 @@ export default {
     ExceptionSnackBar,
     NavigationBar, UserProfileList, TranslateList, ToggleTheme
   },
-  data(){
-    return{
+  data() {
+    return {
       interval: {},
       date: getCurentDateString(),
       time: ""
@@ -73,7 +73,7 @@ export default {
   mounted() {
     this.interval = setInterval(() => {
       let date = new Date().toString().split(" ")
-        this.time = date[4]
+      this.time = date[4]
     }, 1000)
   },
 
@@ -85,11 +85,11 @@ export default {
 @import '@/assets/styles/main'
 
 .v-app-bar
-  background-color:  rgb(var(--v-theme-background),0.9)
-  //background-color: $background-transparent
+  background-color: rgb(var(--v-theme-background), 0.9)
+//background-color: $background-transparent
 .v-navigation-drawer
-  background-color:  rgb(var(--v-theme-background),0.9)
-  //background-color: $background-transparent
+  background-color: rgb(var(--v-theme-background), 0.9)
+//background-color: $background-transparent
 
 .date
   padding-bottom: 1%
