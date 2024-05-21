@@ -3,7 +3,7 @@
     <div class="elli-logo">
       <v-img
         icon="$logo"
-        src="@/assets/Logo.png"
+        src="@/assets/img/png/Logo.png"
       ></v-img>
     </div>
     <div class="card-text">

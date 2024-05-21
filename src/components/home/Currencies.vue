@@ -12,6 +12,7 @@
   <v-btn @click="telbotHealth">TelbotHealth</v-btn>
   <v-btn @click="showUserInfo">UserInfo</v-btn>
   <v-btn @click="newLogin">NewLogin</v-btn>
+  <v-btn @click="showProfilesInfo">Profiles</v-btn>
 
 </template>
 
@@ -19,7 +20,7 @@
 import axios from "axios";
 import exceptionHandler from "@/components/UI/exceptions/js/exception-handler";
 import {getAuthHeader, getAuthUser} from "@/store/user.service";
-import {getGatewayUrl} from "@/store/app.service";
+import {getGatewayUrl, profilesList} from "@/store/app.service";
 
 export default {
   name: "Currencies",
@@ -76,6 +77,10 @@ export default {
       } catch (e) {
         exceptionHandler.handle(e)
       }
+    },
+    async showProfilesInfo() {
+      console.log(profilesList())
+      console.log(location.host)
     },
     async showUserInfo() {
       console.log(getAuthUser())

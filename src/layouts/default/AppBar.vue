@@ -2,7 +2,7 @@
   <v-app-bar prominent>
 
     <v-app-bar-title>
-      <v-img src="@/assets/Fox.png" width="35"></v-img>
+      <v-img src="@/assets/img/png/Fox.png" width="35"></v-img>
     </v-app-bar-title>
     <div class="date">
       <v-text-field

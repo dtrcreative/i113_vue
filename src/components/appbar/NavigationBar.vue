@@ -16,6 +16,7 @@
       :prepend-icon="item.icon"
       :color="item.color"
       :title="item.title"
+      :disabled="!item.visible"
       @click="redirect(item)"
     >
     </v-list-item>
