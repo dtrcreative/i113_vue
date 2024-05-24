@@ -29,26 +29,27 @@
         ></v-text-field>
       </v-row>
       <v-row>
-        <v-text-field clearable
+        <v-text-field
                       hide-details
+                      type="number"
                       label="DayOn"
                       variant="outlined"
                       density="compact"
                       v-model="dayOn"
-                      v-on:keyup="calcDaysLeft"
+                      :onchange="calcDaysLeft"
         ></v-text-field>
-        <v-text-field clearable
+        <v-text-field
                       hide-details
+                      type="number"
                       label="DayOff"
                       variant="outlined"
                       density="compact"
                       v-model="dayOff"
-                      v-on:keyup="calcDaysLeft"
+                      :onchange="calcDaysLeft"
         ></v-text-field>
         <v-text-field
           hide-details
           label="DaysLeft"
-          type="number"
           variant="outlined"
           density="compact"
           v-model="daysLeft"
@@ -144,7 +145,11 @@ export default {
       this.calculatedValue = '';
       this.reserved = '';
       this.multiplier = 1;
-    }
+    },
+    // calcMaxDaysInCurrentMonth(){
+    //   let currentDate = new Date()
+    //   return new Date(currentDate.getFullYear(), currentDate.getMonth()+1, 0).getDate()
+    // }
   },
   mounted() {
     this.dayOn = new Date().getDate();

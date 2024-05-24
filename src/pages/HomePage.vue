@@ -7,7 +7,7 @@
     </div>
     <div class="section-right">
       <div class="block">
-        <Currencies></Currencies>
+        <eight-ball></eight-ball>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
     </div>
     <div class="section-right">
       <div class="block">
-        <about></about>
+        <Currencies></Currencies>
       </div>
     </div>
   </div>
@@ -29,7 +29,8 @@
 import MonthCalculation from "@/components/home/BalanceCalculation";
 import Currencies from "@/components/home/Currencies";
 import ExpireTimer from "@/components/home/ExpireTimer";
-import About from "@/components/home/About";</script>
+import About from "@/components/home/About";
+import EightBall from "@/components/home/EightBall";</script>
 
 <style lang="sass" scoped>
 
