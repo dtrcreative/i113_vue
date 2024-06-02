@@ -69,7 +69,7 @@
         ></v-text-field>
         <v-text-field
           hide-details
-          type="number"
+          type="text"
           label="Multiplier:"
           variant="outlined"
           density="compact"
@@ -103,7 +103,7 @@ export default {
       inputBalance: '',
 
       reserved: '',
-      multiplier: 1,
+      multiplier: '',
       reserverResult: '',
 
     };
@@ -134,11 +134,18 @@ export default {
       if (this.reserved === '') {
         return value;
       }
-      if (this.multiplier === "") {
-        this.multiplier = 1
-      }
-      this.reserverResult = this.reserved * this.multiplier;
+      this.calcResurved()
       return value - this.reserverResult;
+    },
+    calcResurved(){
+      let tempMultiplier=1
+      if(this.multiplier.indexOf(",") !== -1){
+        this.multiplier = this.multiplier.replace(",",".")
+      }
+      if (this.multiplier !== "") {
+        tempMultiplier = this.multiplier
+      }
+      this.reserverResult = this.reserved * tempMultiplier;
     },
     clear() {
       this.inputBalance = '';

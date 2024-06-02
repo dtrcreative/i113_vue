@@ -12,7 +12,7 @@
       </v-row>
       <v-row>
         <v-btn
-          text="Get answer"
+          text="Roll the ball"
           size="large"
           variant="text"
           rounded="xl"
@@ -43,6 +43,10 @@ export default {
     return {
       input: '',
       output: '',
+
+      enablePreviousInput: true,
+      previousInput: '',
+
       variants: [
         {answer: "yes", chance: 0.5},
         {answer: "no", chance: 0.5},
@@ -51,24 +55,36 @@ export default {
         empty: "Ask me question first",
         emptyAnswerList: "I have no answer",
         noQuestion: 'There is no question yet',
-        someError: 'Things go bad'
+        someError: 'Things go bad',
+        sameQuestion: 'Already asked this'
       },
       answers: [
         {
-          type: 'yes', chance: 40, values: [
-            {answer: "Yes"},
-            {answer: "Agreed"},
+          type: 'yes', chance: 45, values: [
+            {answer: "Ага"},
+            {answer: "Да"},
+            {answer: "Очевидно. Да))"},
+            {answer: "Стопроцентно"},
+            {answer: "Слышал как рак на горе свистнул. поэтому - да"},
           ]
         },
         {
-          type: 'no', chance: 40, values: [
-            {answer: "No"},
-            {answer: "No way"},
+          type: 'no', chance: 45, values: [
+            {answer: "Нет"},
+            {answer: "Неа"},
+            {answer: "Ни разу"},
+            {answer: "Ни. за. что."},
+            {answer: "Даже не надейся"},
+            {answer: "Когда-нибудь - возможно. сейчас - нет"},
           ]
         },
         {
-          type: 'maybe', chance: 20, values: [
-            {answer: "Maybe"},
+          type: 'maybe', chance: 10, values: [
+            {answer: "Возможно"},
+            {answer: "Ой, да, конечно"},
+            {answer: "ПодумОй сам"},
+            {answer: "А что говорят звёзды?"},
+            {answer: "Чекни гороскоп=)"},
           ]
         },
       ]
@@ -80,6 +96,7 @@ export default {
       if (this.output === '') {
         let answerValues = this.getTypeValues()
         this.output = this.getRandomAnswer(answerValues);
+        this.previousInput = this.input
       }
     },
     getTypeValues() {
@@ -103,7 +120,6 @@ export default {
     getRandomAnswer(values){
       if(typeof values !== "string" && values.length>0){
         let index = Math.floor(Math.random() * (values.length))
-        console.log(values[index].answer + " === " + index)
         return values[index].answer;
       }
       return values
@@ -115,6 +131,9 @@ export default {
       }
       if (this.input.toString().indexOf("?") === -1) {
         return this.mistake.noQuestion
+      }
+      if(this.enablePreviousInput && this.input.toString() === this.previousInput.toString()){
+        return this.mistake.sameQuestion
       }
       return ''
     }
