@@ -69,7 +69,7 @@
         ></v-text-field>
         <v-text-field
           hide-details
-          type="text"
+          type="number"
           label="Multiplier:"
           variant="outlined"
           density="compact"
