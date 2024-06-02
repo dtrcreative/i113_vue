@@ -26,13 +26,11 @@
           </template>
 
           <v-list>
-            <v-list-item
-              v-for="(item, i) in useKnowbaseStore().categories"
-              :key="i"
-            >
+            <v-list-item v-for="(item, i) in useKnowbaseStore().categories" :key="i">
               <v-list-item-title
                 @click="useKnowbaseStore().selectedCategory = item.category"
               >
+                <v-icon>{{ item.icon }}</v-icon>
                 {{ item.category }}
               </v-list-item-title>
             </v-list-item>
