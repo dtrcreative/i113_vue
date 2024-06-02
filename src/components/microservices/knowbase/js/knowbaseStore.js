@@ -15,6 +15,16 @@ export const useKnowbaseStore = defineStore("knowbase", {
     subTags:['Design', 'Vue3', 'Vuetify', "Postgres", "Java"],
     selectedSubTags: null,
 
+    selectedCategory: null,
+    categories: [
+      {id: 0, category:"Programming", title:"Programming languages and everything about it", icon: 'mdi-glass-wine',},
+      {id: 1, category:"Cooking",title:"Recepies and ways to cook stufs", icon: 'mdi-glass-wine',},
+      {id: 2, category:"Woodwork",title:"Everything about woodworking process", icon: 'mdi-glass-wine', },
+      {id: 3, category:"Microcontrollers",title:"Arduino and controllers", icon: 'mdi-calendar-range',},
+      {id: 4, category:"Sport",title:"Training shit", icon: 'mdi-bike',},
+      {id: 5, category:"Traveling",title:"chips to travel", icon: 'mdi-map-marker',},
+    ],
+
     cards:[
       {id: 0, tag:"Programming", subtag:"Java", title: "Programming", subtitle: "CardSubtitle", text: "There is some card Text"},
       {id: 1, tag:"Programming", subtag:"Java", title: "Programming", subtitle: "CardSubtitle", text: "There is some card Text"},
@@ -37,9 +47,6 @@ export const useKnowbaseStore = defineStore("knowbase", {
 
   }),
   actions: {
-
-
-
   },
 
   getters: {
