@@ -69,6 +69,17 @@ const routes = [
     ]
   },
   {
+    path: "/todos",
+    component: () => import('@/layouts/default/Main.vue'),
+    children: [
+      {
+        path: '',
+        name: 'todos',
+        component: () => import('@/components/microservices/todos/ToDosMainView'),
+      },
+    ]
+  },
+  {
     path: "/knowbase",
     component: () => import('@/layouts/default/Main.vue'),
     children: [
