@@ -11,8 +11,8 @@ export const useNavStore = defineStore('navigation', {
     microPages: [
       {title: 'Panda', value: "panda", redirect: '/panda/', visible: true, icon: 'mdi-panda', color: 'yellow'},
       {title: 'Events', value: "events", redirect: '/events/', visible: true, icon: 'mdi-calendar-month', color: 'orange'},
-      {title: 'ToDos', value: "todos", redirect: '/todos/', visible: true, icon: 'mdi-book-account-outline', color: 'pink'},
-      {title: 'Knowbase', value: "knowbase", redirect: '/knowbase/', visible: true, icon: 'mdi-book-open-page-variant-outline', color: 'blue'},
+      {title: 'ToDos', value: "todos", redirect: '/todos/', visible: false, icon: 'mdi-book-account-outline', color: 'pink'},
+      {title: 'Knowbase', value: "knowbase", redirect: '/knowbase/', visible: false, icon: 'mdi-book-open-page-variant-outline', color: 'blue'},
     ]
 
   }),
