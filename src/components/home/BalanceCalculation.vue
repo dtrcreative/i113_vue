@@ -172,13 +172,11 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '@/assets/styles/main'
-
 .v-btn
   margin: auto auto auto auto
 
 .v-card
-  background-color: $background-transparent
+  background-color: var(--v-theme-tansparent)
 
 .v-text-field
   width: 20%
