@@ -5,11 +5,11 @@ export const useAuthStore = defineStore("auth", {
   state: () => ({
 
     user: {
-      username: 'master',
+      username: '',
       firstname: '',
       lastname: '',
       email: '',
-      password: '4180',
+      password: '',
       confirmPassword: '',
     },
 
@@ -40,11 +40,11 @@ export const useAuthStore = defineStore("auth", {
     },
     clearFieldsData() {
       this.user = {
-        username: 'master',
+        username: '',
         firstname: '',
         lastname: '',
         email: '',
-        password: '4180',
+        password: '',
         confirmPassword: '',
       }
     }
