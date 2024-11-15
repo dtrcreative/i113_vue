@@ -35,7 +35,7 @@
           hide-details
           :append-inner-icon="'mdi-refresh'"
           @click:append-inner="generatePassword"
-          :maxlength="15"
+          :maxlength="25"
           :rules="[rules.required, rules.range.passwordMin]"
         ></v-text-field>
       </v-col>
